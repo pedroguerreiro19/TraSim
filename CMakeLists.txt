@@ -23,6 +23,8 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(TraSim
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
+        road.h road.cpp
+        intersection.h intersection.cpp
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET TraSim APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
