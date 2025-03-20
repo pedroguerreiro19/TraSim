@@ -15,8 +15,7 @@ class MainWindow;
 }
 QT_END_NAMESPACE
 
-class MainWindow : public QMainWindow
-{
+class MainWindow : public QMainWindow {
     Q_OBJECT
 
 public:
@@ -40,6 +39,5 @@ private:
 
     void mousePressEvent(QMouseEvent *event) override;
     void mouseMoveEvent(QMouseEvent *event) override;
-    //void mouseReleaseEvent(QMouseEvent *event) override;
 };
 #endif // MAINWINDOW_H

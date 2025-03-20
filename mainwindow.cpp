@@ -88,7 +88,9 @@ void MainWindow::mousePressEvent(QMouseEvent *event){
         if (newRoad == nullptr) {
             qDebug() << "Criando nova estrada"; // TIRAR DEPOIS
             newRoad = new Road(scenePos.x(), scenePos.y(), 100, 10, scene);
+            newRoad->checkForIntersections(scene, intersections);
             roads.append(newRoad);
+
         } else {
             qDebug() <<"Finalizando a estrada";
             //QPointF endPos = view->mapToScene(event->pos());
