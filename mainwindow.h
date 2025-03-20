@@ -4,6 +4,11 @@
 #include <QMainWindow>
 #include <QGraphicsScene>
 #include <QGraphicsView>
+#include <QList>
+
+class Road;
+class Intersection;
+
 QT_BEGIN_NAMESPACE
 namespace Ui {
 class MainWindow;
@@ -18,11 +23,23 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+private slots:
+    void toggleaddRoads();
+
 private:
     QGraphicsScene *scene;
     QGraphicsView *view;
+    QList<Road*> roads;
+    QList<Intersection*> intersections;
     Ui::MainWindow *ui;
 
+    bool isAddingRoad;
+    Road *newRoad = nullptr;
+
     void setupScene();
+
+    void mousePressEvent(QMouseEvent *event) override;
+    void mouseMoveEvent(QMouseEvent *event) override;
+    //void mouseReleaseEvent(QMouseEvent *event) override;
 };
 #endif // MAINWINDOW_H

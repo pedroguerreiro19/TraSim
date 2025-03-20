@@ -1,5 +1,6 @@
 C:/Users/dined/Documents/TraSim/build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/TraSim_autogen/EWIEGA46WW/moc_mainwindow.cpp: C:/Users/dined/Documents/TraSim/mainwindow.h \
   C:/Users/dined/Documents/TraSim/build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/TraSim_autogen/moc_predefs.h \
+  C:/Qt/6.8.2/mingw_64/include/QtCore/QList \
   C:/Qt/6.8.2/mingw_64/include/QtCore/q20functional.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/q20iterator.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/q20memory.h \

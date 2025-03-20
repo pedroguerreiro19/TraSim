@@ -2,6 +2,7 @@
 C:/Users/dined/Documents/TraSim/intersection.h
 C:/Users/dined/Documents/TraSim/mainwindow.h
  mmc:Q_OBJECT
+ mdp:C:/Qt/6.8.2/mingw_64/include/QtCore/QList
  mdp:C:/Qt/6.8.2/mingw_64/include/QtCore/q20functional.h
  mdp:C:/Qt/6.8.2/mingw_64/include/QtCore/q20iterator.h
  mdp:C:/Qt/6.8.2/mingw_64/include/QtCore/q20memory.h
