@@ -23,7 +23,8 @@ public:
     ~MainWindow();
 
 private slots:
-    void toggleaddRoads();
+    void toggleAddRoads();
+    void checkForIntersections(Road *road);
 
 private:
     QGraphicsScene *scene;
@@ -34,10 +35,12 @@ private:
 
     bool isAddingRoad;
     Road *newRoad = nullptr;
+    QPointF startRoadPos;
 
     void setupScene();
 
     void mousePressEvent(QMouseEvent *event) override;
     void mouseMoveEvent(QMouseEvent *event) override;
+    void mouseReleaseEvent(QMouseEvent * event) override;
 };
 #endif // MAINWINDOW_H

@@ -4,8 +4,7 @@
 #include "intersection.h"
 #include <QPushButton>
 #include <QMouseEvent>
-#include <QDebug> // TIRAR NO FINAL
-
+#include <QDebug>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -18,14 +17,12 @@ MainWindow::MainWindow(QWidget *parent)
     QVBoxLayout *mainLayout = new QVBoxLayout;
 
     scene = new QGraphicsScene(this);
-    view = new QGraphicsView(scene,this);
+    view = new QGraphicsView(scene, this);
 
-    //setCentralWidget(view);
-
-    QPushButton *btnAddRoad = new QPushButton("Adicionar estrada",this);
-    connect(btnAddRoad, &QPushButton::clicked, this, &MainWindow::toggleaddRoads);
-    mainLayout-> addWidget(view);
-    mainLayout-> addWidget(btnAddRoad);
+    QPushButton *btnAddRoad = new QPushButton("Adicionar estrada", this);
+    connect(btnAddRoad, &QPushButton::clicked, this, &MainWindow::toggleAddRoads);
+    mainLayout->addWidget(view);
+    mainLayout->addWidget(btnAddRoad);
 
     QWidget *centralWidget = new QWidget(this);
     centralWidget->setLayout(mainLayout);
@@ -39,68 +36,85 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::setupScene(){
-    scene->setSceneRect (0,0, 800,600);
-
-    //QGraphicsRectItem *road = scene -> addRect(100,250,600,100, QPen(Qt::black), QBrush(Qt::darkGray));
-
-
-    QGraphicsEllipseItem *intersection = scene ->addEllipse(350,250,100,100,QPen(Qt::black),QBrush(Qt::gray));
-
+void MainWindow::setupScene() {
+    scene->setSceneRect(0, 0, 800, 600);
     roads.append(new Road(100, 250, 600, 100, scene));
     roads.append(new Road(350, 50, 100, 500, scene));
-
-    //new Road (100, 250, 600, 100, scene);
-    //new Road (350, 50, 100, 500 , scene);
-
-    intersections.append(new Intersection (350, 250,100, scene));
-
+    intersections.append(new Intersection(350, 250, 100, scene));
     view->setRenderHint(QPainter::Antialiasing);
 }
 
-void MainWindow::toggleaddRoads() {
+void MainWindow::toggleAddRoads() {
     isAddingRoad = !isAddingRoad;
-    if (isAddingRoad){
-        qDebug() << "Modo Adicionar Estrada Ativado"; // TIRAR DEPOIS
-        setCursor(Qt::CrossCursor);
-
-        QPointF scenePos = view->mapToScene(mapFromGlobal(QCursor::pos()));
-        if (!newRoad) {
-            newRoad = new Road(scenePos.x(), scenePos.y(), 100, 10, scene);
-        }
-    } else {
-        qDebug() << "Modo Adicionar Estrada Desativado"; // TIRAR DEPOIS
-        setCursor(Qt::ArrowCursor);
-    }
+    setCursor(isAddingRoad ? Qt::CrossCursor : Qt::ArrowCursor);
+    qDebug() << (isAddingRoad ? "Modo Adicionar Estrada Ativado" : "Modo Adicionar Estrada Desativado");
 }
 
-void MainWindow::mouseMoveEvent(QMouseEvent *event){
-    if (isAddingRoad && newRoad) {
-        QPointF scenePos = view->mapToScene(event->pos());
-        newRoad->setPos(scenePos.x(), scenePos.y());
-        qDebug() << "Movendo estrada para: " << scenePos; // TIRAR DEPOIS
-    }
-}
-void MainWindow::mousePressEvent(QMouseEvent *event){
-    if (isAddingRoad) {
-        QPointF scenePos = view->mapToScene(event->pos());
+void MainWindow::mousePressEvent(QMouseEvent *event) {
+    if (!isAddingRoad) return;
 
-        if (newRoad == nullptr) {
-            qDebug() << "Criando nova estrada"; // TIRAR DEPOIS
-            newRoad = new Road(scenePos.x(), scenePos.y(), 100, 10, scene);
-            newRoad->checkForIntersections(scene, intersections);
-            roads.append(newRoad);
+    QPointF scenePos = view->mapToScene(event->pos());
 
-        } else {
-            qDebug() <<"Finalizando a estrada";
-            //QPointF endPos = view->mapToScene(event->pos());
-            //newRoad->setRect(newRoad->x(), newRoad->y(), endPos.x() - newRoad->x(), endPos.y() - newRoad->y());
-            newRoad->setFlag(QGraphicsItem::ItemIsMovable, true);
-            newRoad = nullptr;
-            isAddingRoad = false;
-            setCursor(Qt::ArrowCursor);
+    // Verificar se o clique foi sobre uma estrada existente
+    for (Road* road : roads) {
+        if (road->contains(road->mapFromScene(scenePos))) {
+            qDebug() << "Iniciando nova estrada a partir de uma existente";
+
+            // Definir ponto de início para a nova estrada
+            startRoadPos = scenePos;
+
+            // Criar uma estrada temporária com tamanho mínimo
+            newRoad = new Road(scenePos.x(), scenePos.y(), 1, 10, scene);
+            scene->addItem(newRoad);
+
+            return;
         }
     }
 }
+
+void MainWindow::mouseMoveEvent(QMouseEvent *event) {
+    if (!newRoad) return;
+
+    QPointF scenePos = view->mapToScene(event->pos());
+
+    // Ajustar largura/altura da estrada enquanto o mouse se move
+    qreal width = qAbs(scenePos.x() - startRoadPos.x());
+    qreal height = qAbs(scenePos.y() - startRoadPos.y());
+
+    // Manter estrada horizontal ou vertical
+    if (width > height)
+        height = 10;  // Estrada horizontal
+    else
+        width = 10;   // Estrada vertical
+
+    newRoad->setRect(QRectF(startRoadPos, QSizeF(width, height)));
+}
+
+void MainWindow::mouseReleaseEvent(QMouseEvent *event) {
+    if (!newRoad) return;
+
+    qDebug() << "Finalizando estrada";
+
+    // Finalizar e adicionar estrada à lista
+    roads.append(newRoad);
+
+    // Verificar interseções e ajustar ligações
+    checkForIntersections(newRoad);
+
+    newRoad = nullptr;
+    isAddingRoad = false;
+    setCursor(Qt::ArrowCursor);
+}
+
+void MainWindow::checkForIntersections(Road *road) {
+    for (Road *existingRoad : roads) {
+        if (existingRoad != road && existingRoad->collidesWithItem(road)) {
+            QPointF intersectionPoint = road->boundingRect().center();
+            intersections.append(new Intersection(intersectionPoint.x(), intersectionPoint.y(), 20, scene));
+        }
+    }
+}
+
+
 
 
