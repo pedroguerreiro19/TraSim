@@ -79,28 +79,20 @@ void MainWindow::mousePressEvent(QMouseEvent *event) {
 
     QPointF scenePos = view->mapToScene(event->pos());
 
-    Road* r1 = roads.first();
+    for (Road* road : roads) {
+        QRectF roadBoundsStart = road->boundingRect();
+        roadBoundsStart.moveTopLeft(road->pos());
+
+        if (roadBoundsStart.contains(scenePos)) {
+
+            qreal angle = atan2(scenePos.y() - road->pos().y(), scenePos.x() - road->pos().x());
+            qreal length = qSqrt(qPow(scenePos.x() - road->pos().x(), 2) + qPow(scenePos.y() - road->pos().y(), 2));
 
 
-    QPointF startPos = r1->pos();
-    QPointF endPos = startPos + QPointF(r1->boundingRect().width(), 0);
-
-
-    qreal distanceStart = QLineF(scenePos, startPos).length();
-    qreal distanceEnd = QLineF(scenePos, endPos).length();
-
-    if (distanceStart < 10) {
-        startRoadPos = startPos;
-        qDebug() << "Clique na extremidade inicial da estrada";
-    } else if (distanceEnd < 10) {
-        startRoadPos = endPos;
-        qDebug() << "Clique na extremidade final da estrada";
-    } else {
-        return;
+            startRoadPos = scenePos;
+            return;
+        }
     }
-
-
-    qDebug() << "Adicionando estrada a partir de" << startRoadPos;
 }
 
 
@@ -154,23 +146,17 @@ void MainWindow::mouseMoveEvent(QMouseEvent *event) {
 }
 
 
+
 void MainWindow::mouseReleaseEvent(QMouseEvent *event) {
     if (!isAddingRoad || !newRoad) return;
 
     QPointF scenePos = view->mapToScene(event->pos());
 
-
     roads.append(newRoad);
 
-
-    //graph[startRoadPos].append(scenePos);
-    //graph[scenePos].append(startRoadPos);
-
-    // Verificar e adicionar interseções
     checkForIntersections(newRoad);
 
     qDebug() << "Estrada finalizada de" << startRoadPos << "para" << scenePos;
-
 
     newRoad = nullptr;
     isAddingRoad = false;
