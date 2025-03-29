@@ -1,7 +1,9 @@
 TraSim_autogen/timestamp: \
 	C:/Qt/6.8.2/mingw_64/include/QtCore/QHash \
 	C:/Qt/6.8.2/mingw_64/include/QtCore/QList \
+	C:/Qt/6.8.2/mingw_64/include/QtCore/QMap \
 	C:/Qt/6.8.2/mingw_64/include/QtCore/QPointF \
+	C:/Qt/6.8.2/mingw_64/include/QtCore/QVector \
 	C:/Qt/6.8.2/mingw_64/include/QtCore/q20functional.h \
 	C:/Qt/6.8.2/mingw_64/include/QtCore/q20iterator.h \
 	C:/Qt/6.8.2/mingw_64/include/QtCore/q20memory.h \
@@ -119,6 +121,7 @@ TraSim_autogen/timestamp: \
 	C:/Qt/6.8.2/mingw_64/include/QtCore/qutf8stringview.h \
 	C:/Qt/6.8.2/mingw_64/include/QtCore/qvariant.h \
 	C:/Qt/6.8.2/mingw_64/include/QtCore/qvarlengtharray.h \
+	C:/Qt/6.8.2/mingw_64/include/QtCore/qvector.h \
 	C:/Qt/6.8.2/mingw_64/include/QtCore/qversiontagging.h \
 	C:/Qt/6.8.2/mingw_64/include/QtCore/qxptype_traits.h \
 	C:/Qt/6.8.2/mingw_64/include/QtCore/qyieldcpu.h \
@@ -556,6 +559,8 @@ TraSim_autogen/timestamp: \
 	C:/Users/dined/Documents/TraSim/build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/CMakeFiles/3.30.5/CMakeRCCompiler.cmake \
 	C:/Users/dined/Documents/TraSim/build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/CMakeFiles/3.30.5/CMakeSystem.cmake \
 	C:/Users/dined/Documents/TraSim/build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/TraSim_autogen/moc_predefs.h \
+	C:/Users/dined/Documents/TraSim/graph.cpp \
+	C:/Users/dined/Documents/TraSim/graph.h \
 	C:/Users/dined/Documents/TraSim/intersection.cpp \
 	C:/Users/dined/Documents/TraSim/intersection.h \
 	C:/Users/dined/Documents/TraSim/main.cpp \

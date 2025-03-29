@@ -1,6 +1,7 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include "graph.h"
 #include <QMainWindow>
 #include <QGraphicsScene>
 #include <QGraphicsView>
@@ -38,10 +39,11 @@ private:
 
     bool isAddingRoad;
     bool isAddingCurve;
+    bool canPlaceRoad(QPointF position);
     Road *newRoad = nullptr;
+    Graph *graph;
     QPointF startRoadPos;
     QPointF lastCurvePos;
-    QHash<QPointF, QList<QPointF>> graph;
 
     void setupScene();
     void createTemporaryRoad(const QPointF &start, const QPointF &end);

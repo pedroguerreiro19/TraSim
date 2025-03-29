@@ -12,6 +12,7 @@ MainWindow::MainWindow(QWidget *parent)
     , isAddingRoad(false)
     , isAddingCurve(false)
     , newRoad(nullptr)
+    , graph(new Graph())
 {
     ui->setupUi(this);
 
@@ -44,17 +45,22 @@ void MainWindow::setupScene() {
     scene->setSceneRect(0, 0, 800, 600);
 
 
-    Road* r1 = new Road(100, 250, 600, 10, scene);
-    Road* r2 = new Road(350, 50, 10, 500, scene);
+    Road* r1 = new Road(1, 100, 250, 600, 40, scene, graph);
+    Road* r2 = new Road(2, 350, 50, 40, 500, scene, graph);
     roads.append(r1);
     roads.append(r2);
+    scene->addItem(r1);
+    scene->addItem(r2);
+    qDebug() << "Estrada r1 em:" << r1->pos();
+    qDebug() << "Estrada r2 em:" << r2->pos();
+
+    scene->update();
 
 
     intersections.append(new Intersection(350, 250, 10, scene));
 
 
-    // graph[QPointF(100, 250)] = {QPointF(700, 250)};
-    // graph[QPointF(350, 50)] = {QPointF(350, 550)};
+
 
     view->setRenderHint(QPainter::Antialiasing);
 }
@@ -75,27 +81,49 @@ void MainWindow::toggleAddCurves() {
 
 
 void MainWindow::mousePressEvent(QMouseEvent *event) {
-    if (!isAddingRoad) return;
-
-    QPointF scenePos = view->mapToScene(event->pos());
-
-    for (Road* road : roads) {
-        QRectF roadBoundsStart = road->boundingRect();
-        roadBoundsStart.moveTopLeft(road->pos());
-
-        if (roadBoundsStart.contains(scenePos)) {
-
-            qreal angle = atan2(scenePos.y() - road->pos().y(), scenePos.x() - road->pos().x());
-            qreal length = qSqrt(qPow(scenePos.x() - road->pos().x(), 2) + qPow(scenePos.y() - road->pos().y(), 2));
+    if (isAddingRoad) {
+        QPointF scenePos = view->mapToScene(event->pos());
 
 
-            startRoadPos = scenePos;
+        bool roadPlaced = false;
+        for (Road* road : roads) {
+            if (road->contains(road->mapFromScene(scenePos))) {
+                if (!newRoad) {
+                    newRoad = new Road(roads.size() + 1, scenePos.x(), scenePos.y(), 100, 10, scene, graph);
+                    roads.append(newRoad);
+                    qDebug() << "Estrada criada!";
+                    roadPlaced = true;
+                } else {
+                    newRoad->setFlag(QGraphicsItem::ItemIsMovable, true);
+
+                    newRoad->connectTo(road);
+                    qDebug() << "Estrada conectada!";
+                    break;
+                }
+            }
+        }
+
+        if (!roadPlaced) {
+            qDebug() << "Estrada não pode ser colocada aqui!";
             return;
         }
+
+        newRoad = nullptr;
+        isAddingRoad = false;
+        setCursor(Qt::ArrowCursor);
     }
 }
 
+bool MainWindow::canPlaceRoad(QPointF position) {
+    if (roads.isEmpty()) return false;
 
+    for (Road* road : roads) {
+        if (road->contains(road->mapFromScene(position))) {
+            return true;
+        }
+    }
+    return false;
+}
 void MainWindow::checkForIntersections(Road *road) {
     for (Road *existingRoad : roads) {
         if (existingRoad != road && existingRoad->collidesWithItem(road)) {
@@ -141,7 +169,7 @@ void MainWindow::mouseMoveEvent(QMouseEvent *event) {
     else
         width = 10;
 
-    newRoad = new Road(startRoadPos.x(), startRoadPos.y(), width, height, scene);
+    newRoad = new Road(roads.size() +1, startRoadPos.x(), startRoadPos.y(), width, height, scene, graph);
     scene->addItem(newRoad);
 }
 
