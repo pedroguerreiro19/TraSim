@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include "graph.h"
+#include "carspawner.h"
 #include <QMainWindow>
 #include <QGraphicsScene>
 #include <QGraphicsView>
@@ -41,6 +42,7 @@ private:
     bool isAddingCurve;
     bool canPlaceRoad(QPointF position);
     Road *newRoad = nullptr;
+    CarSpawner* carSpawner;
     Graph *graph;
     QPointF startRoadPos;
     QPointF lastCurvePos;

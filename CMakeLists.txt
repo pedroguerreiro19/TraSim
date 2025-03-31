@@ -26,6 +26,8 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         road.h road.cpp
         intersection.h intersection.cpp
         graph.h graph.cpp
+        car.h car.cpp
+        carspawner.h carspawner.cpp
 
     )
 # Define target properties for Android with Qt 6 as:

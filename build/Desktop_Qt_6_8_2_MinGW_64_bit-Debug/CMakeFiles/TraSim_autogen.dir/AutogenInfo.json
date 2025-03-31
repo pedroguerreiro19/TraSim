@@ -300,6 +300,18 @@
 	"HEADERS" : 
 	[
 		[
+			"C:/Users/dined/Documents/TraSim/car.h",
+			"MU",
+			"EWIEGA46WW/moc_car.cpp",
+			null
+		],
+		[
+			"C:/Users/dined/Documents/TraSim/carspawner.h",
+			"MU",
+			"EWIEGA46WW/moc_carspawner.cpp",
+			null
+		],
+		[
 			"C:/Users/dined/Documents/TraSim/graph.h",
 			"MU",
 			"EWIEGA46WW/moc_graph.cpp",
@@ -395,6 +407,8 @@
 	"SETTINGS_FILE" : "C:/Users/dined/Documents/TraSim/build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/CMakeFiles/TraSim_autogen.dir/AutogenUsed.txt",
 	"SOURCES" : 
 	[
+		[ "C:/Users/dined/Documents/TraSim/car.cpp", "MU", null ],
+		[ "C:/Users/dined/Documents/TraSim/carspawner.cpp", "MU", null ],
 		[ "C:/Users/dined/Documents/TraSim/graph.cpp", "MU", null ],
 		[ "C:/Users/dined/Documents/TraSim/intersection.cpp", "MU", null ],
 		[ "C:/Users/dined/Documents/TraSim/main.cpp", "MU", null ],

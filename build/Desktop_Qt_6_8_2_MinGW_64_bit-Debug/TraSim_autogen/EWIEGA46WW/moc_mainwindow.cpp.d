@@ -3,7 +3,9 @@ C:/Users/dined/Documents/TraSim/build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/TraSim
   C:/Qt/6.8.2/mingw_64/include/QtCore/QHash \
   C:/Qt/6.8.2/mingw_64/include/QtCore/QList \
   C:/Qt/6.8.2/mingw_64/include/QtCore/QMap \
+  C:/Qt/6.8.2/mingw_64/include/QtCore/QObject \
   C:/Qt/6.8.2/mingw_64/include/QtCore/QPointF \
+  C:/Qt/6.8.2/mingw_64/include/QtCore/QTimer \
   C:/Qt/6.8.2/mingw_64/include/QtCore/QVector \
   C:/Qt/6.8.2/mingw_64/include/QtCore/q20functional.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/q20iterator.h \
@@ -19,6 +21,7 @@ C:/Users/dined/Documents/TraSim/build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/TraSim
   C:/Qt/6.8.2/mingw_64/include/QtCore/qatomic.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qatomic_cxx11.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qbasicatomic.h \
+  C:/Qt/6.8.2/mingw_64/include/QtCore/qbasictimer.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qbindingstorage.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qbytearray.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qbytearrayalgorithms.h \
@@ -109,6 +112,7 @@ C:/Users/dined/Documents/TraSim/build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/TraSim
   C:/Qt/6.8.2/mingw_64/include/QtCore/qtdeprecationmarkers.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qtenvironmentvariables.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qtextstream.h \
+  C:/Qt/6.8.2/mingw_64/include/QtCore/qtimer.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qtmetamacros.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qtnoop.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qtpreprocessorsupport.h \
@@ -139,6 +143,7 @@ C:/Users/dined/Documents/TraSim/build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/TraSim
   C:/Qt/6.8.2/mingw_64/include/QtGui/qkeysequence.h \
   C:/Qt/6.8.2/mingw_64/include/QtGui/qpaintdevice.h \
   C:/Qt/6.8.2/mingw_64/include/QtGui/qpainter.h \
+  C:/Qt/6.8.2/mingw_64/include/QtGui/qpainterpath.h \
   C:/Qt/6.8.2/mingw_64/include/QtGui/qpalette.h \
   C:/Qt/6.8.2/mingw_64/include/QtGui/qpen.h \
   C:/Qt/6.8.2/mingw_64/include/QtGui/qpixelformat.h \
@@ -154,11 +159,13 @@ C:/Users/dined/Documents/TraSim/build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/TraSim
   C:/Qt/6.8.2/mingw_64/include/QtGui/qtransform.h \
   C:/Qt/6.8.2/mingw_64/include/QtGui/qwindowdefs.h \
   C:/Qt/6.8.2/mingw_64/include/QtGui/qwindowdefs_win.h \
+  C:/Qt/6.8.2/mingw_64/include/QtWidgets/QGraphicsEllipseItem \
   C:/Qt/6.8.2/mingw_64/include/QtWidgets/QGraphicsScene \
   C:/Qt/6.8.2/mingw_64/include/QtWidgets/QGraphicsView \
   C:/Qt/6.8.2/mingw_64/include/QtWidgets/QMainWindow \
   C:/Qt/6.8.2/mingw_64/include/QtWidgets/qabstractscrollarea.h \
   C:/Qt/6.8.2/mingw_64/include/QtWidgets/qframe.h \
+  C:/Qt/6.8.2/mingw_64/include/QtWidgets/qgraphicsitem.h \
   C:/Qt/6.8.2/mingw_64/include/QtWidgets/qgraphicsscene.h \
   C:/Qt/6.8.2/mingw_64/include/QtWidgets/qgraphicsview.h \
   C:/Qt/6.8.2/mingw_64/include/QtWidgets/qmainwindow.h \
@@ -375,4 +382,6 @@ C:/Users/dined/Documents/TraSim/build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/TraSim
   C:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/time.h \
   C:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/vadefs.h \
   C:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/wchar.h \
+  C:/Users/dined/Documents/TraSim/car.h \
+  C:/Users/dined/Documents/TraSim/carspawner.h \
   C:/Users/dined/Documents/TraSim/graph.h

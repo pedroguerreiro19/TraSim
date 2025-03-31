@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
+#include "carspawner.h"
 #include "road.h"
 #include "intersection.h"
 #include <QPushButton>
@@ -34,6 +35,9 @@ MainWindow::MainWindow(QWidget *parent)
     centralWidget->setLayout(mainLayout);
     setCentralWidget(centralWidget);
 
+    carSpawner = new CarSpawner(1, graph, scene);
+    carSpawner->startSpawning(1000);
+
     setupScene();
 }
 
@@ -45,8 +49,8 @@ void MainWindow::setupScene() {
     scene->setSceneRect(0, 0, 800, 600);
 
 
-    Road* r1 = new Road(1, 100, 250, 600, 40, scene, graph);
-    Road* r2 = new Road(2, 350, 50, 40, 500, scene, graph);
+    Road* r1 = new Road(1, 20, 120, 600, 40, scene, graph);
+    Road* r2 = new Road(2, 160, 30, 40, 500, scene, graph);
     roads.append(r1);
     roads.append(r2);
     scene->addItem(r1);

@@ -14,7 +14,7 @@ struct Node {
 struct Edge {
     int startNode;
     int endNode;
-    double weight; // Pode ser distância, tempo estimado, etc.
+    double weight;
 
     Edge(int start, int end, double w) : startNode(start), endNode(end), weight(w) {}
 };
@@ -22,8 +22,8 @@ struct Edge {
 
 class Graph {
 public:
-    QMap<int, Node*> nodes;  // ID -> Nó
-    QVector<Edge> edges; // Lista de estradas
+    QMap<int, Node*> nodes;
+    QVector<Edge> edges;
 
     void addNode(int id, QPointF pos);
     void addEdge(int start, int end, double weight);
