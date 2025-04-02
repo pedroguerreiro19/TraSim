@@ -1,31 +1,34 @@
 #include "carspawner.h"
-#include "car.h"
+#include <QDebug>
 
-CarSpawner::CarSpawner(int roadId, Graph* graph, QGraphicsScene* scene, QObject* parent)
-    : QObject(parent), roadId(roadId), graph(graph), scene(scene) {
+CarSpawner::CarSpawner(int id, Graph* graph, QGraphicsScene* scene)
+    : spawnerId(id), graph(graph), scene(scene), startNode(-1), endNode(-1) {
+    timer = new QTimer(this);
+    connect(timer, &QTimer::timeout, this, &CarSpawner::spawnCar);
+}
 
-    spawnTimer = new QTimer(this);
-    connect(spawnTimer, &QTimer::timeout, this, &CarSpawner::spawnCar);
+void CarSpawner::setStartAndEnd(int start, int end) {
+    startNode = start;
+    endNode = end;
 }
 
 void CarSpawner::startSpawning(int interval) {
-    spawnTimer->start(interval);
+    timer->start(interval);
 }
 
 void CarSpawner::spawnCar() {
-    if (!graph->nodes.contains(roadId) || !graph->nodes.contains(roadId + 1)) {
-        qDebug() << "Erro: Nós inválidos para a estrada ID" << roadId;
+    if (startNode == -1 || endNode == -1) {
+        qDebug() << "Start ou End node não configurados!";
         return;
     }
 
-    QPointF startPos = graph->nodes[roadId]->position;
-    QPointF endPos = graph->nodes[roadId + 1]->position;
+    Car* car = new Car(startNode, endNode, graph, scene);
+    if (car->getPath().isEmpty()) {
+        delete car;
+        return;
+    }
 
-    Car* newCar = new Car(roadId, roadId + 1, graph, scene);
-    newCar->setPos(startPos);
-
-    scene->addItem(newCar);
-    newCar->startMoving();
-
-    qDebug() << "Carro spawnado em" << startPos << " indo para " << endPos;
+    cars.append(car);
+    scene->addItem(car);
+    car->startMoving();
 }

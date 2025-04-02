@@ -2,26 +2,31 @@
 #define CARSPAWNER_H
 
 #include <QObject>
-#include <QTimer>
 #include <QGraphicsScene>
+#include <QVector>
+#include <QTimer>
 #include "graph.h"
 #include "car.h"
 
 class CarSpawner : public QObject {
     Q_OBJECT
+
 public:
-    explicit CarSpawner(int roadId, Graph* graph, QGraphicsScene* scene, QObject* parent = nullptr);
-    void startSpawning(int interval = 3000); // Tempo entre spawns
+    CarSpawner(int id, Graph* graph, QGraphicsScene* scene);
+    void setStartAndEnd(int start, int end);
+    void startSpawning(int interval);
 
 private slots:
     void spawnCar();
 
 private:
-    int roadId;
+    int spawnerId;
+    int startNode;
+    int endNode;
     Graph* graph;
     QGraphicsScene* scene;
-    QTimer* spawnTimer;
+    QVector<Car*> cars;
+    QTimer* timer;
 };
 
 #endif // CARSPAWNER_H
-

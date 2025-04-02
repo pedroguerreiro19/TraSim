@@ -1,12 +1,11 @@
 #include "car.h"
 #include <QPainter>
 
-
 Car::Car(int startNode, int endNode, Graph* graph, QGraphicsScene* scene)
     : graph(graph), pathIndex(0) {
+
     setRect(0, 0, 10, 10);
     setBrush(Qt::red);
-
 
     QVector<int> nodePath = graph->dijkstra(startNode, endNode);
 
@@ -49,4 +48,7 @@ void Car::startMoving() {
     }
 }
 
+QList<QPointF> Car::getPath() const {
+    return path;
+}
 

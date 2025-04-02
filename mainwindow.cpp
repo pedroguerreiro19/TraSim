@@ -35,10 +35,11 @@ MainWindow::MainWindow(QWidget *parent)
     centralWidget->setLayout(mainLayout);
     setCentralWidget(centralWidget);
 
-    carSpawner = new CarSpawner(1, graph, scene);
-    carSpawner->startSpawning(1000);
-
     setupScene();
+
+    carSpawner = new CarSpawner(1, graph, scene);
+    carSpawner->setStartAndEnd(3, 1);
+    carSpawner->startSpawning(1000);
 }
 
 MainWindow::~MainWindow() {
@@ -48,6 +49,10 @@ MainWindow::~MainWindow() {
 void MainWindow::setupScene() {
     scene->setSceneRect(0, 0, 800, 600);
 
+
+    graph->addNode(1, QPointF(354, 270));
+    graph->addNode(2, QPointF(63, 270));
+    graph->addNode(3, QPointF(618, 270));
 
     Road* r1 = new Road(1, 20, 120, 600, 40, scene, graph);
     Road* r2 = new Road(2, 160, 30, 40, 500, scene, graph);
@@ -85,8 +90,9 @@ void MainWindow::toggleAddCurves() {
 
 
 void MainWindow::mousePressEvent(QMouseEvent *event) {
+    QPointF scenePos = view->mapToScene(event->pos());
+    qDebug() << "Clicado em:" << scenePos;
     if (isAddingRoad) {
-        QPointF scenePos = view->mapToScene(event->pos());
 
 
         bool roadPlaced = false;
@@ -147,7 +153,7 @@ void MainWindow::checkForIntersections(Road *road) {
                 qDebug() << "Interseção adicionada em:" << intersectionPoint;
 
 
-                // graph[intersectionPoint] = {};
+
             }
         }
     }
