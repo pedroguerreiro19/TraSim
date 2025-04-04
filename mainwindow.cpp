@@ -38,8 +38,9 @@ MainWindow::MainWindow(QWidget *parent)
     setupScene();
 
     carSpawner = new CarSpawner(1, graph, scene);
-    carSpawner->setStartAndEnd(3, 1);
-    carSpawner->startSpawning(1000);
+    carSpawner->setStartAndEnd(1, 3);
+    carSpawner->startSpawning(5000);
+
 }
 
 MainWindow::~MainWindow() {
@@ -50,12 +51,14 @@ void MainWindow::setupScene() {
     scene->setSceneRect(0, 0, 800, 600);
 
 
-    graph->addNode(1, QPointF(354, 270));
-    graph->addNode(2, QPointF(63, 270));
-    graph->addNode(3, QPointF(618, 270));
+    graph->addNode(1, QPointF(618, 270));
+    graph->addNode(2, QPointF(354, 270));
+    graph->addNode(3, QPointF(63, 270));
+    graph->addEdge(1,2,1);
+    graph->addEdge(2,3,1);
 
-    Road* r1 = new Road(1, 20, 120, 600, 40, scene, graph);
-    Road* r2 = new Road(2, 160, 30, 40, 500, scene, graph);
+    Road* r1 = new Road(1, 20, 120, 600, 40, scene);
+    Road* r2 = new Road(2, 160, 30, 40, 500, scene);
     roads.append(r1);
     roads.append(r2);
     scene->addItem(r1);
@@ -99,7 +102,7 @@ void MainWindow::mousePressEvent(QMouseEvent *event) {
         for (Road* road : roads) {
             if (road->contains(road->mapFromScene(scenePos))) {
                 if (!newRoad) {
-                    newRoad = new Road(roads.size() + 1, scenePos.x(), scenePos.y(), 100, 10, scene, graph);
+                    newRoad = new Road(roads.size() + 1, scenePos.x(), scenePos.y(), 100, 10, scene);
                     roads.append(newRoad);
                     qDebug() << "Estrada criada!";
                     roadPlaced = true;
@@ -179,7 +182,7 @@ void MainWindow::mouseMoveEvent(QMouseEvent *event) {
     else
         width = 10;
 
-    newRoad = new Road(roads.size() +1, startRoadPos.x(), startRoadPos.y(), width, height, scene, graph);
+    newRoad = new Road(roads.size() +1, startRoadPos.x(), startRoadPos.y(), width, height, scene);
     scene->addItem(newRoad);
 }
 

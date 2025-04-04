@@ -1,8 +1,6 @@
 #ifndef ROAD_H
 #define ROAD_H
-
 #include "intersection.h"
-#include "graph.h"
 #include <QGraphicsRectItem>
 #include <QGraphicsScene>
 #include <QPen>
@@ -11,7 +9,7 @@
 
 class Road : public QGraphicsRectItem {
 public:
-    Road(int id, qreal x, qreal y, qreal width, qreal height, QGraphicsScene *scene, Graph* graph);
+    Road(int id, qreal x, qreal y, qreal width, qreal height, QGraphicsScene *scene);
     ~Road() override;
 
     QRectF boundingRect() const override;
@@ -19,8 +17,8 @@ public:
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
     void checkForIntersections(QGraphicsScene *scene, QList<Intersection *> &intersections);
 
-    void connectTo(Road* other); // Conectar estradas
-    bool isConnected(); // Verifica se a estrada está conectada a outra
+    void connectTo(Road* other);
+    bool isConnected();
     QList<Road*> getConnectedRoads();
 
     QPointF getStart() const;
@@ -36,7 +34,6 @@ private:
     qreal height;
     int id;
     QList<Road*> connectedRoads;
-    Graph* graph;
     QGraphicsScene* scene;
 };
 

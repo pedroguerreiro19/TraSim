@@ -2,24 +2,17 @@
 #include "intersection.h"
 #include <QPainter>
 
-Road::Road(int id, qreal x, qreal y, qreal width, qreal height, QGraphicsScene *scene, Graph* graph)
-    : QGraphicsRectItem(x, y, width, height), id(id), graph(graph) {
+Road::Road(int id, qreal x, qreal y, qreal width, qreal height, QGraphicsScene *scene)
+    : QGraphicsRectItem(x, y, width, height), id(id) {
     setBrush(Qt::darkGray);
     setPos(x, y);
     scene->addItem(this);
-    int startNode = id;
-    int endNode = id + 1;
-
-    graph->addNode(startNode, QPointF(x, y));
-    graph->addNode(endNode, QPointF(x + width, y + height));
-    graph->addEdge(startNode, endNode, width);
-
     }
 
 Road::~Road() { }
 
 QRectF Road::boundingRect() const {
-    return QRectF(0, 0, width, height);  // Ou o cálculo correto para sua estrada
+    return QRectF(0, 0, width, height);
 }
 
 void Road::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *) {
@@ -38,7 +31,7 @@ QPointF Road::getEnd() const {
 void Road::connectTo(Road* other) {
     if (!connectedRoads.contains(other)) {
         connectedRoads.append(other);
-        other->connectTo(this); // Conexão bidirecional
+        other->connectTo(this);
     }
 }
 

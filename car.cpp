@@ -1,5 +1,7 @@
 #include "car.h"
 #include <QPainter>
+#include <QVector2D>
+#include <qgraphicsscene.h>
 
 Car::Car(int startNode, int endNode, Graph* graph, QGraphicsScene* scene)
     : graph(graph), pathIndex(0) {
@@ -8,6 +10,7 @@ Car::Car(int startNode, int endNode, Graph* graph, QGraphicsScene* scene)
     setBrush(Qt::red);
 
     QVector<int> nodePath = graph->dijkstra(startNode, endNode);
+    qDebug() << "Caminho de nós encontrado:" << nodePath;
 
     if (nodePath.isEmpty()) {
         qDebug() << "Erro: Nenhum caminho encontrado de" << startNode << "para" << endNode;
@@ -17,6 +20,7 @@ Car::Car(int startNode, int endNode, Graph* graph, QGraphicsScene* scene)
     for (int nodeId : nodePath) {
         if (graph->nodes.contains(nodeId)) {
             path.append(graph->nodes[nodeId]->position);
+            qDebug() << "Nó" << nodeId << "posição" << graph->nodes[nodeId]->position;
         }
     }
 
@@ -31,16 +35,47 @@ Car::Car(int startNode, int endNode, Graph* graph, QGraphicsScene* scene)
 }
 
 void Car::move() {
+
     if (pathIndex < path.size() - 1) {
-        pathIndex++;
-        setPos(path[pathIndex]);
-        qDebug() << "Carro movendo para" << path[pathIndex];
-    } else {
-        timer->stop();
-        qDebug() << "Carro chegou ao destino!";
+
+        QPointF startPos = pos();
+        QPointF endPos = path[pathIndex + 1];
+
+
+        QVector2D direction(endPos - startPos);
+        qreal distance = direction.length();
+        if (distance > 0) {
+            direction.normalize();
+        }
+
+        qreal moveDistance = 10.0;
+        qDebug() << "distance:" << distance;
+        qDebug() << "movedistance:" << moveDistance;
+        qDebug() << "startPos:" << startPos;
+        qDebug() << "endPos:" << endPos;
+
+
+
+        if (moveDistance < distance) {
+            setPos(pos() + direction.toPoint() * moveDistance);
+        } else {
+
+            setPos(endPos);
+            pathIndex++;
+
+            qDebug() << "Carro passou pelo nó:" << endPos;
+
+            if (pathIndex >= path.size() - 1) {
+                qDebug() << "Carro chegou ao destino!";
+                timer->stop();
+                scene()->removeItem(this);
+                deleteLater();
+            }
+        }
+
+        qDebug() << "Carro movendo para" << pos();
     }
 }
-
 void Car::startMoving() {
     if (!path.isEmpty()) {
         timer->start(100);

@@ -2,7 +2,7 @@
 #include <QDebug>
 
 CarSpawner::CarSpawner(int id, Graph* graph, QGraphicsScene* scene)
-    : spawnerId(id), graph(graph), scene(scene), startNode(-1), endNode(-1) {
+    : spawnerId(id), graph(graph), scene(scene), startNode(startNode), endNode(endNode) {
     timer = new QTimer(this);
     connect(timer, &QTimer::timeout, this, &CarSpawner::spawnCar);
 }

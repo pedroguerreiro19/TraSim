@@ -390,8 +390,8 @@ C:/Users/dined/Documents/TraSim/mainwindow.h
  mdp:C:/Users/dined/Documents/TraSim/graph.h
  mdp:C:/Users/dined/Documents/TraSim/mainwindow.h
 C:/Users/dined/Documents/TraSim/road.h
-C:/Users/dined/Documents/TraSim/intersection.cpp
 C:/Users/dined/Documents/TraSim/main.cpp
+C:/Users/dined/Documents/TraSim/intersection.cpp
 C:/Users/dined/Documents/TraSim/car.h
  mmc:Q_OBJECT
  mdp:C:/Qt/6.8.2/mingw_64/include/QtCore/QMap
