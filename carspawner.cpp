@@ -1,8 +1,9 @@
 #include "carspawner.h"
+#include "car.h"
 #include <QDebug>
 
 CarSpawner::CarSpawner(int id, Graph* graph, QGraphicsScene* scene)
-    : spawnerId(id), graph(graph), scene(scene), startNode(startNode), endNode(endNode) {
+    : spawnerId(id), graph(graph), scene(scene) {
     timer = new QTimer(this);
     connect(timer, &QTimer::timeout, this, &CarSpawner::spawnCar);
 }
@@ -22,7 +23,7 @@ void CarSpawner::spawnCar() {
         return;
     }
 
-    Car* car = new Car(startNode, endNode, graph, scene);
+    Car* car = new Car(startNode, endNode, graph, scene, trafficlight);
     if (car->getPath().isEmpty()) {
         delete car;
         return;

@@ -159,6 +159,7 @@ TraSim_autogen/timestamp: \
 	C:/Qt/6.8.2/mingw_64/include/QtGui/qwindowdefs.h \
 	C:/Qt/6.8.2/mingw_64/include/QtGui/qwindowdefs_win.h \
 	C:/Qt/6.8.2/mingw_64/include/QtWidgets/QGraphicsEllipseItem \
+	C:/Qt/6.8.2/mingw_64/include/QtWidgets/QGraphicsItem \
 	C:/Qt/6.8.2/mingw_64/include/QtWidgets/QGraphicsScene \
 	C:/Qt/6.8.2/mingw_64/include/QtWidgets/QGraphicsView \
 	C:/Qt/6.8.2/mingw_64/include/QtWidgets/QMainWindow \
@@ -579,5 +580,7 @@ TraSim_autogen/timestamp: \
 	C:/Users/dined/Documents/TraSim/mainwindow.h \
 	C:/Users/dined/Documents/TraSim/road.cpp \
 	C:/Users/dined/Documents/TraSim/road.h \
+	C:/Users/dined/Documents/TraSim/trafficlight.cpp \
+	C:/Users/dined/Documents/TraSim/trafficlight.h \
 	C:/Users/dined/Documents/TraSim/mainwindow.ui \
 	C:/Qt/Tools/CMake_64/bin/cmake.exe

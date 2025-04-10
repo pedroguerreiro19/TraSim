@@ -1,16 +1,24 @@
 #include "car.h"
+#include "trafficlight.h"
 #include <QPainter>
 #include <QVector2D>
+#include <QGraphicsScene>
 #include <qgraphicsscene.h>
 
-Car::Car(int startNode, int endNode, Graph* graph, QGraphicsScene* scene)
-    : graph(graph), pathIndex(0) {
+Car::Car(int startNode, int endNode, Graph* graph, QGraphicsScene* scene, TrafficLight* trafficLight)
+    : graph(graph), pathIndex(0), trafficLight(trafficLight) {
 
     setRect(0, 0, 10, 10);
     setBrush(Qt::red);
 
     QVector<int> nodePath = graph->dijkstra(startNode, endNode);
     qDebug() << "Caminho de nós encontrado:" << nodePath;
+    if (nodePath.isEmpty() || nodePath.first() == nodePath.last()) {
+        qDebug() << "Caminho inválido!";
+        return;
+    }
+    qDebug() << "Start node:" << startNode << "End node:" << endNode;
+    qDebug() << "Caminho encontrado:" << path;
 
     if (nodePath.isEmpty()) {
         qDebug() << "Erro: Nenhum caminho encontrado de" << startNode << "para" << endNode;
@@ -32,6 +40,20 @@ Car::Car(int startNode, int endNode, Graph* graph, QGraphicsScene* scene)
 
     timer = new QTimer(this);
     connect(timer, &QTimer::timeout, this, &Car::move);
+}
+
+bool Car::canMove(int currentNode) {
+    if (currentNode == 2) {
+        TrafficLight::State lightState = trafficLight->getState();
+        if (lightState == TrafficLight::Red) {
+            return false;
+        }
+        if (lightState == TrafficLight::Yellow) {
+            return true;
+        }
+    }
+
+    return true;
 }
 
 void Car::move() {
@@ -80,6 +102,14 @@ void Car::startMoving() {
     if (!path.isEmpty()) {
         timer->start(100);
         qDebug() << "Carro começando a se mover!";
+    }
+    if (canMove(startNode)) {
+        isMoving = true;
+        qDebug() << "Carro movendo de Node" << startNode << "para Node" << endNode;
+    }
+    else {
+        isMoving = false;
+        qDebug() <<"Carro parou!";
     }
 }
 

@@ -334,6 +334,12 @@
 			"MU",
 			"EWIEGA46WW/moc_road.cpp",
 			null
+		],
+		[
+			"C:/Users/dined/Documents/TraSim/trafficlight.h",
+			"MU",
+			"EWIEGA46WW/moc_trafficlight.cpp",
+			null
 		]
 	],
 	"HEADER_EXTENSIONS" : [ "h", "hh", "h++", "hm", "hpp", "hxx", "in", "txx" ],
@@ -413,7 +419,8 @@
 		[ "C:/Users/dined/Documents/TraSim/intersection.cpp", "MU", null ],
 		[ "C:/Users/dined/Documents/TraSim/main.cpp", "MU", null ],
 		[ "C:/Users/dined/Documents/TraSim/mainwindow.cpp", "MU", null ],
-		[ "C:/Users/dined/Documents/TraSim/road.cpp", "MU", null ]
+		[ "C:/Users/dined/Documents/TraSim/road.cpp", "MU", null ],
+		[ "C:/Users/dined/Documents/TraSim/trafficlight.cpp", "MU", null ]
 	],
 	"UIC_OPTIONS" : [],
 	"UIC_SEARCH_PATHS" : [],

@@ -3,6 +3,7 @@
 #include "carspawner.h"
 #include "road.h"
 #include "intersection.h"
+#include "trafficlight.h"
 #include <QPushButton>
 #include <QMouseEvent>
 #include <QDebug>
@@ -38,8 +39,9 @@ MainWindow::MainWindow(QWidget *parent)
     setupScene();
 
     carSpawner = new CarSpawner(1, graph, scene);
-    carSpawner->setStartAndEnd(1, 3);
-    carSpawner->startSpawning(5000);
+    carSpawner->setStartAndEnd(1, 5);
+    carSpawner->startSpawning(3000);
+    TrafficLight *light = new TrafficLight(300, 200, scene);
 
 }
 
@@ -52,10 +54,14 @@ void MainWindow::setupScene() {
 
 
     graph->addNode(1, QPointF(618, 270));
-    graph->addNode(2, QPointF(354, 270));
-    graph->addNode(3, QPointF(63, 270));
+    graph->addNode(2, QPointF(435, 270));
+    graph->addNode(3, QPointF(354, 270));
+    graph->addNode(4, QPointF(270, 270));
+    graph->addNode(5, QPointF(63, 270));
     graph->addEdge(1,2,1);
     graph->addEdge(2,3,1);
+    graph->addEdge(3,4,1);
+    graph->addEdge(4,5,1);
 
     Road* r1 = new Road(1, 20, 120, 600, 40, scene);
     Road* r2 = new Road(2, 160, 30, 40, 500, scene);

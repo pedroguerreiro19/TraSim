@@ -28,6 +28,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         graph.h graph.cpp
         car.h car.cpp
         carspawner.h carspawner.cpp
+        trafficlight.h trafficlight.cpp
 
     )
 # Define target properties for Android with Qt 6 as:

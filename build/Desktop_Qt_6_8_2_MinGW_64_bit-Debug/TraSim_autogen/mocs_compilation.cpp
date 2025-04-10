@@ -2,3 +2,4 @@
 #include "EWIEGA46WW/moc_car.cpp"
 #include "EWIEGA46WW/moc_carspawner.cpp"
 #include "EWIEGA46WW/moc_mainwindow.cpp"
+#include "EWIEGA46WW/moc_trafficlight.cpp"

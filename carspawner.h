@@ -27,6 +27,7 @@ private:
     QGraphicsScene* scene;
     QVector<Car*> cars;
     QTimer* timer;
+    TrafficLight* trafficlight;
 };
 
 #endif // CARSPAWNER_H
