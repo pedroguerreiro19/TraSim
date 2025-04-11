@@ -17,6 +17,10 @@ QRectF TrafficLight::boundingRect() const {
     return QRectF(0, 0, 20, 60);
 }
 
+QPointF TrafficLight::getPosition() const {
+    return this->pos();
+}
+
 void TrafficLight::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *) {
     painter->setBrush(Qt::black);
     painter->drawRect(boundingRect());
@@ -47,6 +51,7 @@ void TrafficLight::updateLight() {
         break;
     case Yellow:
         currentState = Red;
+        qDebug() << "Semáforo ficou vermelho";
         timer->start(6000);
         break;
     }

@@ -7,12 +7,13 @@
 #include <QTimer>
 #include "graph.h"
 #include "car.h"
+#include "trafficlight.h"
 
 class CarSpawner : public QObject {
     Q_OBJECT
 
 public:
-    CarSpawner(int id, Graph* graph, QGraphicsScene* scene);
+    CarSpawner(int id, Graph* graph, QGraphicsScene* scene, TrafficLight* trafficLight);
     void setStartAndEnd(int start, int end);
     void startSpawning(int interval);
 
@@ -27,7 +28,7 @@ private:
     QGraphicsScene* scene;
     QVector<Car*> cars;
     QTimer* timer;
-    TrafficLight* trafficlight;
+    TrafficLight* trafficLight;
 };
 
 #endif // CARSPAWNER_H

@@ -12,6 +12,7 @@ public:
     TrafficLight(qreal x, qreal y, QGraphicsScene *scene);
     QRectF boundingRect() const override;
     enum State { Red, Green, Yellow };
+    QPointF getPosition() const;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
     TrafficLight::State getState() const;
 

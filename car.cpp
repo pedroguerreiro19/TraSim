@@ -11,6 +11,9 @@ Car::Car(int startNode, int endNode, Graph* graph, QGraphicsScene* scene, Traffi
     setRect(0, 0, 10, 10);
     setBrush(Qt::red);
 
+    if (trafficLight == nullptr) {
+        qDebug() << "Erro: semáforo não inicializado!";
+    }
     QVector<int> nodePath = graph->dijkstra(startNode, endNode);
     qDebug() << "Caminho de nós encontrado:" << nodePath;
     if (nodePath.isEmpty() || nodePath.first() == nodePath.last()) {
@@ -42,14 +45,25 @@ Car::Car(int startNode, int endNode, Graph* graph, QGraphicsScene* scene, Traffi
     connect(timer, &QTimer::timeout, this, &Car::move);
 }
 
-bool Car::canMove(int currentNode) {
-    if (currentNode == 2) {
+
+
+bool Car::canMove() {
+    if (trafficLight) {
         TrafficLight::State lightState = trafficLight->getState();
-        if (lightState == TrafficLight::Red) {
-            return false;
-        }
-        if (lightState == TrafficLight::Yellow) {
-            return true;
+        qreal distanceToLight = QLineF(this->pos(), trafficLight->getPosition()).length();
+        qDebug() << "Distância até o semáforo: " << distanceToLight;
+        qDebug() << "Estado do semáforo: " << (lightState == TrafficLight::Red ? "Vermelho" :
+                                                   (lightState == TrafficLight::Yellow ? "Amarelo" : "Verde"));
+
+        if (distanceToLight < 100.0) {
+            if (lightState == TrafficLight::Red) {
+                qDebug() << "Semáforo vermelho e carro próximo (" << distanceToLight << "px)! Parando.";
+                return false;
+            }
+            if (lightState == TrafficLight::Yellow) {
+                qDebug() << "Semáforo amarelo e carro próximo. Pode passar.";
+                return true;
+            }
         }
     }
 
@@ -57,6 +71,10 @@ bool Car::canMove(int currentNode) {
 }
 
 void Car::move() {
+    if (!canMove()) {
+        qDebug() << "Carro esperando no semáforo.";
+        return;
+    }
 
     if (pathIndex < path.size() - 1) {
 
@@ -103,7 +121,7 @@ void Car::startMoving() {
         timer->start(100);
         qDebug() << "Carro começando a se mover!";
     }
-    if (canMove(startNode)) {
+    if (canMove()) {
         isMoving = true;
         qDebug() << "Carro movendo de Node" << startNode << "para Node" << endNode;
     }

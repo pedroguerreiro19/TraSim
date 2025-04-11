@@ -15,7 +15,7 @@ class Car : public QObject, public QGraphicsEllipseItem {
 public:
     Car(int startNode, int endNode, Graph* graph, QGraphicsScene* scene, TrafficLight* trafficLight);
     void startMoving();
-    bool canMove(int currentNode);
+    bool canMove();
     QList<QPointF> getPath() const;
 
 private slots:
