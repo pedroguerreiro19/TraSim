@@ -42,7 +42,7 @@ MainWindow::MainWindow(QWidget *parent)
     TrafficLight *light = new TrafficLight(300, 200, scene);
     carSpawner = new CarSpawner(1, graph, scene, light);
     carSpawner->setStartAndEnd(1, 3);
-    carSpawner->startSpawning(6000);
+    carSpawner->startSpawning(500);
 
 }
 

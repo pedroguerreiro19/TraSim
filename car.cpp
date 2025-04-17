@@ -45,10 +45,33 @@ Car::Car(int startNode, int endNode, Graph* graph, QGraphicsScene* scene, Traffi
     connect(timer, &QTimer::timeout, this, &Car::move);
 }
 
+bool Car::hasPassedTrafficLight() const {
+    if (!trafficLight) return false;
+
+    QPointF lightPos = QPointF(230, 270);
+    QPointF carPos = this->pos();
+
+    if (pathIndex < path.size() - 1) {
+        QPointF nextPos = path[pathIndex + 1];
+
+        QVector2D dirToNext(nextPos - carPos);
+        QVector2D dirToLight(lightPos - carPos);
+
+        return QVector2D::dotProduct(dirToNext.normalized(), dirToLight.normalized()) < 0;
+    }
+
+    return false;
+}
 
 
 bool Car::canMove() {
     if (trafficLight) {
+        if (hasPassedTrafficLight()) {
+            qDebug() << "Carro já passou o semáforo. Pode continuar.";
+            return true;
+        }
+
+
         TrafficLight::State lightState = trafficLight->getState();
         qreal distanceToLight = QLineF(this->pos(), trafficLight->getPosition()).length();
         qDebug() << "Distância até o semáforo: " << distanceToLight;
