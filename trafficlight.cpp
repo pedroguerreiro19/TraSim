@@ -2,7 +2,7 @@
 #include <QPainter>
 #include <QGraphicsScene>
 
-TrafficLight::TrafficLight(qreal x, qreal y, QGraphicsScene *scene) {
+TrafficLight::TrafficLight(qreal x, qreal y, Graph* graph, QGraphicsScene *scene) {
     setPos(x, y);
     scene->addItem(this);
 
@@ -19,6 +19,10 @@ QRectF TrafficLight::boundingRect() const {
 
 QPointF TrafficLight::getPosition() const {
     return this->pos();
+}
+
+Node* TrafficLight::getNode() const {
+    return node;
 }
 
 void TrafficLight::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *) {

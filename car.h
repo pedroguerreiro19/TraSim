@@ -26,10 +26,12 @@ private:
     int startNode;
     int endNode;
     QList<QPointF> path;
+    QVector<int> pathNodeIds;
     int pathIndex;
     QTimer* timer;
     bool isMoving;
     bool hasPassedTrafficLight() const;
+    bool hasPassedLight;
     TrafficLight* trafficLight;
 };
 

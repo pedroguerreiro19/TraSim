@@ -38,11 +38,10 @@ MainWindow::MainWindow(QWidget *parent)
 
     setupScene();
 
-
-    TrafficLight *light = new TrafficLight(300, 200, scene);
+    TrafficLight *light = new TrafficLight(300, 200, graph, scene);
     carSpawner = new CarSpawner(1, graph, scene, light);
     carSpawner->setStartAndEnd(1, 3);
-    carSpawner->startSpawning(500);
+    carSpawner->startSpawning(2000);
 
 }
 
@@ -55,7 +54,7 @@ void MainWindow::setupScene() {
 
 
     graph->addNode(1, QPointF(618, 270));
-    graph->addNode(2, QPointF(354, 270));
+    graph->addNode(2, QPointF(350, 270));
     graph->addNode(3, QPointF(63, 270));
     graph->addEdge(1,2,1);
     graph->addEdge(2,3,1);
