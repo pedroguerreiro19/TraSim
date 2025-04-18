@@ -15,7 +15,6 @@ Car::Car(int startNode, int endNode, Graph* graph, QGraphicsScene* scene, Traffi
         qDebug() << "Aviso: Semáforo não atribuído ao carro!";
     }
 
-    // Calcula o caminho com Dijkstra
     QVector<int> nodePath = graph->dijkstra(startNode, endNode);
     qDebug() << "Caminho de nós encontrado:" << nodePath;
 
@@ -24,7 +23,6 @@ Car::Car(int startNode, int endNode, Graph* graph, QGraphicsScene* scene, Traffi
         return;
     }
 
-    // Constrói o caminho de pontos baseado nas posições dos nós
     for (int nodeId : nodePath) {
         if (graph->nodes.contains(nodeId)) {
             path.append(graph->nodes[nodeId]->position);
@@ -57,22 +55,22 @@ bool Car::canMove() {
     }
 
     TrafficLight::State lightState = trafficLight->getState();
-    qreal distanceToLight = QLineF(this->pos(), trafficLight->getPosition()).length();
+    int currentNodeId = pathIndex < pathNodeIds.size() ? pathNodeIds[pathIndex] : -1;
 
-    qDebug() << "Distância até o semáforo:" << distanceToLight;
+    qDebug() << "Nó atual do carro:" << currentNodeId;
     qDebug() << "Estado do semáforo:"
              << (lightState == TrafficLight::Red ? "Vermelho" :
                      (lightState == TrafficLight::Yellow ? "Amarelo" : "Verde"));
 
-    if (distanceToLight < 100.0) {
+    if (currentNodeId == 2) {
         if (lightState == TrafficLight::Red) {
-            qDebug() << "Semáforo vermelho. Carro vai parar.";
+            qDebug() << "Carro está no nó 2 e o semáforo está vermelho. Parando.";
             return false;
+        } else {
+            qDebug() << "Carro está no nó 2, mas o semáforo não está vermelho. Pode passar.";
         }
-        if (lightState == TrafficLight::Yellow) {
-            qDebug() << "Semáforo amarelo. Carro pode passar.";
-            return true;
-        }
+    } else {
+        qDebug() << "Carro já passou do nó 2 ou ainda não chegou.";
     }
 
     return true;
