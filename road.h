@@ -1,6 +1,5 @@
 #ifndef ROAD_H
 #define ROAD_H
-#include "intersection.h"
 #include <QGraphicsRectItem>
 #include <QGraphicsScene>
 #include <QPen>
@@ -15,7 +14,6 @@ public:
     QRectF boundingRect() const override;
 
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
-    void checkForIntersections(QGraphicsScene *scene, QList<Intersection *> &intersections);
 
     void connectTo(Road* other);
     bool isConnected();

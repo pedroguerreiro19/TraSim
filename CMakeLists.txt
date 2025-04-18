@@ -24,7 +24,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
         road.h road.cpp
-        intersection.h intersection.cpp
+
         graph.h graph.cpp
         car.h car.cpp
         carspawner.h carspawner.cpp
