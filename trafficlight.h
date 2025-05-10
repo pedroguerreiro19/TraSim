@@ -11,7 +11,7 @@ class TrafficLight : public QObject, public QGraphicsItem {
     Q_OBJECT
 
 public:
-    TrafficLight(qreal x, qreal y, Graph* graph, QGraphicsScene *scene);
+    TrafficLight(qreal x, qreal y, Graph* graph, Node* node, QGraphicsScene *scene);
     QRectF boundingRect() const override;
     enum State { Red, Green, Yellow };
     QPointF getPosition() const;
@@ -23,6 +23,7 @@ private slots:
     void updateLight();
 
 private:
+    Graph* graph;
     State currentState;
     QTimer *timer;
     Node *node;

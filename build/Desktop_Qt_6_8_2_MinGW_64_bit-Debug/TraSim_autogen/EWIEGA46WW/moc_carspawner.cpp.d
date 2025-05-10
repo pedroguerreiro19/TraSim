@@ -1,9 +1,9 @@
 C:/Users/dined/Documents/TraSim/build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/TraSim_autogen/EWIEGA46WW/moc_carspawner.cpp: C:/Users/dined/Documents/TraSim/carspawner.h \
   C:/Users/dined/Documents/TraSim/build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/TraSim_autogen/moc_predefs.h \
-  C:/Qt/6.8.2/mingw_64/include/QtCore/QList \
   C:/Qt/6.8.2/mingw_64/include/QtCore/QMap \
   C:/Qt/6.8.2/mingw_64/include/QtCore/QObject \
   C:/Qt/6.8.2/mingw_64/include/QtCore/QPointF \
+  C:/Qt/6.8.2/mingw_64/include/QtCore/QRandomGenerator \
   C:/Qt/6.8.2/mingw_64/include/QtCore/QTimer \
   C:/Qt/6.8.2/mingw_64/include/QtCore/QVector \
   C:/Qt/6.8.2/mingw_64/include/QtCore/q20functional.h \
@@ -36,10 +36,8 @@ C:/Users/dined/Documents/TraSim/build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/TraSim
   C:/Qt/6.8.2/mingw_64/include/QtCore/qcontainerfwd.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qcontainerinfo.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qcontainertools_impl.h \
-  C:/Qt/6.8.2/mingw_64/include/QtCore/qcontiguouscache.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qdarwinhelpers.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qdatastream.h \
-  C:/Qt/6.8.2/mingw_64/include/QtCore/qdebug.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qendian.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qexceptionhandling.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qflags.h \
@@ -50,7 +48,6 @@ C:/Users/dined/Documents/TraSim/build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/TraSim
   C:/Qt/6.8.2/mingw_64/include/QtCore/qgenericatomic.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qglobal.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qglobalstatic.h \
-  C:/Qt/6.8.2/mingw_64/include/QtCore/qhash.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qhashfunctions.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qiodevicebase.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qiterable.h \
@@ -76,15 +73,13 @@ C:/Users/dined/Documents/TraSim/build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/TraSim
   C:/Qt/6.8.2/mingw_64/include/QtCore/qpair.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qpoint.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qprocessordetection.h \
+  C:/Qt/6.8.2/mingw_64/include/QtCore/qrandom.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qrect.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qrefcount.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qscopedpointer.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qscopeguard.h \
-  C:/Qt/6.8.2/mingw_64/include/QtCore/qset.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qshareddata.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qshareddata_impl.h \
-  C:/Qt/6.8.2/mingw_64/include/QtCore/qsharedpointer.h \
-  C:/Qt/6.8.2/mingw_64/include/QtCore/qsharedpointer_impl.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qsize.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qspan.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qstring.h \
@@ -110,7 +105,6 @@ C:/Users/dined/Documents/TraSim/build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/TraSim
   C:/Qt/6.8.2/mingw_64/include/QtCore/qtdeprecationdefinitions.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qtdeprecationmarkers.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qtenvironmentvariables.h \
-  C:/Qt/6.8.2/mingw_64/include/QtCore/qtextstream.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qtimer.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qtmetamacros.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qtnoop.h \
@@ -123,8 +117,6 @@ C:/Users/dined/Documents/TraSim/build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/TraSim
   C:/Qt/6.8.2/mingw_64/include/QtCore/qtypeinfo.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qtypes.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qutf8stringview.h \
-  C:/Qt/6.8.2/mingw_64/include/QtCore/qvariant.h \
-  C:/Qt/6.8.2/mingw_64/include/QtCore/qvarlengtharray.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qvector.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qversiontagging.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qxptype_traits.h \
@@ -134,7 +126,6 @@ C:/Users/dined/Documents/TraSim/build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/TraSim
   C:/Qt/6.8.2/mingw_64/include/QtGui/qfont.h \
   C:/Qt/6.8.2/mingw_64/include/QtGui/qimage.h \
   C:/Qt/6.8.2/mingw_64/include/QtGui/qpaintdevice.h \
-  C:/Qt/6.8.2/mingw_64/include/QtGui/qpainterpath.h \
   C:/Qt/6.8.2/mingw_64/include/QtGui/qpen.h \
   C:/Qt/6.8.2/mingw_64/include/QtGui/qpixelformat.h \
   C:/Qt/6.8.2/mingw_64/include/QtGui/qpixmap.h \
@@ -148,10 +139,7 @@ C:/Users/dined/Documents/TraSim/build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/TraSim
   C:/Qt/6.8.2/mingw_64/include/QtGui/qtransform.h \
   C:/Qt/6.8.2/mingw_64/include/QtGui/qwindowdefs.h \
   C:/Qt/6.8.2/mingw_64/include/QtGui/qwindowdefs_win.h \
-  C:/Qt/6.8.2/mingw_64/include/QtWidgets/QGraphicsEllipseItem \
-  C:/Qt/6.8.2/mingw_64/include/QtWidgets/QGraphicsItem \
   C:/Qt/6.8.2/mingw_64/include/QtWidgets/QGraphicsScene \
-  C:/Qt/6.8.2/mingw_64/include/QtWidgets/qgraphicsitem.h \
   C:/Qt/6.8.2/mingw_64/include/QtWidgets/qgraphicsscene.h \
   C:/Qt/6.8.2/mingw_64/include/QtWidgets/qtwidgets-config.h \
   C:/Qt/6.8.2/mingw_64/include/QtWidgets/qtwidgetsexports.h \
@@ -205,6 +193,8 @@ C:/Users/dined/Documents/TraSim/build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/TraSim
   C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/postypes.h \
   C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/predefined_ops.h \
   C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/ptr_traits.h \
+  C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/random.h \
+  C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/random.tcc \
   C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/range_access.h \
   C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/refwrap.h \
   C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/requires_hosted.h \
@@ -250,7 +240,6 @@ C:/Users/dined/Documents/TraSim/build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/TraSim
   C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/cctype \
   C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/cerrno \
   C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/chrono \
-  C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/climits \
   C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/clocale \
   C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/cmath \
   C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/compare \
@@ -286,6 +275,7 @@ C:/Users/dined/Documents/TraSim/build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/TraSim
   C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/pstl/glue_algorithm_defs.h \
   C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/pstl/glue_memory_defs.h \
   C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/pstl/glue_numeric_defs.h \
+  C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/random \
   C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/ratio \
   C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/stdexcept \
   C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/stdlib.h \
@@ -320,13 +310,20 @@ C:/Users/dined/Documents/TraSim/build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/TraSim
   C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/x86_64-w64-mingw32/bits/error_constants.h \
   C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/x86_64-w64-mingw32/bits/gthr-default.h \
   C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/x86_64-w64-mingw32/bits/gthr.h \
+  C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/x86_64-w64-mingw32/bits/opt_random.h \
   C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/x86_64-w64-mingw32/bits/os_defines.h \
+  C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/emmintrin.h \
   C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/limits.h \
+  C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/mm_malloc.h \
+  C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/mmintrin.h \
+  C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/mwaitintrin.h \
+  C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/pmmintrin.h \
   C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/stdarg.h \
   C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/stdbool.h \
   C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/stddef.h \
   C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/stdint.h \
   C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/syslimits.h \
+  C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/xmmintrin.h \
   C:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/_mingw.h \
   C:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/_mingw_mac.h \
   C:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/_mingw_off_t.h \
@@ -362,6 +359,4 @@ C:/Users/dined/Documents/TraSim/build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/TraSim
   C:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/time.h \
   C:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/vadefs.h \
   C:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/wchar.h \
-  C:/Users/dined/Documents/TraSim/car.h \
-  C:/Users/dined/Documents/TraSim/graph.h \
-  C:/Users/dined/Documents/TraSim/trafficlight.h
+  C:/Users/dined/Documents/TraSim/graph.h

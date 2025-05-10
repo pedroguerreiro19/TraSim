@@ -6,14 +6,13 @@
 #include <QTimer>
 #include <QList>
 #include "graph.h"
-#include "trafficlight.h"
 
 
 class Car : public QObject, public QGraphicsEllipseItem {
     Q_OBJECT
 
 public:
-    Car(int startNode, int endNode, Graph* graph, QGraphicsScene* scene, TrafficLight* trafficLight);
+    Car(Node* spawnNode, Node* despawnNode, Graph* graph, QGraphicsScene* scene);
     void startMoving();
     bool canMove();
     QList<QPointF> getPath() const;
@@ -23,8 +22,8 @@ private slots:
 
 private:
     Graph* graph;
-    int startNode;
-    int endNode;
+    Node* spawnNode;
+    Node* despawnNode;
     QList<QPointF> path;
     QVector<int> pathNodeIds;
     int pathIndex;
@@ -32,7 +31,6 @@ private:
     bool isMoving;
     bool hasPassedTrafficLight() const;
     bool hasPassedLight;
-    TrafficLight* trafficLight;
 };
 
 #endif // CAR_H

@@ -1,12 +1,14 @@
 #include "trafficlight.h"
 #include <QPainter>
 #include <QGraphicsScene>
+#include <QTimer>
+#include <QDebug>
 
-TrafficLight::TrafficLight(qreal x, qreal y, Graph* graph, QGraphicsScene *scene) {
+TrafficLight::TrafficLight(qreal x, qreal y, Graph* graph, Node* node, QGraphicsScene *scene)
+    : graph(graph), node(node), currentState(Red) {
+
     setPos(x, y);
     scene->addItem(this);
-
-    currentState = Red;
 
     timer = new QTimer(this);
     connect(timer, &QTimer::timeout, this, &TrafficLight::updateLight);
@@ -28,6 +30,7 @@ Node* TrafficLight::getNode() const {
 void TrafficLight::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *) {
     painter->setBrush(Qt::black);
     painter->drawRect(boundingRect());
+
 
     QColor red = (currentState == Red) ? Qt::red : Qt::darkRed;
     QColor yellow = (currentState == Yellow) ? Qt::yellow : Qt::darkYellow;
@@ -55,12 +58,13 @@ void TrafficLight::updateLight() {
         break;
     case Yellow:
         currentState = Red;
-        qDebug() << "Semáforo ficou vermelho";
+        qDebug() << "Semáforo ficou vermelho";  // Log para depuração
         timer->start(6000);
         break;
     }
     update();
 }
+
 TrafficLight::State TrafficLight::getState() const {
     return currentState;
 }

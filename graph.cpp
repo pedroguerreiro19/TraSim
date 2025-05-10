@@ -1,14 +1,31 @@
 #include "graph.h"
+#include "trafficlight.h"
 #include <QSet>
 
 
-void Graph::addNode(int id, QPointF pos) {
-    nodes[id] = new Node(id, pos);
+void Graph::addNode(int id, QPointF pos, NodeType type) {
+    Node* node = new Node(id, pos, type);
+    nodes[id] = node;
+
+
+    if (type == NodeType::Spawn) {
+        spawnNodes.append(node);
+    } else if (type == NodeType::Despawn) {
+        despawnNodes.append(node);
+    }
 }
 
 
 void Graph::addEdge(int start, int end, double weight) {
     edges.push_back(Edge(start, end, weight));
+}
+
+void Graph::addTrafficLight(int nodeId, TrafficLight* light) {
+    trafficLights[nodeId] = light;
+}
+
+TrafficLight* Graph::getTrafficLightAtNode(int nodeId) {
+    return trafficLights.value(nodeId, nullptr);
 }
 
 QVector<int> Graph::dijkstra(int start, int end) {

@@ -5,10 +5,20 @@
 #include <QVector>
 #include <QPointF>
 
+class TrafficLight;
+
+enum class NodeType {
+    Spawn,
+    Despawn,
+    Ordinary,
+    Light
+};
+
 struct Node {
     int id;
     QPointF position;
-    Node(int id, QPointF pos) : id(id), position(pos) {}
+    NodeType type;
+    Node(int id, QPointF pos, NodeType t) : id(id), position(pos), type(t) {}
 };
 
 struct Edge {
@@ -24,10 +34,15 @@ class Graph {
 public:
     QMap<int, Node*> nodes;
     QVector<Edge> edges;
+    QVector<Node*> spawnNodes;
+    QVector<Node*> despawnNodes;
+    QMap<int, TrafficLight*> trafficLights;
 
-    void addNode(int id, QPointF pos);
+    void addNode(int id, QPointF pos, NodeType type);
     void addEdge(int start, int end, double weight);
+    void addTrafficLight(int nodeId, TrafficLight* light);
 
+    TrafficLight* getTrafficLightAtNode(int nodeId);
     QVector<int> dijkstra(int start, int end);
 };
 

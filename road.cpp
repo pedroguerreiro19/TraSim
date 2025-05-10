@@ -22,26 +22,6 @@ QRectF Road::boundingRect() const {
     return bounds;
 }
 
-void Road::paint(QPainter* painter, const QStyleOptionGraphicsItem*, QWidget*) {
-    QPen pen(Qt::darkGray, 14, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin);
-    painter->setPen(pen);
-    painter->setRenderHint(QPainter::Antialiasing);
-
-    if (points.size() < 2) return;
-
-    if (type == RoadType::Curve || type == RoadType::Roundabout) {
-        QPainterPath path(points.first());
-        for (int i = 1; i < points.size(); ++i) {
-            path.lineTo(points[i]);
-        }
-        if (type == RoadType::Roundabout) {
-            path.lineTo(points.first()); // fechar ciclo
-        }
-        painter->drawPath(path);
-    } else { // Straight
-        painter->drawLine(points.first(), points.last());
-    }
-}
 
 void Road::calculateBounds() {
     if (points.isEmpty()) {

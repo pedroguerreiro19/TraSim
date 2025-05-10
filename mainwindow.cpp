@@ -23,11 +23,6 @@ MainWindow::MainWindow(QWidget *parent)
 
     setupScene();
 
-    TrafficLight *light = new TrafficLight(300, 200, graph, scene);
-    carSpawner = new CarSpawner(1, graph, scene, light);
-    carSpawner->setStartAndEnd(1, 4);
-    carSpawner->startSpawning(2000);
-
 }
 
 MainWindow::~MainWindow() {
@@ -46,13 +41,27 @@ void MainWindow::setupScene() {
 
     view->centerOn(bgItem);
 
-    graph->addNode(1, QPointF(225, 81));
-    graph->addNode(2, QPointF(441, 81));
-    graph->addNode(3, QPointF(1018,81));
-    graph->addNode(4, QPointF(63, 270));
+
+    Node* node1 = new Node(1, QPointF(225, 81), NodeType::Spawn);
+    Node* node2 = new Node(2, QPointF(350, 81), NodeType::Light);
+    Node* node3 = new Node(3, QPointF(500, 81), NodeType::Ordinary);
+    Node* node4 = new Node(4, QPointF(1018, 81), NodeType::Despawn);
+
+
+
+    graph->addNode(1, node1->position, NodeType::Spawn);
+    graph->addNode(2, node2->position, NodeType::Ordinary);
+    graph->addNode(3, node3->position, NodeType::Ordinary);
+    graph->addNode(4, node4->position, NodeType::Despawn);
     graph->addEdge(1,2,1);
     graph->addEdge(2,3,1);
     graph->addEdge(3,4,1);
+
+    TrafficLight *light = new TrafficLight(node2->position.x(), node2->position.y(), graph, node2, scene);
+    graph->addTrafficLight(node2->id, light);
+    carSpawner = new CarSpawner(1, graph, scene);
+    carSpawner->setStartAndEnd(1, 4);
+    carSpawner->startSpawning(2000);
 
 
 

@@ -4,18 +4,12 @@
 #include <QVector2D>
 #include <QGraphicsScene>
 
-Car::Car(int startNode, int endNode, Graph* graph, QGraphicsScene* scene, TrafficLight* trafficLight)
-    : graph(graph), pathIndex(0), trafficLight(trafficLight), hasPassedLight(false),
-    startNode(startNode), endNode(endNode) {
-
+Car::Car(Node* spawnNode, Node* despawnNode, Graph* graph, QGraphicsScene* scene)
+    : graph(graph), pathIndex(0), spawnNode(spawnNode), despawnNode(despawnNode) {
     setRect(0, 0, 10, 10);
     setBrush(Qt::red);
 
-    if (!trafficLight) {
-        qDebug() << "Aviso: Semáforo não atribuído ao carro!";
-    }
-
-    QVector<int> nodePath = graph->dijkstra(startNode, endNode);
+    QVector<int> nodePath = graph->dijkstra(spawnNode->id, despawnNode->id);
     qDebug() << "Caminho de nós encontrado:" << nodePath;
 
     if (nodePath.isEmpty() || nodePath.first() == nodePath.last()) {
@@ -41,44 +35,23 @@ Car::Car(int startNode, int endNode, Graph* graph, QGraphicsScene* scene, Traffi
     connect(timer, &QTimer::timeout, this, &Car::move);
 }
 
-bool Car::hasPassedTrafficLight() const {
-    return hasPassedLight;
-}
-
 bool Car::canMove() {
-    if (!trafficLight)
-        return true;
-
-    if (hasPassedTrafficLight()) {
-        qDebug() << "Carro já passou o semáforo.";
-        return true;
-    }
-
-    TrafficLight::State lightState = trafficLight->getState();
-    int currentNodeId = pathIndex < pathNodeIds.size() ? pathNodeIds[pathIndex] : -1;
-
-    qDebug() << "Nó atual do carro:" << currentNodeId;
-    qDebug() << "Estado do semáforo:"
-             << (lightState == TrafficLight::Red ? "Vermelho" :
-                     (lightState == TrafficLight::Yellow ? "Amarelo" : "Verde"));
-
-    if (currentNodeId == 2) {
-        if (lightState == TrafficLight::Red) {
-            qDebug() << "Carro está no nó 2 e o semáforo está vermelho. Parando.";
-            return false;
-        } else {
-            qDebug() << "Carro está no nó 2, mas o semáforo não está vermelho. Pode passar.";
+    if (pathIndex < pathNodeIds.size()) {
+        int currentNodeId = pathNodeIds[pathIndex];
+        TrafficLight* trafficLight = graph->getTrafficLightAtNode(currentNodeId);
+        if (trafficLight) {
+            TrafficLight::State lightState = trafficLight->getState();
+            if (lightState == TrafficLight::Red) {
+                qDebug() << "Carro esperando no semáforo em nó:" << currentNodeId;
+                return false;
+            }
         }
-    } else {
-        qDebug() << "Carro já passou do nó 2 ou ainda não chegou.";
     }
-
     return true;
 }
 
 void Car::move() {
     if (!canMove()) {
-        qDebug() << "Carro esperando no semáforo.";
         return;
     }
 
@@ -99,35 +72,16 @@ void Car::move() {
         } else {
             setPos(endPos);
             pathIndex++;
-
-            // Verifica se o carro passou por um nó e atualiza a flag
-            if (pathIndex < pathNodeIds.size()) {
-                int currentNodeId = pathNodeIds[pathIndex];
-                qDebug() << "Carro passou pelo nó:" << currentNodeId;
-
-                if (!hasPassedLight && trafficLight && trafficLight->getNode()) {
-                    int lightNodeId = trafficLight->getNode()->id;
-                    qDebug() << "Comparando com semáforo no nó ID:" << lightNodeId;
-
-                    if (currentNodeId == lightNodeId) {
-                        hasPassedLight = true;
-                        qDebug() << "Carro passou do semáforo!";
-                    }
-                }
-            }
-
-            // Chegou ao destino
-            if (pathIndex >= path.size() - 1) {
-                qDebug() << "Carro chegou ao destino!";
-                timer->stop();
-                if (scene()) {
-                    scene()->removeItem(this);
-                }
-                deleteLater();
-            }
         }
 
-        qDebug() << "Carro movendo para" << pos();
+        if (pathIndex >= path.size() - 1) {
+            qDebug() << "Carro chegou ao destino!";
+            timer->stop();
+            if (scene()) {
+                scene()->removeItem(this);
+            }
+            deleteLater();
+        }
     }
 }
 
@@ -136,21 +90,4 @@ void Car::startMoving() {
         timer->start(100);
         qDebug() << "Carro começando a se mover!";
     }
-
-    if (canMove()) {
-        isMoving = true;
-        qDebug() << "Carro movendo de Node" << startNode << "para Node" << endNode;
-    } else {
-        isMoving = false;
-        qDebug() << "Carro parado no início.";
-    }
 }
-
-QList<QPointF> Car::getPath() const {
-    return path;
-}
-
-
-
-
-

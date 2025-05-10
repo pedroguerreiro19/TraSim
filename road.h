@@ -1,7 +1,6 @@
 #ifndef ROAD_H
 #define ROAD_H
 #include <QGraphicsItem>
-#include <QPainter>
 #include <QPointF>
 #include <QList>
 
@@ -20,7 +19,6 @@ public:
     QList<QPointF> getPoints() const;
 
     QRectF boundingRect() const override;
-    void paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget = nullptr) override;
 
 private:
     int id;
