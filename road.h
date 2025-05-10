@@ -1,38 +1,33 @@
 #ifndef ROAD_H
 #define ROAD_H
-#include <QGraphicsRectItem>
-#include <QGraphicsScene>
-#include <QPen>
-#include <QBrush>
+#include <QGraphicsItem>
+#include <QPainter>
+#include <QPointF>
+#include <QList>
 
+enum class RoadType {
+    Straight,
+    Curve,
+    Roundabout
+};
 
-class Road : public QGraphicsRectItem {
+class Road : public QGraphicsItem {
 public:
-    Road(int id, qreal x, qreal y, qreal width, qreal height, QGraphicsScene *scene);
-    ~Road() override;
+    Road(int id, RoadType type, const QList<QPointF>& points);
+
+    int getId() const;
+    RoadType getType() const;
+    QList<QPointF> getPoints() const;
 
     QRectF boundingRect() const override;
-
-    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
-
-    void connectTo(Road* other);
-    bool isConnected();
-    QList<Road*> getConnectedRoads();
-
-    QPointF getStart() const;
-    QPointF getEnd() const;
-
-protected:
-    void mouseMoveEvent(QGraphicsSceneMouseEvent *event) override {
-        QGraphicsRectItem::mouseMoveEvent(event);
-    }
+    void paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget = nullptr) override;
 
 private:
-    qreal width;
-    qreal height;
     int id;
-    QList<Road*> connectedRoads;
-    QGraphicsScene* scene;
+    RoadType type;
+    QList<QPointF> points;
+    QRectF bounds;
+    void calculateBounds();
 };
 
 #endif // ROAD_H

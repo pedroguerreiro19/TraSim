@@ -37,31 +37,30 @@ MainWindow::~MainWindow() {
 void MainWindow::setupScene() {
     scene->setSceneRect(0, 0, 800, 600);
 
+    QPixmap background("map.png");
+    QGraphicsPixmapItem* bgItem = scene->addPixmap(background);
+    bgItem->setZValue(-1);
+    bgItem->setPos(0, 0);
 
-    graph->addNode(1, QPointF(618, 270));
-    graph->addNode(2, QPointF(350, 270));
-    graph->addNode(3, QPointF(351,270));
+    scene->setSceneRect(background.rect());
+
+    view->centerOn(bgItem);
+
+    graph->addNode(1, QPointF(225, 81));
+    graph->addNode(2, QPointF(441, 81));
+    graph->addNode(3, QPointF(1018,81));
     graph->addNode(4, QPointF(63, 270));
     graph->addEdge(1,2,1);
     graph->addEdge(2,3,1);
     graph->addEdge(3,4,1);
 
-    Road* r1 = new Road(1, 20, 120, 600, 40, scene);
-    Road* r2 = new Road(2, 160, 30, 40, 500, scene);
-    roads.append(r1);
-    roads.append(r2);
-    scene->addItem(r1);
-    scene->addItem(r2);
-    qDebug() << "Estrada r1 em:" << r1->pos();
-    qDebug() << "Estrada r2 em:" << r2->pos();
+
 
     scene->update();
 
 
     view->setRenderHint(QPainter::Antialiasing);
 }
-
-
 
 
 void MainWindow::mousePressEvent(QMouseEvent *event) {
