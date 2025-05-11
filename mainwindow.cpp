@@ -50,7 +50,7 @@ void MainWindow::setupScene() {
 
 
     graph->addNode(1, node1->position, NodeType::Spawn);
-    graph->addNode(2, node2->position, NodeType::Ordinary);
+    graph->addNode(2, node2->position, NodeType::Light);
     graph->addNode(3, node3->position, NodeType::Ordinary);
     graph->addNode(4, node4->position, NodeType::Despawn);
     graph->addEdge(1,2,1);
@@ -60,7 +60,6 @@ void MainWindow::setupScene() {
     TrafficLight *light = new TrafficLight(node2->position.x(), node2->position.y(), graph, node2, scene);
     graph->addTrafficLight(node2->id, light);
     carSpawner = new CarSpawner(1, graph, scene);
-    carSpawner->setStartAndEnd(1, 4);
     carSpawner->startSpawning(2000);
 
 

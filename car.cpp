@@ -36,13 +36,15 @@ Car::Car(Node* spawnNode, Node* despawnNode, Graph* graph, QGraphicsScene* scene
 }
 
 bool Car::canMove() {
-    if (pathIndex < pathNodeIds.size()) {
-        int currentNodeId = pathNodeIds[pathIndex];
-        TrafficLight* trafficLight = graph->getTrafficLightAtNode(currentNodeId);
+    if (pathIndex < pathNodeIds.size() - 1) {
+        int nextNodeId = pathNodeIds[pathIndex + 1];
+        TrafficLight* trafficLight = graph->getTrafficLightAtNode(nextNodeId);
         if (trafficLight) {
             TrafficLight::State lightState = trafficLight->getState();
-            if (lightState == TrafficLight::Red) {
-                qDebug() << "Carro esperando no semáforo em nó:" << currentNodeId;
+            QPointF nextNodePos = path[pathIndex + 1];
+            qreal distanceToLight = QLineF(pos(), nextNodePos).length();
+            if (distanceToLight < 15.0 && lightState == TrafficLight::Red) {
+                qDebug() << "Carro esperando no semáforo em nó:" << nextNodeId;
                 return false;
             }
         }
@@ -65,7 +67,7 @@ void Car::move() {
             direction.normalize();
         }
 
-        qreal moveDistance = 10.0;
+        qreal moveDistance = 5.0;
 
         if (moveDistance < distance) {
             setPos(pos() + direction.toPointF() * moveDistance);
