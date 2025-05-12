@@ -25,23 +25,19 @@ class MainWindow : public QMainWindow {
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
-
-
+private slots:
+    void on_actionIniciar_triggered();
+    void on_actionParar_triggered();
+    void on_actionReiniciar_triggered();
+    void on_actionSair_triggered();
 private:
     QGraphicsScene *scene;
     QGraphicsView *view;
-    QList<Road*> roads;
-    QList<Intersection*> intersections;
     Ui::MainWindow *ui;
-
-    bool canPlaceRoad(QPointF position);
-    Road *newRoad = nullptr;
     CarSpawner* carSpawner;
     Graph *graph;
 
-
     void setupScene();
-
     void mousePressEvent(QMouseEvent *event) override;
 
 };

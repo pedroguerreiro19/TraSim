@@ -11,11 +11,9 @@
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
-    , newRoad(nullptr)
     , graph(new Graph())
 {
     ui->setupUi(this);
-
 
 
     scene = new QGraphicsScene(this);
@@ -33,7 +31,13 @@ MainWindow::~MainWindow() {
 void MainWindow::setupScene() {
     scene->setSceneRect(0, 0, 800, 600);
 
-    QPixmap background("resources/map/map.png");
+    QString path = ":/map/map.png";
+    QFile file(path);
+    qDebug() << "Recurso existe?" << file.exists();
+    QPixmap background(":/map/map.png");
+    if (background.isNull()) {
+        qDebug() << "Erro ao carregar o mapa via .qrc!";
+    }
     QGraphicsPixmapItem* bgItem = scene->addPixmap(background);
     bgItem->setZValue(-1);
     bgItem->setPos(0, 0);
@@ -61,7 +65,7 @@ void MainWindow::setupScene() {
     TrafficLight *light = new TrafficLight(node2->position.x(), node2->position.y(), graph, node2, scene);
     graph->addTrafficLight(node2->id, light);
     carSpawner = new CarSpawner(1, graph, scene);
-    carSpawner->startSpawning(2000);
+    //carSpawner->startSpawning(2000);
 
 
 
@@ -77,17 +81,21 @@ void MainWindow::mousePressEvent(QMouseEvent *event) {
     qDebug() << "Clicado em:" << scenePos;
 }
 
-bool MainWindow::canPlaceRoad(QPointF position) {
-    if (roads.isEmpty()) return false;
-
-    for (Road* road : roads) {
-        if (road->contains(road->mapFromScene(position))) {
-            return true;
-        }
-    }
-    return false;
+void MainWindow::on_actionIniciar_triggered() {
+    carSpawner->startSpawning(2000); // Inicia a simulação
 }
 
+void MainWindow::on_actionParar_triggered() {
+    carSpawner->stop();  // Este método pode precisar ser adicionado em CarSpawner
+}
+
+void MainWindow::on_actionReiniciar_triggered() {
+    carSpawner->restart(2000); // Reinicia a simulação
+}
+
+void MainWindow::on_actionSair_triggered() {
+    close(); // Fecha a aplicação
+}
 
 
 

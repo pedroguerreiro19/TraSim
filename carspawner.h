@@ -17,6 +17,8 @@ public:
     CarSpawner(int id, Graph* graph, QGraphicsScene* scene);
     void setStartAndEnd(int start, int end);
     void startSpawning(int interval);
+    void stop();
+    void restart(int interval);
 
 private:
     int spawnerId;
