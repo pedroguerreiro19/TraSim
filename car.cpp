@@ -39,10 +39,12 @@ bool Car::canMove() {
     if (pathIndex < pathNodeIds.size() - 1) {
         int nextNodeId = pathNodeIds[pathIndex + 1];
         TrafficLight* trafficLight = graph->getTrafficLightAtNode(nextNodeId);
+
         if (trafficLight) {
             TrafficLight::State lightState = trafficLight->getState();
             QPointF nextNodePos = path[pathIndex + 1];
             qreal distanceToLight = QLineF(pos(), nextNodePos).length();
+
             if (distanceToLight < 15.0 && lightState == TrafficLight::Red) {
                 qDebug() << "Carro esperando no semáforo em nó:" << nextNodeId;
                 return false;
@@ -51,6 +53,7 @@ bool Car::canMove() {
     }
     return true;
 }
+
 
 void Car::move() {
     if (!canMove()) {

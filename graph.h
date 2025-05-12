@@ -11,13 +11,15 @@ enum class NodeType {
     Spawn,
     Despawn,
     Ordinary,
-    Light
+    Light,
+    PreLight,
 };
 
 struct Node {
     int id;
     QPointF position;
     NodeType type;
+
     Node(int id, QPointF pos, NodeType t) : id(id), position(pos), type(t) {}
 };
 

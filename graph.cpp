@@ -25,7 +25,10 @@ void Graph::addTrafficLight(int nodeId, TrafficLight* light) {
 }
 
 TrafficLight* Graph::getTrafficLightAtNode(int nodeId) {
-    return trafficLights.value(nodeId, nullptr);
+    if (trafficLights.contains(nodeId)) {
+        return trafficLights[nodeId];
+    }
+    return nullptr;
 }
 
 QVector<int> Graph::dijkstra(int start, int end) {
