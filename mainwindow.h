@@ -27,6 +27,18 @@ public:
     ~MainWindow();
 
 private slots:
+    void on_actionIniciar_triggered();
+    void on_actionParar_triggered();
+    void on_actionReiniciar_triggered();
+    void on_actionSair_triggered();
+
+private:
+    Ui::MainWindow *ui;
+    CarSpawner *spawner;
+    QGraphicsScene *scene;
+};
+
+private slots:
     void toggleAddRoads();
     void toggleAddCurves();
     void checkForIntersections(Road *road);
