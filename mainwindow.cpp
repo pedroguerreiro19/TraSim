@@ -6,6 +6,7 @@
 #include <QPushButton>
 #include <QMouseEvent>
 #include <QDebug>
+#include <QDir>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -32,7 +33,7 @@ MainWindow::~MainWindow() {
 void MainWindow::setupScene() {
     scene->setSceneRect(0, 0, 800, 600);
 
-    QPixmap background("map.png");
+    QPixmap background("resources/map/map.png");
     QGraphicsPixmapItem* bgItem = scene->addPixmap(background);
     bgItem->setZValue(-1);
     bgItem->setPos(0, 0);
