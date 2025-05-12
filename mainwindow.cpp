@@ -21,6 +21,8 @@ MainWindow::MainWindow(QWidget *parent)
 
     setupScene();
 
+
+
 }
 
 MainWindow::~MainWindow() {
@@ -28,7 +30,6 @@ MainWindow::~MainWindow() {
 }
 
 void MainWindow::setupScene() {
-    scene->setSceneRect(0, 0, 800, 600);
 
     QString path = ":/map/map.png";
     QFile file(path);
@@ -38,10 +39,10 @@ void MainWindow::setupScene() {
     QGraphicsPixmapItem* bgItem = scene->addPixmap(background);
     bgItem->setZValue(-1);
     bgItem->setPos(0, 0);
-
     scene->setSceneRect(background.rect());
 
     view->centerOn(bgItem);
+    view->fitInView(scene->sceneRect(), Qt::KeepAspectRatio);
 
 
     Node* node1 = new Node(1, QPointF(225, 81), NodeType::Spawn);
@@ -97,8 +98,10 @@ void MainWindow::on_actionSair_triggered() {
     close(); // Fecha a aplicação
 }
 
-
-
+void MainWindow::resizeEvent(QResizeEvent *event) {
+    QMainWindow::resizeEvent(event);
+    view->fitInView(scene->sceneRect(), Qt::KeepAspectRatio);
+}
 
 
 

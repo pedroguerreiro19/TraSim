@@ -37,8 +37,9 @@ private:
     CarSpawner* carSpawner;
     Graph *graph;
 
-    void setupScene();
+    void setupScene();    
     void mousePressEvent(QMouseEvent *event) override;
-
+protected:
+    void resizeEvent(QResizeEvent* evt) override;
 };
 #endif // MAINWINDOW_H
