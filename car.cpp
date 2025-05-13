@@ -35,6 +35,39 @@ Car::Car(Node* spawnNode, Node* despawnNode, Graph* graph, QGraphicsScene* scene
     connect(timer, &QTimer::timeout, this, &Car::move);
 }
 
+
+bool Car::hasCarInFront() {
+    if (!scene()) return false;
+
+    QPointF startPos = pos();
+    QPointF endPos;
+
+    if (pathIndex < path.size() - 1) {
+        endPos = path[pathIndex + 1];
+    } else {
+        return false;
+    }
+
+    QVector2D direction(endPos - startPos);
+    if (direction.length() == 0) return false;
+    direction.normalize();
+
+    qreal detectionDistance = 20.0;
+    QPointF probePoint = startPos + direction.toPointF() * detectionDistance;
+
+    QList<QGraphicsItem*> itemsInScene = scene()->items(QRectF(probePoint - QPointF(5, 5), QSizeF(10, 10)));
+
+    for (QGraphicsItem* item : itemsInScene) {
+        Car* otherCar = dynamic_cast<Car*>(item);
+        if (otherCar && otherCar != this) {
+            return true;
+        }
+    }
+
+    return false;
+}
+
+
 bool Car::canMove() {
     if (pathIndex < pathNodeIds.size() - 1) {
         int nextNodeId = pathNodeIds[pathIndex + 1];
@@ -51,6 +84,12 @@ bool Car::canMove() {
             }
         }
     }
+
+    if (hasCarInFront()) {
+        qDebug() << "Carro esperando outro carro à frente.";
+        return false;
+    }
+
     return true;
 }
 
@@ -70,7 +109,7 @@ void Car::move() {
             direction.normalize();
         }
 
-        qreal moveDistance = 5.0;
+        qreal moveDistance = 1.0;
 
         if (moveDistance < distance) {
             setPos(pos() + direction.toPointF() * moveDistance);
@@ -92,7 +131,7 @@ void Car::move() {
 
 void Car::startMoving() {
     if (!path.isEmpty()) {
-        timer->start(100);
+        timer->start(16);
         qDebug() << "Carro começando a se mover!";
     }
 }

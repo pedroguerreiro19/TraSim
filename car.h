@@ -29,6 +29,7 @@ private:
     int pathIndex;
     QTimer* timer;
     bool isMoving;
+    bool hasCarInFront();
     bool hasPassedTrafficLight() const;
     bool hasPassedLight;
 };

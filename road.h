@@ -5,27 +5,22 @@
 #include <QList>
 
 enum class RoadType {
-    Straight,
-    Curve,
-    Roundabout
+    Highway,
+    City,
+    Residential
 };
 
 class Road : public QGraphicsItem {
 public:
-    Road(int id, RoadType type, const QList<QPointF>& points);
+    Road(int id, RoadType type);
 
     int getId() const;
     RoadType getType() const;
-    QList<QPointF> getPoints() const;
 
-    QRectF boundingRect() const override;
 
 private:
     int id;
     RoadType type;
-    QList<QPointF> points;
-    QRectF bounds;
-    void calculateBounds();
 };
 
 #endif // ROAD_H

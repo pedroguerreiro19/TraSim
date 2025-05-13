@@ -145,6 +145,7 @@ C:/Users/dined/Documents/TraSim/build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/TraSim
   C:/Qt/6.8.2/mingw_64/include/QtGui/qkeysequence.h \
   C:/Qt/6.8.2/mingw_64/include/QtGui/qpaintdevice.h \
   C:/Qt/6.8.2/mingw_64/include/QtGui/qpainter.h \
+  C:/Qt/6.8.2/mingw_64/include/QtGui/qpainterpath.h \
   C:/Qt/6.8.2/mingw_64/include/QtGui/qpalette.h \
   C:/Qt/6.8.2/mingw_64/include/QtGui/qpen.h \
   C:/Qt/6.8.2/mingw_64/include/QtGui/qpixelformat.h \
@@ -160,11 +161,13 @@ C:/Users/dined/Documents/TraSim/build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/TraSim
   C:/Qt/6.8.2/mingw_64/include/QtGui/qtransform.h \
   C:/Qt/6.8.2/mingw_64/include/QtGui/qwindowdefs.h \
   C:/Qt/6.8.2/mingw_64/include/QtGui/qwindowdefs_win.h \
+  C:/Qt/6.8.2/mingw_64/include/QtWidgets/QGraphicsItem \
   C:/Qt/6.8.2/mingw_64/include/QtWidgets/QGraphicsScene \
   C:/Qt/6.8.2/mingw_64/include/QtWidgets/QGraphicsView \
   C:/Qt/6.8.2/mingw_64/include/QtWidgets/QMainWindow \
   C:/Qt/6.8.2/mingw_64/include/QtWidgets/qabstractscrollarea.h \
   C:/Qt/6.8.2/mingw_64/include/QtWidgets/qframe.h \
+  C:/Qt/6.8.2/mingw_64/include/QtWidgets/qgraphicsitem.h \
   C:/Qt/6.8.2/mingw_64/include/QtWidgets/qgraphicsscene.h \
   C:/Qt/6.8.2/mingw_64/include/QtWidgets/qgraphicsview.h \
   C:/Qt/6.8.2/mingw_64/include/QtWidgets/qmainwindow.h \
@@ -392,4 +395,5 @@ C:/Users/dined/Documents/TraSim/build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/TraSim
   C:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/vadefs.h \
   C:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/wchar.h \
   C:/Users/dined/Documents/TraSim/carspawner.h \
-  C:/Users/dined/Documents/TraSim/graph.h
+  C:/Users/dined/Documents/TraSim/graph.h \
+  C:/Users/dined/Documents/TraSim/road.h
