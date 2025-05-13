@@ -19,6 +19,7 @@ public:
     void startSpawning(int interval);
     void stop();
     void restart(int interval);
+    void spawnCar();
 
 private:
     int spawnerId;
@@ -26,7 +27,6 @@ private:
     QGraphicsScene* scene;
     QTimer* timer;
     QVector<Car*> cars;
-    void spawnCar();
     Node* chooseRandomSpawnNode();
     Node* chooseRandomDespawnNode();
     QRandomGenerator* rng = QRandomGenerator::global();

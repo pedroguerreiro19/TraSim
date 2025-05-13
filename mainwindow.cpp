@@ -1,7 +1,6 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
 #include "carspawner.h"
-#include "road.h"
 #include "trafficlight.h"
 #include <QPushButton>
 #include <QMouseEvent>
@@ -63,9 +62,11 @@ void MainWindow::setupScene() {
     graph->addEdge(3,4,1);
     graph->addEdge(4,5,1);
 
-    TrafficLight *light = new TrafficLight(node2->position.x(), node3->position.y(), graph, node3, scene);
+    TrafficLight *light = new TrafficLight(node3->position.x(), node3->position.y(), graph, node3, scene);
     graph->addTrafficLight(node3->id, light);
+
     carSpawner = new CarSpawner(1, graph, scene);
+    carSpawners.append(carSpawner);
     carSpawner->startSpawning(2000);
 
 
@@ -80,6 +81,13 @@ void MainWindow::setupScene() {
 void MainWindow::mousePressEvent(QMouseEvent *event) {
     QPointF scenePos = view->mapToScene(event->pos());
     qDebug() << "Clicado em:" << scenePos;
+}
+
+void MainWindow::spawnCarRandomly() {
+    if (carSpawners.isEmpty()) return;
+
+    int index = QRandomGenerator::global()->bounded(carSpawners.size());
+    carSpawners[index]->spawnCar();
 }
 
 void MainWindow::on_actionIniciar_triggered() {
