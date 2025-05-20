@@ -111,6 +111,12 @@ void MainWindow::resizeEvent(QResizeEvent *event) {
     view->fitInView(scene->sceneRect(), Qt::KeepAspectRatio);
 }
 
+void MainWindow::showEvent(QShowEvent *event)
+{
+    QMainWindow::showEvent(event);
+    if (view && scene)
+        view->fitInView(scene->sceneRect(), Qt::KeepAspectRatio);
+}
 
 
 

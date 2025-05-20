@@ -44,5 +44,6 @@ private:
     void setupScene();
 protected:
     void resizeEvent(QResizeEvent* evt) override;
+    void showEvent(QShowEvent* event) override;
 };
 #endif // MAINWINDOW_H
