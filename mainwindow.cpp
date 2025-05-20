@@ -40,8 +40,7 @@ MainWindow::MainWindow(QWidget *parent)
     spawnTimer = new QTimer(this);
     connect(spawnTimer, &QTimer::timeout, this, &MainWindow::spawnCarRandomly);
 
-    connect(ui->btnDespawnCars, &QPushButton::clicked, this, &MainWindow::on_btnDespawnCars_clicked);
-    connect(ui->btnPauseResumeCars, &QPushButton::clicked, this, &MainWindow::on_btnPauseResumeCars_clicked);
+
     connect(ui->spinSpawnInterval, QOverload<int>::of(&QSpinBox::valueChanged), this, &MainWindow::on_spawnIntervalChanged);
 }
 
@@ -131,31 +130,42 @@ void MainWindow::on_btnPauseResumeCars_clicked()
 
     if (carsPaused) {
         ui->btnPauseResumeCars->setText("Continue simulation");
+        spawnTimer->stop();
     } else {
         ui->btnPauseResumeCars->setText("Stop simulation");
+        if (spawning) {
+            int intervalSeconds = ui->spinSpawnInterval->value();
+            int intervalMs = intervalSeconds * 1000;
+            spawnTimer->start(intervalMs);
+        }
     }
 
 
     for (Car* car : activeCars) {
-        if (carsPaused)
+        if (carsPaused) {
             car->pause();
-        else
+        }else{
             car->resume();
+        }
     }
 
     for (auto tl : graph->trafficLights.values()) {
-        if (carsPaused)
+        if (carsPaused){
             tl->pause();
-        else
+        }else{
             tl->resume();
+        }
     }
 
 
     for (CarSpawner* spawner : carSpawners) {
-        if (carsPaused)
+        if (carsPaused) {
             spawner->stop();
-        else
-            spawner->startSpawning(2000);
+        }else{
+            int intervalSeconds = ui->spinSpawnInterval->value();
+            int intervalMs = intervalSeconds * 1000;
+            spawnTimer->start(intervalMs);
+        }
     }
 }
 
