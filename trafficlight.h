@@ -19,6 +19,9 @@ public:
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
     TrafficLight::State getState() const;
 
+    void incrementCarsStopped();
+    int getCarsStopped() const;
+
 private slots:
     void updateLight();
 
@@ -27,6 +30,7 @@ private:
     State currentState;
     QTimer *timer;
     Node *node;
+    int numCarsStopped = 0;
 };
 
 #endif // TRAFFICLIGHT_H

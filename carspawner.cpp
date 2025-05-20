@@ -1,5 +1,6 @@
 #include "carspawner.h"
 #include "car.h"
+#include "mainwindow.h"
 #include <QDebug>
 
 CarSpawner::CarSpawner(int id, Graph* graph, QGraphicsScene* scene)
@@ -37,6 +38,7 @@ void CarSpawner::spawnCar() {
 
     cars.append(car);
     scene->addItem(car);
+    MainWindow::instance()->addActiveCar(car);
 
 
     car->startMoving();

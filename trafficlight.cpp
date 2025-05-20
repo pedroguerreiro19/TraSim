@@ -5,7 +5,7 @@
 #include <QDebug>
 
 TrafficLight::TrafficLight(qreal x, qreal y, Graph* graph, Node* node, QGraphicsScene *scene)
-    : graph(graph), node(node), currentState(Red) {
+    : graph(graph), node(node), currentState(Red), numCarsStopped(0) {
 
     setPos(x, y);
     scene->addItem(this);
@@ -67,4 +67,12 @@ void TrafficLight::updateLight() {
 
 TrafficLight::State TrafficLight::getState() const {
     return currentState;
+}
+
+void TrafficLight::incrementCarsStopped() {
+    numCarsStopped++;
+}
+
+int TrafficLight::getCarsStopped() const {
+    return numCarsStopped;
 }

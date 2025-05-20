@@ -21,12 +21,14 @@ public:
     void restart(int interval);
     void spawnCar();
 
+    QVector<Car*>& getCars() { return cars; }
+    QVector<Car*> cars;
+
 private:
     int spawnerId;
     Graph* graph;
     QGraphicsScene* scene;
     QTimer* timer;
-    QVector<Car*> cars;
     Node* chooseRandomSpawnNode();
     Node* chooseRandomDespawnNode();
     QRandomGenerator* rng = QRandomGenerator::global();

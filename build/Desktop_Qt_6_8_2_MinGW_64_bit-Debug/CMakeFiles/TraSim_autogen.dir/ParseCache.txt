@@ -3,6 +3,7 @@ C:/Users/dined/Documents/TraSim/mainwindow.cpp
  uic:./ui_mainwindow.h
 C:/Users/dined/Documents/TraSim/car.h
  mmc:Q_OBJECT
+ mdp:C:/Qt/6.8.2/mingw_64/include/QtCore/QElapsedTimer
  mdp:C:/Qt/6.8.2/mingw_64/include/QtCore/QList
  mdp:C:/Qt/6.8.2/mingw_64/include/QtCore/QMap
  mdp:C:/Qt/6.8.2/mingw_64/include/QtCore/QObject
@@ -43,6 +44,7 @@ C:/Users/dined/Documents/TraSim/car.h
  mdp:C:/Qt/6.8.2/mingw_64/include/QtCore/qdarwinhelpers.h
  mdp:C:/Qt/6.8.2/mingw_64/include/QtCore/qdatastream.h
  mdp:C:/Qt/6.8.2/mingw_64/include/QtCore/qdebug.h
+ mdp:C:/Qt/6.8.2/mingw_64/include/QtCore/qelapsedtimer.h
  mdp:C:/Qt/6.8.2/mingw_64/include/QtCore/qexceptionhandling.h
  mdp:C:/Qt/6.8.2/mingw_64/include/QtCore/qflags.h
  mdp:C:/Qt/6.8.2/mingw_64/include/QtCore/qfloat16.h
@@ -149,6 +151,7 @@ C:/Users/dined/Documents/TraSim/car.h
  mdp:C:/Qt/6.8.2/mingw_64/include/QtGui/qwindowdefs_win.h
  mdp:C:/Qt/6.8.2/mingw_64/include/QtWidgets/QGraphicsEllipseItem
  mdp:C:/Qt/6.8.2/mingw_64/include/QtWidgets/QGraphicsItem
+ mdp:C:/Qt/6.8.2/mingw_64/include/QtWidgets/QGraphicsRectItem
  mdp:C:/Qt/6.8.2/mingw_64/include/QtWidgets/qgraphicsitem.h
  mdp:C:/Qt/6.8.2/mingw_64/include/QtWidgets/qtwidgets-config.h
  mdp:C:/Qt/6.8.2/mingw_64/include/QtWidgets/qtwidgetsexports.h

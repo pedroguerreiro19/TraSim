@@ -1,19 +1,20 @@
 #include "car.h"
 #include "trafficlight.h"
+#include "mainwindow.h"
 #include <QPainter>
 #include <QVector2D>
 #include <QGraphicsScene>
 
 Car::Car(Node* spawnNode, Node* despawnNode, Graph* graph, QGraphicsScene* scene)
-    : graph(graph), pathIndex(0), spawnNode(spawnNode), despawnNode(despawnNode) {
+    : graph(graph), pathIndex(0), spawnNode(spawnNode), despawnNode(despawnNode),
+    totalDistance(0.0), travelTimeMs(0)
+{
     setRect(0, 0, 10, 10);
     setBrush(Qt::red);
 
     QVector<int> nodePath = graph->dijkstra(spawnNode->id, despawnNode->id);
-    qDebug() << "Caminho de nós encontrado:" << nodePath;
 
     if (nodePath.isEmpty() || nodePath.first() == nodePath.last()) {
-        qDebug() << "Caminho inválido!";
         return;
     }
 
@@ -21,20 +22,24 @@ Car::Car(Node* spawnNode, Node* despawnNode, Graph* graph, QGraphicsScene* scene
         if (graph->nodes.contains(nodeId)) {
             path.append(graph->nodes[nodeId]->position);
             pathNodeIds.append(nodeId);
-            qDebug() << "Nó" << nodeId << "posição" << graph->nodes[nodeId]->position;
         }
     }
 
     if (!path.isEmpty()) {
         setPos(path.first());
     } else {
-        qDebug() << "Erro: Caminho vazio!";
     }
 
     timer = new QTimer(this);
     connect(timer, &QTimer::timeout, this, &Car::move);
 }
 
+void Car::startMoving() {
+    if (!path.isEmpty()) {
+        timer->start(16);
+        MainWindow::instance()->incrementCarsSpawned();
+    }
+}
 
 bool Car::hasCarInFront() {
     if (!scene()) return false;
@@ -79,14 +84,16 @@ bool Car::canMove() {
             qreal distanceToLight = QLineF(pos(), nextNodePos).length();
 
             if (distanceToLight < 15.0 && lightState == TrafficLight::Red) {
-                qDebug() << "Carro esperando no semáforo em nó:" << nextNodeId;
+                if (!semaforosParados.contains(nextNodeId)) {
+                    trafficLight->incrementCarsStopped();
+                    semaforosParados.insert(nextNodeId);
+                }
+
                 return false;
             }
         }
     }
-
     if (hasCarInFront()) {
-        qDebug() << "Carro esperando outro carro à frente.";
         return false;
     }
 
@@ -95,43 +102,36 @@ bool Car::canMove() {
 
 
 void Car::move() {
-    if (!canMove()) {
-        return;
-    }
+    if (!canMove()) return;
 
     if (pathIndex < path.size() - 1) {
-        QPointF startPos = pos();
+        QPointF prevPos = pos();
         QPointF endPos = path[pathIndex + 1];
 
-        QVector2D direction(endPos - startPos);
+        QVector2D direction(endPos - prevPos);
         qreal distance = direction.length();
-        if (distance > 0) {
-            direction.normalize();
-        }
+        if (distance > 0) direction.normalize();
 
         qreal moveDistance = 1.0;
-
         if (moveDistance < distance) {
             setPos(pos() + direction.toPointF() * moveDistance);
+            totalDistance += moveDistance;
         } else {
             setPos(endPos);
+            totalDistance += distance;
             pathIndex++;
         }
 
         if (pathIndex >= path.size() - 1) {
-            qDebug() << "Carro chegou ao destino!";
+            travelTimeMs = travelTimer.elapsed();
             timer->stop();
-            if (scene()) {
-                scene()->removeItem(this);
-            }
+
+            MainWindow::instance()->registerCarFinished(travelTimeMs, totalDistance);
+            MainWindow::instance()->removeActiveCar(this);
+            if (scene()) scene()->removeItem(this);
             deleteLater();
         }
     }
 }
 
-void Car::startMoving() {
-    if (!path.isEmpty()) {
-        timer->start(16);
-        qDebug() << "Carro começando a se mover!";
-    }
-}
+
