@@ -15,9 +15,11 @@
 #include <QtWidgets/QGraphicsView>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
+#include <QtWidgets/QLabel>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
+#include <QtWidgets/QSpinBox>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QTableWidget>
 #include <QtWidgets/QVBoxLayout>
@@ -39,8 +41,11 @@ public:
     QGraphicsView *graphicsView;
     QVBoxLayout *verticalLayout_2;
     QTableWidget *carDataTable;
-    QPushButton *btnStartSim;
-    QPushButton *btnStopSim;
+    QHBoxLayout *horizontalLayout_4;
+    QPushButton *btnSpawnDespawn;
+    QLabel *labelSpawnInterval;
+    QSpinBox *spinSpawnInterval;
+    QPushButton *btnPauseResumeCars;
     QPushButton *btnDespawnCars;
     QStatusBar *statusbar;
     QMenuBar *menubar;
@@ -80,6 +85,7 @@ public:
         sizePolicy1.setVerticalStretch(0);
         sizePolicy1.setHeightForWidth(graphicsView->sizePolicy().hasHeightForWidth());
         graphicsView->setSizePolicy(sizePolicy1);
+        graphicsView->setMinimumSize(QSize(1500, 720));
 
         horizontalLayout->addWidget(graphicsView);
 
@@ -95,15 +101,34 @@ public:
 
         verticalLayout_2->addWidget(carDataTable);
 
-        btnStartSim = new QPushButton(centralwidget);
-        btnStartSim->setObjectName("btnStartSim");
+        horizontalLayout_4 = new QHBoxLayout();
+        horizontalLayout_4->setObjectName("horizontalLayout_4");
+        btnSpawnDespawn = new QPushButton(centralwidget);
+        btnSpawnDespawn->setObjectName("btnSpawnDespawn");
+        btnSpawnDespawn->setEnabled(true);
 
-        verticalLayout_2->addWidget(btnStartSim);
+        horizontalLayout_4->addWidget(btnSpawnDespawn);
 
-        btnStopSim = new QPushButton(centralwidget);
-        btnStopSim->setObjectName("btnStopSim");
+        labelSpawnInterval = new QLabel(centralwidget);
+        labelSpawnInterval->setObjectName("labelSpawnInterval");
 
-        verticalLayout_2->addWidget(btnStopSim);
+        horizontalLayout_4->addWidget(labelSpawnInterval);
+
+        spinSpawnInterval = new QSpinBox(centralwidget);
+        spinSpawnInterval->setObjectName("spinSpawnInterval");
+        spinSpawnInterval->setMinimum(1);
+        spinSpawnInterval->setMaximum(10);
+        spinSpawnInterval->setValue(3);
+
+        horizontalLayout_4->addWidget(spinSpawnInterval);
+
+
+        verticalLayout_2->addLayout(horizontalLayout_4);
+
+        btnPauseResumeCars = new QPushButton(centralwidget);
+        btnPauseResumeCars->setObjectName("btnPauseResumeCars");
+
+        verticalLayout_2->addWidget(btnPauseResumeCars);
 
         btnDespawnCars = new QPushButton(centralwidget);
         btnDespawnCars->setObjectName("btnDespawnCars");
@@ -139,8 +164,9 @@ public:
         actionReiniciar->setText(QCoreApplication::translate("MainWindow", "Reiniciar ", nullptr));
         actionMostrar_dados->setText(QCoreApplication::translate("MainWindow", "Mostrar dados", nullptr));
         actionSobre->setText(QCoreApplication::translate("MainWindow", "Sobre", nullptr));
-        btnStartSim->setText(QCoreApplication::translate("MainWindow", "Start simulation", nullptr));
-        btnStopSim->setText(QCoreApplication::translate("MainWindow", "Stop simulation", nullptr));
+        btnSpawnDespawn->setText(QCoreApplication::translate("MainWindow", "Start vehicle spawning", nullptr));
+        labelSpawnInterval->setText(QCoreApplication::translate("MainWindow", "Time between spawns (s):", nullptr));
+        btnPauseResumeCars->setText(QCoreApplication::translate("MainWindow", "Stop simulation", nullptr));
         btnDespawnCars->setText(QCoreApplication::translate("MainWindow", "Despawn all vehicles", nullptr));
     } // retranslateUi
 

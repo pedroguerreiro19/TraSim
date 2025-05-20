@@ -15,6 +15,14 @@ TrafficLight::TrafficLight(qreal x, qreal y, Graph* graph, Node* node, QGraphics
     timer->start(5000);
 }
 
+void TrafficLight::pause() {
+    paused = true;
+}
+
+void TrafficLight::resume() {
+    paused = false;
+}
+
 QRectF TrafficLight::boundingRect() const {
     return QRectF(0, 0, 20, 60);
 }
@@ -47,6 +55,7 @@ void TrafficLight::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QW
 }
 
 void TrafficLight::updateLight() {
+    if (paused) return;
     switch (currentState) {
     case Red:
         currentState = Green;

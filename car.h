@@ -21,6 +21,8 @@ public:
 
     qint64 travelTimeMs = 0;
     double totalDistance = 0.0;
+    void pause();
+    void resume();
 
 private slots:
     void move();
@@ -39,6 +41,7 @@ private:
     bool hasPassedTrafficLight() const;
     bool hasPassedLight;
     QElapsedTimer travelTimer;
+    bool paused = false;
 };
 
 #endif // CAR_H

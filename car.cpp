@@ -34,6 +34,15 @@ Car::Car(Node* spawnNode, Node* despawnNode, Graph* graph, QGraphicsScene* scene
     connect(timer, &QTimer::timeout, this, &Car::move);
 }
 
+void Car::pause() {
+    paused = true;
+}
+
+void Car::resume() {
+    paused = false;
+}
+
+
 void Car::startMoving() {
     if (!path.isEmpty()) {
         timer->start(16);
@@ -102,6 +111,7 @@ bool Car::canMove() {
 
 
 void Car::move() {
+    if (paused) return;
     if (!canMove()) return;
 
     if (pathIndex < path.size() - 1) {

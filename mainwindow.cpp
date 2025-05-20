@@ -23,36 +23,26 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
     , graph(new Graph())
 {
-    qDebug() << "Antes de setupUi";
     m_instance = this;
     ui->setupUi(this);
 
-    qDebug() << "btnStartSim:" << ui->btnStartSim;
-    qDebug() << "btnStopSim:" << ui->btnStopSim;
-    qDebug() << "btnDespawnCars:" << ui->btnDespawnCars;
-    qDebug() << "graphicsView:" << ui->graphicsView;
-    qDebug() << "carDataTable:" << ui->carDataTable;
-    qDebug() << "Depois de setupUi";
     this->showMaximized();
 
     QTimer* tableUpdateTimer = new QTimer(this);
     connect(tableUpdateTimer, &QTimer::timeout, this, &MainWindow::updateCarDataTable);
     tableUpdateTimer->start(100);
 
-    qDebug() << "Antes de criar QGraphicsScene";
     scene = new QGraphicsScene(this);
-    qDebug() << "Depois de criar QGraphicsScene";
     ui->graphicsView->setScene(scene);
-    qDebug() << "Depois de setScene";
 
-    qDebug() << "Antes do setupScene";
     setupScene();
 
-    qDebug() << "Antes dos connects";
-    connect(ui->btnStartSim, &QPushButton::clicked, this, &MainWindow::on_btnStartSim_clicked);
-    connect(ui->btnStopSim, &QPushButton::clicked, this, &MainWindow::on_btnStopSim_clicked);
+    spawnTimer = new QTimer(this);
+    connect(spawnTimer, &QTimer::timeout, this, &MainWindow::spawnCarRandomly);
+
     connect(ui->btnDespawnCars, &QPushButton::clicked, this, &MainWindow::on_btnDespawnCars_clicked);
-    qDebug() << "FIM DO CONSTRUTOR";
+    connect(ui->btnPauseResumeCars, &QPushButton::clicked, this, &MainWindow::on_btnPauseResumeCars_clicked);
+    connect(ui->spinSpawnInterval, QOverload<int>::of(&QSpinBox::valueChanged), this, &MainWindow::on_spawnIntervalChanged);
 }
 
 MainWindow::~MainWindow() {
@@ -60,11 +50,6 @@ MainWindow::~MainWindow() {
 }
 
 void MainWindow::setupScene() {
-
-    QString path = ":/map/map.png";
-    QFile file(path);
-    qDebug() << "Recurso existe?" << file.exists();
-
     QPixmap background(":/map/map.png");
     QGraphicsPixmapItem* bgItem = scene->addPixmap(background);
     bgItem->setZValue(-1);
@@ -99,7 +84,6 @@ void MainWindow::setupScene() {
 
     carSpawner = new CarSpawner(1, graph, scene);
     carSpawners.append(carSpawner);
-    carSpawner->startSpawning(2000);
 
 
 
@@ -117,21 +101,62 @@ void MainWindow::mousePressEvent(QMouseEvent *event) {
 
 void MainWindow::spawnCarRandomly() {
     if (carSpawners.isEmpty()) return;
-
     int index = QRandomGenerator::global()->bounded(carSpawners.size());
     carSpawners[index]->spawnCar();
 }
 
-void MainWindow::on_btnStartSim_clicked()
+void MainWindow::on_btnSpawnDespawn_clicked()
 {
-    if (carSpawner)
-        carSpawner->startSpawning(2000); // Começa a simulação
+    if (!spawning) {
+        int intervalSeconds = ui->spinSpawnInterval->value();
+        int intervalMs = intervalSeconds * 1000;
+        spawnTimer->start(intervalMs);
+        ui->btnSpawnDespawn->setText("Stop vehicle spawning");
+        spawning = true;
+    } else {
+        spawnTimer->stop();
+        ui->btnSpawnDespawn->setText("Start vehicle spawning");
+        spawning = false;
+    }
+}
+void MainWindow::on_spawnIntervalChanged(int value) {
+    if (spawning) {
+        spawnTimer->start(value * 1000); // Atualiza imediatamente
+    }
 }
 
-void MainWindow::on_btnStopSim_clicked()
+void MainWindow::on_btnPauseResumeCars_clicked()
 {
-    if (carSpawner)
-        carSpawner->stop(); // Para a simulação
+    carsPaused = !carsPaused;
+
+    if (carsPaused) {
+        ui->btnPauseResumeCars->setText("Continue simulation");
+    } else {
+        ui->btnPauseResumeCars->setText("Stop simulation");
+    }
+
+
+    for (Car* car : activeCars) {
+        if (carsPaused)
+            car->pause();
+        else
+            car->resume();
+    }
+
+    for (auto tl : graph->trafficLights.values()) {
+        if (carsPaused)
+            tl->pause();
+        else
+            tl->resume();
+    }
+
+
+    for (CarSpawner* spawner : carSpawners) {
+        if (carsPaused)
+            spawner->stop();
+        else
+            spawner->startSpawning(2000);
+    }
 }
 
 void MainWindow::addActiveCar(Car* car) {
@@ -160,17 +185,23 @@ void MainWindow::on_btnDespawnCars_clicked()
 
 void MainWindow::resizeEvent(QResizeEvent *event) {
     QMainWindow::resizeEvent(event);
-    if (ui->graphicsView && scene)
-        ui->graphicsView->fitInView(scene->sceneRect(), Qt::KeepAspectRatio);
+    if (!ui) return;
+    if (!ui->graphicsView) return;
+    if (!scene) return;
+
+    //ui->graphicsView->fitInView(scene->sceneRect(), Qt::KeepAspectRatio);
 }
 
 
-void MainWindow::showEvent(QShowEvent *event)
-{
+void MainWindow::showEvent(QShowEvent *event) {
     QMainWindow::showEvent(event);
-    if (ui->graphicsView && scene)
-        ui->graphicsView->fitInView(scene->sceneRect(), Qt::KeepAspectRatio);
+    if (!ui) return;
+    if (!ui->graphicsView) return;
+    if (!scene) return;
+
+    //ui->graphicsView->fitInView(scene->sceneRect(), Qt::KeepAspectRatio);
 }
+
 MainWindow* MainWindow::instance() {
     return m_instance;
 }
@@ -192,7 +223,6 @@ void MainWindow::saveStatisticsCSV() {
             out << (i+1) << "," << allTravelTimes[i] << "," << allDistances[i] << "\n";
         file.close();
     }
-    // Guarda também info dos semáforos:
     QFile f2("semaforos_stats.csv");
     if (f2.open(QIODevice::WriteOnly | QIODevice::Text)) {
         QTextStream out2(&f2);

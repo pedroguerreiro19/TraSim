@@ -4,7 +4,7 @@
 #include <QDebug>
 
 CarSpawner::CarSpawner(int id, Graph* graph, QGraphicsScene* scene)
-    : spawnerId(id), graph(graph), scene(scene) {
+    : spawnerId(id), graph(graph), scene(scene), paused(false) {
     timer = new QTimer(this);
     connect(timer, &QTimer::timeout, this, &CarSpawner::spawnCar);
 }
@@ -21,7 +21,9 @@ void CarSpawner::restart(int interval) {
 
 
 
+
 void CarSpawner::startSpawning(int interval) {
+    if (paused) return;
     timer->start(interval);
 }
 

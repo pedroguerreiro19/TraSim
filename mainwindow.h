@@ -37,10 +37,11 @@ public:
     QVector<CarSpawner*> carSpawners;
 private slots:
     void spawnCarRandomly();
-    void on_btnStartSim_clicked();
-    void on_btnStopSim_clicked();
+    void on_btnSpawnDespawn_clicked();
     void on_btnDespawnCars_clicked();
     void mousePressEvent(QMouseEvent *event) override;
+    void on_spawnIntervalChanged(int value);
+    void on_btnPauseResumeCars_clicked();
 private:
     QGraphicsScene *scene;
     Ui::MainWindow *ui;
@@ -49,6 +50,8 @@ private:
     QTimer *spawnTimer;
     static MainWindow* m_instance;
     void updateCarDataTable();
+    bool carsPaused = false;
+    bool spawning = false;
 
     int totalCarsSpawned = 0;
     int totalCarsFinished = 0;
