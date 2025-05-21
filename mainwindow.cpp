@@ -171,6 +171,8 @@ void MainWindow::on_btnPauseResumeCars_clicked()
 
 void MainWindow::addActiveCar(Car* car) {
     activeCars.append(car);
+    if (activeCars.size() > maxCarsActive)
+        maxCarsActive = activeCars.size();
     updateCarDataTable();
 }
 
@@ -249,16 +251,100 @@ void MainWindow::saveStatisticsCSV() {
 
 void MainWindow::updateCarDataTable()
 {
-    ui->carDataTable->setColumnCount(3);
-    ui->carDataTable->setHorizontalHeaderLabels({"Carro", "Posição X", "Posição Y"});
-    ui->carDataTable->setRowCount(activeCars.size());
+    int numActive = activeCars.size();
+    int numFinished = totalCarsFinished;
 
-    for (int i = 0; i < activeCars.size(); ++i) {
-        Car* car = activeCars[i];
-        ui->carDataTable->setItem(i, 0, new QTableWidgetItem(QString::number(i + 1)));
-        ui->carDataTable->setItem(i, 1, new QTableWidgetItem(QString::number(car->pos().x(), 'f', 2)));
-        ui->carDataTable->setItem(i, 2, new QTableWidgetItem(QString::number(car->pos().y(), 'f', 2)));
+    double avgDistance = 0.0;
+    if (!allDistances.isEmpty()) {
+        double sum = 0.0;
+        for (double d : allDistances) sum += d;
+        avgDistance = sum / allDistances.size();
     }
+
+    double avgTime = 0.0;
+    int validTimes = 0;
+    if (!allTravelTimes.isEmpty()) {
+        double sum = 0.0;
+        for (qint64 t : allTravelTimes) {
+            if (t > 0) {
+                sum += t;
+                validTimes++;
+            }
+        }
+        if (validTimes > 0)
+            avgTime = sum / validTimes / 1000.0; // ms -> s
+    }
+
+    double avgSpeed = 0.0;
+    int validPairs = 0;
+    if (!allDistances.isEmpty() && !allTravelTimes.isEmpty()) {
+        double sum = 0.0;
+        int n = qMin(allDistances.size(), allTravelTimes.size());
+        for (int i = 0; i < n; ++i) {
+            double t = allTravelTimes[i] / 1000.0;
+            if (t > 0) {
+                sum += allDistances[i] / t;
+                validPairs++;
+            }
+        }
+        if (validPairs > 0)
+            avgSpeed = sum / validPairs;
+    }
+
+    int carsStoppedNow = 0;
+    for (Car* car : activeCars) {
+        if (car->isStopped()) {
+            carsStoppedNow++;
+        }
+    }
+
+    double percentStopped = 0.0;
+    if (numActive > 0)
+        percentStopped = (double)carsStoppedNow / numActive * 100.0;
+
+    percentStoppedHistory.append(percentStopped);
+
+    double meanPercentStopped = 0.0;
+    if (!percentStoppedHistory.isEmpty()) {
+        double sum = 0.0;
+        for (double v : percentStoppedHistory) sum += v;
+        meanPercentStopped = sum / percentStoppedHistory.size();
+    }
+    double trafficFlow = 100.0 - meanPercentStopped;
+
+    ui->carDataTable->clear();
+    ui->carDataTable->setColumnCount(2);
+    ui->carDataTable->setRowCount(9);
+    ui->carDataTable->setHorizontalHeaderLabels({"Metrics", "Value"});
+
+    int row = 0;
+    ui->carDataTable->setItem(row++, 0, new QTableWidgetItem("Active cars:"));
+    ui->carDataTable->setItem(row - 1, 1, new QTableWidgetItem(QString::number(numActive)));
+
+    ui->carDataTable->setItem(row++, 0, new QTableWidgetItem("Total of cars despawned:"));
+    ui->carDataTable->setItem(row - 1, 1, new QTableWidgetItem(QString::number(numFinished)));
+
+    ui->carDataTable->setItem(row++, 0, new QTableWidgetItem("Average distance covered per car (m):"));
+    ui->carDataTable->setItem(row - 1, 1, new QTableWidgetItem(QString::number(avgDistance, 'f', 2)));
+
+    ui->carDataTable->setItem(row++, 0, new QTableWidgetItem("Average travel time per car (s):"));
+    ui->carDataTable->setItem(row - 1, 1, new QTableWidgetItem(QString::number(avgTime, 'f', 2)));
+
+    ui->carDataTable->setItem(row++, 0, new QTableWidgetItem("Average velocity per car (m/s):"));
+    ui->carDataTable->setItem(row - 1, 1, new QTableWidgetItem(QString::number(avgSpeed, 'f', 2)));
+
+    ui->carDataTable->setItem(row++, 0, new QTableWidgetItem("Cars stopped at traffic lights or traffic:"));
+    ui->carDataTable->setItem(row - 1, 1, new QTableWidgetItem(QString::number(carsStoppedNow)));
+
+    ui->carDataTable->setItem(row++, 0, new QTableWidgetItem("Percentage of stopped cars (%):"));
+    ui->carDataTable->setItem(row - 1, 1, new QTableWidgetItem(QString::number(percentStopped, 'f', 1)));
+
+    ui->carDataTable->setItem(row++, 0, new QTableWidgetItem("Average traffic flow (%):"));
+    ui->carDataTable->setItem(row - 1, 1, new QTableWidgetItem(QString::number(trafficFlow, 'f', 1)));
+
+    ui->carDataTable->setItem(row++, 0, new QTableWidgetItem("Max number of active cars:"));
+    ui->carDataTable->setItem(row - 1, 1, new QTableWidgetItem(QString::number(maxCarsActive)));
+
     ui->carDataTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 }
 

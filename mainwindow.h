@@ -52,6 +52,8 @@ private:
     void updateCarDataTable();
     bool carsPaused = false;
     bool spawning = false;
+    int maxCarsActive = 0;
+    QVector<double> percentStoppedHistory;
 
     int totalCarsSpawned = 0;
     int totalCarsFinished = 0;

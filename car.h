@@ -23,6 +23,8 @@ public:
     double totalDistance = 0.0;
     void pause();
     void resume();
+    bool isStoppedAtTrafficLight() const;
+    bool isStopped();
 
 private slots:
     void move();
@@ -33,11 +35,11 @@ private:
     Node* despawnNode;
     QList<QPointF> path;
     QVector<int> pathNodeIds;
-    QSet<int> semaforosParados;
+    QSet<int> stoppedtrafficlights;
     int pathIndex;
     QTimer* timer;
     bool isMoving;
-    bool hasCarInFront();
+    bool hasCarInFront() const;
     bool hasPassedTrafficLight() const;
     bool hasPassedLight;
     QElapsedTimer travelTimer;

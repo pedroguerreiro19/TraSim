@@ -366,7 +366,6 @@ C:/Users/dined/Documents/TraSim/car.h
  mdp:C:/Users/dined/Documents/TraSim/car.h
  mdp:C:/Users/dined/Documents/TraSim/graph.h
  mdp:C:/Users/dined/Documents/TraSim/road.h
-C:/Users/dined/Documents/TraSim/road.h
 C:/Users/dined/Documents/TraSim/carspawner.h
  mmc:Q_OBJECT
  mdp:C:/Qt/6.8.2/mingw_64/include/QtCore/QList
@@ -746,8 +745,8 @@ C:/Users/dined/Documents/TraSim/carspawner.h
  mdp:C:/Users/dined/Documents/TraSim/carspawner.h
  mdp:C:/Users/dined/Documents/TraSim/graph.h
  mdp:C:/Users/dined/Documents/TraSim/road.h
+C:/Users/dined/Documents/TraSim/road.h
 C:/Users/dined/Documents/TraSim/graph.h
-C:/Users/dined/Documents/TraSim/car.cpp
 C:/Users/dined/Documents/TraSim/mainwindow.h
  mmc:Q_OBJECT
  mdp:C:/Qt/6.8.2/mingw_64/include/QtCore/QHash
@@ -1149,6 +1148,7 @@ C:/Users/dined/Documents/TraSim/mainwindow.h
  mdp:C:/Users/dined/Documents/TraSim/graph.h
  mdp:C:/Users/dined/Documents/TraSim/mainwindow.h
  mdp:C:/Users/dined/Documents/TraSim/road.h
+C:/Users/dined/Documents/TraSim/car.cpp
 C:/Users/dined/Documents/TraSim/carspawner.cpp
 C:/Users/dined/Documents/TraSim/trafficlight.h
  mmc:Q_OBJECT

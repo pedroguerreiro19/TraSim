@@ -45,12 +45,52 @@ void Car::resume() {
 
 void Car::startMoving() {
     if (!path.isEmpty()) {
+        travelTimer.start();
         timer->start(16);
         MainWindow::instance()->incrementCarsSpawned();
     }
 }
 
-bool Car::hasCarInFront() {
+bool Car::isStoppedAtTrafficLight() const {
+    if (paused) return false;
+
+    if (pathIndex < pathNodeIds.size() - 1) {
+        int nextNodeId = pathNodeIds[pathIndex + 1];
+        TrafficLight* trafficLight = graph->getTrafficLightAtNode(nextNodeId);
+
+        if (trafficLight) {
+            TrafficLight::State lightState = trafficLight->getState();
+            QPointF nextNodePos = path[pathIndex + 1];
+            qreal distanceToLight = QLineF(pos(), nextNodePos).length();
+
+            if (distanceToLight < 15.0 && lightState == TrafficLight::Red) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
+bool Car::isStopped() {
+    if (paused) return false;
+
+    if (!canMove()) {
+        if (pathIndex < pathNodeIds.size() - 1) {
+            int nextNodeId = pathNodeIds[pathIndex + 1];
+            TrafficLight* trafficLight = graph->getTrafficLightAtNode(nextNodeId);
+            QPointF nextNodePos = path[pathIndex + 1];
+            qreal distanceToLight = QLineF(pos(), nextNodePos).length();
+            if (trafficLight && distanceToLight < 15.0 && trafficLight->getState() == TrafficLight::Red)
+                return true;
+        }
+
+        if (hasCarInFront())
+            return true;
+    }
+    return false;
+}
+
+bool Car::hasCarInFront() const {
     if (!scene()) return false;
 
     QPointF startPos = pos();
@@ -93,9 +133,9 @@ bool Car::canMove() {
             qreal distanceToLight = QLineF(pos(), nextNodePos).length();
 
             if (distanceToLight < 15.0 && lightState == TrafficLight::Red) {
-                if (!semaforosParados.contains(nextNodeId)) {
+                if (!stoppedtrafficlights.contains(nextNodeId)) {
                     trafficLight->incrementCarsStopped();
-                    semaforosParados.insert(nextNodeId);
+                    stoppedtrafficlights.insert(nextNodeId);
                 }
 
                 return false;
