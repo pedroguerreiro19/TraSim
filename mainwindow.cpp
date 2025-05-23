@@ -42,6 +42,7 @@ MainWindow::MainWindow(QWidget *parent)
 
 
     connect(ui->spinSpawnInterval, QOverload<int>::of(&QSpinBox::valueChanged), this, &MainWindow::on_spawnIntervalChanged);
+    connect(ui->carDataTable, &QTableWidget::cellClicked, this, &MainWindow::onCarDataTableCellClicked);
 }
 
 MainWindow::~MainWindow() {
@@ -226,28 +227,6 @@ void MainWindow::registerCarFinished(qint64 travelTimeMs, double distance) {
     allTravelTimes.append(travelTimeMs);
     allDistances.append(distance);
 }
-void MainWindow::saveStatisticsCSV() {
-    QFile file("carros_stats.csv");
-    if (file.open(QIODevice::WriteOnly | QIODevice::Text)) {
-        QTextStream out(&file);
-        out << "Carro,Tempo(ms),Distancia\n";
-        for (int i = 0; i < allTravelTimes.size(); ++i)
-            out << (i+1) << "," << allTravelTimes[i] << "," << allDistances[i] << "\n";
-        file.close();
-    }
-    QFile f2("semaforos_stats.csv");
-    if (f2.open(QIODevice::WriteOnly | QIODevice::Text)) {
-        QTextStream out2(&f2);
-        out2 << "NodeId,CarrosParados\n";
-        for (auto id : graph->trafficLights.keys()) {
-            TrafficLight* l = graph->trafficLights[id];
-            out2 << id << "," << l->getCarsStopped() << "\n";
-        }
-        f2.close();
-    }
-}
-
-
 
 void MainWindow::updateCarDataTable()
 {
@@ -348,4 +327,57 @@ void MainWindow::updateCarDataTable()
     ui->carDataTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 }
 
+void MainWindow::onCarDataTableCellClicked(int row, int column) {
+    if (column != 0 && column != 1) return;
+
+    QString metric = ui->carDataTable->item(row, 0)->text();
+    QVector<double> data;
+
+    if (metric == "Percentage of stopped cars (%)") {
+        data = percentStoppedHistory;
+    }
+    else if (metric == "Average traffic flow (%)") {
+        QVector<double> flow;
+        for (double val : percentStoppedHistory) {
+            flow.append(100.0 - val);
+        }
+        data = flow;
+    }
+
+    if (!data.isEmpty())
+        showMetricChart(metric, data);
+}
+
+void MainWindow::showMetricChart(const QString& metric, const QVector<double>& data) {
+    QLineSeries *series = new QLineSeries();
+    for (int i = 0; i < data.size(); ++i) {
+        series->append(i, data[i]);
+    }
+
+    QChart *chart = new QChart();
+    chart->addSeries(series);
+    chart->setTitle("Evolução: " + metric);
+    chart->createDefaultAxes();
+
+    QValueAxis *axisX = new QValueAxis;
+    axisX->setTitleText("Iteração");
+    axisX->setLabelFormat("%d");
+    axisX->setTickCount(qMin(data.size(), 10));
+    chart->setAxisX(axisX, series);
+
+    QValueAxis *axisY = new QValueAxis;
+    axisY->setTitleText(metric);
+    axisY->setLabelFormat("%.1f");
+    chart->setAxisY(axisY, series);
+
+    QChartView *chartView = new QChartView(chart);
+    chartView->setRenderHint(QPainter::Antialiasing);
+
+    QDialog *dlg = new QDialog(this);
+    dlg->setWindowTitle("Evolução da métrica");
+    QVBoxLayout *layout = new QVBoxLayout(dlg);
+    layout->addWidget(chartView);
+    dlg->resize(600, 400);
+    dlg->exec();
+}
 

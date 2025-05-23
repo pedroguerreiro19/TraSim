@@ -9,6 +9,9 @@
 #include <QList>
 #include <QHash>
 #include <QPointF>
+#include <QtCharts/QChartView>
+#include <QtCharts/QLineSeries>
+#include <QtCharts/QValueAxis>
 
 class Road;
 
@@ -27,7 +30,6 @@ public:
 
     void incrementCarsSpawned();
     void registerCarFinished(qint64 travelTimeMs, double distance);
-    void saveStatisticsCSV();
     void showStatistics();
     void addActiveCar(Car* car);
     void removeActiveCar(Car* car);
@@ -42,6 +44,9 @@ private slots:
     void mousePressEvent(QMouseEvent *event) override;
     void on_spawnIntervalChanged(int value);
     void on_btnPauseResumeCars_clicked();
+    void onCarDataTableCellClicked(int row, int column);
+    void showMetricChart(const QString& metric, const QVector<double>& data);
+
 private:
     QGraphicsScene *scene;
     Ui::MainWindow *ui;

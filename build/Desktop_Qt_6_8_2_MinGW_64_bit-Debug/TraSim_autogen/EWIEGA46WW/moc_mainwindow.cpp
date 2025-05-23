@@ -8,6 +8,7 @@
 
 #include "../../../../mainwindow.h"
 #include <QtCore/qmetatype.h>
+#include <QtCore/QList>
 
 #include <QtCore/qtmochelpers.h>
 
@@ -47,7 +48,14 @@ static constexpr auto qt_meta_stringdata_ZN10MainWindowE = QtMocHelpers::stringD
     "event",
     "on_spawnIntervalChanged",
     "value",
-    "on_btnPauseResumeCars_clicked"
+    "on_btnPauseResumeCars_clicked",
+    "onCarDataTableCellClicked",
+    "row",
+    "column",
+    "showMetricChart",
+    "metric",
+    "QList<double>",
+    "data"
 );
 #else  // !QT_MOC_HAS_STRINGDATA
 #error "qtmochelpers.h not found or too old."
@@ -59,7 +67,7 @@ Q_CONSTINIT static const uint qt_meta_data_ZN10MainWindowE[] = {
       12,       // revision
        0,       // classname
        0,    0, // classinfo
-       6,   14, // methods
+       8,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -67,12 +75,14 @@ Q_CONSTINIT static const uint qt_meta_data_ZN10MainWindowE[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    0,   50,    2, 0x08,    1 /* Private */,
-       3,    0,   51,    2, 0x08,    2 /* Private */,
-       4,    0,   52,    2, 0x08,    3 /* Private */,
-       5,    1,   53,    2, 0x08,    4 /* Private */,
-       8,    1,   56,    2, 0x08,    6 /* Private */,
-      10,    0,   59,    2, 0x08,    8 /* Private */,
+       1,    0,   62,    2, 0x08,    1 /* Private */,
+       3,    0,   63,    2, 0x08,    2 /* Private */,
+       4,    0,   64,    2, 0x08,    3 /* Private */,
+       5,    1,   65,    2, 0x08,    4 /* Private */,
+       8,    1,   68,    2, 0x08,    6 /* Private */,
+      10,    0,   71,    2, 0x08,    8 /* Private */,
+      11,    2,   72,    2, 0x08,    9 /* Private */,
+      14,    2,   77,    2, 0x08,   12 /* Private */,
 
  // slots: parameters
     QMetaType::Void,
@@ -81,6 +91,8 @@ Q_CONSTINIT static const uint qt_meta_data_ZN10MainWindowE[] = {
     QMetaType::Void, 0x80000000 | 6,    7,
     QMetaType::Void, QMetaType::Int,    9,
     QMetaType::Void,
+    QMetaType::Void, QMetaType::Int, QMetaType::Int,   12,   13,
+    QMetaType::Void, QMetaType::QString, 0x80000000 | 16,   15,   17,
 
        0        // eod
 };
@@ -107,7 +119,15 @@ Q_CONSTINIT const QMetaObject MainWindow::staticMetaObject = { {
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         QtPrivate::TypeAndForceComplete<int, std::false_type>,
         // method 'on_btnPauseResumeCars_clicked'
-        QtPrivate::TypeAndForceComplete<void, std::false_type>
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'onCarDataTableCellClicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<int, std::false_type>,
+        QtPrivate::TypeAndForceComplete<int, std::false_type>,
+        // method 'showMetricChart'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<const QString &, std::false_type>,
+        QtPrivate::TypeAndForceComplete<const QVector<double> &, std::false_type>
     >,
     nullptr
 } };
@@ -123,7 +143,21 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 3: _t->mousePressEvent((*reinterpret_cast< std::add_pointer_t<QMouseEvent*>>(_a[1]))); break;
         case 4: _t->on_spawnIntervalChanged((*reinterpret_cast< std::add_pointer_t<int>>(_a[1]))); break;
         case 5: _t->on_btnPauseResumeCars_clicked(); break;
+        case 6: _t->onCarDataTableCellClicked((*reinterpret_cast< std::add_pointer_t<int>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<int>>(_a[2]))); break;
+        case 7: _t->showMetricChart((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QList<double>>>(_a[2]))); break;
         default: ;
+        }
+    }
+    if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
+        switch (_id) {
+        default: *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType(); break;
+        case 7:
+            switch (*reinterpret_cast<int*>(_a[1])) {
+            default: *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType(); break;
+            case 1:
+                *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType::fromType< QList<double> >(); break;
+            }
+            break;
         }
     }
 }
@@ -147,14 +181,14 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 6)
+        if (_id < 8)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 6;
+        _id -= 8;
     }
     if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 6)
-            *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 6;
+        if (_id < 8)
+            qt_static_metacall(this, _c, _id, _a);
+        _id -= 8;
     }
     return _id;
 }
