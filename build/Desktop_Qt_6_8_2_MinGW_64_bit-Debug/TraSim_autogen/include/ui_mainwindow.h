@@ -108,21 +108,17 @@ public:
         verticalLayout_2->setObjectName("verticalLayout_2");
         lblSimulationInfo = new QLabel(centralwidget);
         lblSimulationInfo->setObjectName("lblSimulationInfo");
-        QSizePolicy sizePolicy2(QSizePolicy::Policy::Preferred, QSizePolicy::Policy::Minimum);
-        sizePolicy2.setHorizontalStretch(0);
-        sizePolicy2.setVerticalStretch(0);
-        sizePolicy2.setHeightForWidth(lblSimulationInfo->sizePolicy().hasHeightForWidth());
-        lblSimulationInfo->setSizePolicy(sizePolicy2);
+        lblSimulationInfo->setAlignment(Qt::AlignmentFlag::AlignCenter);
 
         verticalLayout_2->addWidget(lblSimulationInfo);
 
         carDataTable = new QTableWidget(centralwidget);
         carDataTable->setObjectName("carDataTable");
-        QSizePolicy sizePolicy3(QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Maximum);
-        sizePolicy3.setHorizontalStretch(1);
-        sizePolicy3.setVerticalStretch(0);
-        sizePolicy3.setHeightForWidth(carDataTable->sizePolicy().hasHeightForWidth());
-        carDataTable->setSizePolicy(sizePolicy3);
+        QSizePolicy sizePolicy2(QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Expanding);
+        sizePolicy2.setHorizontalStretch(1);
+        sizePolicy2.setVerticalStretch(0);
+        sizePolicy2.setHeightForWidth(carDataTable->sizePolicy().hasHeightForWidth());
+        carDataTable->setSizePolicy(sizePolicy2);
 
         verticalLayout_2->addWidget(carDataTable);
 
@@ -195,8 +191,8 @@ public:
         actionReiniciar->setText(QCoreApplication::translate("MainWindow", "Reiniciar ", nullptr));
         actionMostrar_dados->setText(QCoreApplication::translate("MainWindow", "Mostrar dados", nullptr));
         actionSobre->setText(QCoreApplication::translate("MainWindow", "Sobre", nullptr));
-        lblSimulationTime->setText(QCoreApplication::translate("MainWindow", "Tempo de simula\303\247\303\243o: 00:00", nullptr));
-        lblSimulationInfo->setText(QCoreApplication::translate("MainWindow", "SimulationInfo", nullptr));
+        lblSimulationTime->setText(QCoreApplication::translate("MainWindow", "Simulation time: 00:00", nullptr));
+        lblSimulationInfo->setText(QCoreApplication::translate("MainWindow", "Simulation Info", nullptr));
         btnShowCharts->setText(QCoreApplication::translate("MainWindow", "Show Charts", nullptr));
         btnSpawnDespawn->setText(QCoreApplication::translate("MainWindow", "Start vehicle spawning", nullptr));
         labelSpawnInterval->setText(QCoreApplication::translate("MainWindow", "Time between spawns (s):", nullptr));
