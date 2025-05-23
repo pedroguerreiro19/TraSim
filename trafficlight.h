@@ -20,6 +20,9 @@ public:
     TrafficLight::State getState() const;
     void pause();
     void resume();
+    int greenDuration = 6000;
+    int yellowDuration = 3000;
+    int redDuration = 6000;
 
     void incrementCarsStopped();
     int getCarsStopped() const;

@@ -44,7 +44,7 @@ MainWindow::MainWindow(QWidget *parent)
         int sec = (totalMs / 1000) % 60;
         int ms  = totalMs % 1000;
         ui->lblSimulationTime->setText(
-            QString("Tempo de simulação: %1:%2:%3")
+            QString("Simulation time: %1:%2:%3")
                 .arg(min, 2, 10, QLatin1Char('0'))
                 .arg(sec, 2, 10, QLatin1Char('0'))
                 .arg(ms, 3, 10, QLatin1Char('0'))
@@ -61,7 +61,24 @@ MainWindow::MainWindow(QWidget *parent)
 
     spawnTimer = new QTimer(this);
     connect(spawnTimer, &QTimer::timeout, this, &MainWindow::spawnCarRandomly);
-
+    ui->spinGreen->setValue(6);
+    ui->spinYellow->setValue(3);
+    ui->spinRed->setValue(6);
+    connect(ui->spinGreen, QOverload<int>::of(&QSpinBox::valueChanged), this, [this](int value){
+        for (auto tl : graph->trafficLights) {
+            tl->greenDuration = value * 1000;
+        }
+    });
+    connect(ui->spinYellow, QOverload<int>::of(&QSpinBox::valueChanged), this, [this](int value){
+        for (auto tl : graph->trafficLights) {
+            tl->yellowDuration = value * 1000;
+        }
+    });
+    connect(ui->spinRed, QOverload<int>::of(&QSpinBox::valueChanged), this, [this](int value){
+        for (auto tl : graph->trafficLights) {
+            tl->redDuration = value * 1000;
+        }
+    });
 
     connect(ui->spinSpawnInterval, QOverload<int>::of(&QSpinBox::valueChanged), this, &MainWindow::on_spawnIntervalChanged);
     //connect(ui->btnShowCharts, &QPushButton::clicked, this, &MainWindow::on_btnShowCharts_clicked);
@@ -239,7 +256,7 @@ void MainWindow::on_btnDespawnCars_clicked() {
 
     simulationRunning = false;
     simulationElapsedMs = 0;
-    ui->lblSimulationTime->setText("Tempo de simulação: 00:00:000");
+    ui->lblSimulationTime->setText("Simulation time: 00:00:000");
 }
 
 void MainWindow::resizeEvent(QResizeEvent *event) {

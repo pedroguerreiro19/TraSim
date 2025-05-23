@@ -45,6 +45,15 @@ public:
     QLabel *lblSimulationInfo;
     QTableWidget *carDataTable;
     QPushButton *btnShowCharts;
+    QLabel *lblSimulationChanges;
+    QHBoxLayout *horizontalLayout_5;
+    QLabel *lblGreen;
+    QLabel *lblYellow;
+    QLabel *lblRed;
+    QHBoxLayout *horizontalLayout_3;
+    QSpinBox *spinGreen;
+    QSpinBox *spinYellow;
+    QSpinBox *spinRed;
     QHBoxLayout *horizontalLayout_4;
     QPushButton *btnSpawnDespawn;
     QLabel *labelSpawnInterval;
@@ -108,17 +117,24 @@ public:
         verticalLayout_2->setObjectName("verticalLayout_2");
         lblSimulationInfo = new QLabel(centralwidget);
         lblSimulationInfo->setObjectName("lblSimulationInfo");
+        QSizePolicy sizePolicy2(QSizePolicy::Policy::Minimum, QSizePolicy::Policy::Minimum);
+        sizePolicy2.setHorizontalStretch(0);
+        sizePolicy2.setVerticalStretch(0);
+        sizePolicy2.setHeightForWidth(lblSimulationInfo->sizePolicy().hasHeightForWidth());
+        lblSimulationInfo->setSizePolicy(sizePolicy2);
+        lblSimulationInfo->setMaximumSize(QSize(16777215, 100));
         lblSimulationInfo->setAlignment(Qt::AlignmentFlag::AlignCenter);
 
         verticalLayout_2->addWidget(lblSimulationInfo);
 
         carDataTable = new QTableWidget(centralwidget);
         carDataTable->setObjectName("carDataTable");
-        QSizePolicy sizePolicy2(QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Expanding);
-        sizePolicy2.setHorizontalStretch(1);
-        sizePolicy2.setVerticalStretch(0);
-        sizePolicy2.setHeightForWidth(carDataTable->sizePolicy().hasHeightForWidth());
-        carDataTable->setSizePolicy(sizePolicy2);
+        QSizePolicy sizePolicy3(QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Expanding);
+        sizePolicy3.setHorizontalStretch(1);
+        sizePolicy3.setVerticalStretch(0);
+        sizePolicy3.setHeightForWidth(carDataTable->sizePolicy().hasHeightForWidth());
+        carDataTable->setSizePolicy(sizePolicy3);
+        carDataTable->setMaximumSize(QSize(16777215, 300));
 
         verticalLayout_2->addWidget(carDataTable);
 
@@ -126,6 +142,59 @@ public:
         btnShowCharts->setObjectName("btnShowCharts");
 
         verticalLayout_2->addWidget(btnShowCharts);
+
+        lblSimulationChanges = new QLabel(centralwidget);
+        lblSimulationChanges->setObjectName("lblSimulationChanges");
+        sizePolicy2.setHeightForWidth(lblSimulationChanges->sizePolicy().hasHeightForWidth());
+        lblSimulationChanges->setSizePolicy(sizePolicy2);
+        lblSimulationChanges->setMaximumSize(QSize(16777215, 500));
+        lblSimulationChanges->setAlignment(Qt::AlignmentFlag::AlignCenter);
+
+        verticalLayout_2->addWidget(lblSimulationChanges);
+
+        horizontalLayout_5 = new QHBoxLayout();
+        horizontalLayout_5->setObjectName("horizontalLayout_5");
+        lblGreen = new QLabel(centralwidget);
+        lblGreen->setObjectName("lblGreen");
+        lblGreen->setAlignment(Qt::AlignmentFlag::AlignCenter);
+
+        horizontalLayout_5->addWidget(lblGreen);
+
+        lblYellow = new QLabel(centralwidget);
+        lblYellow->setObjectName("lblYellow");
+        lblYellow->setTabletTracking(false);
+        lblYellow->setAutoFillBackground(false);
+        lblYellow->setAlignment(Qt::AlignmentFlag::AlignCenter);
+
+        horizontalLayout_5->addWidget(lblYellow);
+
+        lblRed = new QLabel(centralwidget);
+        lblRed->setObjectName("lblRed");
+
+        horizontalLayout_5->addWidget(lblRed);
+
+
+        verticalLayout_2->addLayout(horizontalLayout_5);
+
+        horizontalLayout_3 = new QHBoxLayout();
+        horizontalLayout_3->setObjectName("horizontalLayout_3");
+        spinGreen = new QSpinBox(centralwidget);
+        spinGreen->setObjectName("spinGreen");
+
+        horizontalLayout_3->addWidget(spinGreen);
+
+        spinYellow = new QSpinBox(centralwidget);
+        spinYellow->setObjectName("spinYellow");
+
+        horizontalLayout_3->addWidget(spinYellow);
+
+        spinRed = new QSpinBox(centralwidget);
+        spinRed->setObjectName("spinRed");
+
+        horizontalLayout_3->addWidget(spinRed);
+
+
+        verticalLayout_2->addLayout(horizontalLayout_3);
 
         horizontalLayout_4 = new QHBoxLayout();
         horizontalLayout_4->setObjectName("horizontalLayout_4");
@@ -194,6 +263,10 @@ public:
         lblSimulationTime->setText(QCoreApplication::translate("MainWindow", "Simulation time: 00:00", nullptr));
         lblSimulationInfo->setText(QCoreApplication::translate("MainWindow", "Simulation Info", nullptr));
         btnShowCharts->setText(QCoreApplication::translate("MainWindow", "Show Charts", nullptr));
+        lblSimulationChanges->setText(QCoreApplication::translate("MainWindow", "Simulation changes", nullptr));
+        lblGreen->setText(QCoreApplication::translate("MainWindow", "Green Light duration(s)", nullptr));
+        lblYellow->setText(QCoreApplication::translate("MainWindow", "Yellow Light duration (s)", nullptr));
+        lblRed->setText(QCoreApplication::translate("MainWindow", "Red Ligh duration (s)", nullptr));
         btnSpawnDespawn->setText(QCoreApplication::translate("MainWindow", "Start vehicle spawning", nullptr));
         labelSpawnInterval->setText(QCoreApplication::translate("MainWindow", "Time between spawns (s):", nullptr));
         btnPauseResumeCars->setText(QCoreApplication::translate("MainWindow", "Stop simulation", nullptr));

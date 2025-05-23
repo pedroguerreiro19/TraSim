@@ -59,16 +59,15 @@ void TrafficLight::updateLight() {
     switch (currentState) {
     case Red:
         currentState = Green;
-        timer->start(6000);
+        timer->start(greenDuration);
         break;
     case Green:
         currentState = Yellow;
-        timer->start(3000);
+        timer->start(yellowDuration);
         break;
     case Yellow:
         currentState = Red;
-        qDebug() << "Semáforo ficou vermelho";  // Log para depuração
-        timer->start(6000);
+        timer->start(redDuration);
         break;
     }
     update();
