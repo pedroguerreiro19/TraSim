@@ -26,6 +26,7 @@ C:/Users/dined/Documents/TraSim/build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/TraSim
   C:/Qt/6.8.2/mingw_64/include/QtCore/QMargins \
   C:/Qt/6.8.2/mingw_64/include/QtCore/QObject \
   C:/Qt/6.8.2/mingw_64/include/QtCore/QPointF \
+  C:/Qt/6.8.2/mingw_64/include/QtCore/QPointer \
   C:/Qt/6.8.2/mingw_64/include/QtCore/QRandomGenerator \
   C:/Qt/6.8.2/mingw_64/include/QtCore/QRect \
   C:/Qt/6.8.2/mingw_64/include/QtCore/QSize \
@@ -111,6 +112,7 @@ C:/Users/dined/Documents/TraSim/build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/TraSim
   C:/Qt/6.8.2/mingw_64/include/QtCore/qoverload.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qpair.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qpoint.h \
+  C:/Qt/6.8.2/mingw_64/include/QtCore/qpointer.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qprocessordetection.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qrandom.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qrect.h \
@@ -212,12 +214,14 @@ C:/Users/dined/Documents/TraSim/build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/TraSim
   C:/Qt/6.8.2/mingw_64/include/QtGui/qvectornd.h \
   C:/Qt/6.8.2/mingw_64/include/QtGui/qwindowdefs.h \
   C:/Qt/6.8.2/mingw_64/include/QtGui/qwindowdefs_win.h \
+  C:/Qt/6.8.2/mingw_64/include/QtWidgets/QDialog \
   C:/Qt/6.8.2/mingw_64/include/QtWidgets/QGraphicsItem \
   C:/Qt/6.8.2/mingw_64/include/QtWidgets/QGraphicsScene \
   C:/Qt/6.8.2/mingw_64/include/QtWidgets/QGraphicsView \
   C:/Qt/6.8.2/mingw_64/include/QtWidgets/QGraphicsWidget \
   C:/Qt/6.8.2/mingw_64/include/QtWidgets/QMainWindow \
   C:/Qt/6.8.2/mingw_64/include/QtWidgets/qabstractscrollarea.h \
+  C:/Qt/6.8.2/mingw_64/include/QtWidgets/qdialog.h \
   C:/Qt/6.8.2/mingw_64/include/QtWidgets/qframe.h \
   C:/Qt/6.8.2/mingw_64/include/QtWidgets/qgraphicsitem.h \
   C:/Qt/6.8.2/mingw_64/include/QtWidgets/qgraphicslayoutitem.h \

@@ -12,6 +12,9 @@
 #include <QtCharts/QChartView>
 #include <QtCharts/QLineSeries>
 #include <QtCharts/QValueAxis>
+#include <QPointer>
+#include <QDialog>
+
 
 class Road;
 
@@ -44,8 +47,8 @@ private slots:
     void mousePressEvent(QMouseEvent *event) override;
     void on_spawnIntervalChanged(int value);
     void on_btnPauseResumeCars_clicked();
-    void onCarDataTableCellClicked(int row, int column);
-    void showMetricChart(const QString& metric, const QVector<double>& data);
+    void on_btnShowCharts_clicked();
+    void showChartsDialog();
 
 private:
     QGraphicsScene *scene;
@@ -59,11 +62,19 @@ private:
     bool spawning = false;
     int maxCarsActive = 0;
     QVector<double> percentStoppedHistory;
+    QPointer<QDialog> chartsDialog = nullptr;
 
     int totalCarsSpawned = 0;
     int totalCarsFinished = 0;
     QVector<qint64> allTravelTimes;
     QVector<double> allDistances;
+
+    int simulationSeconds = 0;
+    QTimer* simulationTimer = nullptr;
+    bool simulationRunning = false;
+    QElapsedTimer elapsedTimer;
+    qint64 simulationElapsedMs = 0;
+    QVector<double> metricTimestamps;
 
     void setupScene();
 protected:

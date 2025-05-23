@@ -38,9 +38,13 @@ public:
     QWidget *centralwidget;
     QHBoxLayout *horizontalLayout_2;
     QHBoxLayout *horizontalLayout;
+    QVBoxLayout *verticalLayout;
+    QLabel *lblSimulationTime;
     QGraphicsView *graphicsView;
     QVBoxLayout *verticalLayout_2;
+    QLabel *lblSimulationInfo;
     QTableWidget *carDataTable;
+    QPushButton *btnShowCharts;
     QHBoxLayout *horizontalLayout_4;
     QPushButton *btnSpawnDespawn;
     QLabel *labelSpawnInterval;
@@ -54,7 +58,7 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName("MainWindow");
-        MainWindow->resize(1106, 544);
+        MainWindow->resize(1843, 783);
         QSizePolicy sizePolicy(QSizePolicy::Policy::Preferred, QSizePolicy::Policy::Preferred);
         sizePolicy.setHorizontalStretch(0);
         sizePolicy.setVerticalStretch(0);
@@ -78,6 +82,14 @@ public:
         horizontalLayout = new QHBoxLayout();
         horizontalLayout->setObjectName("horizontalLayout");
         horizontalLayout->setSizeConstraint(QLayout::SizeConstraint::SetDefaultConstraint);
+        verticalLayout = new QVBoxLayout();
+        verticalLayout->setObjectName("verticalLayout");
+        lblSimulationTime = new QLabel(centralwidget);
+        lblSimulationTime->setObjectName("lblSimulationTime");
+        lblSimulationTime->setAlignment(Qt::AlignmentFlag::AlignCenter);
+
+        verticalLayout->addWidget(lblSimulationTime);
+
         graphicsView = new QGraphicsView(centralwidget);
         graphicsView->setObjectName("graphicsView");
         QSizePolicy sizePolicy1(QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Expanding);
@@ -87,19 +99,37 @@ public:
         graphicsView->setSizePolicy(sizePolicy1);
         graphicsView->setMinimumSize(QSize(1500, 720));
 
-        horizontalLayout->addWidget(graphicsView);
+        verticalLayout->addWidget(graphicsView);
+
+
+        horizontalLayout->addLayout(verticalLayout);
 
         verticalLayout_2 = new QVBoxLayout();
         verticalLayout_2->setObjectName("verticalLayout_2");
+        lblSimulationInfo = new QLabel(centralwidget);
+        lblSimulationInfo->setObjectName("lblSimulationInfo");
+        QSizePolicy sizePolicy2(QSizePolicy::Policy::Preferred, QSizePolicy::Policy::Minimum);
+        sizePolicy2.setHorizontalStretch(0);
+        sizePolicy2.setVerticalStretch(0);
+        sizePolicy2.setHeightForWidth(lblSimulationInfo->sizePolicy().hasHeightForWidth());
+        lblSimulationInfo->setSizePolicy(sizePolicy2);
+
+        verticalLayout_2->addWidget(lblSimulationInfo);
+
         carDataTable = new QTableWidget(centralwidget);
         carDataTable->setObjectName("carDataTable");
-        QSizePolicy sizePolicy2(QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Expanding);
-        sizePolicy2.setHorizontalStretch(1);
-        sizePolicy2.setVerticalStretch(0);
-        sizePolicy2.setHeightForWidth(carDataTable->sizePolicy().hasHeightForWidth());
-        carDataTable->setSizePolicy(sizePolicy2);
+        QSizePolicy sizePolicy3(QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Maximum);
+        sizePolicy3.setHorizontalStretch(1);
+        sizePolicy3.setVerticalStretch(0);
+        sizePolicy3.setHeightForWidth(carDataTable->sizePolicy().hasHeightForWidth());
+        carDataTable->setSizePolicy(sizePolicy3);
 
         verticalLayout_2->addWidget(carDataTable);
+
+        btnShowCharts = new QPushButton(centralwidget);
+        btnShowCharts->setObjectName("btnShowCharts");
+
+        verticalLayout_2->addWidget(btnShowCharts);
 
         horizontalLayout_4 = new QHBoxLayout();
         horizontalLayout_4->setObjectName("horizontalLayout_4");
@@ -111,6 +141,8 @@ public:
 
         labelSpawnInterval = new QLabel(centralwidget);
         labelSpawnInterval->setObjectName("labelSpawnInterval");
+        sizePolicy.setHeightForWidth(labelSpawnInterval->sizePolicy().hasHeightForWidth());
+        labelSpawnInterval->setSizePolicy(sizePolicy);
 
         horizontalLayout_4->addWidget(labelSpawnInterval);
 
@@ -138,7 +170,6 @@ public:
 
         horizontalLayout->addLayout(verticalLayout_2);
 
-        horizontalLayout->setStretch(0, 3);
 
         horizontalLayout_2->addLayout(horizontalLayout);
 
@@ -148,7 +179,7 @@ public:
         MainWindow->setStatusBar(statusbar);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName("menubar");
-        menubar->setGeometry(QRect(0, 0, 1106, 22));
+        menubar->setGeometry(QRect(0, 0, 1843, 21));
         MainWindow->setMenuBar(menubar);
 
         retranslateUi(MainWindow);
@@ -164,10 +195,13 @@ public:
         actionReiniciar->setText(QCoreApplication::translate("MainWindow", "Reiniciar ", nullptr));
         actionMostrar_dados->setText(QCoreApplication::translate("MainWindow", "Mostrar dados", nullptr));
         actionSobre->setText(QCoreApplication::translate("MainWindow", "Sobre", nullptr));
+        lblSimulationTime->setText(QCoreApplication::translate("MainWindow", "Tempo de simula\303\247\303\243o: 00:00", nullptr));
+        lblSimulationInfo->setText(QCoreApplication::translate("MainWindow", "SimulationInfo", nullptr));
+        btnShowCharts->setText(QCoreApplication::translate("MainWindow", "Show Charts", nullptr));
         btnSpawnDespawn->setText(QCoreApplication::translate("MainWindow", "Start vehicle spawning", nullptr));
         labelSpawnInterval->setText(QCoreApplication::translate("MainWindow", "Time between spawns (s):", nullptr));
         btnPauseResumeCars->setText(QCoreApplication::translate("MainWindow", "Stop simulation", nullptr));
-        btnDespawnCars->setText(QCoreApplication::translate("MainWindow", "Despawn all vehicles", nullptr));
+        btnDespawnCars->setText(QCoreApplication::translate("MainWindow", "Restart simulation", nullptr));
     } // retranslateUi
 
 };

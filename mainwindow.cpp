@@ -7,6 +7,8 @@
 #include <QMouseEvent>
 #include <QDebug>
 #include <QDir>
+#include <QHBoxLayout>
+#include <QMessageBox>
 
 
 #include <QDialog>
@@ -32,6 +34,26 @@ MainWindow::MainWindow(QWidget *parent)
     connect(tableUpdateTimer, &QTimer::timeout, this, &MainWindow::updateCarDataTable);
     tableUpdateTimer->start(100);
 
+    simulationTimer = new QTimer(this);
+    connect(simulationTimer, &QTimer::timeout, [this]() {
+        qint64 totalMs = simulationElapsedMs;
+        if (simulationRunning) {
+            totalMs += elapsedTimer.elapsed();
+        }
+        int min = (totalMs / 60000);
+        int sec = (totalMs / 1000) % 60;
+        int ms  = totalMs % 1000;
+        ui->lblSimulationTime->setText(
+            QString("Tempo de simulação: %1:%2:%3")
+                .arg(min, 2, 10, QLatin1Char('0'))
+                .arg(sec, 2, 10, QLatin1Char('0'))
+                .arg(ms, 3, 10, QLatin1Char('0'))
+            );
+    });
+    simulationTimer->start(50);
+    simulationRunning = false;
+    simulationElapsedMs = 0;
+
     scene = new QGraphicsScene(this);
     ui->graphicsView->setScene(scene);
 
@@ -42,7 +64,7 @@ MainWindow::MainWindow(QWidget *parent)
 
 
     connect(ui->spinSpawnInterval, QOverload<int>::of(&QSpinBox::valueChanged), this, &MainWindow::on_spawnIntervalChanged);
-    connect(ui->carDataTable, &QTableWidget::cellClicked, this, &MainWindow::onCarDataTableCellClicked);
+    //connect(ui->btnShowCharts, &QPushButton::clicked, this, &MainWindow::on_btnShowCharts_clicked);
 }
 
 MainWindow::~MainWindow() {
@@ -113,6 +135,11 @@ void MainWindow::on_btnSpawnDespawn_clicked()
         spawnTimer->start(intervalMs);
         ui->btnSpawnDespawn->setText("Stop vehicle spawning");
         spawning = true;
+
+        if (!simulationRunning) {
+            simulationRunning = true;
+            elapsedTimer.restart();
+        }
     } else {
         spawnTimer->stop();
         ui->btnSpawnDespawn->setText("Start vehicle spawning");
@@ -132,12 +159,22 @@ void MainWindow::on_btnPauseResumeCars_clicked()
     if (carsPaused) {
         ui->btnPauseResumeCars->setText("Continue simulation");
         spawnTimer->stop();
+
+        if (simulationRunning) {
+            simulationElapsedMs += elapsedTimer.elapsed();
+            simulationRunning = false;
+        }
     } else {
         ui->btnPauseResumeCars->setText("Stop simulation");
         if (spawning) {
             int intervalSeconds = ui->spinSpawnInterval->value();
             int intervalMs = intervalSeconds * 1000;
             spawnTimer->start(intervalMs);
+
+            if (!simulationRunning) {
+                simulationRunning = true;
+                elapsedTimer.restart();
+            }
         }
     }
 
@@ -182,18 +219,27 @@ void MainWindow::removeActiveCar(Car* car) {
     updateCarDataTable();
 }
 
-void MainWindow::on_btnDespawnCars_clicked()
-{
+void MainWindow::on_btnDespawnCars_clicked() {
+    if (simulationRunning) {
+        QMessageBox::warning(this, "Warning", "The simulation needs to be stopped first!");
+        return;
+    }
 
     for (CarSpawner* spawner : carSpawners) {
-
         QVector<Car*>& cars = spawner->getCars();
         for (Car* car : cars) {
             scene->removeItem(car);
+            activeCars.removeOne(car);
             delete car;
         }
         cars.clear();
     }
+
+    activeCars.clear();
+
+    simulationRunning = false;
+    simulationElapsedMs = 0;
+    ui->lblSimulationTime->setText("Tempo de simulação: 00:00:000");
 }
 
 void MainWindow::resizeEvent(QResizeEvent *event) {
@@ -202,7 +248,7 @@ void MainWindow::resizeEvent(QResizeEvent *event) {
     if (!ui->graphicsView) return;
     if (!scene) return;
 
-    //ui->graphicsView->fitInView(scene->sceneRect(), Qt::KeepAspectRatio);
+    //ui->graphicsView->fitInView(scene->sceneRect(), Qt::KeepAspectRatio); Esticar mapa
 }
 
 
@@ -283,6 +329,13 @@ void MainWindow::updateCarDataTable()
 
     percentStoppedHistory.append(percentStopped);
 
+    qint64 totalMs = simulationElapsedMs;
+    if (simulationRunning) {
+        totalMs += elapsedTimer.elapsed();
+    }
+    double currentSimulationTime = totalMs / 1000.0;
+    metricTimestamps.append(currentSimulationTime);
+
     double meanPercentStopped = 0.0;
     if (!percentStoppedHistory.isEmpty()) {
         double sum = 0.0;
@@ -291,7 +344,7 @@ void MainWindow::updateCarDataTable()
     }
     double trafficFlow = 100.0 - meanPercentStopped;
 
-    ui->carDataTable->clear();
+    ui->carDataTable->setRowCount(9);
     ui->carDataTable->setColumnCount(2);
     ui->carDataTable->setRowCount(9);
     ui->carDataTable->setHorizontalHeaderLabels({"Metrics", "Value"});
@@ -327,57 +380,110 @@ void MainWindow::updateCarDataTable()
     ui->carDataTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 }
 
-void MainWindow::onCarDataTableCellClicked(int row, int column) {
-    if (column != 0 && column != 1) return;
-
-    QString metric = ui->carDataTable->item(row, 0)->text();
-    QVector<double> data;
-
-    if (metric == "Percentage of stopped cars (%)") {
-        data = percentStoppedHistory;
+void MainWindow::on_btnShowCharts_clicked() {
+    qDebug() << "Show charts clicked";
+    if (!simulationRunning) {
+        QMessageBox::warning(this, "Warning", "Simulation not running!");
+        return;
     }
-    else if (metric == "Average traffic flow (%)") {
-        QVector<double> flow;
-        for (double val : percentStoppedHistory) {
-            flow.append(100.0 - val);
-        }
-        data = flow;
-    }
-
-    if (!data.isEmpty())
-        showMetricChart(metric, data);
+    showChartsDialog();
 }
 
-void MainWindow::showMetricChart(const QString& metric, const QVector<double>& data) {
-    QLineSeries *series = new QLineSeries();
-    for (int i = 0; i < data.size(); ++i) {
-        series->append(i, data[i]);
+void MainWindow::showChartsDialog() {
+    if (chartsDialog && chartsDialog->isVisible()) {
+        chartsDialog->raise();
+        chartsDialog->activateWindow();
+        return;
     }
 
-    QChart *chart = new QChart();
-    chart->addSeries(series);
-    chart->setTitle("Evolução: " + metric);
-    chart->createDefaultAxes();
+    struct MetricData {
+        QString title;
+        QVector<double> values;
+        QString yLabel;
+        QColor color;
+    };
 
-    QValueAxis *axisX = new QValueAxis;
-    axisX->setTitleText("Iteração");
-    axisX->setLabelFormat("%d");
-    axisX->setTickCount(qMin(data.size(), 10));
-    chart->setAxisX(axisX, series);
+    struct ChartsData {
+        QVector<MetricData> metrics;
+        int currentMetric = 0;
+    };
 
-    QValueAxis *axisY = new QValueAxis;
-    axisY->setTitleText(metric);
-    axisY->setLabelFormat("%.1f");
-    chart->setAxisY(axisY, series);
+    auto* chartsData = new ChartsData;
 
-    QChartView *chartView = new QChartView(chart);
+    chartsData->metrics = {
+        {"Percentage of stopped cars (%)", percentStoppedHistory, "Stopped (%)", QColor("#00B8A9")},
+        {"Average traffic flow (%)", QVector<double>(), "Flow (%)", QColor("#F9A826")}
+    };
+
+    QVector<double> trafficFlow;
+    for (double v : percentStoppedHistory) trafficFlow.append(100.0 - v);
+    chartsData->metrics[1].values = trafficFlow;
+
+    chartsDialog = new QDialog(this);
+    chartsDialog->setAttribute(Qt::WA_DeleteOnClose);
+    chartsDialog->setWindowTitle("Metrics evolution");
+    QVBoxLayout* vbox = new QVBoxLayout(chartsDialog);
+
+    QChartView* chartView = new QChartView;
     chartView->setRenderHint(QPainter::Antialiasing);
+    vbox->addWidget(chartView);
 
-    QDialog *dlg = new QDialog(this);
-    dlg->setWindowTitle("Evolução da métrica");
-    QVBoxLayout *layout = new QVBoxLayout(dlg);
-    layout->addWidget(chartView);
-    dlg->resize(600, 400);
-    dlg->exec();
+    QHBoxLayout* btnLayout = new QHBoxLayout;
+    QPushButton* btnPrev = new QPushButton("Previous metric");
+    QPushButton* btnNext = new QPushButton("Next metric");
+    btnLayout->addWidget(btnPrev);
+    btnLayout->addWidget(btnNext);
+    vbox->addLayout(btnLayout);
+
+    auto updateChart = [=]() {
+        const MetricData& m = chartsData->metrics[chartsData->currentMetric];
+        QLineSeries* series = new QLineSeries();
+        series->setColor(m.color);
+
+        for (int i = 0; i < m.values.size(); ++i) {
+            if (i < metricTimestamps.size())
+                series->append(metricTimestamps[i], m.values[i]);
+        }
+
+        QChart* chart = new QChart();
+        chart->addSeries(series);
+        chart->setTitle(m.title);
+        chart->legend()->hide();
+        chart->setBackgroundBrush(QBrush(QColor("#F6F8F9")));
+        chart->setPlotAreaBackgroundBrush(QBrush(QColor("#F6F8F9")));
+        chart->setPlotAreaBackgroundVisible(true);
+
+        QValueAxis* axisX = new QValueAxis;
+        axisX->setTitleText("Simulation time (s)");
+        axisX->setLabelFormat("%.1f");
+        axisX->setTickCount(10);
+        chart->addAxis(axisX, Qt::AlignBottom);
+        series->attachAxis(axisX);
+
+        QValueAxis* axisY = new QValueAxis;
+        axisY->setTitleText(m.yLabel);
+        axisY->setLabelFormat("%.1f");
+        axisY->setRange(0, 100);
+        chart->addAxis(axisY, Qt::AlignLeft);
+        series->attachAxis(axisY);
+
+        chartView->setChart(chart);
+    };
+
+    connect(btnPrev, &QPushButton::clicked, chartsDialog, [=]() {
+        chartsData->currentMetric = (chartsData->currentMetric - 1 + chartsData->metrics.size()) % chartsData->metrics.size();
+        updateChart();
+    });
+    connect(btnNext, &QPushButton::clicked, chartsDialog, [=]() {
+        chartsData->currentMetric = (chartsData->currentMetric + 1) % chartsData->metrics.size();
+        updateChart();
+    });
+
+    updateChart();
+    chartsDialog->resize(650, 400);
+    chartsDialog->show();
+
+    QObject::connect(chartsDialog, &QDialog::destroyed, [=]() {
+        delete chartsData;
+    });
 }
-

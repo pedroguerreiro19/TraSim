@@ -8,7 +8,6 @@
 
 #include "../../../../mainwindow.h"
 #include <QtCore/qmetatype.h>
-#include <QtCore/QList>
 
 #include <QtCore/qtmochelpers.h>
 
@@ -49,13 +48,8 @@ static constexpr auto qt_meta_stringdata_ZN10MainWindowE = QtMocHelpers::stringD
     "on_spawnIntervalChanged",
     "value",
     "on_btnPauseResumeCars_clicked",
-    "onCarDataTableCellClicked",
-    "row",
-    "column",
-    "showMetricChart",
-    "metric",
-    "QList<double>",
-    "data"
+    "on_btnShowCharts_clicked",
+    "showChartsDialog"
 );
 #else  // !QT_MOC_HAS_STRINGDATA
 #error "qtmochelpers.h not found or too old."
@@ -81,8 +75,8 @@ Q_CONSTINIT static const uint qt_meta_data_ZN10MainWindowE[] = {
        5,    1,   65,    2, 0x08,    4 /* Private */,
        8,    1,   68,    2, 0x08,    6 /* Private */,
       10,    0,   71,    2, 0x08,    8 /* Private */,
-      11,    2,   72,    2, 0x08,    9 /* Private */,
-      14,    2,   77,    2, 0x08,   12 /* Private */,
+      11,    0,   72,    2, 0x08,    9 /* Private */,
+      12,    0,   73,    2, 0x08,   10 /* Private */,
 
  // slots: parameters
     QMetaType::Void,
@@ -91,8 +85,8 @@ Q_CONSTINIT static const uint qt_meta_data_ZN10MainWindowE[] = {
     QMetaType::Void, 0x80000000 | 6,    7,
     QMetaType::Void, QMetaType::Int,    9,
     QMetaType::Void,
-    QMetaType::Void, QMetaType::Int, QMetaType::Int,   12,   13,
-    QMetaType::Void, QMetaType::QString, 0x80000000 | 16,   15,   17,
+    QMetaType::Void,
+    QMetaType::Void,
 
        0        // eod
 };
@@ -120,14 +114,10 @@ Q_CONSTINIT const QMetaObject MainWindow::staticMetaObject = { {
         QtPrivate::TypeAndForceComplete<int, std::false_type>,
         // method 'on_btnPauseResumeCars_clicked'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        // method 'onCarDataTableCellClicked'
+        // method 'on_btnShowCharts_clicked'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        QtPrivate::TypeAndForceComplete<int, std::false_type>,
-        QtPrivate::TypeAndForceComplete<int, std::false_type>,
-        // method 'showMetricChart'
-        QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        QtPrivate::TypeAndForceComplete<const QString &, std::false_type>,
-        QtPrivate::TypeAndForceComplete<const QVector<double> &, std::false_type>
+        // method 'showChartsDialog'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>
     >,
     nullptr
 } };
@@ -143,21 +133,9 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 3: _t->mousePressEvent((*reinterpret_cast< std::add_pointer_t<QMouseEvent*>>(_a[1]))); break;
         case 4: _t->on_spawnIntervalChanged((*reinterpret_cast< std::add_pointer_t<int>>(_a[1]))); break;
         case 5: _t->on_btnPauseResumeCars_clicked(); break;
-        case 6: _t->onCarDataTableCellClicked((*reinterpret_cast< std::add_pointer_t<int>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<int>>(_a[2]))); break;
-        case 7: _t->showMetricChart((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QList<double>>>(_a[2]))); break;
+        case 6: _t->on_btnShowCharts_clicked(); break;
+        case 7: _t->showChartsDialog(); break;
         default: ;
-        }
-    }
-    if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        switch (_id) {
-        default: *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType(); break;
-        case 7:
-            switch (*reinterpret_cast<int*>(_a[1])) {
-            default: *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType(); break;
-            case 1:
-                *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType::fromType< QList<double> >(); break;
-            }
-            break;
         }
     }
 }
@@ -187,7 +165,7 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     }
     if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
         if (_id < 8)
-            qt_static_metacall(this, _c, _id, _a);
+            *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
         _id -= 8;
     }
     return _id;

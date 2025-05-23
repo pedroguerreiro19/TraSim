@@ -366,7 +366,6 @@ C:/Users/dined/Documents/TraSim/car.h
  mdp:C:/Users/dined/Documents/TraSim/car.h
  mdp:C:/Users/dined/Documents/TraSim/graph.h
  mdp:C:/Users/dined/Documents/TraSim/road.h
-C:/Users/dined/Documents/TraSim/road.h
 C:/Users/dined/Documents/TraSim/carspawner.h
  mmc:Q_OBJECT
  mdp:C:/Qt/6.8.2/mingw_64/include/QtCore/QList
@@ -746,8 +745,8 @@ C:/Users/dined/Documents/TraSim/carspawner.h
  mdp:C:/Users/dined/Documents/TraSim/carspawner.h
  mdp:C:/Users/dined/Documents/TraSim/graph.h
  mdp:C:/Users/dined/Documents/TraSim/road.h
+C:/Users/dined/Documents/TraSim/road.h
 C:/Users/dined/Documents/TraSim/graph.h
-C:/Users/dined/Documents/TraSim/car.cpp
 C:/Users/dined/Documents/TraSim/mainwindow.h
  mmc:Q_OBJECT
  mdp:C:/Qt/6.8.2/mingw_64/include/QtCharts/QAbstractAxis
@@ -776,6 +775,7 @@ C:/Users/dined/Documents/TraSim/mainwindow.h
  mdp:C:/Qt/6.8.2/mingw_64/include/QtCore/QMargins
  mdp:C:/Qt/6.8.2/mingw_64/include/QtCore/QObject
  mdp:C:/Qt/6.8.2/mingw_64/include/QtCore/QPointF
+ mdp:C:/Qt/6.8.2/mingw_64/include/QtCore/QPointer
  mdp:C:/Qt/6.8.2/mingw_64/include/QtCore/QRandomGenerator
  mdp:C:/Qt/6.8.2/mingw_64/include/QtCore/QRect
  mdp:C:/Qt/6.8.2/mingw_64/include/QtCore/QSize
@@ -861,6 +861,7 @@ C:/Users/dined/Documents/TraSim/mainwindow.h
  mdp:C:/Qt/6.8.2/mingw_64/include/QtCore/qoverload.h
  mdp:C:/Qt/6.8.2/mingw_64/include/QtCore/qpair.h
  mdp:C:/Qt/6.8.2/mingw_64/include/QtCore/qpoint.h
+ mdp:C:/Qt/6.8.2/mingw_64/include/QtCore/qpointer.h
  mdp:C:/Qt/6.8.2/mingw_64/include/QtCore/qprocessordetection.h
  mdp:C:/Qt/6.8.2/mingw_64/include/QtCore/qrandom.h
  mdp:C:/Qt/6.8.2/mingw_64/include/QtCore/qrect.h
@@ -962,12 +963,14 @@ C:/Users/dined/Documents/TraSim/mainwindow.h
  mdp:C:/Qt/6.8.2/mingw_64/include/QtGui/qvectornd.h
  mdp:C:/Qt/6.8.2/mingw_64/include/QtGui/qwindowdefs.h
  mdp:C:/Qt/6.8.2/mingw_64/include/QtGui/qwindowdefs_win.h
+ mdp:C:/Qt/6.8.2/mingw_64/include/QtWidgets/QDialog
  mdp:C:/Qt/6.8.2/mingw_64/include/QtWidgets/QGraphicsItem
  mdp:C:/Qt/6.8.2/mingw_64/include/QtWidgets/QGraphicsScene
  mdp:C:/Qt/6.8.2/mingw_64/include/QtWidgets/QGraphicsView
  mdp:C:/Qt/6.8.2/mingw_64/include/QtWidgets/QGraphicsWidget
  mdp:C:/Qt/6.8.2/mingw_64/include/QtWidgets/QMainWindow
  mdp:C:/Qt/6.8.2/mingw_64/include/QtWidgets/qabstractscrollarea.h
+ mdp:C:/Qt/6.8.2/mingw_64/include/QtWidgets/qdialog.h
  mdp:C:/Qt/6.8.2/mingw_64/include/QtWidgets/qframe.h
  mdp:C:/Qt/6.8.2/mingw_64/include/QtWidgets/qgraphicsitem.h
  mdp:C:/Qt/6.8.2/mingw_64/include/QtWidgets/qgraphicslayoutitem.h
@@ -1203,6 +1206,7 @@ C:/Users/dined/Documents/TraSim/mainwindow.h
  mdp:C:/Users/dined/Documents/TraSim/graph.h
  mdp:C:/Users/dined/Documents/TraSim/mainwindow.h
  mdp:C:/Users/dined/Documents/TraSim/road.h
+C:/Users/dined/Documents/TraSim/car.cpp
 C:/Users/dined/Documents/TraSim/carspawner.cpp
 C:/Users/dined/Documents/TraSim/trafficlight.h
  mmc:Q_OBJECT

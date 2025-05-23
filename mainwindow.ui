@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1106</width>
-    <height>544</height>
+    <width>1843</width>
+    <height>783</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -25,35 +25,69 @@
   <widget class="QWidget" name="centralwidget">
    <layout class="QHBoxLayout" name="horizontalLayout_2">
     <item>
-     <layout class="QHBoxLayout" name="horizontalLayout" stretch="3,0">
+     <layout class="QHBoxLayout" name="horizontalLayout" stretch="0,0">
       <property name="sizeConstraint">
        <enum>QLayout::SizeConstraint::SetDefaultConstraint</enum>
       </property>
       <item>
-       <widget class="QGraphicsView" name="graphicsView">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-          <horstretch>5</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="minimumSize">
-         <size>
-          <width>1500</width>
-          <height>720</height>
-         </size>
-        </property>
-       </widget>
+       <layout class="QVBoxLayout" name="verticalLayout">
+        <item>
+         <widget class="QLabel" name="lblSimulationTime">
+          <property name="text">
+           <string>Tempo de simulação: 00:00</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignmentFlag::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QGraphicsView" name="graphicsView">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+            <horstretch>5</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>1500</width>
+            <height>720</height>
+           </size>
+          </property>
+         </widget>
+        </item>
+       </layout>
       </item>
       <item>
        <layout class="QVBoxLayout" name="verticalLayout_2">
         <item>
+         <widget class="QLabel" name="lblSimulationInfo">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text">
+           <string>SimulationInfo</string>
+          </property>
+         </widget>
+        </item>
+        <item>
          <widget class="QTableWidget" name="carDataTable">
           <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+           <sizepolicy hsizetype="Expanding" vsizetype="Maximum">
             <horstretch>1</horstretch>
             <verstretch>0</verstretch>
            </sizepolicy>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="btnShowCharts">
+          <property name="text">
+           <string>Show Charts</string>
           </property>
          </widget>
         </item>
@@ -71,6 +105,12 @@
           </item>
           <item>
            <widget class="QLabel" name="labelSpawnInterval">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="text">
              <string>Time between spawns (s):</string>
             </property>
@@ -101,7 +141,7 @@
         <item>
          <widget class="QPushButton" name="btnDespawnCars">
           <property name="text">
-           <string>Despawn all vehicles</string>
+           <string>Restart simulation</string>
           </property>
          </widget>
         </item>
@@ -117,8 +157,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1106</width>
-     <height>22</height>
+     <width>1843</width>
+     <height>21</height>
     </rect>
    </property>
   </widget>
