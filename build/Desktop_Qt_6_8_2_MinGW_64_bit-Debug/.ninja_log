@@ -64,3 +64,9 @@
 134	1141	7697306338959783	CMakeFiles/TraSim.dir/trafficlight.cpp.obj	18786254f4297059
 131	2251	7697306338929783	CMakeFiles/TraSim.dir/mainwindow.cpp.obj	ef2fef4af3f620c1
 2251	2939	7697306360129296	TraSim.exe	dc1b7f88c48e4b00
+9	126	7697310325789605	TraSim_autogen/timestamp	fea1202dd052a779
+9	126	7697310325789605	TraSim_autogen/mocs_compilation.cpp	fea1202dd052a779
+9	126	7697310325789605	C:/Users/dined/Documents/TraSim/build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/TraSim_autogen/timestamp	fea1202dd052a779
+9	126	7697310325789605	C:/Users/dined/Documents/TraSim/build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/TraSim_autogen/mocs_compilation.cpp	fea1202dd052a779
+126	2199	7697310326970409	CMakeFiles/TraSim.dir/mainwindow.cpp.obj	ef2fef4af3f620c1
+2199	2858	7697310347694937	TraSim.exe	dc1b7f88c48e4b00

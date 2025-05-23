@@ -134,7 +134,7 @@ public:
         sizePolicy3.setVerticalStretch(0);
         sizePolicy3.setHeightForWidth(carDataTable->sizePolicy().hasHeightForWidth());
         carDataTable->setSizePolicy(sizePolicy3);
-        carDataTable->setMaximumSize(QSize(16777215, 300));
+        carDataTable->setMaximumSize(QSize(16777215, 15900000));
 
         verticalLayout_2->addWidget(carDataTable);
 
