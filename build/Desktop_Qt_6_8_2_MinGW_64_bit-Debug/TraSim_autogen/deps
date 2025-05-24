@@ -31,6 +31,7 @@ TraSim_autogen/timestamp: \
 	C:/Qt/6.8.2/mingw_64/include/QtCore/QRect \
 	C:/Qt/6.8.2/mingw_64/include/QtCore/QSize \
 	C:/Qt/6.8.2/mingw_64/include/QtCore/QSizeF \
+	C:/Qt/6.8.2/mingw_64/include/QtCore/QString \
 	C:/Qt/6.8.2/mingw_64/include/QtCore/QTimer \
 	C:/Qt/6.8.2/mingw_64/include/QtCore/QVariant \
 	C:/Qt/6.8.2/mingw_64/include/QtCore/QVector \

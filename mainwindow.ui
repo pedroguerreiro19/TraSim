@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1843</width>
-    <height>783</height>
+    <width>1904</width>
+    <height>807</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -121,7 +121,7 @@
            </size>
           </property>
           <property name="text">
-           <string>Simulation changes</string>
+           <string>Simulation settings</string>
           </property>
           <property name="alignment">
            <set>Qt::AlignmentFlag::AlignCenter</set>
@@ -244,7 +244,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1843</width>
+     <width>1904</width>
      <height>21</height>
     </rect>
    </property>

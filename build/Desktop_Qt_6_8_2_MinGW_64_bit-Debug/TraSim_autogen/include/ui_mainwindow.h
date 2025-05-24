@@ -67,7 +67,7 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName("MainWindow");
-        MainWindow->resize(1843, 783);
+        MainWindow->resize(1904, 807);
         QSizePolicy sizePolicy(QSizePolicy::Policy::Preferred, QSizePolicy::Policy::Preferred);
         sizePolicy.setHorizontalStretch(0);
         sizePolicy.setVerticalStretch(0);
@@ -244,7 +244,7 @@ public:
         MainWindow->setStatusBar(statusbar);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName("menubar");
-        menubar->setGeometry(QRect(0, 0, 1843, 21));
+        menubar->setGeometry(QRect(0, 0, 1904, 21));
         MainWindow->setMenuBar(menubar);
 
         retranslateUi(MainWindow);
@@ -263,7 +263,7 @@ public:
         lblSimulationTime->setText(QCoreApplication::translate("MainWindow", "Simulation time: 00:00", nullptr));
         lblSimulationInfo->setText(QCoreApplication::translate("MainWindow", "Simulation Info", nullptr));
         btnShowCharts->setText(QCoreApplication::translate("MainWindow", "Show Charts", nullptr));
-        lblSimulationChanges->setText(QCoreApplication::translate("MainWindow", "Simulation changes", nullptr));
+        lblSimulationChanges->setText(QCoreApplication::translate("MainWindow", "Simulation settings", nullptr));
         lblGreen->setText(QCoreApplication::translate("MainWindow", "Green Light duration(s)", nullptr));
         lblYellow->setText(QCoreApplication::translate("MainWindow", "Yellow Light duration (s)", nullptr));
         lblRed->setText(QCoreApplication::translate("MainWindow", "Red Ligh duration (s)", nullptr));

@@ -15,16 +15,16 @@ class Car : public QObject, public QGraphicsEllipseItem {
 
 public:
     Car(Node* spawnNode, Node* despawnNode, Graph* graph, QGraphicsScene* scene);
-    void startMoving();
-    bool canMove();
     QList<QPointF> getPath() const;
-
-    qint64 travelTimeMs = 0;
-    double totalDistance = 0.0;
-    void pause();
-    void resume();
     bool isStoppedAtTrafficLight() const;
     bool isStopped();
+    qint64 travelTimeMs = 0;
+    double totalDistance = 0.0;
+
+    void pause();
+    void resume();
+    void startMoving();
+    bool canMove();
 
 private slots:
     void move();
