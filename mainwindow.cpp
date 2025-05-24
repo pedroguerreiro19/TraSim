@@ -165,7 +165,7 @@ void MainWindow::on_btnSpawnDespawn_clicked()
 }
 void MainWindow::on_spawnIntervalChanged(int value) {
     if (spawning) {
-        spawnTimer->start(value * 1000); // Atualiza imediatamente
+        spawnTimer->start(value * 1000);
     }
 }
 
@@ -241,22 +241,43 @@ void MainWindow::on_btnDespawnCars_clicked() {
         QMessageBox::warning(this, "Warning", "The simulation needs to be stopped first!");
         return;
     }
+    spawning = false;
+    simulationRunning = false;
+    carsPaused = false;
+    if (spawnTimer) spawnTimer->stop();
+    if (simulationTimer) simulationTimer->stop();
 
     for (CarSpawner* spawner : carSpawners) {
         QVector<Car*>& cars = spawner->getCars();
         for (Car* car : cars) {
-            scene->removeItem(car);
-            activeCars.removeOne(car);
+            if (scene->items().contains(car))
+                scene->removeItem(car);
             delete car;
         }
         cars.clear();
     }
-
     activeCars.clear();
 
-    simulationRunning = false;
+    totalCarsFinished = 0;
+    totalCarsSpawned = 0;
     simulationElapsedMs = 0;
+    maxCarsActive = 0;
+    allTravelTimes.clear();
+    allDistances.clear();
+    percentStoppedHistory.clear();
+    metricTimestamps.clear();
+
     ui->lblSimulationTime->setText("Simulation time: 00:00:000");
+    updateCarDataTable();
+
+    simulationTimer->start(50);
+
+    ui->btnSpawnDespawn->setText("Start vehicle spawning");
+    ui->btnPauseResumeCars->setText("Stop simulation");
+
+    for (auto tl : graph->trafficLights.values()) {
+        tl->resume();
+    }
 }
 
 void MainWindow::resizeEvent(QResizeEvent *event) {
