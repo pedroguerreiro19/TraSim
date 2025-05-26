@@ -150,9 +150,8 @@ C:/Users/dined/Documents/TraSim/car.h
  mdp:C:/Qt/6.8.2/mingw_64/include/QtGui/qtransform.h
  mdp:C:/Qt/6.8.2/mingw_64/include/QtGui/qwindowdefs.h
  mdp:C:/Qt/6.8.2/mingw_64/include/QtGui/qwindowdefs_win.h
- mdp:C:/Qt/6.8.2/mingw_64/include/QtWidgets/QGraphicsEllipseItem
  mdp:C:/Qt/6.8.2/mingw_64/include/QtWidgets/QGraphicsItem
- mdp:C:/Qt/6.8.2/mingw_64/include/QtWidgets/QGraphicsRectItem
+ mdp:C:/Qt/6.8.2/mingw_64/include/QtWidgets/QGraphicsPixmapItem
  mdp:C:/Qt/6.8.2/mingw_64/include/QtWidgets/qgraphicsitem.h
  mdp:C:/Qt/6.8.2/mingw_64/include/QtWidgets/qtwidgets-config.h
  mdp:C:/Qt/6.8.2/mingw_64/include/QtWidgets/qtwidgetsexports.h

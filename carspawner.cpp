@@ -2,6 +2,18 @@
 #include "car.h"
 #include "mainwindow.h"
 #include <QDebug>
+#include <QRandomGenerator>
+
+
+const QStringList carImages = {
+    ":/cars/car1.png",
+    ":/cars/car2.png",
+    ":/cars/car3.png",
+    ":/cars/car4.png",
+    ":/cars/car5.png",
+    ":/cars/car6.png"
+};
+
 
 CarSpawner::CarSpawner(int id, Graph* graph, QGraphicsScene* scene)
     : spawnerId(id), graph(graph), scene(scene), paused(false) {
@@ -36,7 +48,10 @@ void CarSpawner::spawnCar() {
     Node* spawnNode = chooseRandomSpawnNode();
     Node* despawnNode = chooseRandomDespawnNode();
 
-    Car* car = new Car(spawnNode, despawnNode, graph, scene);
+    int imgIdx = QRandomGenerator::global()->bounded(carImages.size());
+    QString imgPath = carImages[imgIdx];
+
+    Car* car = new Car(spawnNode, despawnNode, graph, scene, imgPath);
 
     cars.append(car);
     scene->addItem(car);

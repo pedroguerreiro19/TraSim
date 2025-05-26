@@ -7,7 +7,16 @@
 	"CROSS_CONFIG" : false,
 	"GENERATOR" : "Ninja",
 	"INCLUDE_DIR" : "C:/Users/dined/Documents/TraSim/build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/TraSim_autogen/include",
-	"INPUTS" : [ "C:/Users/dined/Documents/TraSim/map.png" ],
+	"INPUTS" : 
+	[
+		"C:/Users/dined/Documents/TraSim/map.png",
+		"C:/Users/dined/Documents/TraSim/cars/car6.png",
+		"C:/Users/dined/Documents/TraSim/cars/car4.png",
+		"C:/Users/dined/Documents/TraSim/cars/car2.png",
+		"C:/Users/dined/Documents/TraSim/cars/car3.png",
+		"C:/Users/dined/Documents/TraSim/cars/car5.png",
+		"C:/Users/dined/Documents/TraSim/cars/car1.png"
+	],
 	"LOCK_FILE" : "C:/Users/dined/Documents/TraSim/build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/CMakeFiles/TraSim_autogen.dir/AutoRcc_img_EWIEGA46WW_Lock.lock",
 	"MULTI_CONFIG" : false,
 	"OPTIONS" : [ "--no-zstd", "-name", "img" ],

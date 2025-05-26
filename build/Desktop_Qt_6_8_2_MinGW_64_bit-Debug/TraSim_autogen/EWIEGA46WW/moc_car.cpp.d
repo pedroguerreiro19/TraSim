@@ -147,9 +147,8 @@ C:/Users/dined/Documents/TraSim/build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/TraSim
   C:/Qt/6.8.2/mingw_64/include/QtGui/qtransform.h \
   C:/Qt/6.8.2/mingw_64/include/QtGui/qwindowdefs.h \
   C:/Qt/6.8.2/mingw_64/include/QtGui/qwindowdefs_win.h \
-  C:/Qt/6.8.2/mingw_64/include/QtWidgets/QGraphicsEllipseItem \
   C:/Qt/6.8.2/mingw_64/include/QtWidgets/QGraphicsItem \
-  C:/Qt/6.8.2/mingw_64/include/QtWidgets/QGraphicsRectItem \
+  C:/Qt/6.8.2/mingw_64/include/QtWidgets/QGraphicsPixmapItem \
   C:/Qt/6.8.2/mingw_64/include/QtWidgets/qgraphicsitem.h \
   C:/Qt/6.8.2/mingw_64/include/QtWidgets/qtwidgets-config.h \
   C:/Qt/6.8.2/mingw_64/include/QtWidgets/qtwidgetsexports.h \

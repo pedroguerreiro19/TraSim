@@ -1,20 +1,18 @@
 #ifndef CAR_H
 #define CAR_H
 
-#include <QGraphicsEllipseItem>
-#include <QGraphicsRectItem>
+#include <QGraphicsPixmapItem>
 #include <QObject>
 #include <QTimer>
 #include <QList>
 #include <QElapsedTimer>
 #include "graph.h"
 
-
-class Car : public QObject, public QGraphicsEllipseItem {
+class Car : public QObject, public QGraphicsPixmapItem {
     Q_OBJECT
 
 public:
-    Car(Node* spawnNode, Node* despawnNode, Graph* graph, QGraphicsScene* scene);
+    Car(Node* spawnNode, Node* despawnNode, Graph* graph, QGraphicsScene* scene, const QString& imagePath);
     QList<QPointF> getPath() const;
     bool isStoppedAtTrafficLight() const;
     bool isStopped();
@@ -25,6 +23,7 @@ public:
     void resume();
     void startMoving();
     bool canMove();
+
 
 private slots:
     void move();
@@ -44,6 +43,8 @@ private:
     bool hasPassedLight;
     QElapsedTimer travelTimer;
     bool paused = false;
+    QPixmap carPixmap;
+    QString imagePath;
 };
 
 #endif // CAR_H

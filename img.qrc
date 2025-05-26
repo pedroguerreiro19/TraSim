@@ -2,4 +2,12 @@
     <qresource prefix="/map">
         <file>map.png</file>
     </qresource>
+    <qresource prefix="/cars">
+        <file>cars/car1.png</file>
+        <file>cars/car2.png</file>
+        <file>cars/car3.png</file>
+        <file>cars/car4.png</file>
+        <file>cars/car5.png</file>
+        <file>cars/car6.png</file>
+    </qresource>
 </RCC>
