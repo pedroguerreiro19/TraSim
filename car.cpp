@@ -6,10 +6,18 @@
 #include <QGraphicsScene>
 
 Car::Car(Node* spawnNode, Node* despawnNode, Graph* graph, QGraphicsScene* scene, const QString& imagePath)
-    : QObject(), QGraphicsPixmapItem(QPixmap(imagePath).scaled(32, 16, Qt::KeepAspectRatio, Qt::SmoothTransformation)),
-    graph(graph), spawnNode(spawnNode), despawnNode(despawnNode),
-    totalDistance(0.0), travelTimeMs(0), paused(false), imagePath(imagePath), pathIndex(0)
+    : QObject(), QGraphicsPixmapItem() // usa construtor default!
+    , graph(graph), spawnNode(spawnNode), despawnNode(despawnNode)
+    , totalDistance(0.0), travelTimeMs(0), paused(false), imagePath(imagePath), pathIndex(0)
 {
+
+    QPixmap carPixmap(imagePath);
+    if (carPixmap.isNull()) {
+        qDebug() << "Erro ao carregar imagem do carro:" << imagePath;
+    } else {
+        setPixmap(carPixmap.scaled(32, 16, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+        qDebug() << "Imagem do carro carregada com sucesso:" << imagePath;
+    }
 
     setFlag(QGraphicsItem::ItemIsSelectable);
     setFlag(QGraphicsItem::ItemIgnoresTransformations, false);
