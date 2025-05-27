@@ -1,0 +1,31 @@
+{
+	"BUILD_DIR" : "C:/Users/dined/Documents/TraSim/build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/TraSim_autogen",
+	"CMAKE_BINARY_DIR" : "C:/Users/dined/Documents/TraSim/build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug",
+	"CMAKE_CURRENT_BINARY_DIR" : "C:/Users/dined/Documents/TraSim/build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug",
+	"CMAKE_CURRENT_SOURCE_DIR" : "C:/Users/dined/Documents/TraSim",
+	"CMAKE_SOURCE_DIR" : "C:/Users/dined/Documents/TraSim",
+	"CROSS_CONFIG" : false,
+	"GENERATOR" : "Ninja",
+	"INCLUDE_DIR" : "C:/Users/dined/Documents/TraSim/build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/TraSim_autogen/include",
+	"INPUTS" : 
+	[
+		"C:/Users/dined/Documents/TraSim/map.png",
+		"C:/Users/dined/Documents/TraSim/car6.png",
+		"C:/Users/dined/Documents/TraSim/car4.png",
+		"C:/Users/dined/Documents/TraSim/car2.png",
+		"C:/Users/dined/Documents/TraSim/car3.png",
+		"C:/Users/dined/Documents/TraSim/car5.png",
+		"C:/Users/dined/Documents/TraSim/car1.png"
+	],
+	"LOCK_FILE" : "C:/Users/dined/Documents/TraSim/build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/CMakeFiles/TraSim_autogen.dir/AutoRcc_img_EWIEGA46WW_Lock.lock",
+	"MULTI_CONFIG" : false,
+	"OPTIONS" : [ "--no-zstd", "-name", "img" ],
+	"OUTPUT_CHECKSUM" : "EWIEGA46WW",
+	"OUTPUT_NAME" : "qrc_img.cpp",
+	"RCC_EXECUTABLE" : "C:/Qt/6.8.2/mingw_64/bin/rcc.exe",
+	"RCC_LIST_OPTIONS" : [ "--list" ],
+	"SETTINGS_FILE" : "C:/Users/dined/Documents/TraSim/build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/CMakeFiles/TraSim_autogen.dir/AutoRcc_img_EWIEGA46WW_Used.txt",
+	"SOURCE" : "C:/Users/dined/Documents/TraSim/img.qrc",
+	"USE_BETTER_GRAPH" : true,
+	"VERBOSITY" : 0
+}

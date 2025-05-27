@@ -3,11 +3,11 @@
         <file>map.png</file>
     </qresource>
     <qresource prefix="/cars">
-        <file>cars/car1.png</file>
-        <file>cars/car2.png</file>
-        <file>cars/car3.png</file>
-        <file>cars/car4.png</file>
-        <file>cars/car5.png</file>
-        <file>cars/car6.png</file>
+        <file>car1.png</file>
+        <file>car2.png</file>
+        <file>car3.png</file>
+        <file>car4.png</file>
+        <file>car5.png</file>
+        <file>car6.png</file>
     </qresource>
 </RCC>
