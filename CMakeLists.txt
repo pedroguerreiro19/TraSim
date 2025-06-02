@@ -31,6 +31,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         carspawner.h carspawner.cpp
         trafficlight.h trafficlight.cpp
         img.qrc
+        map.qrc
 
     )
 # Define target properties for Android with Qt 6 as:
