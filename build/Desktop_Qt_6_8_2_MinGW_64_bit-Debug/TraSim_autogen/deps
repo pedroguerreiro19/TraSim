@@ -216,9 +216,8 @@ TraSim_autogen/timestamp: \
 	C:/Qt/6.8.2/mingw_64/include/QtGui/qwindowdefs.h \
 	C:/Qt/6.8.2/mingw_64/include/QtGui/qwindowdefs_win.h \
 	C:/Qt/6.8.2/mingw_64/include/QtWidgets/QDialog \
-	C:/Qt/6.8.2/mingw_64/include/QtWidgets/QGraphicsEllipseItem \
 	C:/Qt/6.8.2/mingw_64/include/QtWidgets/QGraphicsItem \
-	C:/Qt/6.8.2/mingw_64/include/QtWidgets/QGraphicsRectItem \
+	C:/Qt/6.8.2/mingw_64/include/QtWidgets/QGraphicsPixmapItem \
 	C:/Qt/6.8.2/mingw_64/include/QtWidgets/QGraphicsScene \
 	C:/Qt/6.8.2/mingw_64/include/QtWidgets/QGraphicsView \
 	C:/Qt/6.8.2/mingw_64/include/QtWidgets/QGraphicsWidget \

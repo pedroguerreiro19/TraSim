@@ -5,12 +5,22 @@
 #include <QVector2D>
 #include <QGraphicsScene>
 
-Car::Car(Node* spawnNode, Node* despawnNode, Graph* graph, QGraphicsScene* scene)
-    : graph(graph), pathIndex(0), spawnNode(spawnNode), despawnNode(despawnNode),
-    totalDistance(0.0), travelTimeMs(0)
+Car::Car(Node* spawnNode, Node* despawnNode, Graph* graph, QGraphicsScene* scene, const QString& imagePath)
+    : QObject(), QGraphicsPixmapItem() // usa construtor default!
+    , graph(graph), spawnNode(spawnNode), despawnNode(despawnNode)
+    , totalDistance(0.0), travelTimeMs(0), paused(false), imagePath(imagePath), pathIndex(0)
 {
-    setRect(0, 0, 10, 10);
-    setBrush(Qt::red);
+
+    QPixmap carPixmap(imagePath);
+    if (carPixmap.isNull()) {
+        qDebug() << "Erro ao carregar imagem do carro:" << imagePath;
+    } else {
+        setPixmap(carPixmap.scaled(32, 16, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+        qDebug() << "Imagem do carro carregada com sucesso:" << imagePath;
+    }
+
+    setFlag(QGraphicsItem::ItemIsSelectable);
+    setFlag(QGraphicsItem::ItemIgnoresTransformations, false);
 
     QVector<int> nodePath = graph->dijkstra(spawnNode->id, despawnNode->id);
 
@@ -27,12 +37,12 @@ Car::Car(Node* spawnNode, Node* despawnNode, Graph* graph, QGraphicsScene* scene
 
     if (!path.isEmpty()) {
         setPos(path.first());
-    } else {
     }
 
     timer = new QTimer(this);
     connect(timer, &QTimer::timeout, this, &Car::move);
 }
+
 
 void Car::pause() {
     paused = true;
