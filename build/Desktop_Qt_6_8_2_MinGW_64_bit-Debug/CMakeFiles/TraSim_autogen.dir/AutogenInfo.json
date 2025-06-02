@@ -384,6 +384,12 @@
 			null
 		],
 		[
+			"C:/Users/dined/Documents/TraSim/datalogger.h",
+			"MU",
+			"EWIEGA46WW/moc_datalogger.cpp",
+			null
+		],
+		[
 			"C:/Users/dined/Documents/TraSim/graph.h",
 			"MU",
 			"EWIEGA46WW/moc_graph.cpp",
@@ -487,6 +493,7 @@
 	[
 		[ "C:/Users/dined/Documents/TraSim/car.cpp", "MU", null ],
 		[ "C:/Users/dined/Documents/TraSim/carspawner.cpp", "MU", null ],
+		[ "C:/Users/dined/Documents/TraSim/datalogger.cpp", "MU", null ],
 		[ "C:/Users/dined/Documents/TraSim/graph.cpp", "MU", null ],
 		[ "C:/Users/dined/Documents/TraSim/main.cpp", "MU", null ],
 		[ "C:/Users/dined/Documents/TraSim/mainwindow.cpp", "MU", null ],
