@@ -40,13 +40,16 @@ static constexpr auto qt_meta_stringdata_ZN10MainWindowE = QtMocHelpers::stringD
     "MainWindow",
     "spawnCarRandomly",
     "",
-    "on_actionIniciar_triggered",
-    "on_actionParar_triggered",
-    "on_actionReiniciar_triggered",
-    "on_actionSair_triggered",
+    "on_btnSpawnDespawn_clicked",
+    "on_btnDespawnCars_clicked",
     "mousePressEvent",
     "QMouseEvent*",
-    "event"
+    "event",
+    "on_spawnIntervalChanged",
+    "value",
+    "on_btnPauseResumeCars_clicked",
+    "on_btnShowCharts_clicked",
+    "showChartsDialog"
 );
 #else  // !QT_MOC_HAS_STRINGDATA
 #error "qtmochelpers.h not found or too old."
@@ -58,7 +61,7 @@ Q_CONSTINIT static const uint qt_meta_data_ZN10MainWindowE[] = {
       12,       // revision
        0,       // classname
        0,    0, // classinfo
-       6,   14, // methods
+       8,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -66,20 +69,24 @@ Q_CONSTINIT static const uint qt_meta_data_ZN10MainWindowE[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    0,   50,    2, 0x08,    1 /* Private */,
-       3,    0,   51,    2, 0x08,    2 /* Private */,
-       4,    0,   52,    2, 0x08,    3 /* Private */,
-       5,    0,   53,    2, 0x08,    4 /* Private */,
-       6,    0,   54,    2, 0x08,    5 /* Private */,
-       7,    1,   55,    2, 0x08,    6 /* Private */,
+       1,    0,   62,    2, 0x08,    1 /* Private */,
+       3,    0,   63,    2, 0x08,    2 /* Private */,
+       4,    0,   64,    2, 0x08,    3 /* Private */,
+       5,    1,   65,    2, 0x08,    4 /* Private */,
+       8,    1,   68,    2, 0x08,    6 /* Private */,
+      10,    0,   71,    2, 0x08,    8 /* Private */,
+      11,    0,   72,    2, 0x08,    9 /* Private */,
+      12,    0,   73,    2, 0x08,   10 /* Private */,
 
  // slots: parameters
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
+    QMetaType::Void, 0x80000000 | 6,    7,
+    QMetaType::Void, QMetaType::Int,    9,
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void, 0x80000000 | 8,    9,
+    QMetaType::Void,
 
        0        // eod
 };
@@ -95,17 +102,22 @@ Q_CONSTINIT const QMetaObject MainWindow::staticMetaObject = { {
         QtPrivate::TypeAndForceComplete<MainWindow, std::true_type>,
         // method 'spawnCarRandomly'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        // method 'on_actionIniciar_triggered'
+        // method 'on_btnSpawnDespawn_clicked'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        // method 'on_actionParar_triggered'
-        QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        // method 'on_actionReiniciar_triggered'
-        QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        // method 'on_actionSair_triggered'
+        // method 'on_btnDespawnCars_clicked'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'mousePressEvent'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        QtPrivate::TypeAndForceComplete<QMouseEvent *, std::false_type>
+        QtPrivate::TypeAndForceComplete<QMouseEvent *, std::false_type>,
+        // method 'on_spawnIntervalChanged'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<int, std::false_type>,
+        // method 'on_btnPauseResumeCars_clicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'on_btnShowCharts_clicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'showChartsDialog'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>
     >,
     nullptr
 } };
@@ -116,11 +128,13 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
     if (_c == QMetaObject::InvokeMetaMethod) {
         switch (_id) {
         case 0: _t->spawnCarRandomly(); break;
-        case 1: _t->on_actionIniciar_triggered(); break;
-        case 2: _t->on_actionParar_triggered(); break;
-        case 3: _t->on_actionReiniciar_triggered(); break;
-        case 4: _t->on_actionSair_triggered(); break;
-        case 5: _t->mousePressEvent((*reinterpret_cast< std::add_pointer_t<QMouseEvent*>>(_a[1]))); break;
+        case 1: _t->on_btnSpawnDespawn_clicked(); break;
+        case 2: _t->on_btnDespawnCars_clicked(); break;
+        case 3: _t->mousePressEvent((*reinterpret_cast< std::add_pointer_t<QMouseEvent*>>(_a[1]))); break;
+        case 4: _t->on_spawnIntervalChanged((*reinterpret_cast< std::add_pointer_t<int>>(_a[1]))); break;
+        case 5: _t->on_btnPauseResumeCars_clicked(); break;
+        case 6: _t->on_btnShowCharts_clicked(); break;
+        case 7: _t->showChartsDialog(); break;
         default: ;
         }
     }
@@ -145,14 +159,14 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 6)
+        if (_id < 8)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 6;
+        _id -= 8;
     }
     if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 6)
+        if (_id < 8)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 6;
+        _id -= 8;
     }
     return _id;
 }

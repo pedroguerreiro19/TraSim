@@ -1,9 +1,22 @@
 #include "carspawner.h"
 #include "car.h"
+#include "mainwindow.h"
 #include <QDebug>
+#include <QRandomGenerator>
+
+
+const QStringList carImages = {
+    ":/cars/car1.png",
+    ":/cars/car2.png",
+    ":/cars/car3.png",
+    ":/cars/car4.png",
+    ":/cars/car5.png",
+    ":/cars/car6.png"
+};
+
 
 CarSpawner::CarSpawner(int id, Graph* graph, QGraphicsScene* scene)
-    : spawnerId(id), graph(graph), scene(scene) {
+    : spawnerId(id), graph(graph), scene(scene), paused(false) {
     timer = new QTimer(this);
     connect(timer, &QTimer::timeout, this, &CarSpawner::spawnCar);
 }
@@ -20,7 +33,9 @@ void CarSpawner::restart(int interval) {
 
 
 
+
 void CarSpawner::startSpawning(int interval) {
+    if (paused) return;
     timer->start(interval);
 }
 
@@ -33,10 +48,14 @@ void CarSpawner::spawnCar() {
     Node* spawnNode = chooseRandomSpawnNode();
     Node* despawnNode = chooseRandomDespawnNode();
 
-    Car* car = new Car(spawnNode, despawnNode, graph, scene);
+    int imgIdx = QRandomGenerator::global()->bounded(carImages.size());
+    QString imgPath = carImages[imgIdx];
+
+    Car* car = new Car(spawnNode, despawnNode, graph, scene, imgPath);
 
     cars.append(car);
     scene->addItem(car);
+    MainWindow::instance()->addActiveCar(car);
 
 
     car->startMoving();

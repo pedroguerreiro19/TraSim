@@ -5,7 +5,7 @@
 #include <QDebug>
 
 TrafficLight::TrafficLight(qreal x, qreal y, Graph* graph, Node* node, QGraphicsScene *scene)
-    : graph(graph), node(node), currentState(Red) {
+    : graph(graph), node(node), currentState(Red), numCarsStopped(0) {
 
     setPos(x, y);
     scene->addItem(this);
@@ -13,6 +13,14 @@ TrafficLight::TrafficLight(qreal x, qreal y, Graph* graph, Node* node, QGraphics
     timer = new QTimer(this);
     connect(timer, &QTimer::timeout, this, &TrafficLight::updateLight);
     timer->start(5000);
+}
+
+void TrafficLight::pause() {
+    paused = true;
+}
+
+void TrafficLight::resume() {
+    paused = false;
 }
 
 QRectF TrafficLight::boundingRect() const {
@@ -47,19 +55,19 @@ void TrafficLight::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QW
 }
 
 void TrafficLight::updateLight() {
+    if (paused) return;
     switch (currentState) {
     case Red:
         currentState = Green;
-        timer->start(6000);
+        timer->start(greenDuration);
         break;
     case Green:
         currentState = Yellow;
-        timer->start(3000);
+        timer->start(yellowDuration);
         break;
     case Yellow:
         currentState = Red;
-        qDebug() << "Semáforo ficou vermelho";  // Log para depuração
-        timer->start(6000);
+        timer->start(redDuration);
         break;
     }
     update();
@@ -67,4 +75,12 @@ void TrafficLight::updateLight() {
 
 TrafficLight::State TrafficLight::getState() const {
     return currentState;
+}
+
+void TrafficLight::incrementCarsStopped() {
+    numCarsStopped++;
+}
+
+int TrafficLight::getCarsStopped() const {
+    return numCarsStopped;
 }

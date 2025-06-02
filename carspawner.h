@@ -6,6 +6,7 @@
 #include <QVector>
 #include <QTimer>
 #include <QRandomGenerator>
+#include <QObject>
 #include "graph.h"
 
 class Car;
@@ -20,16 +21,21 @@ public:
     void stop();
     void restart(int interval);
     void spawnCar();
+    void pause();
+    void resume();
+
+    QVector<Car*>& getCars() { return cars; }
+    QVector<Car*> cars;
 
 private:
     int spawnerId;
     Graph* graph;
     QGraphicsScene* scene;
     QTimer* timer;
-    QVector<Car*> cars;
     Node* chooseRandomSpawnNode();
     Node* chooseRandomDespawnNode();
     QRandomGenerator* rng = QRandomGenerator::global();
+    bool paused = false;
 
 };
 
