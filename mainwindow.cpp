@@ -316,8 +316,8 @@ void MainWindow::setupScene() {
     //Virar a primeira direita
     graph->addNode(109, QPointF(1416, 690), NodeType::Ordinary);
     graph->addNode(110, QPointF(1419, 428), NodeType::Despawn);
-    graph->addNode(111, QPointF(1389, 427), NodeType::Spawn);
-    graph->addNode(112, QPointF(1396, 688), NodeType::Ordinary);
+    graph->addNode(111, QPointF(1398, 427), NodeType::Spawn);
+    graph->addNode(112, QPointF(1398, 688), NodeType::Ordinary);
     graph->addEdge(67,109,1);
     graph->addEdge(109,110,1);
     graph->addEdge(111,112,1);
@@ -372,14 +372,14 @@ void MainWindow::setupScene() {
     graph->addEdge(123,124,1);
     //Virar para a rotunda
     //
-    graph->addNode(124, QPointF(950, 678), NodeType::Light);
+    graph->addNode(124, QPointF(950, 678), NodeType::Ordinary);
     ////////////////////////
     //Virar a segunda esquerda
     graph->addEdge(69,85,1);
     ////////////////////////
 
     graph->addNode(70, QPointF(1156, 711), NodeType::Ordinary);
-    graph->addNode(71, QPointF(986, 711), NodeType::Light);
+    graph->addNode(71, QPointF(986, 711), NodeType::Ordinary);
     //Virar a terceira direita
     graph->addNode(125, QPointF(967, 678), NodeType::Ordinary);
     graph->addNode(126, QPointF(965, 578), NodeType::Ordinary);
@@ -390,7 +390,7 @@ void MainWindow::setupScene() {
     graph->addNode(131, QPointF(1141, 425), NodeType::Ordinary);
     graph->addNode(132, QPointF(1166, 434), NodeType::Ordinary);
     graph->addNode(133, QPointF(1172, 455), NodeType::Ordinary);
-    graph->addNode(134, QPointF(1172, 682), NodeType::Light);
+    graph->addNode(134, QPointF(1172, 682), NodeType::Ordinary);
 
     graph->addEdge(71,125,1);
     graph->addEdge(125,126,1);
@@ -407,7 +407,7 @@ void MainWindow::setupScene() {
     graph->addEdge(134,102,1);
     //////////////////////////////////
     //Virar a terceira esquerda
-    graph->addNode(135, QPointF(968, 746), NodeType::Light);
+    graph->addNode(135, QPointF(968, 746), NodeType::Ordinary);
     graph->addNode(136, QPointF(967, 912), NodeType::Ordinary);
     graph->addNode(137, QPointF(944, 911), NodeType::Ordinary);
     graph->addNode(138, QPointF(947, 744), NodeType::Ordinary);
@@ -447,7 +447,7 @@ void MainWindow::setupScene() {
     graph->addNode(81, QPointF(1159, 950), NodeType::Ordinary);
     graph->addNode(82, QPointF(1178, 936), NodeType::Ordinary);
     graph->addNode(83, QPointF(1184, 917), NodeType::Ordinary);
-    graph->addNode(84, QPointF(1192, 746), NodeType::Light);
+    graph->addNode(84, QPointF(1192, 746), NodeType::Ordinary);
 
     graph->addEdge(62,63,1);
     graph->addEdge(63,64,1);
@@ -492,7 +492,7 @@ void MainWindow::setupScene() {
     graph->addNode(96, QPointF(790, 728), NodeType::Ordinary);
     graph->addNode(97, QPointF(779, 728), NodeType::Ordinary);
     graph->addNode(98, QPointF(833, 728), NodeType::Ordinary);
-    graph->addNode(99, QPointF(926, 728), NodeType::Light);
+    graph->addNode(99, QPointF(926, 728), NodeType::Ordinary);
     graph->addNode(100, QPointF(986, 728), NodeType::Ordinary);
     graph->addNode(101, QPointF(1153, 728), NodeType::Light);
     graph->addNode(102, QPointF(1209, 728), NodeType::Ordinary);
@@ -865,17 +865,18 @@ void MainWindow::setupScene() {
 
     //Despawn e Spawn Extras
     graph->addNode(500, QPointF(640, 803), NodeType::Despawn);
-    graph->addNode(501, QPointF(640, 803), NodeType::Spawn);
+    graph->addNode(501, QPointF(653, 803), NodeType::Spawn);
     graph->addEdge(75,500,1);
     graph->addEdge(501,76,1);
     graph->addNode(502, QPointF(868, 924), NodeType::Despawn);
-    graph->addNode(503, QPointF(868, 924), NodeType::Spawn);
+    graph->addNode(503, QPointF(868, 926), NodeType::Spawn);
     graph->addEdge(90,502,1);
     graph->addEdge(503,91,1);
     graph->addNode(504, QPointF(1165, 650), NodeType::Despawn);
-    graph->addNode(505, QPointF(1165, 650), NodeType::Spawn);
+    graph->addNode(505, QPointF(1172, 650), NodeType::Spawn);
     graph->addEdge(133,504,1);
     graph->addEdge(505,134,1);
+
 
 
     Node* node101 = graph->getNode(101);
