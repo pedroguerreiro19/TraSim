@@ -15,6 +15,9 @@ void Graph::addNode(int id, QPointF pos, NodeType type) {
     }
 }
 
+Node* Graph::getNode(int id) {
+    return nodes.contains(id) ? nodes[id] : nullptr;
+}
 
 void Graph::addEdge(int start, int end, double weight) {
     edges.push_back(Edge(start, end, weight));

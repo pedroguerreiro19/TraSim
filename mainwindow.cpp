@@ -3,6 +3,7 @@
 #include "carspawner.h"
 #include "trafficlight.h"
 #include "car.h"
+#include "trafficlightgroup.h"
 #include <QPushButton>
 #include <QMouseEvent>
 #include <QDebug>
@@ -342,7 +343,7 @@ void MainWindow::setupScene() {
     graph->addEdge(114,109,1);
     ////////////////////////////
     graph->addNode(68, QPointF(1383, 702), NodeType::Ordinary);
-    graph->addNode(69, QPointF(1213, 702), NodeType::Ordinary);
+    graph->addNode(69, QPointF(1213, 702), NodeType::Light);
     //Virar a segunda direita
     graph->addNode(116, QPointF(1193, 685), NodeType::Ordinary);
     graph->addNode(117, QPointF(1193, 440), NodeType::Ordinary);
@@ -470,6 +471,7 @@ void MainWindow::setupScene() {
     graph->addEdge(76,77,1);
     graph->addEdge(77,78,1);
     graph->addEdge(78,79,1);
+    graph->addEdge(79,136,1);
     graph->addEdge(79,80,1);
     graph->addEdge(80,81,1);
     graph->addEdge(81,82,1);
@@ -496,7 +498,7 @@ void MainWindow::setupScene() {
     graph->addNode(98, QPointF(833, 728), NodeType::Ordinary);
     graph->addNode(99, QPointF(926, 728), NodeType::Ordinary);
     graph->addNode(100, QPointF(986, 728), NodeType::Ordinary);
-    graph->addNode(101, QPointF(1153, 728), NodeType::Ordinary);
+    graph->addNode(101, QPointF(1153, 728), NodeType::Light);
     graph->addNode(102, QPointF(1209, 728), NodeType::Ordinary);
     graph->addNode(103, QPointF(1379, 728), NodeType::Ordinary);
     graph->addNode(104, QPointF(1431, 728), NodeType::Ordinary);
@@ -880,15 +882,85 @@ void MainWindow::setupScene() {
     graph->addEdge(505,134,1);
 
 
-    //TrafficLight *light = new TrafficLight(node3->position.x(), node3->position.y(), graph, node3, scene);
-    //graph->addTrafficLight(node3->id, light);
+    Node* node101 = graph->getNode(101);
+    if (node101) {
+        TrafficLight* light101 = new TrafficLight(node101->position.x() - 5, node101->position.y() + 10, graph, node101, scene);
+        light101 -> setRotation(90);
+        graph->addTrafficLight(101, light101);
+    }
+
+    Node* node69 = graph->getNode(69);
+    if (node69) {
+        TrafficLight* light69 = new TrafficLight(node69->position.x() + 5, node69->position.y() - 5, graph, node69, scene);
+        light69 -> setRotation(-90);
+        graph->addTrafficLight(69, light69);
+    }
+
+    Node* node71 = graph->getNode(71);
+    if (node71) {
+        TrafficLight* light71 = new TrafficLight(node71->position.x() + 5, node71->position.y() -5, graph, node71, scene);
+        light71 -> setRotation(-90);
+        graph->addTrafficLight(71, light71);
+    }
+
+    Node* node99 = graph->getNode(99);
+    if (node99) {
+        TrafficLight* light99 = new TrafficLight(node99->position.x() - 5, node99->position.y() + 10, graph, node99, scene);
+        light99 -> setRotation(90);
+        graph->addTrafficLight(99, light99);
+    }
+
+    Node* node124 = graph->getNode(124);
+    if (node124) {
+        TrafficLight* light124 = new TrafficLight(node124->position.x() - 10, node124->position.y(), graph, node124, scene);
+        light124 -> setRotation(180);
+        graph->addTrafficLight(124, light124);
+    }
+
+    Node* node135 = graph->getNode(135);
+    if (node135) {
+        TrafficLight* light135 = new TrafficLight(node135->position.x() + 10, node135->position.y(), graph, node135, scene);
+        light135 -> setRotation(0);
+        graph->addTrafficLight(135, light135);
+    }
+
+    Node* node84 = graph->getNode(84);
+    if (node84) {
+        TrafficLight* light84 = new TrafficLight(node84->position.x() + 10, node84->position.y(), graph, node84, scene);
+        light84 -> setRotation(0);
+        graph->addTrafficLight(84, light84);
+    }
+
+    Node* node134 = graph->getNode(134);
+    if (node134) {
+        TrafficLight* light134 = new TrafficLight(node134->position.x() - 10, node134->position.y(), graph, node134, scene);
+        light134 -> setRotation(180);
+        graph->addTrafficLight(134, light134);
+    }
+
+    TrafficLightGroup* groupA = new TrafficLightGroup(this);
+    TrafficLightGroup* groupB = new TrafficLightGroup(this);
+
+    groupA->addTrafficLight(graph->getTrafficLightAtNode(101));
+    groupA->addTrafficLight(graph->getTrafficLightAtNode(69));
+    groupA->addTrafficLight(graph->getTrafficLightAtNode(71));
+    groupA->addTrafficLight(graph->getTrafficLightAtNode(99));
+
+    groupB->addTrafficLight(graph->getTrafficLightAtNode(124));
+    groupB->addTrafficLight(graph->getTrafficLightAtNode(134));
+    groupB->addTrafficLight(graph->getTrafficLightAtNode(135));
+    groupB->addTrafficLight(graph->getTrafficLightAtNode(84));
+
+    groupA->setOpposingGroup(groupB);
+    groupB->setOpposingGroup(groupA);
+
+    groupA->startCycle();
 
     int id = 1;
     for (Node* node : graph->spawnNodes) {
         CarSpawner* spawner = new CarSpawner(id++, graph, scene);
         carSpawners.append(spawner);
     }
-
 
 
 

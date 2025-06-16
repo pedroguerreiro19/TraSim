@@ -23,8 +23,13 @@ void TrafficLight::resume() {
     paused = false;
 }
 
+void TrafficLight::setState(State state) {
+    currentState = state;
+    update();
+}
+
 QRectF TrafficLight::boundingRect() const {
-    return QRectF(0, 0, 20, 60);
+    return QRectF(0, 0, 12, 36);
 }
 
 QPointF TrafficLight::getPosition() const {
@@ -45,13 +50,13 @@ void TrafficLight::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QW
     QColor green = (currentState == Green) ? Qt::green : Qt::darkGreen;
 
     painter->setBrush(red);
-    painter->drawEllipse(2, 2, 16, 16);
+    painter->drawEllipse(2, 2, 8, 8);
 
     painter->setBrush(yellow);
-    painter->drawEllipse(2, 22, 16, 16);
+    painter->drawEllipse(2, 14, 8, 8);
 
     painter->setBrush(green);
-    painter->drawEllipse(2, 42, 16, 16);
+    painter->drawEllipse(2, 26, 8, 8);
 }
 
 void TrafficLight::updateLight() {

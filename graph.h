@@ -1,6 +1,5 @@
 #ifndef GRAPH_H
 #define GRAPH_H
-#include "road.h"
 
 #include <QMap>
 #include <QVector>
@@ -47,6 +46,7 @@ public:
     void addNode(int id, QPointF pos, NodeType type);
     void addEdge(int start, int end, double weight);
     void addTrafficLight(int nodeId, TrafficLight* light);
+    Node* getNode(int id);
 
     TrafficLight* getTrafficLightAtNode(int nodeId);
     QVector<int> dijkstra(int start, int end);

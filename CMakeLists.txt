@@ -32,6 +32,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         trafficlight.h trafficlight.cpp
         img.qrc
         datalogger.h datalogger.cpp
+        trafficlightgroup.h trafficlightgroup.cpp
 
     )
 # Define target properties for Android with Qt 6 as:

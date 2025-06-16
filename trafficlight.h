@@ -23,6 +23,7 @@ public:
     int greenDuration = 6000;
     int yellowDuration = 3000;
     int redDuration = 6000;
+    void setState(State state);
 
     void incrementCarsStopped();
     int getCarsStopped() const;
