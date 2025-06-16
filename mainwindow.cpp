@@ -888,14 +888,14 @@ void MainWindow::setupScene() {
 
     Node* node69 = graph->getNode(69);
     if (node69) {
-        TrafficLight* light69 = new TrafficLight(node69->position.x() + 5, node69->position.y() - 5, graph, node69, scene);
+        TrafficLight* light69 = new TrafficLight(node69->position.x(), node69->position.y() - 15, graph, node69, scene);
         light69 -> setRotation(-90);
         graph->addTrafficLight(69, light69);
     }
 
     Node* node71 = graph->getNode(71);
     if (node71) {
-        TrafficLight* light71 = new TrafficLight(node71->position.x() + 5, node71->position.y() -5, graph, node71, scene);
+        TrafficLight* light71 = new TrafficLight(node71->position.x(), node71->position.y() - 15, graph, node71, scene);
         light71 -> setRotation(-90);
         graph->addTrafficLight(71, light71);
     }
