@@ -185,17 +185,17 @@ void MainWindow::setupScene() {
     graph->addEdge(39,40,1);
 
     //faixa meio
-    graph->addNode(41, QPointF(1671, 204), NodeType::Ordinary);
-    graph->addNode(42, QPointF(1671, 272), NodeType::Ordinary);
-    graph->addNode(43, QPointF(1671, 372), NodeType::Ordinary);
-    graph->addNode(51, QPointF(1671, 414), NodeType::Ordinary);
-    graph->addNode(44, QPointF(1671, 472), NodeType::Ordinary);
-    graph->addNode(45, QPointF(1671, 572), NodeType::Ordinary);
-    graph->addNode(46, QPointF(1671, 672), NodeType::Ordinary);
-    graph->addNode(47, QPointF(1671, 772), NodeType::Ordinary);
-    graph->addNode(48, QPointF(1671, 872), NodeType::Ordinary);
-    graph->addNode(49, QPointF(1671, 972), NodeType::Ordinary);
-    graph->addNode(50, QPointF(1671, 1072), NodeType::Despawn);
+    graph->addNode(41, QPointF(1676, 204), NodeType::Ordinary);
+    graph->addNode(42, QPointF(1676, 272), NodeType::Ordinary);
+    graph->addNode(43, QPointF(1676, 372), NodeType::Ordinary);
+    graph->addNode(51, QPointF(1676, 414), NodeType::Ordinary);
+    graph->addNode(44, QPointF(1676, 472), NodeType::Ordinary);
+    graph->addNode(45, QPointF(1676, 572), NodeType::Ordinary);
+    graph->addNode(46, QPointF(1676, 672), NodeType::Ordinary);
+    graph->addNode(47, QPointF(1676, 772), NodeType::Ordinary);
+    graph->addNode(48, QPointF(1676, 872), NodeType::Ordinary);
+    graph->addNode(49, QPointF(1676, 972), NodeType::Ordinary);
+    graph->addNode(50, QPointF(1676, 1072), NodeType::Despawn);
 
     graph->addEdge(41,42,1);
     graph->addEdge(42,43,1);
@@ -309,10 +309,10 @@ void MainWindow::setupScene() {
 
     //Rua principal
     graph->addNode(63, QPointF(1638, 590), NodeType::Ordinary);
-    graph->addNode(64, QPointF(1635, 667), NodeType::Ordinary);
-    graph->addNode(65, QPointF(1618, 696), NodeType::Ordinary);
-    graph->addNode(66, QPointF(1606, 700), NodeType::Ordinary);
-    graph->addNode(67, QPointF(1437, 703), NodeType::Ordinary);
+    graph->addNode(64, QPointF(1641, 672), NodeType::Ordinary);
+    graph->addNode(65, QPointF(1628, 694), NodeType::Ordinary);
+    graph->addNode(66, QPointF(1609, 708), NodeType::Ordinary);
+    graph->addNode(67, QPointF(1437, 711), NodeType::Ordinary);
     //Virar a primeira direita
     graph->addNode(109, QPointF(1416, 690), NodeType::Ordinary);
     graph->addNode(110, QPointF(1419, 428), NodeType::Despawn);
@@ -338,16 +338,16 @@ void MainWindow::setupScene() {
     graph->addEdge(114,104,1);
     graph->addEdge(114,109,1);
     ////////////////////////////
-    graph->addNode(68, QPointF(1383, 702), NodeType::Ordinary);
-    graph->addNode(69, QPointF(1213, 702), NodeType::Light);
+    graph->addNode(68, QPointF(1383, 711), NodeType::Ordinary);
+    graph->addNode(69, QPointF(1213, 711), NodeType::Light);
     //Virar a segunda direita
     graph->addNode(116, QPointF(1193, 685), NodeType::Ordinary);
-    graph->addNode(117, QPointF(1193, 440), NodeType::Ordinary);
-    graph->addNode(118, QPointF(1184, 419), NodeType::Ordinary);
-    graph->addNode(119, QPointF(1159, 405), NodeType::Ordinary);
+    graph->addNode(117, QPointF(1186, 439), NodeType::Ordinary);
+    graph->addNode(118, QPointF(1178, 422), NodeType::Ordinary);
+    graph->addNode(119, QPointF(1153, 410), NodeType::Ordinary);
     graph->addNode(120, QPointF(991, 405), NodeType::Ordinary);
-    graph->addNode(121, QPointF(964, 413), NodeType::Ordinary);
-    graph->addNode(122, QPointF(947, 440), NodeType::Ordinary);
+    graph->addNode(121, QPointF(967, 419), NodeType::Ordinary);
+    graph->addNode(122, QPointF(951, 440), NodeType::Ordinary);
     graph->addNode(123, QPointF(948, 535), NodeType::Ordinary);
     //Virar rotunda pequena
     graph->addNode(141, QPointF(935, 551), NodeType::Ordinary);
@@ -372,14 +372,14 @@ void MainWindow::setupScene() {
     graph->addEdge(123,124,1);
     //Virar para a rotunda
     //
-    graph->addNode(124, QPointF(950, 678), NodeType::Ordinary);
+    graph->addNode(124, QPointF(950, 678), NodeType::Light);
     ////////////////////////
     //Virar a segunda esquerda
     graph->addEdge(69,85,1);
     ////////////////////////
 
-    graph->addNode(70, QPointF(1156, 702), NodeType::Ordinary);
-    graph->addNode(71, QPointF(986, 702), NodeType::Ordinary);
+    graph->addNode(70, QPointF(1156, 711), NodeType::Ordinary);
+    graph->addNode(71, QPointF(986, 711), NodeType::Light);
     //Virar a terceira direita
     graph->addNode(125, QPointF(967, 678), NodeType::Ordinary);
     graph->addNode(126, QPointF(965, 578), NodeType::Ordinary);
@@ -390,7 +390,7 @@ void MainWindow::setupScene() {
     graph->addNode(131, QPointF(1141, 425), NodeType::Ordinary);
     graph->addNode(132, QPointF(1166, 434), NodeType::Ordinary);
     graph->addNode(133, QPointF(1172, 455), NodeType::Ordinary);
-    graph->addNode(134, QPointF(1172, 682), NodeType::Ordinary);
+    graph->addNode(134, QPointF(1172, 682), NodeType::Light);
 
     graph->addEdge(71,125,1);
     graph->addEdge(125,126,1);
@@ -407,7 +407,7 @@ void MainWindow::setupScene() {
     graph->addEdge(134,102,1);
     //////////////////////////////////
     //Virar a terceira esquerda
-    graph->addNode(135, QPointF(968, 746), NodeType::Ordinary);
+    graph->addNode(135, QPointF(968, 746), NodeType::Light);
     graph->addNode(136, QPointF(967, 912), NodeType::Ordinary);
     graph->addNode(137, QPointF(944, 911), NodeType::Ordinary);
     graph->addNode(138, QPointF(947, 744), NodeType::Ordinary);
@@ -422,8 +422,8 @@ void MainWindow::setupScene() {
     graph->addEdge(135,72,1);
     //////////////////////////////
 
-    graph->addNode(72, QPointF(932, 706), NodeType::Ordinary);
-    graph->addNode(73, QPointF(820, 702), NodeType::Ordinary);
+    graph->addNode(72, QPointF(932, 711), NodeType::Ordinary);
+    graph->addNode(73, QPointF(820, 711), NodeType::Ordinary);
     //Virar a quarta direita / rotunda
     graph->addNode(139, QPointF(817, 626), NodeType::Ordinary);
     graph->addNode(140, QPointF(788, 702), NodeType::Ordinary);
@@ -437,17 +437,17 @@ void MainWindow::setupScene() {
     graph->addEdge(140,74,1);
     graph->addEdge(73,140,1);
     //////////////////////////
-    graph->addNode(74, QPointF(658, 715), NodeType::Ordinary);
+    graph->addNode(74, QPointF(664, 717), NodeType::Ordinary);
     graph->addNode(75, QPointF(649, 740), NodeType::Ordinary);
-    graph->addNode(76, QPointF(646, 909), NodeType::Ordinary);
-    graph->addNode(77, QPointF(656, 933), NodeType::Ordinary);
-    graph->addNode(78, QPointF(675, 947), NodeType::Ordinary);
-    graph->addNode(79, QPointF(930, 951), NodeType::Ordinary);
-    graph->addNode(80, QPointF(986, 951), NodeType::Ordinary);
+    graph->addNode(76, QPointF(653, 906), NodeType::Ordinary);
+    graph->addNode(77, QPointF(664, 929), NodeType::Ordinary);
+    graph->addNode(78, QPointF(675, 942), NodeType::Ordinary);
+    graph->addNode(79, QPointF(930, 947), NodeType::Ordinary);
+    graph->addNode(80, QPointF(986, 947), NodeType::Ordinary);
     graph->addNode(81, QPointF(1159, 950), NodeType::Ordinary);
     graph->addNode(82, QPointF(1178, 936), NodeType::Ordinary);
-    graph->addNode(83, QPointF(1192, 920), NodeType::Ordinary);
-    graph->addNode(84, QPointF(1192, 746), NodeType::Ordinary);
+    graph->addNode(83, QPointF(1184, 917), NodeType::Ordinary);
+    graph->addNode(84, QPointF(1192, 746), NodeType::Light);
 
     graph->addEdge(62,63,1);
     graph->addEdge(63,64,1);
@@ -481,7 +481,7 @@ void MainWindow::setupScene() {
     graph->addNode(85, QPointF(1171, 744), NodeType::Ordinary);
     graph->addNode(86, QPointF(1172, 906), NodeType::Ordinary);
     graph->addNode(87, QPointF(1169, 921), NodeType::Ordinary);
-    graph->addNode(88, QPointF(1150, 924), NodeType::Ordinary);
+    graph->addNode(88, QPointF(1150, 932), NodeType::Ordinary);
     graph->addNode(89, QPointF(985, 926), NodeType::Ordinary);
     graph->addNode(90, QPointF(929, 926), NodeType::Ordinary);
     graph->addNode(91, QPointF(687, 926), NodeType::Ordinary);
@@ -492,7 +492,7 @@ void MainWindow::setupScene() {
     graph->addNode(96, QPointF(790, 728), NodeType::Ordinary);
     graph->addNode(97, QPointF(779, 728), NodeType::Ordinary);
     graph->addNode(98, QPointF(833, 728), NodeType::Ordinary);
-    graph->addNode(99, QPointF(926, 728), NodeType::Ordinary);
+    graph->addNode(99, QPointF(926, 728), NodeType::Light);
     graph->addNode(100, QPointF(986, 728), NodeType::Ordinary);
     graph->addNode(101, QPointF(1153, 728), NodeType::Light);
     graph->addNode(102, QPointF(1209, 728), NodeType::Ordinary);
@@ -500,7 +500,7 @@ void MainWindow::setupScene() {
     graph->addNode(104, QPointF(1431, 728), NodeType::Ordinary);
     graph->addNode(105, QPointF(1584, 728), NodeType::Ordinary);
     graph->addNode(106, QPointF(1614, 728), NodeType::Ordinary);
-    graph->addNode(107, QPointF(1632, 759), NodeType::Ordinary);
+    graph->addNode(107, QPointF(1641, 756), NodeType::Ordinary);
     graph->addNode(108, QPointF(1634, 818), NodeType::Ordinary);
     graph->addNode(510, QPointF(820, 688), NodeType::Ordinary);
 
@@ -543,10 +543,10 @@ void MainWindow::setupScene() {
     graph->addNode(191, QPointF(847, 601), NodeType::Ordinary);
     graph->addNode(192, QPointF(862, 578), NodeType::Ordinary);
     graph->addNode(193, QPointF(864, 551), NodeType::Ordinary);
-    graph->addNode(194, QPointF(846, 526), NodeType::Ordinary);
+    graph->addNode(194, QPointF(841, 529), NodeType::Ordinary);
     graph->addNode(195, QPointF(820, 511), NodeType::Ordinary);
     graph->addNode(196, QPointF(797, 511), NodeType::Ordinary);
-    graph->addNode(197, QPointF(771, 526), NodeType::Ordinary);
+    graph->addNode(197, QPointF(776, 531), NodeType::Ordinary);
     graph->addNode(198, QPointF(756, 555), NodeType::Ordinary);
     graph->addNode(199, QPointF(755, 576), NodeType::Ordinary);
     graph->addNode(200, QPointF(768, 601), NodeType::Ordinary);
