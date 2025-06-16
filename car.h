@@ -27,7 +27,7 @@ public:
 
 private slots:
     void move();
-
+    void updateRotation(QPointF from, QPointF to);
 private:
     Graph* graph;
     Node* spawnNode;

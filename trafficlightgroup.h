@@ -14,6 +14,11 @@ public:
     void addTrafficLight(TrafficLight* light);
     void setOpposingGroup(TrafficLightGroup* opposing);
     void startCycle();
+    void setState(TrafficLight::State state);
+
+    int greenDuration = 6000;
+    int yellowDuration = 3000;
+    int redDuration = 6000;
 
 private slots:
     void cycleState();

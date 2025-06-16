@@ -14,8 +14,23 @@ void TrafficLightGroup::setOpposingGroup(TrafficLightGroup* opposing) {
     opposingGroup = opposing;
 }
 
+void TrafficLightGroup::setState(TrafficLight::State state) {
+    currentState = state;
+    for (TrafficLight* light : lights) {
+        light->setState(state);
+    }
+}
+
 void TrafficLightGroup::startCycle() {
-    cycleState();
+    setState(TrafficLight::Green);
+    QTimer::singleShot(greenDuration, this, [=]() {
+        setState(TrafficLight::Yellow);
+        QTimer::singleShot(yellowDuration, this, [=]() {
+            setState(TrafficLight::Red);
+            if (opposingGroup)
+                opposingGroup->startCycle();
+        });
+    });
 }
 
 void TrafficLightGroup::cycleState() {

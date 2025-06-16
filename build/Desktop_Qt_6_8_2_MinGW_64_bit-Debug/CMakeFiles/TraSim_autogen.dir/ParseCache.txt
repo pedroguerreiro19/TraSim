@@ -363,7 +363,6 @@ C:/Users/dined/Documents/TraSim/car.h
  mdp:C:/Users/dined/Documents/TraSim/build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/TraSim_autogen/moc_predefs.h
  mdp:C:/Users/dined/Documents/TraSim/car.h
  mdp:C:/Users/dined/Documents/TraSim/graph.h
-C:/Users/dined/Documents/TraSim/road.h
 C:/Users/dined/Documents/TraSim/carspawner.h
  mmc:Q_OBJECT
  mdp:C:/Qt/6.8.2/mingw_64/include/QtCore/QMap
@@ -728,6 +727,8 @@ C:/Users/dined/Documents/TraSim/carspawner.h
  mdp:C:/Users/dined/Documents/TraSim/build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/TraSim_autogen/moc_predefs.h
  mdp:C:/Users/dined/Documents/TraSim/carspawner.h
  mdp:C:/Users/dined/Documents/TraSim/graph.h
+C:/Users/dined/Documents/TraSim/road.h
+C:/Users/dined/Documents/TraSim/datalogger.h
 C:/Users/dined/Documents/TraSim/trafficlightgroup.h
  mmc:Q_OBJECT
  mdp:C:/Qt/6.8.2/mingw_64/include/QtCore/QMap
@@ -1088,7 +1089,6 @@ C:/Users/dined/Documents/TraSim/trafficlightgroup.h
  mdp:C:/Users/dined/Documents/TraSim/graph.h
  mdp:C:/Users/dined/Documents/TraSim/trafficlight.h
  mdp:C:/Users/dined/Documents/TraSim/trafficlightgroup.h
-C:/Users/dined/Documents/TraSim/datalogger.h
 C:/Users/dined/Documents/TraSim/graph.h
 C:/Users/dined/Documents/TraSim/mainwindow.h
  mmc:Q_OBJECT
@@ -1307,6 +1307,7 @@ C:/Users/dined/Documents/TraSim/mainwindow.h
  mdp:C:/Qt/6.8.2/mingw_64/include/QtGui/qwindowdefs.h
  mdp:C:/Qt/6.8.2/mingw_64/include/QtGui/qwindowdefs_win.h
  mdp:C:/Qt/6.8.2/mingw_64/include/QtWidgets/QDialog
+ mdp:C:/Qt/6.8.2/mingw_64/include/QtWidgets/QGraphicsItem
  mdp:C:/Qt/6.8.2/mingw_64/include/QtWidgets/QGraphicsScene
  mdp:C:/Qt/6.8.2/mingw_64/include/QtWidgets/QGraphicsView
  mdp:C:/Qt/6.8.2/mingw_64/include/QtWidgets/QGraphicsWidget
@@ -1547,6 +1548,8 @@ C:/Users/dined/Documents/TraSim/mainwindow.h
  mdp:C:/Users/dined/Documents/TraSim/carspawner.h
  mdp:C:/Users/dined/Documents/TraSim/graph.h
  mdp:C:/Users/dined/Documents/TraSim/mainwindow.h
+ mdp:C:/Users/dined/Documents/TraSim/trafficlight.h
+ mdp:C:/Users/dined/Documents/TraSim/trafficlightgroup.h
 C:/Users/dined/Documents/TraSim/trafficlight.h
  mmc:Q_OBJECT
  mdp:C:/Qt/6.8.2/mingw_64/include/QtCore/QMap

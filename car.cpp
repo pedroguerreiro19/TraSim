@@ -43,6 +43,12 @@ Car::Car(Node* spawnNode, Node* despawnNode, Graph* graph, QGraphicsScene* scene
     connect(timer, &QTimer::timeout, this, &Car::move);
 }
 
+void Car::updateRotation(QPointF from, QPointF to) {
+    QVector2D vec(to - from);
+    if (vec.length() == 0) return;
+    qreal angle = std::atan2(vec.y(), vec.x()) * 180 / M_PI;
+    setRotation(angle); // se a imagem estiver “virada para cima”, usa angle - 90
+}
 
 void Car::pause() {
     paused = true;
@@ -174,6 +180,7 @@ void Car::move() {
 
         qreal moveDistance = 1.0;
         if (moveDistance < distance) {
+            updateRotation(pos(), endPos);
             setPos(pos() + direction.toPointF() * moveDistance);
             totalDistance += moveDistance;
         } else {

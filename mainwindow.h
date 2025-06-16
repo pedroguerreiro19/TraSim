@@ -3,6 +3,7 @@
 
 #include "graph.h"
 #include "carspawner.h"
+#include "trafficlightgroup.h"
 #include <QMainWindow>
 #include <QGraphicsScene>
 #include <QGraphicsView>
@@ -63,6 +64,9 @@ private:
     int maxCarsActive = 0;
     QVector<double> percentStoppedHistory;
     QPointer<QDialog> chartsDialog = nullptr;
+    TrafficLightGroup* groupA;
+    TrafficLightGroup* groupB;
+
 
     int totalCarsSpawned = 0;
     int totalCarsFinished = 0;

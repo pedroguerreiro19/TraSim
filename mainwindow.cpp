@@ -65,24 +65,20 @@ MainWindow::MainWindow(QWidget *parent)
     ui->spinGreen->setValue(6);
     ui->spinYellow->setValue(3);
     ui->spinRed->setValue(6);
+
     connect(ui->spinGreen, QOverload<int>::of(&QSpinBox::valueChanged), this, [this](int value){
-        for (auto tl : graph->trafficLights) {
-            tl->greenDuration = value * 1000;
-        }
+        groupA->greenDuration = groupB->greenDuration = value * 1000;
     });
+
     connect(ui->spinYellow, QOverload<int>::of(&QSpinBox::valueChanged), this, [this](int value){
-        for (auto tl : graph->trafficLights) {
-            tl->yellowDuration = value * 1000;
-        }
+        groupA->yellowDuration = groupB->yellowDuration = value * 1000;
     });
+
     connect(ui->spinRed, QOverload<int>::of(&QSpinBox::valueChanged), this, [this](int value){
-        for (auto tl : graph->trafficLights) {
-            tl->redDuration = value * 1000;
-        }
+        groupA->redDuration = groupB->redDuration = value * 1000;
     });
 
     connect(ui->spinSpawnInterval, QOverload<int>::of(&QSpinBox::valueChanged), this, &MainWindow::on_spawnIntervalChanged);
-    //connect(ui->btnShowCharts, &QPushButton::clicked, this, &MainWindow::on_btnShowCharts_clicked);
 }
 
 MainWindow::~MainWindow() {
