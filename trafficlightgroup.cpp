@@ -1,7 +1,15 @@
 #include "trafficlightgroup.h"
 
 TrafficLightGroup::TrafficLightGroup(QObject* parent)
-    : QObject(parent), timer(new QTimer(this)), opposingGroup(nullptr), currentState(TrafficLight::Red) {
+    : QObject(parent),
+    timer(new QTimer(this)),
+    opposingGroup(nullptr),
+    currentState(TrafficLight::Red),
+    greenDuration(6000),
+    yellowDuration(3000),
+    redDuration(9000),
+    isPrimary(false)
+{
     connect(timer, &QTimer::timeout, this, &TrafficLightGroup::cycleState);
 }
 
@@ -12,49 +20,48 @@ void TrafficLightGroup::addTrafficLight(TrafficLight* light) {
 
 void TrafficLightGroup::setOpposingGroup(TrafficLightGroup* opposing) {
     opposingGroup = opposing;
+    opposing->opposingGroup = this;
 }
 
-void TrafficLightGroup::setState(TrafficLight::State state) {
-    currentState = state;
-    for (TrafficLight* light : lights) {
-        light->setState(state);
-    }
+void TrafficLightGroup::setAsPrimary(bool value) {
+    isPrimary = value;
 }
 
 void TrafficLightGroup::startCycle() {
-    setState(TrafficLight::Green);
-    QTimer::singleShot(greenDuration, this, [=]() {
-        setState(TrafficLight::Yellow);
-        QTimer::singleShot(yellowDuration, this, [=]() {
-            setState(TrafficLight::Red);
-            if (opposingGroup)
-                opposingGroup->startCycle();
-        });
-    });
+    if (!isPrimary || timer->isActive()) return;
+
+    currentState = TrafficLight::Green;
+    applyStateToOwnGroup();
+    timer->start(greenDuration);
 }
 
 void TrafficLightGroup::cycleState() {
-    if (currentState == TrafficLight::Red) {
-        currentState = TrafficLight::Green;
-        timer->start(6000);
-    } else if (currentState == TrafficLight::Green) {
+    if (currentState == TrafficLight::Green) {
         currentState = TrafficLight::Yellow;
-        timer->start(3000);
+        applyStateToOwnGroup();
+        timer->start(yellowDuration);
+
     } else if (currentState == TrafficLight::Yellow) {
         currentState = TrafficLight::Red;
-        timer->start(6000);
-    }
+        applyStateToOwnGroup();
+        timer->start(redDuration);
 
-    for (TrafficLight* light : lights)
-        light->setState(currentState);
+        if (opposingGroup && !opposingGroup->timer->isActive()) {
+            opposingGroup->currentState = TrafficLight::Green;
+            opposingGroup->applyStateToOwnGroup();
+            opposingGroup->timer->start(opposingGroup->greenDuration);
+        }
 
-    if (opposingGroup) {
-        TrafficLight::State opposite;
-        if (currentState == TrafficLight::Red)       opposite = TrafficLight::Green;
-        else if (currentState == TrafficLight::Green) opposite = TrafficLight::Red;
-        else                                          opposite = TrafficLight::Yellow;
-
-        for (TrafficLight* light : opposingGroup->lights)
-            light->setState(opposite);
+    } else if (currentState == TrafficLight::Red) {
+        currentState = TrafficLight::Green;
+        applyStateToOwnGroup();
+        timer->start(greenDuration);
     }
 }
+
+void TrafficLightGroup::applyStateToOwnGroup() {
+    for (TrafficLight* light : lights) {
+        light->setState(currentState);
+    }
+}
+

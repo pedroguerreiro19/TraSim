@@ -6,7 +6,7 @@
 #include <QTimer>
 #include "trafficlight.h"
 
-    class TrafficLightGroup : public QObject {
+class TrafficLightGroup : public QObject {
     Q_OBJECT
 
 public:
@@ -14,16 +14,16 @@ public:
     void addTrafficLight(TrafficLight* light);
     void setOpposingGroup(TrafficLightGroup* opposing);
     void startCycle();
-    void setState(TrafficLight::State state);
-
-    int greenDuration = 6000;
-    int yellowDuration = 3000;
-    int redDuration = 6000;
-
+    void setAsPrimary(bool value);
+    int greenDuration;
+    int yellowDuration;
+    int redDuration;
 private slots:
     void cycleState();
+    void applyStateToOwnGroup();
 
 private:
+    bool isPrimary;
     QVector<TrafficLight*> lights;
     QTimer* timer;
     TrafficLightGroup* opposingGroup;

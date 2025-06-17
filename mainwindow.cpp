@@ -64,7 +64,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(spawnTimer, &QTimer::timeout, this, &MainWindow::spawnCarRandomly);
     ui->spinGreen->setValue(6);
     ui->spinYellow->setValue(3);
-    ui->spinRed->setValue(6);
+    ui->spinRed->setValue(9);
 
     connect(ui->spinGreen, QOverload<int>::of(&QSpinBox::valueChanged), this, [this](int value){
         groupA->greenDuration = groupB->greenDuration = value * 1000;
@@ -108,7 +108,7 @@ void MainWindow::setupScene() {
     graph->addNode(7, QPointF(1711, 472), NodeType::Ordinary);
     graph->addNode(8, QPointF(1711, 372), NodeType::Ordinary);
     graph->addNode(9, QPointF(1711, 272), NodeType::Ordinary);
-    graph->addNode(10, QPointF(1711, 204), NodeType::Ordinary);
+    graph->addNode(10, QPointF(1711, 204), NodeType::Yield);
 
     graph->addEdge(1,2,1);
     graph->addEdge(2,3,1);
@@ -131,7 +131,7 @@ void MainWindow::setupScene() {
     graph->addNode(28, QPointF(1729, 414), NodeType::Ordinary);
     graph->addNode(18, QPointF(1729, 372), NodeType::Ordinary);
     graph->addNode(19, QPointF(1729, 272), NodeType::Ordinary);
-    graph->addNode(20, QPointF(1729, 204), NodeType::Ordinary);
+    graph->addNode(20, QPointF(1729, 204), NodeType::Yield);
 
     graph->addEdge(11,12,1);
     graph->addEdge(12,13,1);
@@ -251,14 +251,14 @@ void MainWindow::setupScene() {
     graph->addNode(357, QPointF(1750, 112), NodeType::Ordinary);
     graph->addNode(358, QPointF(1749, 183), NodeType::Ordinary);
     graph->addNode(359, QPointF(1788, 145), NodeType::Ordinary);
-    graph->addNode(360, QPointF(1785, 82), NodeType::Ordinary);
+    graph->addNode(360, QPointF(1785, 82), NodeType::Yield);
     graph->addNode(361, QPointF(1767, 50), NodeType::Ordinary);
     graph->addNode(362, QPointF(1738, 29), NodeType::Ordinary);
-    graph->addNode(363, QPointF(1681, 27), NodeType::Ordinary);
+    graph->addNode(363, QPointF(1681, 27), NodeType::Yield);
     graph->addNode(364, QPointF(1643, 45), NodeType::Ordinary);
     graph->addNode(365, QPointF(1623, 82), NodeType::Ordinary);
     graph->addNode(366, QPointF(1623, 104), NodeType::Ordinary);
-    graph->addNode(367, QPointF(1625, 138), NodeType::Ordinary);
+    graph->addNode(367, QPointF(1625, 138), NodeType::Yield);
     graph->addNode(368, QPointF(1641, 178), NodeType::Ordinary);
     graph->addNode(373, QPointF(1739, 82), NodeType::Ordinary);
     graph->addNode(374, QPointF(1670, 79), NodeType::Ordinary);
@@ -317,7 +317,7 @@ void MainWindow::setupScene() {
     graph->addNode(109, QPointF(1416, 690), NodeType::Ordinary);
     graph->addNode(110, QPointF(1419, 428), NodeType::Despawn);
     graph->addNode(111, QPointF(1398, 427), NodeType::Spawn);
-    graph->addNode(112, QPointF(1398, 688), NodeType::Ordinary);
+    graph->addNode(112, QPointF(1398, 688), NodeType::Yield);
     graph->addEdge(67,109,1);
     graph->addEdge(109,110,1);
     graph->addEdge(111,112,1);
@@ -327,7 +327,7 @@ void MainWindow::setupScene() {
     ////////////////////////////
     //Virar a primeira esquerda
     graph->addNode(113, QPointF(1395, 427), NodeType::Ordinary);
-    graph->addNode(114, QPointF(1419, 735), NodeType::Ordinary);
+    graph->addNode(114, QPointF(1419, 735), NodeType::Yield);
     graph->addNode(115, QPointF(1395, 735), NodeType::Ordinary);
     graph->addNode(150, QPointF(1396, 1018), NodeType::Despawn);
     graph->addNode(151, QPointF(1416, 1019), NodeType::Spawn);
@@ -372,14 +372,14 @@ void MainWindow::setupScene() {
     graph->addEdge(123,124,1);
     //Virar para a rotunda
     //
-    graph->addNode(124, QPointF(950, 678), NodeType::Light);
+    graph->addNode(124, QPointF(950, 678), NodeType::Ordinary);
     ////////////////////////
     //Virar a segunda esquerda
     graph->addEdge(69,85,1);
     ////////////////////////
 
     graph->addNode(70, QPointF(1156, 711), NodeType::Ordinary);
-    graph->addNode(71, QPointF(986, 711), NodeType::Light);
+    graph->addNode(71, QPointF(986, 711), NodeType::Ordinary);
     //Virar a terceira direita
     graph->addNode(125, QPointF(967, 678), NodeType::Ordinary);
     graph->addNode(126, QPointF(965, 578), NodeType::Ordinary);
@@ -390,7 +390,7 @@ void MainWindow::setupScene() {
     graph->addNode(131, QPointF(1141, 425), NodeType::Ordinary);
     graph->addNode(132, QPointF(1166, 434), NodeType::Ordinary);
     graph->addNode(133, QPointF(1172, 455), NodeType::Ordinary);
-    graph->addNode(134, QPointF(1172, 682), NodeType::Light);
+    graph->addNode(134, QPointF(1172, 682), NodeType::Ordinary);
 
     graph->addEdge(71,125,1);
     graph->addEdge(125,126,1);
@@ -407,7 +407,7 @@ void MainWindow::setupScene() {
     graph->addEdge(134,102,1);
     //////////////////////////////////
     //Virar a terceira esquerda
-    graph->addNode(135, QPointF(968, 746), NodeType::Light);
+    graph->addNode(135, QPointF(968, 746), NodeType::Ordinary);
     graph->addNode(136, QPointF(967, 912), NodeType::Ordinary);
     graph->addNode(137, QPointF(944, 911), NodeType::Ordinary);
     graph->addNode(138, QPointF(947, 744), NodeType::Ordinary);
@@ -425,7 +425,7 @@ void MainWindow::setupScene() {
     graph->addNode(72, QPointF(932, 711), NodeType::Ordinary);
     graph->addNode(73, QPointF(820, 711), NodeType::Ordinary);
     //Virar a quarta direita / rotunda
-    graph->addNode(139, QPointF(817, 626), NodeType::Ordinary);
+    graph->addNode(139, QPointF(817, 626), NodeType::Yield);
     graph->addNode(140, QPointF(788, 702), NodeType::Ordinary);
     graph->addEdge(73,139,1);
     graph->addEdge(139,190,1);
@@ -447,7 +447,7 @@ void MainWindow::setupScene() {
     graph->addNode(81, QPointF(1159, 950), NodeType::Ordinary);
     graph->addNode(82, QPointF(1178, 936), NodeType::Ordinary);
     graph->addNode(83, QPointF(1184, 917), NodeType::Ordinary);
-    graph->addNode(84, QPointF(1192, 746), NodeType::Light);
+    graph->addNode(84, QPointF(1192, 746), NodeType::Ordinary);
 
     graph->addEdge(62,63,1);
     graph->addEdge(63,64,1);
@@ -484,7 +484,7 @@ void MainWindow::setupScene() {
     graph->addNode(88, QPointF(1150, 932), NodeType::Ordinary);
     graph->addNode(89, QPointF(985, 926), NodeType::Ordinary);
     graph->addNode(90, QPointF(929, 926), NodeType::Ordinary);
-    graph->addNode(91, QPointF(687, 926), NodeType::Ordinary);
+    graph->addNode(91, QPointF(679, 929), NodeType::Ordinary);
     graph->addNode(92, QPointF(673, 917), NodeType::Ordinary);
     graph->addNode(93, QPointF(670, 895), NodeType::Ordinary);
     graph->addNode(94, QPointF(670, 741), NodeType::Ordinary);
@@ -492,7 +492,7 @@ void MainWindow::setupScene() {
     graph->addNode(96, QPointF(790, 728), NodeType::Ordinary);
     graph->addNode(97, QPointF(779, 728), NodeType::Ordinary);
     graph->addNode(98, QPointF(833, 728), NodeType::Ordinary);
-    graph->addNode(99, QPointF(926, 728), NodeType::Light);
+    graph->addNode(99, QPointF(926, 728), NodeType::Ordinary);
     graph->addNode(100, QPointF(986, 728), NodeType::Ordinary);
     graph->addNode(101, QPointF(1153, 728), NodeType::Light);
     graph->addNode(102, QPointF(1209, 728), NodeType::Ordinary);
@@ -542,13 +542,13 @@ void MainWindow::setupScene() {
     graph->addNode(190, QPointF(826, 613), NodeType::Ordinary);
     graph->addNode(191, QPointF(847, 601), NodeType::Ordinary);
     graph->addNode(192, QPointF(862, 578), NodeType::Ordinary);
-    graph->addNode(193, QPointF(864, 551), NodeType::Ordinary);
+    graph->addNode(193, QPointF(864, 551), NodeType::Yield);
     graph->addNode(194, QPointF(841, 529), NodeType::Ordinary);
     graph->addNode(195, QPointF(820, 511), NodeType::Ordinary);
-    graph->addNode(196, QPointF(797, 511), NodeType::Ordinary);
+    graph->addNode(196, QPointF(797, 511), NodeType::Yield);
     graph->addNode(197, QPointF(776, 531), NodeType::Ordinary);
     graph->addNode(198, QPointF(756, 555), NodeType::Ordinary);
-    graph->addNode(199, QPointF(755, 576), NodeType::Ordinary);
+    graph->addNode(199, QPointF(755, 576), NodeType::Yield);
     graph->addNode(200, QPointF(768, 601), NodeType::Ordinary);
     graph->addNode(201, QPointF(799, 617), NodeType::Ordinary);
     graph->addNode(202, QPointF(815, 593), NodeType::Ordinary);
@@ -560,7 +560,7 @@ void MainWindow::setupScene() {
     graph->addNode(208, QPointF(784, 566), NodeType::Ordinary);
     graph->addNode(209, QPointF(790, 585), NodeType::Ordinary);
     //saida 1
-    graph->addNode(377, QPointF(927, 575), NodeType::Ordinary);
+    graph->addNode(377, QPointF(927, 575), NodeType::Yield);
     //saida 4
     graph->addNode(378, QPointF(797, 688), NodeType::Ordinary);
 
@@ -631,7 +631,7 @@ void MainWindow::setupScene() {
     graph->addNode(313, QPointF(1300, 121), NodeType::Ordinary);
     graph->addNode(314, QPointF(1400, 121), NodeType::Ordinary);
     graph->addNode(315, QPointF(1500, 121), NodeType::Ordinary);
-    graph->addNode(316, QPointF(1614, 121), NodeType::Ordinary);
+    graph->addNode(316, QPointF(1614, 121), NodeType::Yield);
 
     graph->addEdge(300,301,1);
     graph->addEdge(301,302,1);
@@ -878,7 +878,6 @@ void MainWindow::setupScene() {
     graph->addEdge(505,134,1);
 
 
-
     Node* node101 = graph->getNode(101);
     if (node101) {
         TrafficLight* light101 = new TrafficLight(node101->position.x() - 5, node101->position.y() + 10, graph, node101, scene);
@@ -888,14 +887,14 @@ void MainWindow::setupScene() {
 
     Node* node69 = graph->getNode(69);
     if (node69) {
-        TrafficLight* light69 = new TrafficLight(node69->position.x(), node69->position.y() - 15, graph, node69, scene);
+        TrafficLight* light69 = new TrafficLight(node69->position.x() + 5, node69->position.y() - 5, graph, node69, scene);
         light69 -> setRotation(-90);
         graph->addTrafficLight(69, light69);
     }
 
     Node* node71 = graph->getNode(71);
     if (node71) {
-        TrafficLight* light71 = new TrafficLight(node71->position.x(), node71->position.y() - 15, graph, node71, scene);
+        TrafficLight* light71 = new TrafficLight(node71->position.x() + 5, node71->position.y() -5, graph, node71, scene);
         light71 -> setRotation(-90);
         graph->addTrafficLight(71, light71);
     }
@@ -949,10 +948,8 @@ void MainWindow::setupScene() {
     groupB->addTrafficLight(graph->getTrafficLightAtNode(84));
 
     groupA->setOpposingGroup(groupB);
-    groupB->setOpposingGroup(groupA);
-
+    groupA->setAsPrimary(true);
     groupA->startCycle();
-
     int id = 1;
     for (Node* node : graph->spawnNodes) {
         CarSpawner* spawner = new CarSpawner(id++, graph, scene);

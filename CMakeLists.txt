@@ -31,7 +31,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         carspawner.h carspawner.cpp
         trafficlight.h trafficlight.cpp
         img.qrc
-        datalogger.h datalogger.cpp
+
         trafficlightgroup.h trafficlightgroup.cpp
 
     )

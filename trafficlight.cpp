@@ -7,12 +7,9 @@
 TrafficLight::TrafficLight(qreal x, qreal y, Graph* graph, Node* node, QGraphicsScene *scene)
     : graph(graph), node(node), currentState(Red), numCarsStopped(0) {
 
-    setPos(x, y);
+    setPos(x, y); ;
+    setRotation(0);
     scene->addItem(this);
-
-    timer = new QTimer(this);
-    connect(timer, &QTimer::timeout, this, &TrafficLight::updateLight);
-    timer->start(5000);
 }
 
 void TrafficLight::pause() {
@@ -59,25 +56,6 @@ void TrafficLight::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QW
     painter->drawEllipse(2, 26, 8, 8);
 }
 
-void TrafficLight::updateLight() {
-    if (paused) return;
-    switch (currentState) {
-    case Red:
-        currentState = Green;
-        timer->start(greenDuration);
-        break;
-    case Green:
-        currentState = Yellow;
-        timer->start(yellowDuration);
-        break;
-    case Yellow:
-        currentState = Red;
-        timer->start(redDuration);
-        break;
-    }
-    update();
-}
-
 TrafficLight::State TrafficLight::getState() const {
     return currentState;
 }
@@ -89,3 +67,4 @@ void TrafficLight::incrementCarsStopped() {
 int TrafficLight::getCarsStopped() const {
     return numCarsStopped;
 }
+

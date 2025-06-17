@@ -18,10 +18,18 @@ public:
     bool isStopped();
     qint64 travelTimeMs = 0;
     double totalDistance = 0.0;
+    qreal currentSpeed = 0.0;
+    const qreal maxSpeed = 1.0;
+    const qreal minSpeed = 0.2;
+    const qreal accRate = 0.05;
+    const qreal decRate = 0.08;
 
     void pause();
     void resume();
     void startMoving();
+    bool hasPriorityInRoundabout(const QPointF& yieldPos) const;
+    bool hasPriorityConflict(const QPointF& yieldPosition) const;
+    QVector2D getCurrentDirection() const;
     bool canMove();
 
 
@@ -38,7 +46,7 @@ private:
     int pathIndex;
     QTimer* timer;
     bool isMoving;
-    bool hasCarInFront() const;
+    bool hasCarInFront(double& distToCar) const;
     bool hasPassedTrafficLight() const;
     bool hasPassedLight;
     QElapsedTimer travelTimer;

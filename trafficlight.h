@@ -20,21 +20,13 @@ public:
     TrafficLight::State getState() const;
     void pause();
     void resume();
-    int greenDuration = 6000;
-    int yellowDuration = 3000;
-    int redDuration = 6000;
     void setState(State state);
 
     void incrementCarsStopped();
     int getCarsStopped() const;
-
-private slots:
-    void updateLight();
-
 private:
     Graph* graph;
     State currentState;
-    QTimer *timer;
     Node *node;
     int numCarsStopped = 0;
     bool paused = false;

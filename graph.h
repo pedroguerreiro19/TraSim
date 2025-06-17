@@ -12,7 +12,7 @@ enum class NodeType {
     Despawn,
     Ordinary,
     Light,
-    PreLight,
+    Yield
 };
 
 struct Node {
