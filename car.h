@@ -14,7 +14,7 @@ class Car : public QObject, public QGraphicsPixmapItem {
 public:
     Car(Node* spawnNode, Node* despawnNode, Graph* graph, QGraphicsScene* scene, const QString& imagePath);
     QList<QPointF> getPath() const;
-    bool isStoppedAtTrafficLight() const;
+    bool isStoppedAtTrafficLight();
     bool isStopped();
     qint64 travelTimeMs = 0;
     double totalDistance = 0.0;

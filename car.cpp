@@ -77,22 +77,33 @@ void Car::startMoving() {
     }
 }
 
-bool Car::isStoppedAtTrafficLight() const {
+bool Car::isStoppedAtTrafficLight() {
     if (paused) return false;
     if (pathIndex < pathNodeIds.size() - 1) {
         int nextNodeId = pathNodeIds[pathIndex + 1];
         TrafficLight* trafficLight = graph->getTrafficLightAtNode(nextNodeId);
         if (trafficLight) {
-            QPointF nextNodePos = path[pathIndex + 1];
-            qreal distanceToLight = QLineF(pos(), nextNodePos).length();
-            if (distanceToLight < 15.0 && trafficLight->getState() == TrafficLight::Red) {
-                return true;
+            QPointF myPos = pos();
+            QPointF lightPos = path[pathIndex + 1];
+            qreal distanceToLight = QLineF(myPos, lightPos).length();
+
+            QVector2D movementDir = getCurrentDirection();
+            QVector2D pathDir(lightPos - myPos);
+            if (pathDir.length() > 0)
+                pathDir.normalize();
+
+            qreal alignment = QVector2D::dotProduct(movementDir, pathDir);
+
+            if (distanceToLight < 20.0 && alignment > 0.7 && trafficLight->getState() == TrafficLight::Red) {
+                if (!stoppedtrafficlights.contains(nextNodeId)) {
+                    trafficLight->incrementCarsStopped();
+                    stoppedtrafficlights.insert(nextNodeId);
+                }
+                return false;
             }
         }
     }
-    return false;
 }
-
 bool Car::isStopped() {
     if (paused) return false;
     return !canMove();
@@ -108,7 +119,7 @@ bool Car::hasCarInFront(double& distToCar) const {
     if (direction.length() == 0) return false;
     direction.normalize();
 
-    double maxDetectDist = 25.0;
+    double maxDetectDist = 60.0;
     distToCar = maxDetectDist;
 
     for (QGraphicsItem* item : scene()->items()) {
@@ -198,6 +209,11 @@ bool Car::canMove() {
     }
 
     double distToCar = 999;
+    if (hasCarInFront(distToCar)) {
+        const double safeGap = 25.0;
+        if (distToCar < safeGap)
+            return false;
+    }
     if (hasCarInFront(distToCar) && distToCar < 8.0) return false;
 
     return true;
@@ -229,7 +245,7 @@ void Car::move() {
     double distToCar = 999.0;
     bool carAhead = hasCarInFront(distToCar);
 
-    const qreal reactionDistance = 25.0;
+    const qreal reactionDistance = 50.0;
 
     qreal targetSpeed = maxSpeed;
     if (carAhead) {
