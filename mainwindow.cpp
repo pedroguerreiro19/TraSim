@@ -426,7 +426,7 @@ void MainWindow::setupScene() {
     graph->addNode(73, QPointF(820, 711), NodeType::Ordinary);
     //Virar a quarta direita / rotunda
     graph->addNode(139, QPointF(817, 626), NodeType::Yield);
-    graph->addNode(140, QPointF(788, 702), NodeType::Ordinary);
+    graph->addNode(140, QPointF(788, 711), NodeType::Ordinary);
     graph->addEdge(73,139,1);
     graph->addEdge(139,190,1);
     graph->addEdge(190,191,1);
@@ -435,7 +435,7 @@ void MainWindow::setupScene() {
     graph->addEdge(378,140,1);
     graph->addEdge(378,98,1);
     graph->addEdge(140,74,1);
-    graph->addEdge(73,140,1);
+    graph->addEdge(72,140,1);
     //////////////////////////
     graph->addNode(74, QPointF(664, 717), NodeType::Ordinary);
     graph->addNode(75, QPointF(649, 740), NodeType::Ordinary);
@@ -950,12 +950,36 @@ void MainWindow::setupScene() {
     groupA->setOpposingGroup(groupB);
     groupA->setAsPrimary(true);
     groupA->startCycle();
+
     int id = 1;
     for (Node* node : graph->spawnNodes) {
         CarSpawner* spawner = new CarSpawner(id++, graph, scene);
         carSpawners.append(spawner);
     }
 
+    auto addYieldTriangle = [&](int nodeId, qreal offsetX, qreal offsetY, qreal rotation) {
+        Node* node = graph->getNode(nodeId);
+        if (node) {
+            QPolygonF triangle;
+            triangle << QPointF(0, 0) << QPointF(20, 0) << QPointF(10, 20);
+            QGraphicsPolygonItem* triangleItem = scene->addPolygon(triangle, QPen(Qt::red, 2), QBrush(Qt::white));
+            triangleItem->setPos(node->position + QPointF(offsetX, offsetY));
+            triangleItem->setRotation(rotation);
+            triangleItem->setZValue(1);
+        }
+    };
+
+    addYieldTriangle(20,  20, 0, 0);
+    addYieldTriangle(360, 15, 0, -90);
+    addYieldTriangle(363, -15, 2, 180);
+    addYieldTriangle(367, -10, 22, 90);
+    addYieldTriangle(112, -20, -10, 180);
+    addYieldTriangle(114,  10,  10, 0);
+    addYieldTriangle(139,  10, -5, 0);
+    addYieldTriangle(193,  0,  -11, -90);
+    addYieldTriangle(196, -15,  0, 180);
+    addYieldTriangle(199,  0, 5, 90);
+    addYieldTriangle(377, 0,  10, 90);
 
 
     scene->update();
