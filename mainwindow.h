@@ -51,6 +51,8 @@ private slots:
     void on_btnShowCharts_clicked();
     void showChartsDialog();
 
+    void visualizarNodes();
+
 private:
     QGraphicsScene *scene;
     Ui::MainWindow *ui;
