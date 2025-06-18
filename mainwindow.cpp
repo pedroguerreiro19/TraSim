@@ -983,11 +983,23 @@ void MainWindow::setupScene() {
 
 
     scene->update();
+    visualizarNodes();
 
 
     ui->graphicsView->setRenderHint(QPainter::Antialiasing);
 }
 
+void MainWindow::visualizarNodes() {
+    for (auto node : graph->nodes.values()) {
+        QGraphicsEllipseItem* circle = scene->addEllipse(
+            node->position.x() - 5, node->position.y() - 5, 10, 10,
+            QPen(Qt::blue), QBrush(Qt::cyan));
+
+        QGraphicsTextItem* label = scene->addText(QString::number(node->id));
+        label->setPos(node->position.x() + 6, node->position.y() - 6);
+        label->setDefaultTextColor(Qt::black);
+    }
+}
 
 void MainWindow::mousePressEvent(QMouseEvent *event) {
     QPointF scenePos = ui->graphicsView->mapToScene(event->pos());
