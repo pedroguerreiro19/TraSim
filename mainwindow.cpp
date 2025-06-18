@@ -969,17 +969,17 @@ void MainWindow::setupScene() {
         }
     };
 
-    addYieldTriangle(20,  20, 0, 0);
-    addYieldTriangle(360, 15, 0, -90);
-    addYieldTriangle(363, -15, 2, 180);
-    addYieldTriangle(367, -10, 22, 90);
-    addYieldTriangle(112, -20, -10, 180);
-    addYieldTriangle(114,  10,  10, 0);
-    addYieldTriangle(139,  10, -5, 0);
-    addYieldTriangle(193,  0,  -11, -90);
-    addYieldTriangle(196, -15,  0, 180);
-    addYieldTriangle(199,  0, 5, 90);
-    addYieldTriangle(377, 0,  10, 90);
+    addYieldTriangle(20,  40, 15, 180);
+    addYieldTriangle(360, 25, -20, 90);
+    addYieldTriangle(363, -30, -15, 0);
+    addYieldTriangle(367, -25, 35, -90);
+    addYieldTriangle(112, -30, -25, 0);
+    addYieldTriangle(114,  25,  25, 180);
+    addYieldTriangle(139,  30, 15, 180);
+    addYieldTriangle(193,  20,  -20, 90);
+    addYieldTriangle(196, -30,  -5, 0);
+    addYieldTriangle(199,  -10, 35, -90);
+    addYieldTriangle(377, -5,  30, -90);
 
 
     scene->update();
