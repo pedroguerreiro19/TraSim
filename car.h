@@ -21,8 +21,8 @@ public:
     qreal currentSpeed = 0.0;
     const qreal maxSpeed = 1.0;
     const qreal minSpeed = 0.2;
-    const qreal accRate = 0.05;
-    const qreal decRate = 0.08;
+    const qreal accRate = 0.03;
+    const qreal decRate = 0.05;
 
     void pause();
     void resume();
@@ -53,6 +53,7 @@ private:
     bool paused = false;
     QPixmap carPixmap;
     QString imagePath;
+    bool approachingRedLight = false;
 };
 
 #endif // CAR_H

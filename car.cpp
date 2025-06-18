@@ -119,12 +119,13 @@ bool Car::hasCarInFront(double& distToCar) const {
     if (direction.length() == 0) return false;
     direction.normalize();
 
-    double maxDetectDist = 60.0;
+    double maxDetectDist = 120.0;
     distToCar = maxDetectDist;
 
     for (QGraphicsItem* item : scene()->items()) {
         Car* otherCar = dynamic_cast<Car*>(item);
         if (!otherCar || otherCar == this) continue;
+
         QVector2D toOther(otherCar->pos() - myPos);
         double proj = QVector2D::dotProduct(toOther, direction);
         if (proj > 0 && proj < maxDetectDist) {
@@ -161,17 +162,28 @@ bool Car::hasPriorityConflict(const QPointF& yieldPosition) const {
 bool Car::hasPriorityInRoundabout(const QPointF& yieldPos) const {
     if (!scene()) return false;
 
-    qreal checkRadius = 20.0;
-    QRectF detectionZone(yieldPos - QPointF(checkRadius, checkRadius), QSizeF(2*checkRadius, 2*checkRadius));
+    const qreal checkRadius = 40.0;
+    QRectF detectionZone(yieldPos - QPointF(checkRadius, checkRadius), QSizeF(2 * checkRadius, 2 * checkRadius));
 
     for (QGraphicsItem* item : scene()->items(detectionZone)) {
         Car* other = dynamic_cast<Car*>(item);
         if (!other || other == this) continue;
 
-        QVector2D otherDir = other->getCurrentDirection();
-        QVector2D toMe(yieldPos - other->pos());
+        if (other->pathIndex >= other->pathNodeIds.size() - 1 || pathIndex >= pathNodeIds.size() - 1)
+            continue;
 
-        if (QVector2D::dotProduct(otherDir.normalized(), toMe.normalized()) < -0.5) {
+        int myFrom = pathNodeIds[pathIndex];
+        int myTo = pathNodeIds[pathIndex + 1];
+        int otherFrom = other->pathNodeIds[other->pathIndex];
+        int otherTo = other->pathNodeIds[other->pathIndex + 1];
+
+        if ((myFrom == otherFrom && myTo == otherTo) || (myFrom == otherTo && myTo == otherFrom))
+            continue;
+
+        QVector2D otherDir = other->getCurrentDirection();
+        QVector2D toMe = QVector2D(yieldPos - other->pos());
+
+        if (toMe.length() < checkRadius && QVector2D::dotProduct(otherDir.normalized(), toMe.normalized()) > 0.3) {
             return true;
         }
     }
@@ -180,8 +192,9 @@ bool Car::hasPriorityInRoundabout(const QPointF& yieldPos) const {
 }
 
 
-
 bool Car::canMove() {
+    approachingRedLight = false;
+
     if (pathIndex < pathNodeIds.size() - 1) {
         int nextNodeId = pathNodeIds[pathIndex + 1];
         Node* nextNode = graph->nodes.value(nextNodeId);
@@ -190,31 +203,24 @@ bool Car::canMove() {
         if (trafficLight) {
             QPointF nextNodePos = path[pathIndex + 1];
             qreal distanceToLight = QLineF(pos(), nextNodePos).length();
-            if (distanceToLight < 15.0 && trafficLight->getState() == TrafficLight::Red) {
-                if (!stoppedtrafficlights.contains(nextNodeId)) {
-                    trafficLight->incrementCarsStopped();
-                    stoppedtrafficlights.insert(nextNodeId);
-                }
+            if (distanceToLight < 40.0 && trafficLight->getState() == TrafficLight::Red) {
+                approachingRedLight = true;
                 return false;
             }
         }
 
         if (nextNode && nextNode->type == NodeType::Yield) {
             qreal distanceToNext = QLineF(pos(), nextNode->position).length();
-            if (distanceToNext < 10.0) {
-                if (hasPriorityInRoundabout(nextNode->position)) return false;
-            }
+            if (distanceToNext < 30.0 && hasPriorityInRoundabout(nextNode->position))
+                return false;
         }
-
     }
 
     double distToCar = 999;
     if (hasCarInFront(distToCar)) {
-        const double safeGap = 25.0;
-        if (distToCar < safeGap)
+        if (distToCar < 25.0)
             return false;
     }
-    if (hasCarInFront(distToCar) && distToCar < 8.0) return false;
 
     return true;
 }
@@ -245,12 +251,20 @@ void Car::move() {
     double distToCar = 999.0;
     bool carAhead = hasCarInFront(distToCar);
 
-    const qreal reactionDistance = 50.0;
+    const qreal reactionDistance = 90.0;
 
     qreal targetSpeed = maxSpeed;
-    if (carAhead) {
+
+    if (approachingRedLight) {
+        QPointF targetPos = path[pathIndex + 1];
+        qreal distToLight = QLineF(pos(), targetPos).length();
+        targetSpeed = maxSpeed * (distToLight / 40.0);
+        targetSpeed = qBound(0.2, targetSpeed, maxSpeed);
+    } else if (carAhead) {
         targetSpeed = maxSpeed * (distToCar / reactionDistance);
         targetSpeed = qBound(minSpeed, targetSpeed, maxSpeed);
+    } else {
+        targetSpeed = maxSpeed;
     }
 
     if (currentSpeed < targetSpeed) {
