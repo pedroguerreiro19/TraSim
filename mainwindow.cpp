@@ -1264,7 +1264,7 @@ void MainWindow::updateCarDataTable()
     ui->carDataTable->setItem(row++, 0, new QTableWidgetItem("Average travel time per car (s):"));
     ui->carDataTable->setItem(row - 1, 1, new QTableWidgetItem(QString::number(avgTime, 'f', 2)));
 
-    ui->carDataTable->setItem(row++, 0, new QTableWidgetItem("Average velocity per car (m/s):"));
+    ui->carDataTable->setItem(row++, 0, new QTableWidgetItem("Average velocity per car (km/h):"));
     ui->carDataTable->setItem(row - 1, 1, new QTableWidgetItem(QString::number(avgSpeed, 'f', 2)));
 
     ui->carDataTable->setItem(row++, 0, new QTableWidgetItem("Cars stopped at traffic lights or traffic:"));
@@ -1302,12 +1302,17 @@ void MainWindow::updateCarDataTable()
         row++;
 
         ui->carDataTable->insertRow(row);
-        ui->carDataTable->setItem(row++, 0, new QTableWidgetItem("Speed (m/s):"));
+        ui->carDataTable->setItem(row++, 0, new QTableWidgetItem("Speed (km/h):"));
         ui->carDataTable->setItem(row - 1, 1, new QTableWidgetItem(QString::number(selectedCar->getCurrentSpeed(), 'f', 2)));
 
         ui->carDataTable->insertRow(row);
         ui->carDataTable->setItem(row++, 0, new QTableWidgetItem("Distance (m):"));
         ui->carDataTable->setItem(row - 1, 1, new QTableWidgetItem(QString::number(selectedCar->getTotalDistance(), 'f', 2)));
+
+
+        ui->carDataTable->insertRow(row);
+        ui->carDataTable->setItem(row++, 0, new QTableWidgetItem("Travel time (s):"));
+        ui->carDataTable->setItem(row - 1, 1, new QTableWidgetItem(QString::number(selectedCar->getElapsedTravelTimeMs() / 1000.0, 'f', 2)));
 
         ui->carDataTable->insertRow(row);
         ui->carDataTable->setItem(row++, 0, new QTableWidgetItem("Progress (%):"));

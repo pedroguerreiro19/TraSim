@@ -60,6 +60,10 @@ QVector<QPointF> Car::getPath() const {
     return path;
 }
 
+qint64 Car::getElapsedTravelTimeMs() const {
+    return travelTimer.isValid() ? travelTimer.elapsed() : 0;
+}
+
 void Car::updateRotation(QPointF from, QPointF to) {
     QVector2D vec(to - from);
     if (vec.length() == 0) return;

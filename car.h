@@ -27,6 +27,8 @@ public:
     double getTotalDistance() const;
     double getCurrentSpeed() const;
 
+
+    qint64 getElapsedTravelTimeMs() const;
     void pause();
     void resume();
     void startMoving();
