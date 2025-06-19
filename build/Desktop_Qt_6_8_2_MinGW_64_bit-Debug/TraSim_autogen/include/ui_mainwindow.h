@@ -52,7 +52,7 @@ public:
     QLabel *labelSpawnInterval;
     QSpinBox *spinSpawnInterval;
     QPushButton *btnPauseResumeCars;
-    QPushButton *btnDespawnCars;
+    QPushButton *btnRestartSimulation;
     QStatusBar *statusbar;
     QMenuBar *menubar;
 
@@ -181,10 +181,10 @@ public:
 
         verticalLayout_2->addWidget(btnPauseResumeCars);
 
-        btnDespawnCars = new QPushButton(centralwidget);
-        btnDespawnCars->setObjectName("btnDespawnCars");
+        btnRestartSimulation = new QPushButton(centralwidget);
+        btnRestartSimulation->setObjectName("btnRestartSimulation");
 
-        verticalLayout_2->addWidget(btnDespawnCars);
+        verticalLayout_2->addWidget(btnRestartSimulation);
 
 
         horizontalLayout->addLayout(verticalLayout_2);
@@ -221,7 +221,7 @@ public:
         btnSpawnDespawn->setText(QCoreApplication::translate("MainWindow", "Start vehicle spawning", nullptr));
         labelSpawnInterval->setText(QCoreApplication::translate("MainWindow", "Time between spawns (s):", nullptr));
         btnPauseResumeCars->setText(QCoreApplication::translate("MainWindow", "Stop simulation", nullptr));
-        btnDespawnCars->setText(QCoreApplication::translate("MainWindow", "Restart simulation", nullptr));
+        btnRestartSimulation->setText(QCoreApplication::translate("MainWindow", "Restart simulation", nullptr));
     } // retranslateUi
 
 };

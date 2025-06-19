@@ -41,7 +41,7 @@ static constexpr auto qt_meta_stringdata_ZN10MainWindowE = QtMocHelpers::stringD
     "spawnCarRandomly",
     "",
     "on_btnSpawnDespawn_clicked",
-    "on_btnDespawnCars_clicked",
+    "on_btnRestartSimulation_clicked",
     "mousePressEvent",
     "QMouseEvent*",
     "event",
@@ -107,7 +107,7 @@ Q_CONSTINIT const QMetaObject MainWindow::staticMetaObject = { {
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'on_btnSpawnDespawn_clicked'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        // method 'on_btnDespawnCars_clicked'
+        // method 'on_btnRestartSimulation_clicked'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'mousePressEvent'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
@@ -134,7 +134,7 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         switch (_id) {
         case 0: _t->spawnCarRandomly(); break;
         case 1: _t->on_btnSpawnDespawn_clicked(); break;
-        case 2: _t->on_btnDespawnCars_clicked(); break;
+        case 2: _t->on_btnRestartSimulation_clicked(); break;
         case 3: _t->mousePressEvent((*reinterpret_cast< std::add_pointer_t<QMouseEvent*>>(_a[1]))); break;
         case 4: _t->on_spawnIntervalChanged((*reinterpret_cast< std::add_pointer_t<int>>(_a[1]))); break;
         case 5: _t->on_btnPauseResumeCars_clicked(); break;

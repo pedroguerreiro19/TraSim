@@ -179,7 +179,7 @@
          </widget>
         </item>
         <item>
-         <widget class="QPushButton" name="btnDespawnCars">
+         <widget class="QPushButton" name="btnRestartSimulation">
           <property name="text">
            <string>Restart simulation</string>
           </property>

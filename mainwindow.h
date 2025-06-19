@@ -47,7 +47,7 @@ public:
 private slots:
     void spawnCarRandomly();
     void on_btnSpawnDespawn_clicked();
-    void on_btnDespawnCars_clicked();
+    void on_btnRestartSimulation_clicked();
     void mousePressEvent(QMouseEvent *event) override;
     void on_spawnIntervalChanged(int value);
     void on_btnPauseResumeCars_clicked();
