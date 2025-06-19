@@ -62,21 +62,6 @@ MainWindow::MainWindow(QWidget *parent)
 
     spawnTimer = new QTimer(this);
     connect(spawnTimer, &QTimer::timeout, this, &MainWindow::spawnCarRandomly);
-    ui->spinGreen->setValue(6);
-    ui->spinYellow->setValue(3);
-    ui->spinRed->setValue(9);
-
-    connect(ui->spinGreen, QOverload<int>::of(&QSpinBox::valueChanged), this, [this](int value){
-        groupA->greenDuration = groupB->greenDuration = value * 1000;
-    });
-
-    connect(ui->spinYellow, QOverload<int>::of(&QSpinBox::valueChanged), this, [this](int value){
-        groupA->yellowDuration = groupB->yellowDuration = value * 1000;
-    });
-
-    connect(ui->spinRed, QOverload<int>::of(&QSpinBox::valueChanged), this, [this](int value){
-        groupA->redDuration = groupB->redDuration = value * 1000;
-    });
 
     connect(ui->spinSpawnInterval, QOverload<int>::of(&QSpinBox::valueChanged), this, &MainWindow::on_spawnIntervalChanged);
 }
@@ -1101,6 +1086,11 @@ void MainWindow::addActiveCar(Car* car) {
 
 void MainWindow::removeActiveCar(Car* car) {
     activeCars.removeOne(car);
+
+    if (selectedCar == car) {
+        selectedCar = nullptr;
+    }
+
     updateCarDataTable();
 }
 
@@ -1284,6 +1274,47 @@ void MainWindow::updateCarDataTable()
     ui->carDataTable->setItem(row - 1, 1, new QTableWidgetItem(QString::number(maxCarsActive)));
 
     ui->carDataTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+
+    if (selectedCar) {
+        double totalLength = 0.0;
+        QVector<QPointF> path = selectedCar->getPath();
+        for (int i = 1; i < path.size(); ++i) {
+            totalLength += QLineF(path[i - 1], path[i]).length();
+        }
+
+        double progress = totalLength > 0.0
+                              ? 100.0 * selectedCar->getTotalDistance() / totalLength
+                              : 0.0;
+
+        ui->carDataTable->insertRow(row);
+        QTableWidgetItem* sectionHeader = new QTableWidgetItem("--- Selected car info ---");
+        sectionHeader->setFlags(Qt::ItemIsEnabled);
+        sectionHeader->setBackground(Qt::lightGray);
+        sectionHeader->setTextAlignment(Qt::AlignCenter);
+        ui->carDataTable->setItem(row, 0, sectionHeader);
+        ui->carDataTable->setSpan(row, 0, 1, 2);
+        row++;
+
+        ui->carDataTable->insertRow(row);
+        ui->carDataTable->setItem(row++, 0, new QTableWidgetItem("Speed (m/s):"));
+        ui->carDataTable->setItem(row - 1, 1, new QTableWidgetItem(QString::number(selectedCar->getCurrentSpeed(), 'f', 2)));
+
+        ui->carDataTable->insertRow(row);
+        ui->carDataTable->setItem(row++, 0, new QTableWidgetItem("Distance (m):"));
+        ui->carDataTable->setItem(row - 1, 1, new QTableWidgetItem(QString::number(selectedCar->getTotalDistance(), 'f', 2)));
+
+        ui->carDataTable->insertRow(row);
+        ui->carDataTable->setItem(row++, 0, new QTableWidgetItem("Progress (%):"));
+        ui->carDataTable->setItem(row - 1, 1, new QTableWidgetItem(QString::number(progress, 'f', 1)));
+    } else {
+        ui->carDataTable->insertRow(row);
+        QTableWidgetItem* noCarItem = new QTableWidgetItem("Click on a car to show more info");
+        noCarItem->setFlags(Qt::ItemIsEnabled);
+        noCarItem->setTextAlignment(Qt::AlignCenter);
+        noCarItem->setBackground(Qt::lightGray);
+        ui->carDataTable->setItem(row, 0, noCarItem);
+        ui->carDataTable->setSpan(row, 0, 1, 2);
+    }
 }
 
 void MainWindow::on_btnShowCharts_clicked() {
@@ -1392,4 +1423,8 @@ void MainWindow::showChartsDialog() {
     QObject::connect(chartsDialog, &QDialog::destroyed, [=]() {
         delete chartsData;
     });
+}
+
+void MainWindow::displayCarInfo(Car* car) {
+    selectedCar = car;
 }

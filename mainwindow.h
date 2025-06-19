@@ -37,8 +37,10 @@ public:
     void showStatistics();
     void addActiveCar(Car* car);
     void removeActiveCar(Car* car);
+    void displayCarInfo(Car* car);
     static MainWindow* instance();
 
+    Car* selectedCar = nullptr;
     QVector<Car*> activeCars;
     QVector<CarSpawner*> carSpawners;
 private slots:

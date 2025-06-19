@@ -38,8 +38,11 @@ struct qt_meta_tag_ZN3CarE_t {};
 #ifdef QT_MOC_HAS_STRINGDATA
 static constexpr auto qt_meta_stringdata_ZN3CarE = QtMocHelpers::stringData(
     "Car",
-    "move",
+    "carSelected",
     "",
+    "Car*",
+    "car",
+    "move",
     "updateRotation",
     "from",
     "to"
@@ -54,20 +57,26 @@ Q_CONSTINIT static const uint qt_meta_data_ZN3CarE[] = {
       12,       // revision
        0,       // classname
        0,    0, // classinfo
-       2,   14, // methods
+       3,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
        0,       // flags
-       0,       // signalCount
+       1,       // signalCount
+
+ // signals: name, argc, parameters, tag, flags, initial metatype offsets
+       1,    1,   32,    2, 0x06,    1 /* Public */,
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    0,   26,    2, 0x08,    1 /* Private */,
-       3,    2,   27,    2, 0x08,    2 /* Private */,
+       5,    0,   35,    2, 0x08,    3 /* Private */,
+       6,    2,   36,    2, 0x08,    4 /* Private */,
+
+ // signals: parameters
+    QMetaType::Void, 0x80000000 | 3,    4,
 
  // slots: parameters
     QMetaType::Void,
-    QMetaType::Void, QMetaType::QPointF, QMetaType::QPointF,    4,    5,
+    QMetaType::Void, QMetaType::QPointF, QMetaType::QPointF,    7,    8,
 
        0        // eod
 };
@@ -81,6 +90,9 @@ Q_CONSTINIT const QMetaObject Car::staticMetaObject = { {
     qt_incomplete_metaTypeArray<qt_meta_tag_ZN3CarE_t,
         // Q_OBJECT / Q_GADGET
         QtPrivate::TypeAndForceComplete<Car, std::true_type>,
+        // method 'carSelected'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<Car *, std::false_type>,
         // method 'move'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'updateRotation'
@@ -96,9 +108,32 @@ void Car::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **
     auto *_t = static_cast<Car *>(_o);
     if (_c == QMetaObject::InvokeMetaMethod) {
         switch (_id) {
-        case 0: _t->move(); break;
-        case 1: _t->updateRotation((*reinterpret_cast< std::add_pointer_t<QPointF>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QPointF>>(_a[2]))); break;
+        case 0: _t->carSelected((*reinterpret_cast< std::add_pointer_t<Car*>>(_a[1]))); break;
+        case 1: _t->move(); break;
+        case 2: _t->updateRotation((*reinterpret_cast< std::add_pointer_t<QPointF>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QPointF>>(_a[2]))); break;
         default: ;
+        }
+    }
+    if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
+        switch (_id) {
+        default: *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType(); break;
+        case 0:
+            switch (*reinterpret_cast<int*>(_a[1])) {
+            default: *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType(); break;
+            case 0:
+                *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType::fromType< Car* >(); break;
+            }
+            break;
+        }
+    }
+    if (_c == QMetaObject::IndexOfMethod) {
+        int *result = reinterpret_cast<int *>(_a[0]);
+        {
+            using _q_method_type = void (Car::*)(Car * );
+            if (_q_method_type _q_method = &Car::carSelected; *reinterpret_cast<_q_method_type *>(_a[1]) == _q_method) {
+                *result = 0;
+                return;
+            }
         }
     }
 }
@@ -124,15 +159,22 @@ int Car::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 2)
+        if (_id < 3)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 2;
+        _id -= 3;
     }
     if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 2)
-            *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 2;
+        if (_id < 3)
+            qt_static_metacall(this, _c, _id, _a);
+        _id -= 3;
     }
     return _id;
+}
+
+// SIGNAL 0
+void Car::carSelected(Car * _t1)
+{
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))) };
+    QMetaObject::activate(this, &staticMetaObject, 0, _a);
 }
 QT_WARNING_POP

@@ -129,54 +129,7 @@
          </widget>
         </item>
         <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_5">
-          <item>
-           <widget class="QLabel" name="lblGreen">
-            <property name="text">
-             <string>Green Light duration(s)</string>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignmentFlag::AlignCenter</set>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QLabel" name="lblYellow">
-            <property name="tabletTracking">
-             <bool>false</bool>
-            </property>
-            <property name="autoFillBackground">
-             <bool>false</bool>
-            </property>
-            <property name="text">
-             <string>Yellow Light duration (s)</string>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignmentFlag::AlignCenter</set>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QLabel" name="lblRed">
-            <property name="text">
-             <string>Red Ligh duration (s)</string>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </item>
-        <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_3">
-          <item>
-           <widget class="QSpinBox" name="spinGreen"/>
-          </item>
-          <item>
-           <widget class="QSpinBox" name="spinYellow"/>
-          </item>
-          <item>
-           <widget class="QSpinBox" name="spinRed"/>
-          </item>
-         </layout>
+         <layout class="QHBoxLayout" name="horizontalLayout_5"/>
         </item>
         <item>
          <layout class="QHBoxLayout" name="horizontalLayout_4">

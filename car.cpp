@@ -43,6 +43,23 @@ Car::Car(Node* spawnNode, Node* despawnNode, Graph* graph, QGraphicsScene* scene
     connect(timer, &QTimer::timeout, this, &Car::move);
 }
 
+void Car::mousePressEvent(QGraphicsSceneMouseEvent* event) {
+    QGraphicsPixmapItem::mousePressEvent(event);
+    emit carSelected(this);
+}
+
+double Car::getTotalDistance() const {
+    return totalDistance;
+}
+
+double Car::getCurrentSpeed() const {
+    return currentSpeed;
+}
+
+QVector<QPointF> Car::getPath() const {
+    return path;
+}
+
 void Car::updateRotation(QPointF from, QPointF to) {
     QVector2D vec(to - from);
     if (vec.length() == 0) return;

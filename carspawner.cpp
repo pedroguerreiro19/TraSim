@@ -17,6 +17,7 @@ const QStringList carImages = {
 
 CarSpawner::CarSpawner(int id, Graph* graph, QGraphicsScene* scene)
     : spawnerId(id), graph(graph), scene(scene), paused(false) {
+    rng = QRandomGenerator::global();
     timer = new QTimer(this);
     connect(timer, &QTimer::timeout, this, &CarSpawner::spawnCar);
 }
@@ -56,6 +57,7 @@ void CarSpawner::spawnCar() {
     cars.append(car);
     scene->addItem(car);
     MainWindow::instance()->addActiveCar(car);
+    connect(car, &Car::carSelected, MainWindow::instance(), &MainWindow::displayCarInfo);
 
 
     car->startMoving();
