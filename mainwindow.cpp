@@ -104,6 +104,8 @@ void MainWindow::setupScene() {
     graph->addEdge(7,8,1);
     graph->addEdge(8,9,1);
     graph->addEdge(9,10,1);
+    graph->addEdge(3,14,1);
+    graph->addEdge(8,19,1);
 
     //faixa meio
     graph->addNode(11, QPointF(1729, 1072), NodeType::Spawn);
@@ -840,7 +842,6 @@ void MainWindow::setupScene() {
     graph->addEdge(309,327,1);
     graph->addEdge(345,329,1);
     graph->addEdge(314,332,1);
-    graph->addEdge(410,417,1);
     graph->addEdge(392,408,1);
     graph->addEdge(405,421,1);
     graph->addEdge(405,387,1);

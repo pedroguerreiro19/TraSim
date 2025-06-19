@@ -183,28 +183,22 @@ bool Car::hasPriorityConflict(const QPointF& yieldPosition) const {
 bool Car::hasPriorityInRoundabout(const QPointF& yieldPos) const {
     if (!scene()) return false;
 
-    const qreal checkRadius = 40.0;
+    const qreal checkRadius = 30.0;
     QRectF detectionZone(yieldPos - QPointF(checkRadius, checkRadius), QSizeF(2 * checkRadius, 2 * checkRadius));
 
     for (QGraphicsItem* item : scene()->items(detectionZone)) {
         Car* other = dynamic_cast<Car*>(item);
         if (!other || other == this) continue;
 
-        if (other->pathIndex >= other->pathNodeIds.size() - 1 || pathIndex >= pathNodeIds.size() - 1)
-            continue;
+        if (other->pathIndex >= other->path.size() - 1) continue;
 
-        int myFrom = pathNodeIds[pathIndex];
-        int myTo = pathNodeIds[pathIndex + 1];
-        int otherFrom = other->pathNodeIds[other->pathIndex];
-        int otherTo = other->pathNodeIds[other->pathIndex + 1];
-
-        if ((myFrom == otherFrom && myTo == otherTo) || (myFrom == otherTo && myTo == otherFrom))
-            continue;
-
+        QPointF otherPos = other->pos();
+        QVector2D otherToYield = QVector2D(yieldPos - otherPos);
         QVector2D otherDir = other->getCurrentDirection();
-        QVector2D toMe = QVector2D(yieldPos - other->pos());
 
-        if (toMe.length() < checkRadius && QVector2D::dotProduct(otherDir.normalized(), toMe.normalized()) > 0.3) {
+        if (otherToYield.length() < checkRadius &&
+            QVector2D::dotProduct(otherDir.normalized(), otherToYield.normalized()) > 0.5 &&
+            QLineF(otherPos, yieldPos).length() < QLineF(pos(), yieldPos).length()) {
             return true;
         }
     }
