@@ -1089,6 +1089,12 @@ void MainWindow::removeActiveCar(Car* car) {
 
     if (selectedCar == car) {
         selectedCar = nullptr;
+
+        if (selectedCarPathItem) {
+            scene->removeItem(selectedCarPathItem);
+            delete selectedCarPathItem;
+            selectedCarPathItem = nullptr;
+        }
     }
 
     updateCarDataTable();
@@ -1426,5 +1432,27 @@ void MainWindow::showChartsDialog() {
 }
 
 void MainWindow::displayCarInfo(Car* car) {
+    if (!car) return;
+
+    if (selectedCarPathItem) {
+        scene->removeItem(selectedCarPathItem);
+        delete selectedCarPathItem;
+        selectedCarPathItem = nullptr;
+    }
+
     selectedCar = car;
+
+    QVector<QPointF> path = car->getPath();
+    if (path.size() >= 2) {
+        QPainterPath painterPath(path[0]);
+        for (int i = 1; i < path.size(); ++i) {
+            painterPath.lineTo(path[i]);
+        }
+
+        selectedCarPathItem = scene->addPath(
+            painterPath,
+            QPen(QColor(255, 0, 0, 180), 2, Qt::DashLine)
+            );
+        selectedCarPathItem->setZValue(-0.5);
+    }
 }

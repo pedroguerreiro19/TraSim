@@ -216,6 +216,7 @@ C:/Users/dined/Documents/TraSim/build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/TraSim
   C:/Qt/6.8.2/mingw_64/include/QtGui/qwindowdefs_win.h \
   C:/Qt/6.8.2/mingw_64/include/QtWidgets/QDialog \
   C:/Qt/6.8.2/mingw_64/include/QtWidgets/QGraphicsItem \
+  C:/Qt/6.8.2/mingw_64/include/QtWidgets/QGraphicsPathItem \
   C:/Qt/6.8.2/mingw_64/include/QtWidgets/QGraphicsScene \
   C:/Qt/6.8.2/mingw_64/include/QtWidgets/QGraphicsView \
   C:/Qt/6.8.2/mingw_64/include/QtWidgets/QGraphicsWidget \

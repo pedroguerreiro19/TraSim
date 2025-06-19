@@ -15,6 +15,7 @@
 #include <QtCharts/QValueAxis>
 #include <QPointer>
 #include <QDialog>
+#include <QGraphicsPathItem>
 
 
 class Road;
@@ -61,6 +62,7 @@ private:
     QTimer *spawnTimer;
     static MainWindow* m_instance;
     void updateCarDataTable();
+    QGraphicsPathItem* selectedCarPathItem = nullptr;
     bool carsPaused = false;
     bool spawning = false;
     int maxCarsActive = 0;
