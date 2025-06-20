@@ -19,6 +19,10 @@
   <property name="windowTitle">
    <string>TraSim - Simulador de trânsito</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="img.qrc">
+    <normaloff>:/icon/icon/app_icon.png</normaloff>:/icon/icon/app_icon.png</iconset>
+  </property>
   <property name="styleSheet">
    <string notr="true"/>
   </property>
@@ -228,6 +232,8 @@
    </property>
   </action>
  </widget>
- <resources/>
+ <resources>
+  <include location="img.qrc"/>
+ </resources>
  <connections/>
 </ui>

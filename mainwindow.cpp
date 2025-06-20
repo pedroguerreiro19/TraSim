@@ -28,8 +28,6 @@ MainWindow::MainWindow(QWidget *parent)
 {
     m_instance = this;
     ui->setupUi(this);
-    setWindowIcon(QIcon(":/icon/app_icon.png"));
-
 
     ui->lblSimulationTime->setStyleSheet("font-size: 16px; color: #cccccc;");
     ui->lblSimulationInfo->setStyleSheet("font-size: 18px; font-weight: bold;");
