@@ -1,4 +1,3 @@
-// car.cpp
 #include "car.h"
 #include "trafficlight.h"
 #include "mainwindow.h"
@@ -189,9 +188,9 @@ bool Car::canMove() {
         TrafficLight* tl = graph->getTrafficLightAtNode(nextNodeId);
         if (tl) {
             qreal dist = QLineF(pos(), path[pathIndex + 1]).length();
-            if (dist < 20 && tl->getState() == TrafficLight::Red) {
+            if (dist < 100 && tl->getState() == TrafficLight::Red) {
                 approachingRedLight = true;
-                return false;
+                if (dist < 20) return false;
             }
         }
         if (nextNode && nextNode->type == NodeType::Yield) {
@@ -223,8 +222,8 @@ void Car::move() {
 
     if (approachingRedLight) {
         qreal dist = QLineF(pos(), target).length();
-        targetSpeed = maxSpeed * (dist / 60.0);
-        targetSpeed = qBound(0.2, targetSpeed, maxSpeed);
+        targetSpeed = maxSpeed * (dist / 90.0);
+        targetSpeed = qBound(minSpeed, targetSpeed, maxSpeed);
     } else if (carAhead) {
         targetSpeed = maxSpeed * (distToCar / 90.0);
         targetSpeed = qBound(minSpeed, targetSpeed, maxSpeed);
