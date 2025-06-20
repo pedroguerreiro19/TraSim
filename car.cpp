@@ -223,7 +223,7 @@ void Car::move() {
 
     if (approachingRedLight) {
         qreal dist = QLineF(pos(), target).length();
-        targetSpeed = maxSpeed * (dist / 40.0);
+        targetSpeed = maxSpeed * (dist / 60.0);
         targetSpeed = qBound(0.2, targetSpeed, maxSpeed);
     } else if (carAhead) {
         targetSpeed = maxSpeed * (distToCar / 90.0);

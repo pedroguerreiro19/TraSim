@@ -74,7 +74,7 @@ private:
     // Constantes de movimento
     static constexpr qreal maxSpeed = 1.0;
     static constexpr qreal minSpeed = 0.2;
-    static constexpr qreal accRate = 0.03;
+    static constexpr qreal accRate = 0.02;
     static constexpr qreal decRate = 0.05;
 
     // Lógica de decisão
