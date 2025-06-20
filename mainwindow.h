@@ -102,6 +102,7 @@ private:
 
     // Setup
     void setupScene();
+    void setupCarDataTableStyle();
     void updateCarDataTable();
 };
 

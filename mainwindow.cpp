@@ -967,7 +967,7 @@ void MainWindow::setupScene() {
     addYieldTriangle(199,  -10, 35, -90);
     addYieldTriangle(377, -5,  30, -90);
 
-
+    setupCarDataTableStyle();
     scene->update();
     visualizarNodes();
 
@@ -1195,6 +1195,40 @@ void MainWindow::registerCarFinished(qint64 travelTimeMs, double distance) {
     totalCarsFinished++;
     allTravelTimes.append(travelTimeMs);
     allDistances.append(distance);
+}
+
+void MainWindow::setupCarDataTableStyle() {
+    ui->carDataTable->setColumnCount(2);
+    ui->carDataTable->setHorizontalHeaderLabels(QStringList() << "Metrics" << "Value");
+
+    ui->carDataTable->setStyleSheet(R"(
+        QTableWidget {
+            background-color: #1e1e1e;
+            color: #ffffff;
+            gridline-color: #444444;
+            font-size: 13px;
+        }
+        QHeaderView::section {
+            background-color: #2c2c2c;
+            color: #ffffff;
+            padding: 6px;
+            font-weight: bold;
+            border: 1px solid #444444;
+        }
+        QTableWidget::item {
+            padding: 4px;
+        }
+    )");
+
+    ui->carDataTable->horizontalHeader()->setSectionResizeMode(0, QHeaderView::Stretch);
+    ui->carDataTable->horizontalHeader()->setSectionResizeMode(1, QHeaderView::ResizeToContents);
+    ui->carDataTable->verticalHeader()->setDefaultSectionSize(55);
+    ui->carDataTable->setAlternatingRowColors(false);
+    ui->carDataTable->setShowGrid(true);
+    ui->carDataTable->verticalHeader()->setVisible(false);
+    ui->carDataTable->horizontalHeader()->setHighlightSections(false);
+    ui->carDataTable->setSelectionMode(QAbstractItemView::NoSelection);
+    ui->carDataTable->setEditTriggers(QAbstractItemView::NoEditTriggers);
 }
 
 void MainWindow::updateCarDataTable()
