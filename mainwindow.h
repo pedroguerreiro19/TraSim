@@ -1,24 +1,25 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-#include "graph.h"
-#include "carspawner.h"
-#include "trafficlightgroup.h"
 #include <QMainWindow>
 #include <QGraphicsScene>
 #include <QGraphicsView>
+#include <QGraphicsPathItem>
+#include <QTimer>
+#include <QPointer>
+#include <QDialog>
 #include <QList>
+#include <QVector>
+#include <QElapsedTimer>
 #include <QHash>
 #include <QPointF>
 #include <QtCharts/QChartView>
 #include <QtCharts/QLineSeries>
 #include <QtCharts/QValueAxis>
-#include <QPointer>
-#include <QDialog>
-#include <QGraphicsPathItem>
 
-
-class Road;
+#include "graph.h"
+#include "carspawner.h"
+#include "trafficlightgroup.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -30,63 +31,78 @@ class MainWindow : public QMainWindow {
     Q_OBJECT
 
 public:
-    MainWindow(QWidget *parent = nullptr);
+    explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
-    void incrementCarsSpawned();
-    void registerCarFinished(qint64 travelTimeMs, double distance);
-    void showStatistics();
+    // Acesso Singleton
+    static MainWindow* instance();
+
+    // Gestão de carros
     void addActiveCar(Car* car);
     void removeActiveCar(Car* car);
     void displayCarInfo(Car* car);
-    static MainWindow* instance();
+    void incrementCarsSpawned();
+    void registerCarFinished(qint64 travelTimeMs, double distance);
 
+private slots:
+    // Slots de interação UI
+    void on_btnSpawnDespawn_clicked();
+    void on_btnPauseResumeCars_clicked();
+    void on_btnRestartSimulation_clicked();
+    void on_btnShowCharts_clicked();
+    void on_spawnIntervalChanged(int value);
+    void visualizarNodes(); // Eliminar depois
+    void spawnCarRandomly();
+    void showChartsDialog();
+
+protected:
+    // Eventos de UI
+    void resizeEvent(QResizeEvent* evt) override;
+    void showEvent(QShowEvent* event) override;
+    void mousePressEvent(QMouseEvent *event) override;
+
+private:
+    // UI e Cena
+    Ui::MainWindow *ui;
+    QGraphicsScene *scene;
+    Graph *graph;
+    QGraphicsPathItem* selectedCarPathItem = nullptr;
+
+    // Estado da simulação
+    static MainWindow* m_instance;
+    QTimer *spawnTimer = nullptr;
+    QTimer *simulationTimer = nullptr;
+    QElapsedTimer elapsedTimer;
+    bool spawning = false;
+    bool carsPaused = false;
+    bool simulationRunning = false;
+    int simulationSeconds = 0;
+    qint64 simulationElapsedMs = 0;
+
+    // Carros e spawners
     Car* selectedCar = nullptr;
     QVector<Car*> activeCars;
     QVector<CarSpawner*> carSpawners;
-private slots:
-    void spawnCarRandomly();
-    void on_btnSpawnDespawn_clicked();
-    void on_btnRestartSimulation_clicked();
-    void mousePressEvent(QMouseEvent *event) override;
-    void on_spawnIntervalChanged(int value);
-    void on_btnPauseResumeCars_clicked();
-    void on_btnShowCharts_clicked();
-    void showChartsDialog();
-    void visualizarNodes();
-private:
-    QGraphicsScene *scene;
-    Ui::MainWindow *ui;
-    CarSpawner* carSpawner;
-    Graph *graph;
-    QTimer *spawnTimer;
-    static MainWindow* m_instance;
-    void updateCarDataTable();
-    QGraphicsPathItem* selectedCarPathItem = nullptr;
-    bool carsPaused = false;
-    bool spawning = false;
-    int maxCarsActive = 0;
-    QVector<double> percentStoppedHistory;
-    QPointer<QDialog> chartsDialog = nullptr;
-    TrafficLightGroup* groupA;
-    TrafficLightGroup* groupB;
 
-
+    // Métricas
     int totalCarsSpawned = 0;
     int totalCarsFinished = 0;
+    int maxCarsActive = 0;
     QVector<qint64> allTravelTimes;
     QVector<double> allDistances;
-
-    int simulationSeconds = 0;
-    QTimer* simulationTimer = nullptr;
-    bool simulationRunning = false;
-    QElapsedTimer elapsedTimer;
-    qint64 simulationElapsedMs = 0;
+    QVector<double> percentStoppedHistory;
     QVector<double> metricTimestamps;
 
+    // Semáforos
+    TrafficLightGroup* groupA = nullptr;
+    TrafficLightGroup* groupB = nullptr;
+
+    // Janelas auxiliares
+    QPointer<QDialog> chartsDialog = nullptr;
+
+    // Setup
     void setupScene();
-protected:
-    void resizeEvent(QResizeEvent* evt) override;
-    void showEvent(QShowEvent* event) override;
+    void updateCarDataTable();
 };
+
 #endif // MAINWINDOW_H

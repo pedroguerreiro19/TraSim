@@ -1,6 +1,6 @@
 #ifndef ROAD_H
 #define ROAD_H
-
+// Depois organizar código
 #include <QGraphicsItem>
 #include <QPointF>
 #include <QList>

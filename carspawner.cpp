@@ -32,8 +32,9 @@ void CarSpawner::restart(int interval) {
     startSpawning(interval);
 }
 
-
-
+QVector<Car*>& CarSpawner::getCars() {
+    return cars;
+}
 
 void CarSpawner::startSpawning(int interval) {
     if (paused) return;

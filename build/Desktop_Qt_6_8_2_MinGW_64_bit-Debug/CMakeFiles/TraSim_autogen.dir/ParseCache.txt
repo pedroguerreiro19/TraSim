@@ -4,10 +4,10 @@ C:/Users/dined/Documents/TraSim/mainwindow.cpp
 C:/Users/dined/Documents/TraSim/car.h
  mmc:Q_OBJECT
  mdp:C:/Qt/6.8.2/mingw_64/include/QtCore/QElapsedTimer
- mdp:C:/Qt/6.8.2/mingw_64/include/QtCore/QList
  mdp:C:/Qt/6.8.2/mingw_64/include/QtCore/QMap
  mdp:C:/Qt/6.8.2/mingw_64/include/QtCore/QObject
  mdp:C:/Qt/6.8.2/mingw_64/include/QtCore/QPointF
+ mdp:C:/Qt/6.8.2/mingw_64/include/QtCore/QSet
  mdp:C:/Qt/6.8.2/mingw_64/include/QtCore/QTimer
  mdp:C:/Qt/6.8.2/mingw_64/include/QtCore/QVector
  mdp:C:/Qt/6.8.2/mingw_64/include/QtCore/q20functional.h
@@ -751,6 +751,7 @@ C:/Users/dined/Documents/TraSim/mainwindow.h
  mdp:C:/Qt/6.8.2/mingw_64/include/QtCharts/qtchartsexports.h
  mdp:C:/Qt/6.8.2/mingw_64/include/QtCharts/qvalueaxis.h
  mdp:C:/Qt/6.8.2/mingw_64/include/QtCharts/qxyseries.h
+ mdp:C:/Qt/6.8.2/mingw_64/include/QtCore/QElapsedTimer
  mdp:C:/Qt/6.8.2/mingw_64/include/QtCore/QHash
  mdp:C:/Qt/6.8.2/mingw_64/include/QtCore/QList
  mdp:C:/Qt/6.8.2/mingw_64/include/QtCore/QMap
@@ -903,6 +904,7 @@ C:/Users/dined/Documents/TraSim/mainwindow.h
  mdp:C:/Qt/6.8.2/mingw_64/include/QtGui/QBrush
  mdp:C:/Qt/6.8.2/mingw_64/include/QtGui/QFont
  mdp:C:/Qt/6.8.2/mingw_64/include/QtGui/QImage
+ mdp:C:/Qt/6.8.2/mingw_64/include/QtGui/QPainter
  mdp:C:/Qt/6.8.2/mingw_64/include/QtGui/QPen
  mdp:C:/Qt/6.8.2/mingw_64/include/QtGui/QTransform
  mdp:C:/Qt/6.8.2/mingw_64/include/QtGui/qaction.h
@@ -1231,6 +1233,7 @@ C:/Users/dined/Documents/TraSim/trafficlight.h
  mdp:C:/Qt/6.8.2/mingw_64/include/QtCore/qdarwinhelpers.h
  mdp:C:/Qt/6.8.2/mingw_64/include/QtCore/qdatastream.h
  mdp:C:/Qt/6.8.2/mingw_64/include/QtCore/qdebug.h
+ mdp:C:/Qt/6.8.2/mingw_64/include/QtCore/qendian.h
  mdp:C:/Qt/6.8.2/mingw_64/include/QtCore/qexceptionhandling.h
  mdp:C:/Qt/6.8.2/mingw_64/include/QtCore/qflags.h
  mdp:C:/Qt/6.8.2/mingw_64/include/QtCore/qfloat16.h
@@ -1319,16 +1322,24 @@ C:/Users/dined/Documents/TraSim/trafficlight.h
  mdp:C:/Qt/6.8.2/mingw_64/include/QtCore/qversiontagging.h
  mdp:C:/Qt/6.8.2/mingw_64/include/QtCore/qxptype_traits.h
  mdp:C:/Qt/6.8.2/mingw_64/include/QtCore/qyieldcpu.h
+ mdp:C:/Qt/6.8.2/mingw_64/include/QtGui/QPainter
+ mdp:C:/Qt/6.8.2/mingw_64/include/QtGui/qbrush.h
  mdp:C:/Qt/6.8.2/mingw_64/include/QtGui/qcolor.h
+ mdp:C:/Qt/6.8.2/mingw_64/include/QtGui/qfont.h
+ mdp:C:/Qt/6.8.2/mingw_64/include/QtGui/qfontinfo.h
+ mdp:C:/Qt/6.8.2/mingw_64/include/QtGui/qfontmetrics.h
  mdp:C:/Qt/6.8.2/mingw_64/include/QtGui/qimage.h
  mdp:C:/Qt/6.8.2/mingw_64/include/QtGui/qpaintdevice.h
+ mdp:C:/Qt/6.8.2/mingw_64/include/QtGui/qpainter.h
  mdp:C:/Qt/6.8.2/mingw_64/include/QtGui/qpainterpath.h
+ mdp:C:/Qt/6.8.2/mingw_64/include/QtGui/qpen.h
  mdp:C:/Qt/6.8.2/mingw_64/include/QtGui/qpixelformat.h
  mdp:C:/Qt/6.8.2/mingw_64/include/QtGui/qpixmap.h
  mdp:C:/Qt/6.8.2/mingw_64/include/QtGui/qpolygon.h
  mdp:C:/Qt/6.8.2/mingw_64/include/QtGui/qregion.h
  mdp:C:/Qt/6.8.2/mingw_64/include/QtGui/qrgb.h
  mdp:C:/Qt/6.8.2/mingw_64/include/QtGui/qrgba64.h
+ mdp:C:/Qt/6.8.2/mingw_64/include/QtGui/qtextoption.h
  mdp:C:/Qt/6.8.2/mingw_64/include/QtGui/qtgui-config.h
  mdp:C:/Qt/6.8.2/mingw_64/include/QtGui/qtguiexports.h
  mdp:C:/Qt/6.8.2/mingw_64/include/QtGui/qtguiglobal.h
@@ -1590,6 +1601,7 @@ C:/Users/dined/Documents/TraSim/trafficlightgroup.h
  mdp:C:/Qt/6.8.2/mingw_64/include/QtCore/qdarwinhelpers.h
  mdp:C:/Qt/6.8.2/mingw_64/include/QtCore/qdatastream.h
  mdp:C:/Qt/6.8.2/mingw_64/include/QtCore/qdebug.h
+ mdp:C:/Qt/6.8.2/mingw_64/include/QtCore/qendian.h
  mdp:C:/Qt/6.8.2/mingw_64/include/QtCore/qexceptionhandling.h
  mdp:C:/Qt/6.8.2/mingw_64/include/QtCore/qflags.h
  mdp:C:/Qt/6.8.2/mingw_64/include/QtCore/qfloat16.h
@@ -1678,16 +1690,24 @@ C:/Users/dined/Documents/TraSim/trafficlightgroup.h
  mdp:C:/Qt/6.8.2/mingw_64/include/QtCore/qversiontagging.h
  mdp:C:/Qt/6.8.2/mingw_64/include/QtCore/qxptype_traits.h
  mdp:C:/Qt/6.8.2/mingw_64/include/QtCore/qyieldcpu.h
+ mdp:C:/Qt/6.8.2/mingw_64/include/QtGui/QPainter
+ mdp:C:/Qt/6.8.2/mingw_64/include/QtGui/qbrush.h
  mdp:C:/Qt/6.8.2/mingw_64/include/QtGui/qcolor.h
+ mdp:C:/Qt/6.8.2/mingw_64/include/QtGui/qfont.h
+ mdp:C:/Qt/6.8.2/mingw_64/include/QtGui/qfontinfo.h
+ mdp:C:/Qt/6.8.2/mingw_64/include/QtGui/qfontmetrics.h
  mdp:C:/Qt/6.8.2/mingw_64/include/QtGui/qimage.h
  mdp:C:/Qt/6.8.2/mingw_64/include/QtGui/qpaintdevice.h
+ mdp:C:/Qt/6.8.2/mingw_64/include/QtGui/qpainter.h
  mdp:C:/Qt/6.8.2/mingw_64/include/QtGui/qpainterpath.h
+ mdp:C:/Qt/6.8.2/mingw_64/include/QtGui/qpen.h
  mdp:C:/Qt/6.8.2/mingw_64/include/QtGui/qpixelformat.h
  mdp:C:/Qt/6.8.2/mingw_64/include/QtGui/qpixmap.h
  mdp:C:/Qt/6.8.2/mingw_64/include/QtGui/qpolygon.h
  mdp:C:/Qt/6.8.2/mingw_64/include/QtGui/qregion.h
  mdp:C:/Qt/6.8.2/mingw_64/include/QtGui/qrgb.h
  mdp:C:/Qt/6.8.2/mingw_64/include/QtGui/qrgba64.h
+ mdp:C:/Qt/6.8.2/mingw_64/include/QtGui/qtextoption.h
  mdp:C:/Qt/6.8.2/mingw_64/include/QtGui/qtgui-config.h
  mdp:C:/Qt/6.8.2/mingw_64/include/QtGui/qtguiexports.h
  mdp:C:/Qt/6.8.2/mingw_64/include/QtGui/qtguiglobal.h

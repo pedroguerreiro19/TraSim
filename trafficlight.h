@@ -3,31 +3,42 @@
 
 #include <QGraphicsItem>
 #include <QTimer>
-#include "graph.h"
+#include <QPainter>
 
+#include "graph.h"
 
 
 class TrafficLight : public QObject, public QGraphicsItem {
     Q_OBJECT
 
 public:
-    TrafficLight(qreal x, qreal y, Graph* graph, Node* node, QGraphicsScene *scene);
-    QRectF boundingRect() const override;
+    // Estados possíveis do semáforo
     enum State { Red, Green, Yellow };
+
+    TrafficLight(qreal x, qreal y, Graph* graph, Node* node, QGraphicsScene* scene);
+
+    // Métodos do QGraphicsItem
+    QRectF boundingRect() const override;
+    void paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget) override;
+
+    // Gets
     QPointF getPosition() const;
     Node* getNode() const;
-    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
-    TrafficLight::State getState() const;
+    State getState() const;
+    int getCarsStopped() const;
+
+    // Controlo de estado
+    void setState(State state);
     void pause();
     void resume();
-    void setState(State state);
 
+    // Métricas
     void incrementCarsStopped();
-    int getCarsStopped() const;
+
 private:
     Graph* graph;
+    Node* node;
     State currentState;
-    Node *node;
     int numCarsStopped = 0;
     bool paused = false;
 };
