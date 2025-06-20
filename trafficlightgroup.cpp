@@ -36,12 +36,14 @@ void TrafficLightGroup::startCycle() {
 }
 
 void TrafficLightGroup::cycleState() {
-    if (currentState == TrafficLight::Green) {
+    switch (currentState) {
+    case TrafficLight::Green:
         currentState = TrafficLight::Yellow;
         applyStateToOwnGroup();
         timer->start(yellowDuration);
+        break;
 
-    } else if (currentState == TrafficLight::Yellow) {
+    case TrafficLight::Yellow:
         currentState = TrafficLight::Red;
         applyStateToOwnGroup();
         timer->start(redDuration);
@@ -51,11 +53,13 @@ void TrafficLightGroup::cycleState() {
             opposingGroup->applyStateToOwnGroup();
             opposingGroup->timer->start(opposingGroup->greenDuration);
         }
+        break;
 
-    } else if (currentState == TrafficLight::Red) {
+    case TrafficLight::Red:
         currentState = TrafficLight::Green;
         applyStateToOwnGroup();
         timer->start(greenDuration);
+        break;
     }
 }
 

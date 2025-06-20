@@ -1,13 +1,11 @@
 #include "trafficlight.h"
 #include <QPainter>
 #include <QGraphicsScene>
-#include <QTimer>
 #include <QDebug>
 
 TrafficLight::TrafficLight(qreal x, qreal y, Graph* graph, Node* node, QGraphicsScene *scene)
-    : graph(graph), node(node), currentState(Red), numCarsStopped(0) {
-
-    setPos(x, y); ;
+    : graph(graph), node(node), currentState(Red), numCarsStopped(0), paused(false) {
+    setPos(x, y);
     setRotation(0);
     scene->addItem(this);
 }
@@ -25,26 +23,21 @@ void TrafficLight::setState(State state) {
     update();
 }
 
+TrafficLight::State TrafficLight::getState() const {
+    return currentState;
+}
+
 QRectF TrafficLight::boundingRect() const {
     return QRectF(0, 0, 12, 36);
 }
 
-QPointF TrafficLight::getPosition() const {
-    return this->pos();
-}
-
-Node* TrafficLight::getNode() const {
-    return node;
-}
-
-void TrafficLight::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *) {
+void TrafficLight::paint(QPainter *painter, const QStyleOptionGraphicsItem*, QWidget*) {
     painter->setBrush(Qt::black);
     painter->drawRect(boundingRect());
 
-
-    QColor red = (currentState == Red) ? Qt::red : Qt::darkRed;
+    QColor red    = (currentState == Red)    ? Qt::red    : Qt::darkRed;
     QColor yellow = (currentState == Yellow) ? Qt::yellow : Qt::darkYellow;
-    QColor green = (currentState == Green) ? Qt::green : Qt::darkGreen;
+    QColor green  = (currentState == Green)  ? Qt::green  : Qt::darkGreen;
 
     painter->setBrush(red);
     painter->drawEllipse(2, 2, 8, 8);
@@ -56,8 +49,12 @@ void TrafficLight::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QW
     painter->drawEllipse(2, 26, 8, 8);
 }
 
-TrafficLight::State TrafficLight::getState() const {
-    return currentState;
+QPointF TrafficLight::getPosition() const {
+    return this->pos();
+}
+
+Node* TrafficLight::getNode() const {
+    return node;
 }
 
 void TrafficLight::incrementCarsStopped() {
@@ -67,4 +64,3 @@ void TrafficLight::incrementCarsStopped() {
 int TrafficLight::getCarsStopped() const {
     return numCarsStopped;
 }
-
