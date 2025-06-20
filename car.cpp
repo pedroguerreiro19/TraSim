@@ -106,6 +106,10 @@ bool Car::isStopped() {
     return !canMove();
 }
 
+void Car::stop() {
+    if (timer && timer->isActive()) timer->stop();
+}
+
 bool Car::hasCarInFront(double& distToCar) const {
     if (!scene() || pathIndex >= path.size() - 1) return false;
     QPointF myPos = pos();
@@ -146,23 +150,35 @@ bool Car::hasPriorityConflict(const QPointF& pos) const {
 }
 
 bool Car::hasPriorityInRoundabout(const QPointF& yieldPos) const {
-    QRectF zone(yieldPos - QPointF(30, 30), QSizeF(60, 60));
-    for (QGraphicsItem* item : scene()->items(zone)) {
-        Car* other = dynamic_cast<Car*>(item);
-        if (!other || other == this || other->pathIndex >= other->path.size() - 1) continue;
+    if (!scene()) return false;
 
-        QPointF oPos = other->pos();
-        QVector2D toYield = QVector2D(yieldPos - oPos);
+    const qreal checkRadius = 40.0;
+    QRectF detectionZone(yieldPos - QPointF(checkRadius, checkRadius), QSizeF(2 * checkRadius, 2 * checkRadius));
+
+    for (QGraphicsItem* item : scene()->items(detectionZone)) {
+        Car* other = dynamic_cast<Car*>(item);
+        if (!other || other == this) continue;
+
+        if (other->pathIndex >= other->path.size() - 1) continue;
+
+        QPointF otherPos = other->pos();
+        QVector2D toYield = QVector2D(yieldPos - otherPos);
         QVector2D dir = other->getCurrentDirection();
 
-        if (toYield.length() < 30 && QVector2D::dotProduct(dir.normalized(), toYield.normalized()) > 0.5 &&
-            QLineF(oPos, yieldPos).length() < QLineF(pos(), yieldPos).length()) {
-            return true;
+        if (toYield.length() < checkRadius &&
+            QVector2D::dotProduct(dir.normalized(), toYield.normalized()) > 0.5) {
+
+            qreal theirDist = QLineF(otherPos, yieldPos).length();
+            qreal myDist = QLineF(pos(), yieldPos).length();
+
+            if (theirDist < myDist - 5.0) {
+                return true;
+            }
         }
     }
+
     return false;
 }
-
 bool Car::canMove() {
     approachingRedLight = false;
 
@@ -189,8 +205,10 @@ bool Car::canMove() {
 }
 
 void Car::move() {
-    if (paused || pathIndex >= path.size() - 1 || !canMove()) return;
-
+    if (paused || pathIndex >= path.size() - 1 || !canMove()) {
+        currentSpeed = 0.0;
+        return;
+    }
     QPointF currentPos = pos();
     QPointF target = path[pathIndex + 1];
     updateRotation(currentPos, target);

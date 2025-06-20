@@ -116,17 +116,17 @@ void MainWindow::setupScene() {
     graph->addEdge(8,19,1);
 
     //faixa meio
-    graph->addNode(11, QPointF(1729, 1072), NodeType::Spawn);
-    graph->addNode(12, QPointF(1729, 972), NodeType::Ordinary);
-    graph->addNode(13, QPointF(1729, 872), NodeType::Ordinary);
-    graph->addNode(14, QPointF(1729, 772), NodeType::Ordinary);
-    graph->addNode(15, QPointF(1729, 672), NodeType::Ordinary);
-    graph->addNode(16, QPointF(1729, 572), NodeType::Ordinary);
-    graph->addNode(17, QPointF(1729, 472), NodeType::Ordinary);
-    graph->addNode(28, QPointF(1729, 414), NodeType::Ordinary);
-    graph->addNode(18, QPointF(1729, 372), NodeType::Ordinary);
-    graph->addNode(19, QPointF(1729, 272), NodeType::Ordinary);
-    graph->addNode(20, QPointF(1729, 204), NodeType::Yield);
+    graph->addNode(11, QPointF(1734, 1072), NodeType::Spawn);
+    graph->addNode(12, QPointF(1734, 972), NodeType::Ordinary);
+    graph->addNode(13, QPointF(1734, 872), NodeType::Ordinary);
+    graph->addNode(14, QPointF(1734, 772), NodeType::Ordinary);
+    graph->addNode(15, QPointF(1734, 672), NodeType::Ordinary);
+    graph->addNode(16, QPointF(1734, 572), NodeType::Ordinary);
+    graph->addNode(17, QPointF(1734, 472), NodeType::Ordinary);
+    graph->addNode(28, QPointF(1734, 414), NodeType::Ordinary);
+    graph->addNode(18, QPointF(1734, 372), NodeType::Ordinary);
+    graph->addNode(19, QPointF(1734, 272), NodeType::Ordinary);
+    graph->addNode(20, QPointF(1734, 204), NodeType::Yield);
 
     graph->addEdge(11,12,1);
     graph->addEdge(12,13,1);
@@ -1042,47 +1042,28 @@ void MainWindow::on_btnPauseResumeCars_clicked()
             simulationElapsedMs += elapsedTimer.elapsed();
             simulationRunning = false;
         }
+
+        for (CarSpawner* spawner : carSpawners)
+            spawner->stop();
     } else {
         ui->btnPauseResumeCars->setText("Stop simulation");
+
         if (spawning) {
-            int intervalSeconds = ui->spinSpawnInterval->value();
-            int intervalMs = intervalSeconds * 1000;
-            spawnTimer->start(intervalMs);
-
-            if (!simulationRunning) {
-                simulationRunning = true;
-                elapsedTimer.restart();
-            }
-        }
-    }
-
-
-    for (Car* car : activeCars) {
-        if (carsPaused) {
-            car->pause();
-        }else{
-            car->resume();
-        }
-    }
-
-    for (auto tl : graph->trafficLights.values()) {
-        if (carsPaused){
-            tl->pause();
-        }else{
-            tl->resume();
-        }
-    }
-
-
-    for (CarSpawner* spawner : carSpawners) {
-        if (carsPaused) {
-            spawner->stop();
-        }else{
-            int intervalSeconds = ui->spinSpawnInterval->value();
-            int intervalMs = intervalSeconds * 1000;
+            int intervalMs = ui->spinSpawnInterval->value() * 1000;
             spawnTimer->start(intervalMs);
         }
+
+        if (!simulationRunning) {
+            simulationRunning = true;
+            elapsedTimer.restart();
+        }
     }
+
+    for (Car* car : activeCars)
+        carsPaused ? car->pause() : car->resume();
+
+    for (auto tl : graph->trafficLights.values())
+        carsPaused ? tl->pause() : tl->resume();
 }
 
 void MainWindow::addActiveCar(Car* car) {
@@ -1132,8 +1113,9 @@ void MainWindow::on_btnRestartSimulation_clicked() {
     for (CarSpawner* spawner : carSpawners) {
         QVector<Car*>& cars = spawner->getCars();
         for (Car* car : cars) {
-            if (scene->items().contains(car))
-                scene->removeItem(car);
+            car->stop();
+            disconnect(car, nullptr, nullptr, nullptr);
+            car->setVisible(false);
             car->deleteLater();
         }
         cars.clear();

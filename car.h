@@ -30,6 +30,7 @@ public:
     void startMoving();
     void pause();
     void resume();
+    void stop();
 
 protected:
     void mousePressEvent(QGraphicsSceneMouseEvent* event) override;

@@ -23,8 +23,8 @@ CarSpawner::CarSpawner(int id, Graph* graph, QGraphicsScene* scene)
 }
 
 void CarSpawner::startSpawning(int interval) {
-    if (!paused)
-        timer->start(interval);
+    if (paused || !interval || timer->isActive()) return;
+    timer->start(interval);
 }
 
 void CarSpawner::restart(int interval) {
