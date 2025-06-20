@@ -29,6 +29,15 @@ MainWindow::MainWindow(QWidget *parent)
     m_instance = this;
     ui->setupUi(this);
 
+
+    ui->lblSimulationTime->setStyleSheet("font-size: 16px; color: #cccccc;");
+    ui->lblSimulationInfo->setStyleSheet("font-size: 18px; font-weight: bold;");
+    ui->lblSimulationChanges->setStyleSheet("font-size: 16px;");
+
+    for (auto* btn : {ui->btnShowCharts, ui->btnPauseResumeCars, ui->btnRestartSimulation, ui->btnSpawnDespawn}) {
+        btn->setMinimumHeight(36);
+    }
+
     this->showMaximized();
 
     QTimer* tableUpdateTimer = new QTimer(this);
@@ -1220,9 +1229,10 @@ void MainWindow::setupCarDataTableStyle() {
         }
     )");
 
+
     ui->carDataTable->horizontalHeader()->setSectionResizeMode(0, QHeaderView::Stretch);
     ui->carDataTable->horizontalHeader()->setSectionResizeMode(1, QHeaderView::ResizeToContents);
-    ui->carDataTable->verticalHeader()->setDefaultSectionSize(55);
+    ui->carDataTable->verticalHeader()->setDefaultSectionSize(54);
     ui->carDataTable->setAlternatingRowColors(false);
     ui->carDataTable->setShowGrid(true);
     ui->carDataTable->verticalHeader()->setVisible(false);

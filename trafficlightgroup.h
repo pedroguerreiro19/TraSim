@@ -29,11 +29,11 @@ private slots:
     void applyStateToOwnGroup();
 
 private:
-    QVector<TrafficLight*> lights;         // Semáforos pertencentes ao grupo
-    QTimer* timer;                         // Timer para controlar os ciclos
-    TrafficLightGroup* opposingGroup;      // Grupo oposto (com semáforos alternados)
-    TrafficLight::State currentState;      // Estado atual do grupo
-    bool isPrimary;                        // Define se o grupo inicia o ciclo
+    QVector<TrafficLight*> lights;
+    QTimer* timer;
+    TrafficLightGroup* opposingGroup;
+    TrafficLight::State currentState;
+    bool isPrimary;
 };
 
 #endif // TRAFFICLIGHTGROUP_H
