@@ -173,7 +173,7 @@ bool Car::canMove() {
         TrafficLight* tl = graph->getTrafficLightAtNode(nextNodeId);
         if (tl) {
             qreal dist = QLineF(pos(), path[pathIndex + 1]).length();
-            if (dist < 40 && tl->getState() == TrafficLight::Red) {
+            if (dist < 20 && tl->getState() == TrafficLight::Red) {
                 approachingRedLight = true;
                 return false;
             }
