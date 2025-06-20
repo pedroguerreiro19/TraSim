@@ -455,8 +455,7 @@ void MainWindow::setupScene() {
     graph->addEdge(69,70,1);
     graph->addEdge(70,71,1);
     graph->addEdge(71,72,1);
-    graph->addEdge(72,73,1);
-    graph->addEdge(73,74,1);
+    graph->addEdge(72,74,1);
     graph->addEdge(74,75,1);
     graph->addEdge(75,76,1);
     graph->addEdge(76,77,1);
@@ -1135,7 +1134,7 @@ void MainWindow::on_btnRestartSimulation_clicked() {
         for (Car* car : cars) {
             if (scene->items().contains(car))
                 scene->removeItem(car);
-            delete car;
+            car->deleteLater();
         }
         cars.clear();
     }
@@ -1161,9 +1160,9 @@ void MainWindow::on_btnRestartSimulation_clicked() {
         tl->resume();
     }
 
-    simulationRunning = true;
     elapsedTimer.restart();
     simulationTimer->start(50);
+    simulationRunning = true;
 
     if (spawning) {
         int intervalMs = ui->spinSpawnInterval->value() * 1000;
