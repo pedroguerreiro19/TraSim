@@ -28,6 +28,7 @@ MainWindow::MainWindow(QWidget *parent)
 {
     m_instance = this;
     ui->setupUi(this);
+    setWindowIcon(QIcon(":/icon/app_icon.png"));
 
 
     ui->lblSimulationTime->setStyleSheet("font-size: 16px; color: #cccccc;");
@@ -1232,7 +1233,7 @@ void MainWindow::setupCarDataTableStyle() {
 
     ui->carDataTable->horizontalHeader()->setSectionResizeMode(0, QHeaderView::Stretch);
     ui->carDataTable->horizontalHeader()->setSectionResizeMode(1, QHeaderView::ResizeToContents);
-    ui->carDataTable->verticalHeader()->setDefaultSectionSize(54);
+    ui->carDataTable->verticalHeader()->setDefaultSectionSize(50);
     ui->carDataTable->setAlternatingRowColors(false);
     ui->carDataTable->setShowGrid(true);
     ui->carDataTable->verticalHeader()->setVisible(false);

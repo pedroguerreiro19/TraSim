@@ -17,7 +17,7 @@
    </sizepolicy>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>TraSim - Simulador de trânsito</string>
   </property>
   <property name="styleSheet">
    <string notr="true"/>

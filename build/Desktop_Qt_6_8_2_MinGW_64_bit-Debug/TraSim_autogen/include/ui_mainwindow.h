@@ -208,7 +208,7 @@ public:
 
     void retranslateUi(QMainWindow *MainWindow)
     {
-        MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "MainWindow", nullptr));
+        MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "TraSim - Simulador de tr\303\242nsito", nullptr));
         actionIniciar->setText(QCoreApplication::translate("MainWindow", "Iniciar", nullptr));
         actionParar->setText(QCoreApplication::translate("MainWindow", "Parar", nullptr));
         actionReiniciar->setText(QCoreApplication::translate("MainWindow", "Reiniciar ", nullptr));
