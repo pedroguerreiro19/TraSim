@@ -556,7 +556,7 @@ void MainWindow::setupScene() {
     //saida 1
     graph->addNode(377, QPointF(927, 575), NodeType::Yield);
     //saida 4
-    graph->addNode(378, QPointF(797, 688), NodeType::Ordinary);
+    graph->addNode(378, QPointF(797, 688), NodeType::Yield);
 
 
 
@@ -1426,9 +1426,7 @@ void MainWindow::showChartsDialog() {
     vbox->addWidget(chartView);
 
     QHBoxLayout* btnLayout = new QHBoxLayout;
-    QPushButton* btnPrev = new QPushButton("Previous metric");
     QPushButton* btnNext = new QPushButton("Next metric");
-    btnLayout->addWidget(btnPrev);
     btnLayout->addWidget(btnNext);
     vbox->addLayout(btnLayout);
 
@@ -1467,10 +1465,6 @@ void MainWindow::showChartsDialog() {
         chartView->setChart(chart);
     };
 
-    connect(btnPrev, &QPushButton::clicked, chartsDialog, [=]() {
-        chartsData->currentMetric = (chartsData->currentMetric - 1 + chartsData->metrics.size()) % chartsData->metrics.size();
-        updateChart();
-    });
     connect(btnNext, &QPushButton::clicked, chartsDialog, [=]() {
         chartsData->currentMetric = (chartsData->currentMetric + 1) % chartsData->metrics.size();
         updateChart();
