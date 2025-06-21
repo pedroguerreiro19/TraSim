@@ -437,7 +437,7 @@ void MainWindow::setupScene() {
     graph->addNode(76, QPointF(653, 906), NodeType::Ordinary);
     graph->addNode(77, QPointF(664, 929), NodeType::Ordinary);
     graph->addNode(78, QPointF(675, 942), NodeType::Ordinary);
-    graph->addNode(79, QPointF(930, 947), NodeType::Ordinary);
+    graph->addNode(79, QPointF(960, 947), NodeType::Ordinary);
     graph->addNode(80, QPointF(986, 947), NodeType::Ordinary);
     graph->addNode(81, QPointF(1159, 950), NodeType::Ordinary);
     graph->addNode(82, QPointF(1178, 936), NodeType::Ordinary);
@@ -973,6 +973,7 @@ void MainWindow::setupScene() {
     addYieldTriangle(196, -30,  -5, 0);
     addYieldTriangle(199,  -10, 35, -90);
     addYieldTriangle(377, -5,  30, -90);
+    addYieldTriangle(378, -30,  -10, 0);
 
     setupCarDataTableStyle();
     scene->update();
