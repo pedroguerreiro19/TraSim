@@ -1,5 +1,6 @@
 C:/Users/dined/Documents/TraSim/build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/TraSim_autogen/EWIEGA46WW/moc_trafficlightgroup.cpp: C:/Users/dined/Documents/TraSim/trafficlightgroup.h \
   C:/Users/dined/Documents/TraSim/build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/TraSim_autogen/moc_predefs.h \
+  C:/Qt/6.8.2/mingw_64/include/QtCore/QElapsedTimer \
   C:/Qt/6.8.2/mingw_64/include/QtCore/QMap \
   C:/Qt/6.8.2/mingw_64/include/QtCore/QObject \
   C:/Qt/6.8.2/mingw_64/include/QtCore/QPointF \
@@ -39,6 +40,7 @@ C:/Users/dined/Documents/TraSim/build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/TraSim
   C:/Qt/6.8.2/mingw_64/include/QtCore/qdarwinhelpers.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qdatastream.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qdebug.h \
+  C:/Qt/6.8.2/mingw_64/include/QtCore/qelapsedtimer.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qendian.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qexceptionhandling.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qflags.h \

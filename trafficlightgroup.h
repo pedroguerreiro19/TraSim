@@ -4,6 +4,7 @@
 #include <QObject>
 #include <QVector>
 #include <QTimer>
+#include <QElapsedTimer>
 
 #include "trafficlight.h"
 
@@ -18,6 +19,8 @@ public:
     void setOpposingGroup(TrafficLightGroup* opposing);
     void setAsPrimary(bool value);
     void startCycle();
+    void pause();
+    void resume();
 
     // Durações dos ciclos
     int greenDuration;
@@ -34,6 +37,9 @@ private:
     TrafficLightGroup* opposingGroup;
     TrafficLight::State currentState;
     bool isPrimary;
+    bool paused = false;
+    QElapsedTimer stateElapsed;
+    int remainingTimeMs = 0;
 };
 
 #endif // TRAFFICLIGHTGROUP_H

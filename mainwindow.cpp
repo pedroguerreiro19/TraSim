@@ -927,8 +927,8 @@ void MainWindow::setupScene() {
         graph->addTrafficLight(134, light134);
     }
 
-    TrafficLightGroup* groupA = new TrafficLightGroup(this);
-    TrafficLightGroup* groupB = new TrafficLightGroup(this);
+    groupA = new TrafficLightGroup(this);
+    groupB = new TrafficLightGroup(this);
 
     groupA->addTrafficLight(graph->getTrafficLightAtNode(101));
     groupA->addTrafficLight(graph->getTrafficLightAtNode(69));
@@ -1045,6 +1045,10 @@ void MainWindow::on_btnPauseResumeCars_clicked()
 
         for (CarSpawner* spawner : carSpawners)
             spawner->stop();
+
+        if (groupA) groupA->pause();
+        if (groupB) groupB->pause();
+
     } else {
         ui->btnPauseResumeCars->setText("Stop simulation");
 
@@ -1057,13 +1061,13 @@ void MainWindow::on_btnPauseResumeCars_clicked()
             simulationRunning = true;
             elapsedTimer.restart();
         }
+
+        if (groupA) groupA->resume();
+        if (groupB) groupB->resume();
     }
 
     for (Car* car : activeCars)
         carsPaused ? car->pause() : car->resume();
-
-    for (auto tl : graph->trafficLights.values())
-        carsPaused ? tl->pause() : tl->resume();
 }
 
 void MainWindow::addActiveCar(Car* car) {

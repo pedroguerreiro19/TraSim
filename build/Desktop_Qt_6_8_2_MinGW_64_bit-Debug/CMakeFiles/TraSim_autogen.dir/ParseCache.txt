@@ -363,7 +363,6 @@ C:/Users/dined/Documents/TraSim/car.h
  mdp:C:/Users/dined/Documents/TraSim/build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/TraSim_autogen/moc_predefs.h
  mdp:C:/Users/dined/Documents/TraSim/car.h
  mdp:C:/Users/dined/Documents/TraSim/graph.h
-C:/Users/dined/Documents/TraSim/road.h
 C:/Users/dined/Documents/TraSim/carspawner.h
  mmc:Q_OBJECT
  mdp:C:/Qt/6.8.2/mingw_64/include/QtCore/QMap
@@ -728,8 +727,8 @@ C:/Users/dined/Documents/TraSim/carspawner.h
  mdp:C:/Users/dined/Documents/TraSim/build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/TraSim_autogen/moc_predefs.h
  mdp:C:/Users/dined/Documents/TraSim/carspawner.h
  mdp:C:/Users/dined/Documents/TraSim/graph.h
+C:/Users/dined/Documents/TraSim/road.h
 C:/Users/dined/Documents/TraSim/graph.h
-C:/Users/dined/Documents/TraSim/car.cpp
 C:/Users/dined/Documents/TraSim/mainwindow.h
  mmc:Q_OBJECT
  mdp:C:/Qt/6.8.2/mingw_64/include/QtCharts/QAbstractAxis
@@ -1193,6 +1192,7 @@ C:/Users/dined/Documents/TraSim/mainwindow.h
  mdp:C:/Users/dined/Documents/TraSim/mainwindow.h
  mdp:C:/Users/dined/Documents/TraSim/trafficlight.h
  mdp:C:/Users/dined/Documents/TraSim/trafficlightgroup.h
+C:/Users/dined/Documents/TraSim/car.cpp
 C:/Users/dined/Documents/TraSim/trafficlight.h
  mmc:Q_OBJECT
  mdp:C:/Qt/6.8.2/mingw_64/include/QtCore/QMap
@@ -1562,6 +1562,7 @@ C:/Users/dined/Documents/TraSim/trafficlight.h
  mdp:C:/Users/dined/Documents/TraSim/trafficlight.h
 C:/Users/dined/Documents/TraSim/trafficlightgroup.h
  mmc:Q_OBJECT
+ mdp:C:/Qt/6.8.2/mingw_64/include/QtCore/QElapsedTimer
  mdp:C:/Qt/6.8.2/mingw_64/include/QtCore/QMap
  mdp:C:/Qt/6.8.2/mingw_64/include/QtCore/QObject
  mdp:C:/Qt/6.8.2/mingw_64/include/QtCore/QPointF
@@ -1601,6 +1602,7 @@ C:/Users/dined/Documents/TraSim/trafficlightgroup.h
  mdp:C:/Qt/6.8.2/mingw_64/include/QtCore/qdarwinhelpers.h
  mdp:C:/Qt/6.8.2/mingw_64/include/QtCore/qdatastream.h
  mdp:C:/Qt/6.8.2/mingw_64/include/QtCore/qdebug.h
+ mdp:C:/Qt/6.8.2/mingw_64/include/QtCore/qelapsedtimer.h
  mdp:C:/Qt/6.8.2/mingw_64/include/QtCore/qendian.h
  mdp:C:/Qt/6.8.2/mingw_64/include/QtCore/qexceptionhandling.h
  mdp:C:/Qt/6.8.2/mingw_64/include/QtCore/qflags.h

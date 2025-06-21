@@ -96,6 +96,7 @@ private:
     // Semáforos
     TrafficLightGroup* groupA = nullptr;
     TrafficLightGroup* groupB = nullptr;
+    QList<TrafficLightGroup*> trafficLightGroups;
 
     // Janelas auxiliares
     QPointer<QDialog> chartsDialog = nullptr;
