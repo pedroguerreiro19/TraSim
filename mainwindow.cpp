@@ -11,6 +11,8 @@
 #include <QHBoxLayout>
 #include <QMessageBox>
 
+#include "road.h"
+
 
 #include <QDialog>
 #include <QTableWidget>
@@ -18,6 +20,11 @@
 #include <QHeaderView>
 #include <QTableWidgetItem>
 
+QList<int> fromRange(int start, int end) {
+    QList<int> range;
+    for (int i = start; i <= end; ++i) range.append(i);
+    return range;
+}
 
 MainWindow* MainWindow::m_instance = nullptr;
 
@@ -50,6 +57,7 @@ MainWindow::MainWindow(QWidget *parent)
                 .arg(sec, 2, 10, QLatin1Char('0'))
                 .arg(ms, 3, 10, QLatin1Char('0'))
             );
+
     });
     simulationTimer->start(50);
     simulationRunning = false;
@@ -58,7 +66,13 @@ MainWindow::MainWindow(QWidget *parent)
     scene = new QGraphicsScene(this);
     ui->graphicsView->setScene(scene);
 
+    // Associa automaticamente tipos de estrada com base nos intervalos de nodes
+    //graph->roads.append(new Road(QVector<int>::fromList(fromRange(1, 50)), RoadType::City, "City Road"));
+    graph->roads.append(new Road(QVector<int>::fromList(fromRange(1, 10)), RoadType::Highway, "Highway Road"));
+    graph->roads.append(new Road(QVector<int>::fromList(fromRange(11, 20)), RoadType::Residential, "Residential Road"));
+
     setupScene();
+
 
     spawnTimer = new QTimer(this);
     connect(spawnTimer, &QTimer::timeout, this, &MainWindow::spawnCarRandomly);
@@ -95,6 +109,7 @@ void MainWindow::setupScene() {
     ui->graphicsView->centerOn(bgItem);
     ui->graphicsView->fitInView(scene->sceneRect(), Qt::KeepAspectRatio);
     ui->graphicsView->setRenderHint(QPainter::Antialiasing);
+
 
 
     //Sul Norte

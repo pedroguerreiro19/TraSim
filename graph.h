@@ -5,6 +5,9 @@
 #include <QVector>
 #include <QPointF>
 
+#include "road.h"
+
+
 class TrafficLight;
 
 enum class NodeType {
@@ -39,6 +42,8 @@ public:
     QVector<Node*> spawnNodes;
     QVector<Node*> despawnNodes;
     QMap<int, TrafficLight*> trafficLights;
+
+    QVector<Road*> roads;
     //QMap<QPair<int, int>, Road*> roadMap;
 
 
