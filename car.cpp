@@ -307,7 +307,10 @@ void Car::move() {
     updateRotation(currentPos, target);
     QVector2D dir(target - currentPos);
     qreal len = dir.length();
-    if (len == 0) { pathIndex++; return; }
+    if (len < 0.1) {
+        pathIndex++;
+        return;
+    }
     dir.normalize();
 
     double distToCar;

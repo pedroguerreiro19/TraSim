@@ -989,7 +989,7 @@ void MainWindow::setupScene() {
         graph->nodeToRoad[nodeId] = residential3;
     }
 
-    Road* extraCityRoad = new Road(QVector<int>({9, 10, 19, 20, 197, 315, 332, 316, 367}), RoadType::City, "Extra City Nodes");
+    Road* extraCityRoad = new Road(QVector<int>({9, 10, 19, 20, 315, 332, 316, 367}), RoadType::City, "Extra City Nodes");
     graph->roads.append(extraCityRoad);
 
     for (int nodeId : extraCityRoad->getNodeList()) {
