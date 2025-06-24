@@ -53,6 +53,7 @@ private:
     QPixmap carPixmap;
     QList<QPointF> path;
     QVector<int> pathNodeIds;
+    Road* currentRoad = nullptr;
 
     // Movimento
     int pathIndex = 0;
@@ -71,11 +72,11 @@ private:
     bool hasPassedLight = false;
     QSet<int> stoppedtrafficlights;
 
-    // Constantes de movimento
-    static constexpr qreal maxSpeed = 1.0;
-    static constexpr qreal minSpeed = 0.2;
-    static constexpr qreal accRate = 0.02;
-    static constexpr qreal decRate = 0.05;
+    // Velocidades
+    qreal maxSpeed = 1.0;
+    qreal minSpeed = 0.2;
+    qreal accRate = 0.02;
+    qreal decRate = 0.05;
 
     // Lógica de decisão
     bool hasCarInFront(double& distToCar) const;

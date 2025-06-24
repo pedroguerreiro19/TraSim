@@ -1,6 +1,6 @@
 #ifndef ROAD_H
 #define ROAD_H
-// Depois organizar código
+
 #include <QGraphicsItem>
 #include <QPointF>
 #include <QList>
@@ -22,6 +22,7 @@ public:
     double getMaxSpeed() const;
     QString getName() const;
     QVector<int> getNodeList() const;
+
 
     void paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget) override;
     QRectF boundingRect() const override;

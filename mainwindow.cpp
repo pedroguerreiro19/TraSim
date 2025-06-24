@@ -4,19 +4,26 @@
 #include "trafficlight.h"
 #include "car.h"
 #include "trafficlightgroup.h"
+#include "road.h"
+
 #include <QPushButton>
 #include <QMouseEvent>
 #include <QDebug>
 #include <QDir>
 #include <QHBoxLayout>
 #include <QMessageBox>
-
-
 #include <QDialog>
 #include <QTableWidget>
 #include <QVBoxLayout>
 #include <QHeaderView>
 #include <QTableWidgetItem>
+
+
+QList<int> fromRange(int start, int end) {
+    QList<int> range;
+    for (int i = start; i <= end; ++i) range.append(i);
+    return range;
+}
 
 
 MainWindow* MainWindow::m_instance = nullptr;
@@ -869,6 +876,118 @@ void MainWindow::setupScene() {
     graph->addNode(505, QPointF(1172, 650), NodeType::Spawn);
     graph->addEdge(133,504,1);
     graph->addEdge(505,134,1);
+
+    Road* road1 = new Road(QVector<int>::fromList(fromRange(62, 67)), RoadType::City, "City Road");
+    graph->roads.append(road1);
+
+    for (int nodeId : road1->getNodeList()) {
+        graph->nodeToRoad[nodeId] = road1;
+    }
+    Road* road2 = new Road(QVector<int>::fromList(fromRange(68, 108)), RoadType::City, "City Road");
+    graph->roads.append(road2);
+
+    for (int nodeId : road2->getNodeList()) {
+        graph->nodeToRoad[nodeId] = road2;
+    }
+    Road* road3 = new Road(QVector<int>::fromList(fromRange(116, 142)), RoadType::City, "City Road");
+    graph->roads.append(road3);
+
+    for (int nodeId : road3->getNodeList()) {
+        graph->nodeToRoad[nodeId] = road3;
+    }
+    Road* road4 = new Road(QVector<int>::fromList(fromRange(510, 510)), RoadType::City, "City Road");
+    graph->roads.append(road4);
+
+    for (int nodeId : road4->getNodeList()) {
+        graph->nodeToRoad[nodeId] = road4;
+    }
+    Road* road5 = new Road(QVector<int>::fromList(fromRange(190, 209)), RoadType::City, "City Road");
+    graph->roads.append(road5);
+
+    for (int nodeId : road5->getNodeList()) {
+        graph->nodeToRoad[nodeId] = road5;
+    }
+    Road* road6 = new Road(QVector<int>::fromList(fromRange(377, 378)), RoadType::City, "City Road");
+    graph->roads.append(road6);
+
+    for (int nodeId : road6->getNodeList()) {
+        graph->nodeToRoad[nodeId] = road6;
+    }
+    Road* road7 = new Road(QVector<int>::fromList(fromRange(352, 354)), RoadType::City, "City Road");
+    graph->roads.append(road7);
+
+    for (int nodeId : road7->getNodeList()) {
+        graph->nodeToRoad[nodeId] = road7;
+    }
+    Road* road8 = new Road(QVector<int>::fromList(fromRange(210, 214)), RoadType::City, "City Road");
+    graph->roads.append(road8);
+
+    for (int nodeId : road8->getNodeList()) {
+        graph->nodeToRoad[nodeId] = road8;
+    }
+    Road* road9 = new Road(QVector<int>::fromList(fromRange(349, 376)), RoadType::City, "City Road");
+    graph->roads.append(road9);
+
+    for (int nodeId : road9->getNodeList()) {
+        graph->nodeToRoad[nodeId] = road9;
+    }
+    Road* road10 = new Road(QVector<int>::fromList(fromRange(500, 505)), RoadType::City, "City Road");
+    graph->roads.append(road10);
+
+    for (int nodeId : road10->getNodeList()) {
+        graph->nodeToRoad[nodeId] = road10;
+    }
+    Road* road11 = new Road(QVector<int>::fromList(fromRange(61, 61)), RoadType::City, "City Road");
+    graph->roads.append(road11);
+
+    for (int nodeId : road11->getNodeList()) {
+        graph->nodeToRoad[nodeId] = road11;
+    }
+    Road* road12 = new Road(QVector<int>::fromList(fromRange(550, 550)), RoadType::City, "City Road");
+    graph->roads.append(road12);
+
+    for (int nodeId : road12->getNodeList()) {
+        graph->nodeToRoad[nodeId] = road12;
+    }
+
+
+    Road* highway1 = new Road(QVector<int>::fromList(fromRange(1, 28)), RoadType::Highway, "Highway Road");
+    graph->roads.append(highway1);
+    for (int nodeId : highway1->getNodeList()) {
+        graph->nodeToRoad[nodeId] = highway1;
+    }
+    Road* highway2 = new Road(QVector<int>::fromList(fromRange(31, 60)), RoadType::Highway, "Highway Road");
+    graph->roads.append(highway2);
+    for (int nodeId : highway2->getNodeList()) {
+        graph->nodeToRoad[nodeId] = highway2;
+    }
+    Road* highway3 = new Road(QVector<int>::fromList(fromRange(300,348)), RoadType::Highway, "Highway Road");
+    graph->roads.append(highway3);
+    for (int nodeId : highway3->getNodeList()) {
+        graph->nodeToRoad[nodeId] = highway3;
+    }
+    Road* highway4 = new Road(QVector<int>::fromList(fromRange(379, 427)), RoadType::Highway, "Highway Road");
+    graph->roads.append(highway4);
+    for (int nodeId : highway4->getNodeList()) {
+        graph->nodeToRoad[nodeId] = highway4;
+    }
+
+
+    Road* residential1 = new Road(QVector<int>::fromList(fromRange(109, 112)), RoadType::Residential, "Residential Road");
+    graph->roads.append(residential1);
+    for (int nodeId : residential1->getNodeList()) {
+        graph->nodeToRoad[nodeId] = residential1;
+    }
+    Road* residential2 = new Road(QVector<int>::fromList(fromRange(113, 115)), RoadType::Residential, "Residential Road");
+    graph->roads.append(residential2);
+    for (int nodeId : residential2->getNodeList()) {
+        graph->nodeToRoad[nodeId] = residential2;
+    }
+    Road* residential3 = new Road(QVector<int>::fromList(fromRange(150, 151)), RoadType::Residential, "Residential Road");
+    graph->roads.append(residential3);
+    for (int nodeId : residential3->getNodeList()) {
+        graph->nodeToRoad[nodeId] = residential3;
+    }
 
 
     Node* node101 = graph->getNode(101);

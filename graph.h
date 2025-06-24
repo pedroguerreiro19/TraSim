@@ -1,6 +1,7 @@
 #ifndef GRAPH_H
 #define GRAPH_H
 
+#include "road.h"
 #include <QMap>
 #include <QVector>
 #include <QPointF>
@@ -45,7 +46,11 @@ public:
     QVector<Edge> edges;                        // Lista de arestas
     QVector<Node*> spawnNodes;                 // Nós de spawn
     QVector<Node*> despawnNodes;               // Nós de despawn
-    QMap<int, TrafficLight*> trafficLights;     // Mapeamento de semáforos
+    QMap<int, TrafficLight*> trafficLights;      // Mapeamento de semáforos
+
+    // Mapeamento de nodes
+    QHash<int, Road*> nodeToRoad;
+    QVector<Road*> roads;
 
     // Métodos principais
     void addNode(int id, QPointF pos, NodeType type);

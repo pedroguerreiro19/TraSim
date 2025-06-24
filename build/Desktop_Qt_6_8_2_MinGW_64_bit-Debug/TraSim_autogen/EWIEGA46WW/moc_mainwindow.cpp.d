@@ -32,6 +32,7 @@ C:/Users/dined/Documents/TraSim/build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/TraSim
   C:/Qt/6.8.2/mingw_64/include/QtCore/QRect \
   C:/Qt/6.8.2/mingw_64/include/QtCore/QSize \
   C:/Qt/6.8.2/mingw_64/include/QtCore/QSizeF \
+  C:/Qt/6.8.2/mingw_64/include/QtCore/QString \
   C:/Qt/6.8.2/mingw_64/include/QtCore/QTimer \
   C:/Qt/6.8.2/mingw_64/include/QtCore/QVariant \
   C:/Qt/6.8.2/mingw_64/include/QtCore/QVector \
@@ -457,5 +458,6 @@ C:/Users/dined/Documents/TraSim/build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/TraSim
   C:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/wchar.h \
   C:/Users/dined/Documents/TraSim/carspawner.h \
   C:/Users/dined/Documents/TraSim/graph.h \
+  C:/Users/dined/Documents/TraSim/road.h \
   C:/Users/dined/Documents/TraSim/trafficlight.h \
   C:/Users/dined/Documents/TraSim/trafficlightgroup.h

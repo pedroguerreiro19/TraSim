@@ -2,9 +2,9 @@
 #include <QPainter>
 
 
-constexpr double highwayspeed = 120.0;
-constexpr double cityspeed = 50.0;
-constexpr double residentialspeed = 30.0;
+constexpr double highwayspeed = 1.3;
+constexpr double cityspeed = 0.90;
+constexpr double residentialspeed = 0.65;
 
 
 Road::Road(const QVector<int>& nodeList, RoadType type, const QString& name)
@@ -43,8 +43,6 @@ void Road::paint(QPainter* painter, const QStyleOptionGraphicsItem*, QWidget*) {
 QRectF Road::boundingRect() const {
     return QRectF();
 }
-
-
 
 
 

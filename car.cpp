@@ -208,6 +208,17 @@ void Car::move() {
         currentSpeed = 0.0;
         return;
     }
+
+    if (pathIndex < pathNodeIds.size()) {
+        int nodeId = pathNodeIds[pathIndex];
+        if (graph->nodeToRoad.contains(nodeId)) {
+            currentRoad = graph->nodeToRoad[nodeId];
+            maxSpeed = currentRoad->getMaxSpeed();
+        } else {
+            currentRoad = nullptr;
+            maxSpeed = 1.0;
+        }
+    }
     QPointF currentPos = pos();
     QPointF target = path[pathIndex + 1];
     updateRotation(currentPos, target);
