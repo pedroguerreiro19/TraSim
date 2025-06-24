@@ -989,6 +989,13 @@ void MainWindow::setupScene() {
         graph->nodeToRoad[nodeId] = residential3;
     }
 
+    Road* extraCityRoad = new Road(QVector<int>({9, 10, 19, 20, 197, 315, 332, 316, 367}), RoadType::City, "Extra City Nodes");
+    graph->roads.append(extraCityRoad);
+
+    for (int nodeId : extraCityRoad->getNodeList()) {
+        graph->nodeToRoad[nodeId] = extraCityRoad;
+    }
+
 
     Node* node101 = graph->getNode(101);
     if (node101) {
@@ -1336,7 +1343,7 @@ void MainWindow::setupCarDataTableStyle() {
 
     ui->carDataTable->horizontalHeader()->setSectionResizeMode(0, QHeaderView::Stretch);
     ui->carDataTable->horizontalHeader()->setSectionResizeMode(1, QHeaderView::ResizeToContents);
-    ui->carDataTable->verticalHeader()->setDefaultSectionSize(50);
+    ui->carDataTable->verticalHeader()->setDefaultSectionSize(47);
     ui->carDataTable->setAlternatingRowColors(false);
     ui->carDataTable->setShowGrid(true);
     ui->carDataTable->verticalHeader()->setVisible(false);
@@ -1473,6 +1480,10 @@ void MainWindow::updateCarDataTable()
         ui->carDataTable->insertRow(row);
         ui->carDataTable->setItem(row++, 0, new QTableWidgetItem("Speed (km/h):"));
         ui->carDataTable->setItem(row - 1, 1, new QTableWidgetItem(QString::number(selectedCar->getCurrentSpeed(), 'f', 2)));
+
+        ui->carDataTable->insertRow(row);
+        ui->carDataTable->setItem(row++, 0, new QTableWidgetItem("Road Type:"));
+        ui->carDataTable->setItem(row - 1, 1, new QTableWidgetItem(selectedCar->getCurrentRoadType()));
 
         ui->carDataTable->insertRow(row);
         ui->carDataTable->setItem(row++, 0, new QTableWidgetItem("Distance (m):"));

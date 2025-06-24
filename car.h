@@ -21,6 +21,7 @@ public:
     double getCurrentSpeed() const;
     qint64 getElapsedTravelTimeMs() const;
     QVector2D getCurrentDirection() const;
+    QString getCurrentRoadType() const;
 
     // Controlo
     bool isStoppedAtTrafficLight();

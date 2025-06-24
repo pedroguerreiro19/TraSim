@@ -30,10 +30,27 @@ Car::Car(Node* spawnNode, Node* despawnNode, Graph* graph, QGraphicsScene* scene
             pathNodeIds.append(nodeId);
         }
     }
-    if (!path.isEmpty()) setPos(path.first());
 
-    currentSpeed = 0.0;
-    maxSpeed = 1.0;
+    if (!path.isEmpty()) {
+        setPos(path.first());
+    }
+
+    if (!pathNodeIds.isEmpty()) {
+        int firstNodeId = pathNodeIds.first();
+        if (graph->nodeToRoad.contains(firstNodeId)) {
+            currentRoad = graph->nodeToRoad[firstNodeId];
+            double roadSpeed = currentRoad->getMaxSpeed();
+
+            static std::random_device rd;
+            static std::mt19937 gen(rd());
+            std::uniform_real_distribution<> speedFactor(0.8, 1.0);
+            maxSpeed = roadSpeed * speedFactor(gen);
+
+            std::uniform_real_distribution<> startFactor(0.7, 1.0);
+            currentSpeed = maxSpeed * startFactor(gen);
+        }
+    }
+
 
     static std::random_device rd;
     static std::mt19937 gen(rd());
@@ -70,6 +87,17 @@ void Car::pause() { paused = true; }
 void Car::resume() { paused = false; }
 
 qint64 Car::getElapsedTravelTimeMs() const { return travelTimer.isValid() ? travelTimer.elapsed() : 0; }
+
+QString Car::getCurrentRoadType() const {
+    if (!currentRoad) return "Unknown";
+
+    switch (currentRoad->getType()) {
+    case RoadType::City: return "City";
+    case RoadType::Highway: return "Highway";
+    case RoadType::Residential: return "Residential";
+    default: return "Unknown";
+    }
+}
 
 QVector2D Car::getCurrentDirection() const {
     if (pathIndex < path.size() - 1)
@@ -223,7 +251,6 @@ bool Car::canMove() {
 
 void Car::move() {
     if (paused || pathIndex >= path.size() - 1 || !canMove()) {
-        currentSpeed = 0.0;
         return;
     }
 
@@ -231,13 +258,7 @@ void Car::move() {
         int nodeId = pathNodeIds[pathIndex];
         if (graph->nodeToRoad.contains(nodeId)) {
             currentRoad = graph->nodeToRoad[nodeId];
-            double roadSpeed = currentRoad->getMaxSpeed();
-
-            static std::random_device rd;
-            static std::mt19937 gen(rd());
-            std::uniform_real_distribution<> speedVar(0.8, 1.2);
-            maxSpeed = roadSpeed * speedVar(gen);
-
+            maxSpeed = currentRoad->getMaxSpeed();
         } else {
             currentRoad = nullptr;
             maxSpeed = 1.0;
@@ -265,8 +286,11 @@ void Car::move() {
         targetSpeed = qBound(minSpeed, targetSpeed, maxSpeed);
     }
 
-    if (currentSpeed < targetSpeed) currentSpeed = qMin(currentSpeed + accRate, targetSpeed);
-    else currentSpeed = qMax(currentSpeed - decRate, targetSpeed);
+    if (currentSpeed < targetSpeed) {
+        currentSpeed = qMin(currentSpeed + accRate, targetSpeed);
+    } else {
+        currentSpeed = qMax(currentSpeed - decRate, targetSpeed);
+    }
 
     qreal moveDist = qMin(currentSpeed, len);
     if (moveDist < 0.1) return;
