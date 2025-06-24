@@ -78,6 +78,7 @@ private:
     qreal accRate = 0.02;
     qreal decRate = 0.05;
 
+
     // Lógica de decisão
     bool hasCarInFront(double& distToCar) const;
     bool hasPriorityInRoundabout(const QPointF& yieldPos) const;

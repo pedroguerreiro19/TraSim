@@ -4,6 +4,7 @@
 #include <QPainter>
 #include <QVector2D>
 #include <QGraphicsScene>
+#include <random>
 
 Car::Car(Node* spawnNode, Node* despawnNode, Graph* graph, QGraphicsScene* scene, const QString& imagePath)
     : QObject(), QGraphicsPixmapItem(), graph(graph), spawnNode(spawnNode), despawnNode(despawnNode), totalDistance(0.0), travelTimeMs(0), paused(false), imagePath(imagePath), pathIndex(0) {
@@ -30,6 +31,23 @@ Car::Car(Node* spawnNode, Node* despawnNode, Graph* graph, QGraphicsScene* scene
         }
     }
     if (!path.isEmpty()) setPos(path.first());
+
+    currentSpeed = 0.0;
+    maxSpeed = 1.0;
+
+    static std::random_device rd;
+    static std::mt19937 gen(rd());
+
+    // Distribuições
+    std::uniform_real_distribution<> minSpeedDist(0.05, 0.15);
+    std::uniform_real_distribution<> accDist(0.002, 0.003);
+    std::uniform_real_distribution<> decMultDist(1.2, 1.7);
+
+    // Atribuição dos parâmetros com variabilidade
+    minSpeed = minSpeedDist(gen);
+    accRate = accDist(gen);
+    decRate = accRate * decMultDist(gen);
+
 
     timer = new QTimer(this);
     connect(timer, &QTimer::timeout, this, &Car::move);
@@ -213,12 +231,19 @@ void Car::move() {
         int nodeId = pathNodeIds[pathIndex];
         if (graph->nodeToRoad.contains(nodeId)) {
             currentRoad = graph->nodeToRoad[nodeId];
-            maxSpeed = currentRoad->getMaxSpeed();
+            double roadSpeed = currentRoad->getMaxSpeed();
+
+            static std::random_device rd;
+            static std::mt19937 gen(rd());
+            std::uniform_real_distribution<> speedVar(0.8, 1.2);
+            maxSpeed = roadSpeed * speedVar(gen);
+
         } else {
             currentRoad = nullptr;
             maxSpeed = 1.0;
         }
     }
+
     QPointF currentPos = pos();
     QPointF target = path[pathIndex + 1];
     updateRotation(currentPos, target);
@@ -260,3 +285,4 @@ void Car::move() {
         deleteLater();
     }
 }
+
