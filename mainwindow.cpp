@@ -1140,9 +1140,6 @@ void MainWindow::setupScene() {
     addSpeedLimitSign(58, -20, 15, 180, 120);
     addSpeedLimitSign(349, -10, 25, 90, 50);
 
-
-    addSpeedLimitSign(354, 10, -30, 0, 120);
-
     setupCarDataTableStyle();
     scene->update();
     visualizarNodes();
@@ -1166,6 +1163,21 @@ void MainWindow::visualizarNodes() {
 void MainWindow::mousePressEvent(QMouseEvent *event) {
     QPointF scenePos = ui->graphicsView->mapToScene(event->pos());
     qDebug() << "Clicado em:" << scenePos;
+    if (event->button() == Qt::RightButton) {
+        clearSelectedCar();
+    }
+}
+
+void MainWindow::clearSelectedCar() {
+    selectedCar = nullptr;
+
+    if (selectedCarPathItem) {
+        scene->removeItem(selectedCarPathItem);
+        delete selectedCarPathItem;
+        selectedCarPathItem = nullptr;
+    }
+
+    updateCarDataTable();
 }
 
 void MainWindow::spawnCarRandomly() {

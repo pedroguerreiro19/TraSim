@@ -60,6 +60,7 @@ protected:
     void resizeEvent(QResizeEvent* evt) override;
     void showEvent(QShowEvent* event) override;
     void mousePressEvent(QMouseEvent *event) override;
+    void clearSelectedCar();
 
 private:
     // UI e Cena
