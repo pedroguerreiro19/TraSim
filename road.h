@@ -13,26 +13,29 @@ enum class RoadType {
     Residential
 };
 
-class Road : public QGraphicsItem {
+// Constantes de velocidade por tipo de estrada
+inline constexpr double HIGHWAY_SPEED     = 1.3;
+inline constexpr double CITY_SPEED        = 0.90;
+inline constexpr double RESIDENTIAL_SPEED = 0.65;
+
+class Road {
 public:
     Road(const QVector<int>& nodeList, RoadType type, const QString& name);
 
+    // Gets
     int getId() const;
     RoadType getType() const;
     double getMaxSpeed() const;
     QString getName() const;
     QVector<int> getNodeList() const;
-
-
-    void paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget) override;
-    QRectF boundingRect() const override;
-
 private:
+    // Atributos
     int id;
     RoadType type;
     double maxSpeed;
     QString name;
     QVector<int> nodeList;
+
 
     void updateMaxSpeed();
 };
