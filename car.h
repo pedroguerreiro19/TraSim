@@ -8,6 +8,8 @@
 #include <QElapsedTimer>
 #include "graph.h"
 
+class Road;
+
 class Car : public QObject, public QGraphicsPixmapItem {
     Q_OBJECT
 
@@ -19,7 +21,7 @@ public:
     qint64 travelTimeMs = 0;
     double totalDistance = 0.0;
     qreal currentSpeed = 0.0;
-    const qreal maxSpeed = 1.0;
+    qreal maxSpeed = 1.0;
     const qreal minSpeed = 0.2;
     const qreal accRate = 0.05;
     const qreal decRate = 0.08;
@@ -53,6 +55,8 @@ private:
     bool paused = false;
     QPixmap carPixmap;
     QString imagePath;
+
+    Road* currentRoad = nullptr;
 };
 
 #endif // CAR_H

@@ -37,6 +37,7 @@ struct Edge {
 
 class Graph {
 public:
+    QHash<int, Road*> nodeToRoad;
     QMap<int, Node*> nodes;
     QVector<Edge> edges;
     QVector<Node*> spawnNodes;

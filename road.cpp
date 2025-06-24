@@ -2,9 +2,9 @@
 #include <QPainter>
 
 
-constexpr double highwayspeed = 120.0;
-constexpr double cityspeed = 50.0;
-constexpr double residentialspeed = 30.0;
+constexpr double highwayspeed = 3.0;
+constexpr double cityspeed = 1.0;
+constexpr double residentialspeed = 0.75;
 
 
 Road::Road(const QVector<int>& nodeList, RoadType type, const QString& name)

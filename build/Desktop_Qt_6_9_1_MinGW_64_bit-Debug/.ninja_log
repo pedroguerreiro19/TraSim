@@ -1,45 +1,91 @@
 # ninja log v6
-32	2723	7723916797446845	TraSim_autogen/timestamp	96977370d2f4e292
-32	2723	7723916797446845	TraSim_autogen/mocs_compilation.cpp	96977370d2f4e292
-32	2723	7723916797446845	C:/Users/Alexandre/Desktop/FACULDADE/3ano/2 semestre/Laboratorio de Projeto/TraSim/build/Desktop_Qt_6_9_1_MinGW_64_bit-Debug/TraSim_autogen/timestamp	96977370d2f4e292
-32	2723	7723916797446845	C:/Users/Alexandre/Desktop/FACULDADE/3ano/2 semestre/Laboratorio de Projeto/TraSim/build/Desktop_Qt_6_9_1_MinGW_64_bit-Debug/TraSim_autogen/mocs_compilation.cpp	96977370d2f4e292
-2799	5058	7723916818041028	TraSim_autogen/EWIEGA46WW/qrc_img.cpp	7ac5298eb86f7ddd
+53	1137	7724642116661727	TraSim_autogen/timestamp	96977370d2f4e292
+1135	3280	7724620309429864	CMakeFiles/TraSim.dir/road.cpp.obj	8f52d7105b9cdfe
+53	1137	7724642116661727	TraSim_autogen/mocs_compilation.cpp	96977370d2f4e292
+4941	9909	7724633869370239	CMakeFiles/TraSim.dir/trafficlightgroup.cpp.obj	a83152a6a94121df
+53	1137	7724642116661727	C:/Users/Alexandre/Desktop/FACULDADE/3ano/2 semestre/Laboratorio de Projeto/TraSim/build/Desktop_Qt_6_9_1_MinGW_64_bit-Debug/TraSim_autogen/timestamp	96977370d2f4e292
 2799	5058	7723916818041028	C:/Users/Alexandre/Desktop/FACULDADE/3ano/2 semestre/Laboratorio de Projeto/TraSim/build/Desktop_Qt_6_9_1_MinGW_64_bit-Debug/TraSim_autogen/EWIEGA46WW/qrc_img.cpp	7ac5298eb86f7ddd
-5304	10093	7723916824724152	CMakeFiles/TraSim.dir/trafficlightgroup.cpp.obj	a83152a6a94121df
-5121	10154	7723916822899079	CMakeFiles/TraSim.dir/road.cpp.obj	8f52d7105b9cdfe
-5263	10284	7723916824508754	CMakeFiles/TraSim.dir/trafficlight.cpp.obj	64587af3feaa7d63
-5068	10894	7723916822383128	CMakeFiles/TraSim.dir/main.cpp.obj	d60257fb2685ec20
-5143	10971	7723916823482153	CMakeFiles/TraSim.dir/graph.cpp.obj	19b165108a318424
-5231	11131	7723916824003359	CMakeFiles/TraSim.dir/carspawner.cpp.obj	6cdb1d9188a95548
-5059	11230	7723916822217967	CMakeFiles/TraSim.dir/TraSim_autogen/mocs_compilation.cpp.obj	c10f534866722ebf
-5197	11508	7723916823683908	CMakeFiles/TraSim.dir/car.cpp.obj	db95d24e20bf9eae
+53	1137	7724642116661727	C:/Users/Alexandre/Desktop/FACULDADE/3ano/2 semestre/Laboratorio de Projeto/TraSim/build/Desktop_Qt_6_9_1_MinGW_64_bit-Debug/TraSim_autogen/mocs_compilation.cpp	96977370d2f4e292
+2799	5058	7723916818041028	TraSim_autogen/EWIEGA46WW/qrc_img.cpp	7ac5298eb86f7ddd
+4862	9901	7724633864417005	CMakeFiles/TraSim.dir/trafficlight.cpp.obj	64587af3feaa7d63
+6468	8711	7724642180793324	TraSim.exe	c19fa91a8c76db44
+4676	10520	7724633862598021	CMakeFiles/TraSim.dir/main.cpp.obj	d60257fb2685ec20
+4731	10451	7724633863154346	CMakeFiles/TraSim.dir/graph.cpp.obj	19b165108a318424
+4789	10642	7724633864166590	CMakeFiles/TraSim.dir/carspawner.cpp.obj	6cdb1d9188a95548
+4312	10805	7724633858876275	CMakeFiles/TraSim.dir/TraSim_autogen/mocs_compilation.cpp.obj	c10f534866722ebf
+1120	5003	7724639413867660	CMakeFiles/TraSim.dir/car.cpp.obj	db95d24e20bf9eae
 5339	12353	7723916825261471	CMakeFiles/TraSim.dir/TraSim_autogen/EWIEGA46WW/qrc_img.cpp.obj	7e912190d519cd62
-5085	12990	7723916822478355	CMakeFiles/TraSim.dir/mainwindow.cpp.obj	3cf76fe49c2d698b
-12997	15976	7723916901592022	TraSim.exe	c19fa91a8c76db44
-79	4528	7723945586658681	TraSim_autogen/timestamp	96977370d2f4e292
-79	4528	7723945586658681	TraSim_autogen/mocs_compilation.cpp	96977370d2f4e292
-79	4528	7723945586658681	C:/Users/Alexandre/Desktop/FACULDADE/3ano/2 semestre/Laboratorio de Projeto/TraSim/build/Desktop_Qt_6_9_1_MinGW_64_bit-Debug/TraSim_autogen/timestamp	96977370d2f4e292
-79	4528	7723945586658681	C:/Users/Alexandre/Desktop/FACULDADE/3ano/2 semestre/Laboratorio de Projeto/TraSim/build/Desktop_Qt_6_9_1_MinGW_64_bit-Debug/TraSim_autogen/mocs_compilation.cpp	96977370d2f4e292
-47	4127	7723946335747273	TraSim_autogen/timestamp	96977370d2f4e292
-47	4127	7723946335747273	TraSim_autogen/mocs_compilation.cpp	96977370d2f4e292
-47	4127	7723946335747273	C:/Users/Alexandre/Desktop/FACULDADE/3ano/2 semestre/Laboratorio de Projeto/TraSim/build/Desktop_Qt_6_9_1_MinGW_64_bit-Debug/TraSim_autogen/timestamp	96977370d2f4e292
-47	4127	7723946335747273	C:/Users/Alexandre/Desktop/FACULDADE/3ano/2 semestre/Laboratorio de Projeto/TraSim/build/Desktop_Qt_6_9_1_MinGW_64_bit-Debug/TraSim_autogen/mocs_compilation.cpp	96977370d2f4e292
-4325	7636	7723946339355303	CMakeFiles/TraSim.dir/trafficlightgroup.cpp.obj	a83152a6a94121df
-4293	7713	7723946338844454	CMakeFiles/TraSim.dir/trafficlight.cpp.obj	64587af3feaa7d63
-4139	8278	7723946337302446	CMakeFiles/TraSim.dir/main.cpp.obj	d60257fb2685ec20
-4194	8357	7723946337835073	CMakeFiles/TraSim.dir/graph.cpp.obj	19b165108a318424
-4257	8530	7723946338674034	CMakeFiles/TraSim.dir/carspawner.cpp.obj	6cdb1d9188a95548
-4130	8602	7723946337151534	CMakeFiles/TraSim.dir/TraSim_autogen/mocs_compilation.cpp.obj	c10f534866722ebf
-4225	8939	7723946338161669	CMakeFiles/TraSim.dir/car.cpp.obj	db95d24e20bf9eae
-41	1933	7723947299229006	TraSim_autogen/timestamp	96977370d2f4e292
-41	1933	7723947299229006	TraSim_autogen/mocs_compilation.cpp	96977370d2f4e292
-41	1933	7723947299229006	C:/Users/Alexandre/Desktop/FACULDADE/3ano/2 semestre/Laboratorio de Projeto/TraSim/build/Desktop_Qt_6_9_1_MinGW_64_bit-Debug/TraSim_autogen/timestamp	96977370d2f4e292
-41	1933	7723947299229006	C:/Users/Alexandre/Desktop/FACULDADE/3ano/2 semestre/Laboratorio de Projeto/TraSim/build/Desktop_Qt_6_9_1_MinGW_64_bit-Debug/TraSim_autogen/mocs_compilation.cpp	96977370d2f4e292
-1936	6688	7723947318172729	CMakeFiles/TraSim.dir/mainwindow.cpp.obj	3cf76fe49c2d698b
-6688	8542	7723947365685943	TraSim.exe	c19fa91a8c76db44
-53	1119	7723949255201067	TraSim_autogen/timestamp	96977370d2f4e292
-53	1119	7723949255201067	TraSim_autogen/mocs_compilation.cpp	96977370d2f4e292
-53	1119	7723949255201067	C:/Users/Alexandre/Desktop/FACULDADE/3ano/2 semestre/Laboratorio de Projeto/TraSim/build/Desktop_Qt_6_9_1_MinGW_64_bit-Debug/TraSim_autogen/timestamp	96977370d2f4e292
-53	1119	7723949255201067	C:/Users/Alexandre/Desktop/FACULDADE/3ano/2 semestre/Laboratorio de Projeto/TraSim/build/Desktop_Qt_6_9_1_MinGW_64_bit-Debug/TraSim_autogen/mocs_compilation.cpp	96977370d2f4e292
-1122	5775	7723949265886485	CMakeFiles/TraSim.dir/mainwindow.cpp.obj	3cf76fe49c2d698b
-5775	7581	7723949312418597	TraSim.exe	c19fa91a8c76db44
+1141	6468	7724642127512933	CMakeFiles/TraSim.dir/mainwindow.cpp.obj	3cf76fe49c2d698b
+115	1329	7724643764066680	TraSim_autogen/timestamp	96977370d2f4e292
+115	1329	7724643764066680	TraSim_autogen/mocs_compilation.cpp	96977370d2f4e292
+115	1329	7724643764066680	C:/Users/Alexandre/Desktop/FACULDADE/3ano/2 semestre/Laboratorio de Projeto/TraSim/build/Desktop_Qt_6_9_1_MinGW_64_bit-Debug/TraSim_autogen/timestamp	96977370d2f4e292
+115	1329	7724643764066680	C:/Users/Alexandre/Desktop/FACULDADE/3ano/2 semestre/Laboratorio de Projeto/TraSim/build/Desktop_Qt_6_9_1_MinGW_64_bit-Debug/TraSim_autogen/mocs_compilation.cpp	96977370d2f4e292
+1346	5142	7724643776398712	CMakeFiles/TraSim.dir/car.cpp.obj	db95d24e20bf9eae
+1332	6709	7724643776238496	CMakeFiles/TraSim.dir/mainwindow.cpp.obj	3cf76fe49c2d698b
+6709	8846	7724643830006142	TraSim.exe	c19fa91a8c76db44
+131	1530	7724649172090812	TraSim_autogen/timestamp	96977370d2f4e292
+131	1530	7724649172090812	TraSim_autogen/mocs_compilation.cpp	96977370d2f4e292
+131	1530	7724649172090812	C:/Users/Alexandre/Desktop/FACULDADE/3ano/2 semestre/Laboratorio de Projeto/TraSim/build/Desktop_Qt_6_9_1_MinGW_64_bit-Debug/TraSim_autogen/timestamp	96977370d2f4e292
+131	1530	7724649172090812	C:/Users/Alexandre/Desktop/FACULDADE/3ano/2 semestre/Laboratorio de Projeto/TraSim/build/Desktop_Qt_6_9_1_MinGW_64_bit-Debug/TraSim_autogen/mocs_compilation.cpp	96977370d2f4e292
+1534	7740	7724649186121116	CMakeFiles/TraSim.dir/mainwindow.cpp.obj	3cf76fe49c2d698b
+39	1095	7724649411402929	TraSim_autogen/timestamp	96977370d2f4e292
+39	1095	7724649411402929	TraSim_autogen/mocs_compilation.cpp	96977370d2f4e292
+39	1095	7724649411402929	C:/Users/Alexandre/Desktop/FACULDADE/3ano/2 semestre/Laboratorio de Projeto/TraSim/build/Desktop_Qt_6_9_1_MinGW_64_bit-Debug/TraSim_autogen/timestamp	96977370d2f4e292
+39	1095	7724649411402929	C:/Users/Alexandre/Desktop/FACULDADE/3ano/2 semestre/Laboratorio de Projeto/TraSim/build/Desktop_Qt_6_9_1_MinGW_64_bit-Debug/TraSim_autogen/mocs_compilation.cpp	96977370d2f4e292
+1100	6614	7724649422005106	CMakeFiles/TraSim.dir/mainwindow.cpp.obj	3cf76fe49c2d698b
+59	1241	7724649662977321	TraSim_autogen/timestamp	96977370d2f4e292
+59	1241	7724649662977321	TraSim_autogen/mocs_compilation.cpp	96977370d2f4e292
+59	1241	7724649662977321	C:/Users/Alexandre/Desktop/FACULDADE/3ano/2 semestre/Laboratorio de Projeto/TraSim/build/Desktop_Qt_6_9_1_MinGW_64_bit-Debug/TraSim_autogen/timestamp	96977370d2f4e292
+59	1241	7724649662977321	C:/Users/Alexandre/Desktop/FACULDADE/3ano/2 semestre/Laboratorio de Projeto/TraSim/build/Desktop_Qt_6_9_1_MinGW_64_bit-Debug/TraSim_autogen/mocs_compilation.cpp	96977370d2f4e292
+1257	5023	7724649674987516	CMakeFiles/TraSim.dir/car.cpp.obj	db95d24e20bf9eae
+1244	6600	7724649674822127	CMakeFiles/TraSim.dir/mainwindow.cpp.obj	3cf76fe49c2d698b
+6600	8711	7724649728390234	TraSim.exe	c19fa91a8c76db44
+85	1068	7724650810857341	TraSim_autogen/timestamp	96977370d2f4e292
+85	1068	7724650810857341	TraSim_autogen/mocs_compilation.cpp	96977370d2f4e292
+85	1068	7724650810857341	C:/Users/Alexandre/Desktop/FACULDADE/3ano/2 semestre/Laboratorio de Projeto/TraSim/build/Desktop_Qt_6_9_1_MinGW_64_bit-Debug/TraSim_autogen/timestamp	96977370d2f4e292
+85	1068	7724650810857341	C:/Users/Alexandre/Desktop/FACULDADE/3ano/2 semestre/Laboratorio de Projeto/TraSim/build/Desktop_Qt_6_9_1_MinGW_64_bit-Debug/TraSim_autogen/mocs_compilation.cpp	96977370d2f4e292
+1086	4885	7724650820917381	CMakeFiles/TraSim.dir/car.cpp.obj	db95d24e20bf9eae
+1071	6492	7724650820711738	CMakeFiles/TraSim.dir/mainwindow.cpp.obj	3cf76fe49c2d698b
+6492	8595	7724650874922286	TraSim.exe	c19fa91a8c76db44
+61	1292	7724652392920517	TraSim_autogen/timestamp	96977370d2f4e292
+61	1292	7724652392920517	TraSim_autogen/mocs_compilation.cpp	96977370d2f4e292
+61	1292	7724652392920517	C:/Users/Alexandre/Desktop/FACULDADE/3ano/2 semestre/Laboratorio de Projeto/TraSim/build/Desktop_Qt_6_9_1_MinGW_64_bit-Debug/TraSim_autogen/timestamp	96977370d2f4e292
+61	1292	7724652392920517	C:/Users/Alexandre/Desktop/FACULDADE/3ano/2 semestre/Laboratorio de Projeto/TraSim/build/Desktop_Qt_6_9_1_MinGW_64_bit-Debug/TraSim_autogen/mocs_compilation.cpp	96977370d2f4e292
+1308	3889	7724652405351593	CMakeFiles/TraSim.dir/road.cpp.obj	8f52d7105b9cdfe
+1295	6578	7724652405226508	CMakeFiles/TraSim.dir/mainwindow.cpp.obj	3cf76fe49c2d698b
+6579	8777	7724652458058954	TraSim.exe	c19fa91a8c76db44
+55	1100	7724653090836660	TraSim_autogen/timestamp	96977370d2f4e292
+55	1100	7724653090836660	TraSim_autogen/mocs_compilation.cpp	96977370d2f4e292
+55	1100	7724653090836660	C:/Users/Alexandre/Desktop/FACULDADE/3ano/2 semestre/Laboratorio de Projeto/TraSim/build/Desktop_Qt_6_9_1_MinGW_64_bit-Debug/TraSim_autogen/timestamp	96977370d2f4e292
+55	1100	7724653090836660	C:/Users/Alexandre/Desktop/FACULDADE/3ano/2 semestre/Laboratorio de Projeto/TraSim/build/Desktop_Qt_6_9_1_MinGW_64_bit-Debug/TraSim_autogen/mocs_compilation.cpp	96977370d2f4e292
+1114	3801	7724653101428509	CMakeFiles/TraSim.dir/road.cpp.obj	8f52d7105b9cdfe
+1103	6307	7724653101316804	CMakeFiles/TraSim.dir/mainwindow.cpp.obj	3cf76fe49c2d698b
+6307	8291	7724653153355615	TraSim.exe	c19fa91a8c76db44
+48	1242	7724653635771328	TraSim_autogen/timestamp	96977370d2f4e292
+48	1242	7724653635771328	TraSim_autogen/mocs_compilation.cpp	96977370d2f4e292
+48	1242	7724653635771328	C:/Users/Alexandre/Desktop/FACULDADE/3ano/2 semestre/Laboratorio de Projeto/TraSim/build/Desktop_Qt_6_9_1_MinGW_64_bit-Debug/TraSim_autogen/timestamp	96977370d2f4e292
+48	1242	7724653635771328	C:/Users/Alexandre/Desktop/FACULDADE/3ano/2 semestre/Laboratorio de Projeto/TraSim/build/Desktop_Qt_6_9_1_MinGW_64_bit-Debug/TraSim_autogen/mocs_compilation.cpp	96977370d2f4e292
+1259	3807	7724653647884384	CMakeFiles/TraSim.dir/road.cpp.obj	8f52d7105b9cdfe
+1247	6417	7724653647749165	CMakeFiles/TraSim.dir/mainwindow.cpp.obj	3cf76fe49c2d698b
+6418	8639	7724653699463907	TraSim.exe	c19fa91a8c76db44
+53	1045	7724654728418230	TraSim_autogen/timestamp	96977370d2f4e292
+53	1045	7724654728418230	TraSim_autogen/mocs_compilation.cpp	96977370d2f4e292
+53	1045	7724654728418230	C:/Users/Alexandre/Desktop/FACULDADE/3ano/2 semestre/Laboratorio de Projeto/TraSim/build/Desktop_Qt_6_9_1_MinGW_64_bit-Debug/TraSim_autogen/timestamp	96977370d2f4e292
+53	1045	7724654728418230	C:/Users/Alexandre/Desktop/FACULDADE/3ano/2 semestre/Laboratorio de Projeto/TraSim/build/Desktop_Qt_6_9_1_MinGW_64_bit-Debug/TraSim_autogen/mocs_compilation.cpp	96977370d2f4e292
+1059	3483	7724654738514669	CMakeFiles/TraSim.dir/road.cpp.obj	8f52d7105b9cdfe
+1048	6164	7724654738359091	CMakeFiles/TraSim.dir/mainwindow.cpp.obj	3cf76fe49c2d698b
+6164	8155	7724654789516952	TraSim.exe	c19fa91a8c76db44
+58	1017	7724655412375507	TraSim_autogen/timestamp	96977370d2f4e292
+58	1017	7724655412375507	TraSim_autogen/mocs_compilation.cpp	96977370d2f4e292
+58	1017	7724655412375507	C:/Users/Alexandre/Desktop/FACULDADE/3ano/2 semestre/Laboratorio de Projeto/TraSim/build/Desktop_Qt_6_9_1_MinGW_64_bit-Debug/TraSim_autogen/timestamp	96977370d2f4e292
+58	1017	7724655412375507	C:/Users/Alexandre/Desktop/FACULDADE/3ano/2 semestre/Laboratorio de Projeto/TraSim/build/Desktop_Qt_6_9_1_MinGW_64_bit-Debug/TraSim_autogen/mocs_compilation.cpp	96977370d2f4e292
+1034	3502	7724655422139360	CMakeFiles/TraSim.dir/road.cpp.obj	8f52d7105b9cdfe
+1020	6273	7724655421995707	CMakeFiles/TraSim.dir/mainwindow.cpp.obj	3cf76fe49c2d698b
+6273	8282	7724655474523955	TraSim.exe	c19fa91a8c76db44
+104	1134	7724657740620482	TraSim_autogen/timestamp	96977370d2f4e292
+104	1134	7724657740620482	TraSim_autogen/mocs_compilation.cpp	96977370d2f4e292
+104	1134	7724657740620482	C:/Users/Alexandre/Desktop/FACULDADE/3ano/2 semestre/Laboratorio de Projeto/TraSim/build/Desktop_Qt_6_9_1_MinGW_64_bit-Debug/TraSim_autogen/timestamp	96977370d2f4e292
+104	1134	7724657740620482	C:/Users/Alexandre/Desktop/FACULDADE/3ano/2 semestre/Laboratorio de Projeto/TraSim/build/Desktop_Qt_6_9_1_MinGW_64_bit-Debug/TraSim_autogen/mocs_compilation.cpp	96977370d2f4e292
+1150	3696	7724657751118845	CMakeFiles/TraSim.dir/road.cpp.obj	8f52d7105b9cdfe
+1137	6487	7724657750958508	CMakeFiles/TraSim.dir/mainwindow.cpp.obj	3cf76fe49c2d698b
+6488	8568	7724657804458349	TraSim.exe	c19fa91a8c76db44

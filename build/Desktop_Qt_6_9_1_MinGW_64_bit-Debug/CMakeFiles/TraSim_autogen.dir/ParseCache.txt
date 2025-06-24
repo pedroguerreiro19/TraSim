@@ -377,8 +377,6 @@ C:/Users/Alexandre/Desktop/FACULDADE/3ano/2 semestre/Laboratorio de Projeto/TraS
  mdp:C:/Users/Alexandre/Desktop/FACULDADE/3ano/2 semestre/Laboratorio de Projeto/TraSim/car.h
  mdp:C:/Users/Alexandre/Desktop/FACULDADE/3ano/2 semestre/Laboratorio de Projeto/TraSim/graph.h
  mdp:C:/Users/Alexandre/Desktop/FACULDADE/3ano/2 semestre/Laboratorio de Projeto/TraSim/road.h
-C:/Users/Alexandre/Desktop/FACULDADE/3ano/2 semestre/Laboratorio de Projeto/TraSim/graph.h
-C:/Users/Alexandre/Desktop/FACULDADE/3ano/2 semestre/Laboratorio de Projeto/TraSim/road.h
 C:/Users/Alexandre/Desktop/FACULDADE/3ano/2 semestre/Laboratorio de Projeto/TraSim/carspawner.h
  mmc:Q_OBJECT
  mdp:C:/Qt/6.9.1/mingw_64/include/QtCore/QList
@@ -773,6 +771,8 @@ C:/Users/Alexandre/Desktop/FACULDADE/3ano/2 semestre/Laboratorio de Projeto/TraS
  mdp:C:/Users/Alexandre/Desktop/FACULDADE/3ano/2 semestre/Laboratorio de Projeto/TraSim/carspawner.h
  mdp:C:/Users/Alexandre/Desktop/FACULDADE/3ano/2 semestre/Laboratorio de Projeto/TraSim/graph.h
  mdp:C:/Users/Alexandre/Desktop/FACULDADE/3ano/2 semestre/Laboratorio de Projeto/TraSim/road.h
+C:/Users/Alexandre/Desktop/FACULDADE/3ano/2 semestre/Laboratorio de Projeto/TraSim/graph.h
+C:/Users/Alexandre/Desktop/FACULDADE/3ano/2 semestre/Laboratorio de Projeto/TraSim/road.h
 C:/Users/Alexandre/Desktop/FACULDADE/3ano/2 semestre/Laboratorio de Projeto/TraSim/mainwindow.h
  mmc:Q_OBJECT
  mdp:C:/Qt/6.9.1/mingw_64/include/QtCharts/QAbstractAxis
@@ -2003,8 +2003,8 @@ C:/Users/Alexandre/Desktop/FACULDADE/3ano/2 semestre/Laboratorio de Projeto/TraS
  mdp:C:/Users/Alexandre/Desktop/FACULDADE/3ano/2 semestre/Laboratorio de Projeto/TraSim/trafficlightgroup.h
 C:/Users/Alexandre/Desktop/FACULDADE/3ano/2 semestre/Laboratorio de Projeto/TraSim/car.cpp
 C:/Users/Alexandre/Desktop/FACULDADE/3ano/2 semestre/Laboratorio de Projeto/TraSim/carspawner.cpp
-C:/Users/Alexandre/Desktop/FACULDADE/3ano/2 semestre/Laboratorio de Projeto/TraSim/road.cpp
 C:/Users/Alexandre/Desktop/FACULDADE/3ano/2 semestre/Laboratorio de Projeto/TraSim/graph.cpp
+C:/Users/Alexandre/Desktop/FACULDADE/3ano/2 semestre/Laboratorio de Projeto/TraSim/road.cpp
 C:/Users/Alexandre/Desktop/FACULDADE/3ano/2 semestre/Laboratorio de Projeto/TraSim/main.cpp
 C:/Users/Alexandre/Desktop/FACULDADE/3ano/2 semestre/Laboratorio de Projeto/TraSim/trafficlight.cpp
 C:/Users/Alexandre/Desktop/FACULDADE/3ano/2 semestre/Laboratorio de Projeto/TraSim/trafficlightgroup.cpp

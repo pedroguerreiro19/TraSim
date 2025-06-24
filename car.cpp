@@ -231,6 +231,23 @@ void Car::move() {
     if (pathIndex >= path.size() - 1) return;
     if (!canMove()) return;
 
+    // Atualiza a estrada e a velocidade a cada passo
+    if (pathIndex < pathNodeIds.size()) {
+        int nodeId = pathNodeIds[pathIndex];
+        if (graph->nodeToRoad.contains(nodeId)) {
+            currentRoad = graph->nodeToRoad[nodeId];
+            maxSpeed = currentRoad->getMaxSpeed();
+        } else {
+            currentRoad = nullptr;
+            maxSpeed = 1.0;
+        }
+
+        qDebug() << "Node:" << nodeId
+                 << "Road:" << (currentRoad ? currentRoad->getName() : "None")
+                 << "Speed:" << maxSpeed;
+    }
+
+    // ---- Movimento real começa aqui ----
     QPointF currentPos = pos();
     QPointF targetPos = path[pathIndex + 1];
     updateRotation(currentPos, targetPos);
@@ -279,3 +296,4 @@ void Car::move() {
         deleteLater();
     }
 }
+
