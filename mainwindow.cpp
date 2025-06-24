@@ -1088,6 +1088,28 @@ void MainWindow::setupScene() {
         }
     };
 
+    auto addSpeedLimitSign = [&](int nodeId, qreal offsetX, qreal offsetY, qreal rotation, int speedLimit) {
+        Node* node = graph->getNode(nodeId);
+        if (node) {
+            QPointF pos = node->position + QPointF(offsetX, offsetY);
+
+            QGraphicsEllipseItem* circle = new QGraphicsEllipseItem(-12, -12, 24, 24);
+            circle->setPen(QPen(Qt::red, 2));
+            circle->setBrush(QBrush(Qt::white));
+
+            QGraphicsTextItem* text = new QGraphicsTextItem(QString::number(speedLimit));
+            text->setDefaultTextColor(Qt::black);
+            text->setFont(QFont("Arial", 9, QFont::Bold));
+            QRectF textRect = text->boundingRect();
+            text->setPos(-textRect.width() / 2.0, -textRect.height() / 2.0 + 1);
+
+            QGraphicsItemGroup* group = scene->createItemGroup({ circle, text });
+            group->setPos(pos);
+            group->setRotation(rotation);
+            group->setZValue(1);
+        }
+    };
+    // Cedencia de passagem
     addYieldTriangle(20,  40, 15, 180);
     addYieldTriangle(360, 25, -20, 90);
     addYieldTriangle(363, -30, -15, 0);
@@ -1100,6 +1122,26 @@ void MainWindow::setupScene() {
     addYieldTriangle(199,  -10, 35, -90);
     addYieldTriangle(377, -5,  30, -90);
     addYieldTriangle(378, -30,  -10, 0);
+    // Limites de velocidade
+    addSpeedLimitSign(344, 0, 25, 90, 120);
+    addSpeedLimitSign(316, -30, 40, 90, 50);
+    addSpeedLimitSign(20, 30, 30, 0, 50);
+    addSpeedLimitSign(360, 40, -10, -90, 50);
+    addSpeedLimitSign(362, 30, -10, 0, 120);
+    addSpeedLimitSign(363, -45, 0, 180, 50);
+    addSpeedLimitSign(412, -5, -20, -90, 120);
+    addSpeedLimitSign(41, -25, 10, 180, 120);
+    addSpeedLimitSign(359, 15, 20, 90, 120);
+    addSpeedLimitSign(63, -10, -30, 180, 50);
+    addSpeedLimitSign(109, 25, -15, 0, 30);
+    addSpeedLimitSign(115, -25, 15, 180, 30);
+    addSpeedLimitSign(68, -30, -25, -90, 50);
+    addSpeedLimitSign(104, 25, 20, 90, 50);
+    addSpeedLimitSign(58, -20, 15, 180, 120);
+    addSpeedLimitSign(349, -10, 25, 90, 50);
+
+
+    addSpeedLimitSign(354, 10, -30, 0, 120);
 
     setupCarDataTableStyle();
     scene->update();
