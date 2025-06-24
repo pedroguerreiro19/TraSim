@@ -26,12 +26,15 @@ public:
     // Controlo
     bool isStoppedAtTrafficLight();
     bool isStopped();
+    bool isTravelTimerRunning = false;
     bool canMove();
 
     void startMoving();
     void pause();
     void resume();
     void stop();
+
+    qint64 accumulatedTravelTime = 0;
 
 protected:
     void mousePressEvent(QGraphicsSceneMouseEvent* event) override;

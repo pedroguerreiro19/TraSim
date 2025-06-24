@@ -57,7 +57,7 @@ Car::Car(Node* spawnNode, Node* despawnNode, Graph* graph, QGraphicsScene* scene
 
     // Distribuições
     std::uniform_real_distribution<> minSpeedDist(0.05, 0.15);
-    std::uniform_real_distribution<> accDist(0.002, 0.003);
+    std::uniform_real_distribution<> accDist(0.01, 0.02);
     std::uniform_real_distribution<> decMultDist(1.2, 1.7);
 
     // Atribuição dos parâmetros com variabilidade
@@ -78,15 +78,36 @@ void Car::mousePressEvent(QGraphicsSceneMouseEvent* event) {
 void Car::startMoving() {
     if (!path.isEmpty()) {
         travelTimer.start();
+        isTravelTimerRunning = true;
+        accumulatedTravelTime = 0;
         timer->start(16);
         MainWindow::instance()->incrementCarsSpawned();
     }
 }
 
-void Car::pause() { paused = true; }
-void Car::resume() { paused = false; }
+void Car::pause() {
+    paused = true;
+    if (isTravelTimerRunning) {
+        accumulatedTravelTime += travelTimer.elapsed();
+        isTravelTimerRunning = false;
+    }
+}
 
-qint64 Car::getElapsedTravelTimeMs() const { return travelTimer.isValid() ? travelTimer.elapsed() : 0; }
+void Car::resume() {
+    paused = false;
+    if (!isTravelTimerRunning) {
+        travelTimer.start();
+        isTravelTimerRunning = true;
+    }
+}
+
+qint64 Car::getElapsedTravelTimeMs() const {
+    if (isTravelTimerRunning) {
+        return accumulatedTravelTime + travelTimer.elapsed();
+    } else {
+        return accumulatedTravelTime;
+    }
+}
 
 QString Car::getCurrentRoadType() const {
     if (!currentRoad) return "Unknown";
@@ -197,7 +218,7 @@ bool Car::hasPriorityConflict(const QPointF& pos) const {
 bool Car::hasPriorityInRoundabout(const QPointF& yieldPos) const {
     if (!scene()) return false;
 
-    const qreal checkRadius = 40.0;
+    const qreal checkRadius = 35.0;
     QRectF detectionZone(yieldPos - QPointF(checkRadius, checkRadius), QSizeF(2 * checkRadius, 2 * checkRadius));
 
     for (QGraphicsItem* item : scene()->items(detectionZone)) {
@@ -207,16 +228,16 @@ bool Car::hasPriorityInRoundabout(const QPointF& yieldPos) const {
         if (other->pathIndex >= other->path.size() - 1) continue;
 
         QPointF otherPos = other->pos();
+        QVector2D otherDir = other->getCurrentDirection();
         QVector2D toYield = QVector2D(yieldPos - otherPos);
-        QVector2D dir = other->getCurrentDirection();
 
         if (toYield.length() < checkRadius &&
-            QVector2D::dotProduct(dir.normalized(), toYield.normalized()) > 0.5) {
+            QVector2D::dotProduct(otherDir.normalized(), toYield.normalized()) > 0.4) {
 
             qreal theirDist = QLineF(otherPos, yieldPos).length();
             qreal myDist = QLineF(pos(), yieldPos).length();
 
-            if (theirDist < myDist - 5.0) {
+            if (theirDist < myDist - 3.0) {
                 return true;
             }
         }
@@ -224,6 +245,7 @@ bool Car::hasPriorityInRoundabout(const QPointF& yieldPos) const {
 
     return false;
 }
+
 bool Car::canMove() {
     approachingRedLight = false;
 
@@ -240,8 +262,18 @@ bool Car::canMove() {
             }
         }
         if (nextNode && nextNode->type == NodeType::Yield) {
-            if (QLineF(pos(), nextNode->position).length() < 30.0 && hasPriorityInRoundabout(nextNode->position))
-                return false;
+            qreal distToYield = QLineF(pos(), nextNode->position).length();
+
+            if (distToYield < 20.0) {
+                QVector2D toYield(nextNode->position - pos());
+                QVector2D dir = getCurrentDirection();
+
+                if (QVector2D::dotProduct(toYield.normalized(), dir) > 0.7) {
+                    if (hasPriorityInRoundabout(nextNode->position)) {
+                        return false;
+                    }
+                }
+            }
         }
     }
 
@@ -250,7 +282,12 @@ bool Car::canMove() {
 }
 
 void Car::move() {
-    if (paused || pathIndex >= path.size() - 1 || !canMove()) {
+    if (paused || pathIndex >= path.size() - 1) {
+        return;
+    }
+
+    if (!canMove()) {
+        currentSpeed = 0.0;
         return;
     }
 
@@ -286,10 +323,17 @@ void Car::move() {
         targetSpeed = qBound(minSpeed, targetSpeed, maxSpeed);
     }
 
-    if (currentSpeed < targetSpeed) {
-        currentSpeed = qMin(currentSpeed + accRate, targetSpeed);
-    } else {
-        currentSpeed = qMax(currentSpeed - decRate, targetSpeed);
+    bool forcedStop = false;
+    if (approachingRedLight && QLineF(pos(), target).length() < 20.0) {
+        currentSpeed = 0.0;
+        forcedStop = true;
+    }
+    if (!forcedStop) {
+        if (currentSpeed < targetSpeed) {
+            currentSpeed = qMin(currentSpeed + accRate, targetSpeed);
+        } else {
+            currentSpeed = qMax(currentSpeed - decRate, targetSpeed);
+        }
     }
 
     qreal moveDist = qMin(currentSpeed, len);
