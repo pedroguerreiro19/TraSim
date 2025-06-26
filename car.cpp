@@ -17,7 +17,6 @@ Car::Car(Node* spawnNode, Node* despawnNode, Graph* graph, QGraphicsScene* scene
         setOffset(-pixmap().width() / 2.0, -pixmap().height() / 2.0);
         qDebug() << "Imagem do carro carregada com sucesso:" << imagePath;
     }
-    setZValue(10);
 
     setFlag(QGraphicsItem::ItemIsSelectable);
     setFlag(QGraphicsItem::ItemIgnoresTransformations, false);
@@ -38,14 +37,21 @@ Car::Car(Node* spawnNode, Node* despawnNode, Graph* graph, QGraphicsScene* scene
 
     if (!pathNodeIds.isEmpty()) {
         int firstNodeId = pathNodeIds.first();
-        if (graph->nodeToRoad.contains(firstNodeId)) {
-            currentRoad = graph->nodeToRoad[firstNodeId];
-            double roadSpeed = currentRoad->getMaxSpeed();
+        if (graph->nodes.contains(firstNodeId)) {
+            RoadType type = graph->nodes[firstNodeId]->roadtype;
+            double baseSpeed;
+
+            switch (type) {
+            case RoadType::Highway: baseSpeed = HIGHWAY_SPEED; break;
+            case RoadType::City: baseSpeed = CITY_SPEED; break;
+            case RoadType::Residential: baseSpeed = RESIDENTIAL_SPEED; break;
+            default: baseSpeed = 1.0; break;
+            }
 
             static std::random_device rd;
             static std::mt19937 gen(rd());
             std::uniform_real_distribution<> speedFactor(0.8, 1.0);
-            maxSpeed = roadSpeed * speedFactor(gen);
+            maxSpeed = baseSpeed * speedFactor(gen);
 
             std::uniform_real_distribution<> startFactor(0.7, 1.0);
             currentSpeed = maxSpeed * startFactor(gen);
@@ -111,14 +117,19 @@ qint64 Car::getElapsedTravelTimeMs() const {
 }
 
 QString Car::getCurrentRoadType() const {
-    if (!currentRoad) return "Unknown";
-
-    switch (currentRoad->getType()) {
-    case RoadType::City: return "City";
-    case RoadType::Highway: return "Highway";
-    case RoadType::Residential: return "Residential";
-    default: return "Unknown";
+    if (pathIndex < pathNodeIds.size()) {
+        int nodeId = pathNodeIds[pathIndex];
+        if (graph->nodes.contains(nodeId)) {
+            switch (graph->nodes[nodeId]->roadtype) {
+            case RoadType::Highway: return "Highway";
+            case RoadType::City: return "City";
+            case RoadType::Residential: return "Residential";
+            case RoadType::Roundabout: return "Roundabout";
+            default: return "Unknown";
+            }
+        }
     }
+    return "Unknown";
 }
 
 QVector2D Car::getCurrentDirection() const {
@@ -127,9 +138,21 @@ QVector2D Car::getCurrentDirection() const {
     return QVector2D(0, 0);
 }
 
+double Car::getMaxSpeed() const {
+    return maxSpeed;
+}
+
+double Car::getCurrentRoadMaxSpeedKmH() const {
+    if (currentRoad) {
+        return currentRoad->getMaxSpeed() * 84.375; // ou outro fator de conversão empírico
+    }
+    return 0.0;
+}
+
 double Car::getTotalDistance() const { return totalDistance; }
 double Car::getCurrentSpeed() const { return currentSpeed; }
 QVector<QPointF> Car::getPath() const { return path; }
+
 
 void Car::updateRotation(QPointF from, QPointF to) {
     QVector2D vec(to - from);
@@ -194,7 +217,7 @@ bool Car::hasCarInFront(double& distToCar) const {
         double proj = QVector2D::dotProduct(toOther, dir);
         if (proj > 0 && proj < distToCar) {
             double perp = qAbs(dir.x() * toOther.y() - dir.y() * toOther.x());
-            if (perp < 8.0) {
+            if (perp < 6.0) {
                 distToCar = proj;
                 return true;
             }
@@ -219,14 +242,24 @@ bool Car::hasPriorityConflict(const QPointF& pos) const {
 bool Car::hasPriorityInRoundabout(const QPointF& yieldPos) const {
     if (!scene()) return false;
 
-    const qreal checkRadius = 60.0;
+    const qreal checkRadius = 35.0;
     QRectF detectionZone(yieldPos - QPointF(checkRadius, checkRadius), QSizeF(2 * checkRadius, 2 * checkRadius));
 
     for (QGraphicsItem* item : scene()->items(detectionZone)) {
         Car* other = dynamic_cast<Car*>(item);
         if (!other || other == this) continue;
 
+        if (!other->isInRoundabout()) continue;
+
         if (other->pathIndex >= other->path.size() - 1) continue;
+
+        int otherNodeId = other->pathNodeIds.value(other->pathIndex, -1);
+        if (otherNodeId != -1 && graph->nodes.contains(otherNodeId)) {
+            const Node* otherNode = graph->nodes[otherNodeId];
+            if (otherNode->type == NodeType::Yield) {
+                continue;
+            }
+        }
 
         QPointF otherPos = other->pos();
         QVector2D otherDir = other->getCurrentDirection();
@@ -238,7 +271,7 @@ bool Car::hasPriorityInRoundabout(const QPointF& yieldPos) const {
             qreal theirDist = QLineF(otherPos, yieldPos).length();
             qreal myDist = QLineF(pos(), yieldPos).length();
 
-            if (theirDist < myDist - 3.0) {
+            if (theirDist < myDist + 5.0) {
                 return true;
             }
         }
@@ -294,12 +327,14 @@ void Car::move() {
 
     if (pathIndex < pathNodeIds.size()) {
         int nodeId = pathNodeIds[pathIndex];
-        if (graph->nodeToRoad.contains(nodeId)) {
-            currentRoad = graph->nodeToRoad[nodeId];
-            maxSpeed = currentRoad->getMaxSpeed();
-        } else {
-            currentRoad = nullptr;
-            maxSpeed = 1.0;
+        if (graph->nodes.contains(nodeId)) {
+            RoadType type = graph->nodes[nodeId]->roadtype;
+            switch (type) {
+            case RoadType::Highway: maxSpeed = HIGHWAY_SPEED; break;
+            case RoadType::City: maxSpeed = CITY_SPEED; break;
+            case RoadType::Residential: maxSpeed = RESIDENTIAL_SPEED; inRoundabout = true; break;
+            default: maxSpeed = 1.0; break;
+            }
         }
     }
 

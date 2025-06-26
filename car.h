@@ -28,11 +28,16 @@ public:
     bool isStopped();
     bool isTravelTimerRunning = false;
     bool canMove();
+    bool isInRoundabout() const { return inRoundabout; }
 
     void startMoving();
     void pause();
     void resume();
     void stop();
+
+    // Velocidade em km/h
+    double getMaxSpeed() const;
+    double getCurrentRoadMaxSpeedKmH() const;
 
     qint64 accumulatedTravelTime = 0;
 
@@ -74,6 +79,7 @@ private:
     bool isMoving = false;
     bool approachingRedLight = false;
     bool hasPassedLight = false;
+    bool inRoundabout = false;
     QSet<int> stoppedtrafficlights;
 
     // Velocidades

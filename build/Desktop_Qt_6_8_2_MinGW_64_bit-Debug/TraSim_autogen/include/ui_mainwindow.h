@@ -171,9 +171,10 @@ public:
 
         spinSpawnInterval = new QSpinBox(centralwidget);
         spinSpawnInterval->setObjectName("spinSpawnInterval");
-        spinSpawnInterval->setMinimum(1);
-        spinSpawnInterval->setMaximum(10);
-        spinSpawnInterval->setValue(3);
+        spinSpawnInterval->setMinimum(2);
+        spinSpawnInterval->setMaximum(5);
+        spinSpawnInterval->setSingleStep(1);
+        spinSpawnInterval->setValue(4);
 
         horizontalLayout_4->addWidget(spinSpawnInterval);
 

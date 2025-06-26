@@ -77,6 +77,7 @@ private:
     bool spawning = false;
     bool carsPaused = false;
     bool simulationRunning = false;
+    bool simulationstart = false;
     int simulationSeconds = 0;
     qint64 simulationElapsedMs = 0;
 

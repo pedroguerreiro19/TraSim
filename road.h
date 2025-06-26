@@ -10,12 +10,13 @@
 enum class RoadType {
     Highway,
     City,
-    Residential
+    Residential,
+    Roundabout
 };
 
 // Constantes de velocidade por tipo de estrada
 inline constexpr double HIGHWAY_SPEED     = 1.3;
-inline constexpr double CITY_SPEED        = 0.90;
+inline constexpr double CITY_SPEED        = 0.80;
 inline constexpr double RESIDENTIAL_SPEED = 0.65;
 
 class Road {
@@ -23,7 +24,6 @@ public:
     Road(const QVector<int>& nodeList, RoadType type, const QString& name);
 
     // Gets
-    int getId() const;
     RoadType getType() const;
     double getMaxSpeed() const;
     QString getName() const;

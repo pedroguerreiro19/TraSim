@@ -10,10 +10,6 @@ Road::Road(const QVector<int>& nodeList, RoadType type, const QString& name)
 }
 
 // Gets
-int Road::getId() const {
-    return id;
-}
-
 RoadType Road::getType() const {
     return type;
 }

@@ -4,8 +4,8 @@
 #include <QSet>
 #include <limits>
 
-void Graph::addNode(int id, QPointF pos, NodeType type) {
-    Node* node = new Node(id, pos, type);
+void Graph::addNode(int id, QPointF pos, NodeType type, RoadType roadtype) {
+    Node* node = new Node(id, pos, type, roadtype);
     nodes[id] = node;
 
     if (type == NodeType::Spawn) {

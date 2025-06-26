@@ -23,9 +23,10 @@ struct Node {
     int id;
     QPointF position;
     NodeType type;
+    RoadType roadtype;
 
-    Node(int id, QPointF pos, NodeType t)
-        : id(id), position(pos), type(t) {}
+    Node(int id, QPointF pos, NodeType t, RoadType rt)
+        : id(id), position(pos), type(t), roadtype (rt) {}
 };
 
 // Estrutura que representa uma aresta do grafo
@@ -53,7 +54,7 @@ public:
     QVector<Road*> roads;
 
     // Métodos principais
-    void addNode(int id, QPointF pos, NodeType type);
+    void addNode(int id, QPointF pos, NodeType type, RoadType roadtype);
     void addEdge(int start, int end, double weight);
     void addTrafficLight(int nodeId, TrafficLight* light);
     Node* getNode(int id);
