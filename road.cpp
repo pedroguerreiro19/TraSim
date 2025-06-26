@@ -26,7 +26,6 @@ double Road::getMaxSpeed() const {
     return maxSpeed;
 }
 
-// Define a velocidade máxima com base no tipo da estrada
 void Road::updateMaxSpeed() {
     switch (type) {
     case RoadType::Highway:
@@ -37,6 +36,9 @@ void Road::updateMaxSpeed() {
         break;
     case RoadType::Residential:
         maxSpeed = RESIDENTIAL_SPEED;
+        break;
+    case RoadType::Roundabout:
+        maxSpeed = CITY_SPEED;
         break;
     }
 }
