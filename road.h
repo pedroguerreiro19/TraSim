@@ -26,8 +26,6 @@ public:
     // Gets
     RoadType getType() const;
     double getMaxSpeed() const;
-    QString getName() const;
-    QVector<int> getNodeList() const;
 private:
     // Atributos
     int id;

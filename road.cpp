@@ -14,14 +14,6 @@ RoadType Road::getType() const {
     return type;
 }
 
-QString Road::getName() const {
-    return name;
-}
-
-QVector<int> Road::getNodeList() const {
-    return nodeList;
-}
-
 double Road::getMaxSpeed() const {
     return maxSpeed;
 }
