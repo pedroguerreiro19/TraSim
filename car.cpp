@@ -144,7 +144,7 @@ double Car::getMaxSpeed() const {
 
 double Car::getCurrentRoadMaxSpeedKmH() const {
     if (currentRoad) {
-        return currentRoad->getMaxSpeed() * 84.375; // ou outro fator de conversão empírico
+        return currentRoad->getMaxSpeed() * 84.375;
     }
     return 0.0;
 }
@@ -276,7 +276,6 @@ bool Car::hasPriorityInRoundabout(const QPointF& yieldPos) const {
             }
         }
     }
-
     return false;
 }
 

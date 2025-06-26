@@ -1409,7 +1409,7 @@ void MainWindow::updateCarDataTable()
                               : 0.0;
 
         ui->carDataTable->insertRow(row);
-        QTableWidgetItem* sectionHeader = new QTableWidgetItem(" Selected car info ");
+        QTableWidgetItem* sectionHeader = new QTableWidgetItem(" Selected car details ");
         sectionHeader->setFlags(Qt::ItemIsEnabled);
         sectionHeader->setBackground(Qt::lightGray);
         sectionHeader->setTextAlignment(Qt::AlignCenter);
