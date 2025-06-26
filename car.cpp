@@ -50,10 +50,10 @@ Car::Car(Node* spawnNode, Node* despawnNode, Graph* graph, QGraphicsScene* scene
 
             static std::random_device rd;
             static std::mt19937 gen(rd());
-            std::uniform_real_distribution<> speedFactor(0.8, 1.0);
+            std::uniform_real_distribution<> speedFactor(0.9, 1.0);
             maxSpeed = baseSpeed * speedFactor(gen);
 
-            std::uniform_real_distribution<> startFactor(0.7, 1.0);
+            std::uniform_real_distribution<> startFactor(0.9, 1.0);
             currentSpeed = maxSpeed * startFactor(gen);
         }
     }
@@ -63,8 +63,8 @@ Car::Car(Node* spawnNode, Node* despawnNode, Graph* graph, QGraphicsScene* scene
     static std::mt19937 gen(rd());
 
     // Distribuições
-    std::uniform_real_distribution<> minSpeedDist(0.05, 0.15);
-    std::uniform_real_distribution<> accDist(0.02, 0.04);
+    std::uniform_real_distribution<> minSpeedDist(0.15, 0.25);
+    std::uniform_real_distribution<> accDist(0.03, 0.05);
     std::uniform_real_distribution<> decMultDist(1.2, 1.7);
 
     // Atribuição dos parâmetros com variabilidade
@@ -227,7 +227,7 @@ bool Car::hasCarInFront(double& distToCar) const {
 }
 
 bool Car::hasPriorityConflict(const QPointF& pos) const {
-    QRectF zone(pos - QPointF(15, 15), QSizeF(30, 30));
+    QRectF zone(pos - QPointF(50, 50), QSizeF(100, 100));
     for (QGraphicsItem* item : scene()->items(zone)) {
         Car* other = dynamic_cast<Car*>(item);
         if (other && other != this) {
@@ -242,7 +242,7 @@ bool Car::hasPriorityConflict(const QPointF& pos) const {
 bool Car::hasPriorityInRoundabout(const QPointF& yieldPos) const {
     if (!scene()) return false;
 
-    const qreal checkRadius = 35.0;
+    const qreal checkRadius = 120.0;
     QRectF detectionZone(yieldPos - QPointF(checkRadius, checkRadius), QSizeF(2 * checkRadius, 2 * checkRadius));
 
     for (QGraphicsItem* item : scene()->items(detectionZone)) {
