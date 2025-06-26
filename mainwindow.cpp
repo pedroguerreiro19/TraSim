@@ -1070,7 +1070,6 @@ void MainWindow::spawnCarRandomly() {
 
 void MainWindow::on_btnSpawnDespawn_clicked() {
     if (!spawning) {
-
         if (!simulationRunning) {
             QMessageBox::warning(this, "Warning", "The simulation needs to be running!");
             return;
@@ -1081,6 +1080,10 @@ void MainWindow::on_btnSpawnDespawn_clicked() {
         ui->btnSpawnDespawn->setText("Stop vehicle spawning");
         spawning = true;
     } else {
+        if (!simulationRunning) {
+            QMessageBox::warning(this, "Warning", "The simulation needs to be running!");
+            return;
+        }
         spawnTimer->stop();
         ui->btnSpawnDespawn->setText("Start vehicle spawning");
         spawning = false;
@@ -1436,7 +1439,7 @@ void MainWindow::updateCarDataTable()
         ui->carDataTable->setItem(row - 1, 1, new QTableWidgetItem(selectedCar->getCurrentRoadType()));
 
         ui->carDataTable->insertRow(row);
-        ui->carDataTable->setItem(row++, 0, new QTableWidgetItem("Distance (m):"));
+        ui->carDataTable->setItem(row++, 0, new QTableWidgetItem("Distance covered (m):"));
         ui->carDataTable->setItem(row - 1, 1, new QTableWidgetItem(QString::number(selectedCar->getTotalDistance(), 'f', 2)));
 
 
