@@ -269,7 +269,7 @@ void MainWindow::setupScene() {
     graph->addNode(376, QPointF(1736, 144), NodeType::Ordinary, RoadType::Roundabout);
     //saida direita
     graph->addNode(369, QPointF(1913, 145), NodeType::Despawn, RoadType::Highway);
-    graph->addNode(370, QPointF(1910, 103), NodeType::Spawn, RoadType::Highway);
+    graph->addNode(370, QPointF(1910, 103), NodeType::Spawn, RoadType::City);
     //saida norte
     graph->addNode(371, QPointF(1733, 3), NodeType::Despawn, RoadType::Highway);
     graph->addNode(372, QPointF(1677, 3), NodeType::Spawn, RoadType::Highway);
