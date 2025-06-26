@@ -79,7 +79,7 @@ private:
     // Velocidades
     qreal maxSpeed = 1.0;
     qreal minSpeed = 0.2;
-    qreal accRate = 0.02;
+    qreal accRate = 0.03;
     qreal decRate = 0.05;
 
 

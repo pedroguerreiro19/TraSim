@@ -17,6 +17,7 @@ Car::Car(Node* spawnNode, Node* despawnNode, Graph* graph, QGraphicsScene* scene
         setOffset(-pixmap().width() / 2.0, -pixmap().height() / 2.0);
         qDebug() << "Imagem do carro carregada com sucesso:" << imagePath;
     }
+    setZValue(10);
 
     setFlag(QGraphicsItem::ItemIsSelectable);
     setFlag(QGraphicsItem::ItemIgnoresTransformations, false);
@@ -57,7 +58,7 @@ Car::Car(Node* spawnNode, Node* despawnNode, Graph* graph, QGraphicsScene* scene
 
     // Distribuições
     std::uniform_real_distribution<> minSpeedDist(0.05, 0.15);
-    std::uniform_real_distribution<> accDist(0.01, 0.02);
+    std::uniform_real_distribution<> accDist(0.02, 0.04);
     std::uniform_real_distribution<> decMultDist(1.2, 1.7);
 
     // Atribuição dos parâmetros com variabilidade
@@ -193,7 +194,7 @@ bool Car::hasCarInFront(double& distToCar) const {
         double proj = QVector2D::dotProduct(toOther, dir);
         if (proj > 0 && proj < distToCar) {
             double perp = qAbs(dir.x() * toOther.y() - dir.y() * toOther.x());
-            if (perp < 5.0) {
+            if (perp < 8.0) {
                 distToCar = proj;
                 return true;
             }
@@ -218,7 +219,7 @@ bool Car::hasPriorityConflict(const QPointF& pos) const {
 bool Car::hasPriorityInRoundabout(const QPointF& yieldPos) const {
     if (!scene()) return false;
 
-    const qreal checkRadius = 35.0;
+    const qreal checkRadius = 60.0;
     QRectF detectionZone(yieldPos - QPointF(checkRadius, checkRadius), QSizeF(2 * checkRadius, 2 * checkRadius));
 
     for (QGraphicsItem* item : scene()->items(detectionZone)) {
@@ -278,7 +279,7 @@ bool Car::canMove() {
     }
 
     double distToCar = 999;
-    return !(hasCarInFront(distToCar) && distToCar < 25.0);
+    return !(hasCarInFront(distToCar) && distToCar < 40.0);
 }
 
 void Car::move() {
@@ -322,7 +323,11 @@ void Car::move() {
         targetSpeed = maxSpeed * (dist / 90.0);
         targetSpeed = qBound(minSpeed, targetSpeed, maxSpeed);
     } else if (carAhead) {
-        targetSpeed = maxSpeed * (distToCar / 90.0);
+        if (distToCar < 20.0) {
+            targetSpeed = 0.0;
+        } else {
+            targetSpeed = maxSpeed * ((distToCar - 20.0) / 70.0);
+        }
         targetSpeed = qBound(minSpeed, targetSpeed, maxSpeed);
     }
 

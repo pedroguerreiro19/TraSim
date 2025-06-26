@@ -1229,7 +1229,6 @@ void MainWindow::on_btnPauseResumeCars_clicked()
 
         if (groupA) groupA->pause();
         if (groupB) groupB->pause();
-
     } else {
         ui->btnPauseResumeCars->setText("Stop simulation");
 
@@ -1323,9 +1322,8 @@ void MainWindow::on_btnRestartSimulation_clicked() {
     ui->btnSpawnDespawn->setText("Start vehicle spawning");
     ui->btnPauseResumeCars->setText("Stop simulation");
 
-    for (auto tl : graph->trafficLights.values()) {
-        tl->resume();
-    }
+    if (groupA) groupA->resume();
+    if (groupB) groupB->resume();
 
     elapsedTimer.restart();
     simulationTimer->start(50);
@@ -1533,7 +1531,16 @@ void MainWindow::updateCarDataTable()
 
         ui->carDataTable->insertRow(row);
         ui->carDataTable->setItem(row++, 0, new QTableWidgetItem("Speed (km/h):"));
-        ui->carDataTable->setItem(row - 1, 1, new QTableWidgetItem(QString::number(selectedCar->getCurrentSpeed(), 'f', 2)));
+        if (selectedCar->getCurrentSpeed() > 0.90){
+            double newspeed = selectedCar->getCurrentSpeed() * 92;
+            ui->carDataTable->setItem(row - 1, 1, new QTableWidgetItem(QString::number(newspeed, 'f', 2)));
+        } else if (selectedCar->getCurrentSpeed() < 0.66){
+            double newspeed = selectedCar->getCurrentSpeed() * 46;
+            ui->carDataTable->setItem(row - 1, 1, new QTableWidgetItem(QString::number(newspeed, 'f', 2)));
+        } else {
+            double newspeed = selectedCar->getCurrentSpeed() * 55;
+            ui->carDataTable->setItem(row - 1, 1, new QTableWidgetItem(QString::number(newspeed, 'f', 2)));
+        }
 
         ui->carDataTable->insertRow(row);
         ui->carDataTable->setItem(row++, 0, new QTableWidgetItem("Road Type:"));
