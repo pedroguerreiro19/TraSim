@@ -363,7 +363,8 @@
 		"C:/Qt/6.8.2/mingw_64/lib/cmake/Qt6Charts/Qt6ChartsAdditionalTargetInfo.cmake",
 		"C:/Qt/6.8.2/mingw_64/lib/cmake/Qt6Charts/Qt6ChartsVersionlessAliasTargets.cmake",
 		"C:/Qt/Tools/CMake_64/share/cmake-3.30/Modules/GNUInstallDirs.cmake",
-		"C:/Users/dined/Documents/TraSim/img.qrc"
+		"C:/Users/dined/Documents/TraSim/img.qrc",
+		"C:/Users/dined/Documents/TraSim/map.qrc"
 	],
 	"CMAKE_SOURCE_DIR" : "C:/Users/dined/Documents/TraSim",
 	"CROSS_CONFIG" : false,

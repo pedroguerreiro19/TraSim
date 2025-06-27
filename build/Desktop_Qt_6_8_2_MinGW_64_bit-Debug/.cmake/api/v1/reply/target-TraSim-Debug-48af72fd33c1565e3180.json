@@ -77,13 +77,13 @@
 			{
 				"command" : 4,
 				"file" : 1,
-				"line" : 74,
+				"line" : 75,
 				"parent" : 0
 			},
 			{
 				"command" : 5,
 				"file" : 1,
-				"line" : 57,
+				"line" : 58,
 				"parent" : 0
 			},
 			{
@@ -125,7 +125,7 @@
 			{
 				"command" : 5,
 				"file" : 1,
-				"line" : 56,
+				"line" : 57,
 				"parent" : 0
 			},
 			{
@@ -441,19 +441,20 @@
 				10,
 				12,
 				14,
-				17,
-				20
+				18,
+				21,
+				22
 			]
 		}
 	],
 	"dependencies" : 
 	[
 		{
-			"backtrace" : 0,
-			"id" : "TraSim_autogen::@6890427a1f51a3e7e1df"
+			"id" : "TraSim_autogen_timestamp_deps::@6890427a1f51a3e7e1df"
 		},
 		{
-			"id" : "TraSim_autogen_timestamp_deps::@6890427a1f51a3e7e1df"
+			"backtrace" : 0,
+			"id" : "TraSim_autogen::@6890427a1f51a3e7e1df"
 		}
 	],
 	"id" : "TraSim::@6890427a1f51a3e7e1df",
@@ -591,8 +592,9 @@
 				10,
 				12,
 				14,
-				17,
-				20
+				18,
+				21,
+				22
 			]
 		},
 		{
@@ -605,8 +607,8 @@
 				9,
 				11,
 				13,
-				16,
-				18
+				17,
+				19
 			]
 		},
 		{
@@ -620,22 +622,24 @@
 			"name" : "Resources",
 			"sourceIndexes" : 
 			[
-				15
+				15,
+				16
 			]
 		},
 		{
 			"name" : "",
 			"sourceIndexes" : 
 			[
-				19
+				20
 			]
 		},
 		{
 			"name" : "CMake Rules",
 			"sourceIndexes" : 
 			[
-				21,
-				22
+				23,
+				24,
+				25
 			]
 		}
 	],
@@ -732,6 +736,11 @@
 		},
 		{
 			"backtrace" : 4,
+			"path" : "map.qrc",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 4,
 			"path" : "trafficlightgroup.h",
 			"sourceGroupIndex" : 1
 		},
@@ -762,6 +771,13 @@
 		},
 		{
 			"backtrace" : 0,
+			"compileGroupIndex" : 0,
+			"isGenerated" : true,
+			"path" : "build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/TraSim_autogen/EWIEGA46WW/qrc_map.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 0,
 			"isGenerated" : true,
 			"path" : "build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/TraSim_autogen/timestamp.rule",
 			"sourceGroupIndex" : 5
@@ -770,6 +786,12 @@
 			"backtrace" : 0,
 			"isGenerated" : true,
 			"path" : "build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/TraSim_autogen/EWIEGA46WW/qrc_img.cpp.rule",
+			"sourceGroupIndex" : 5
+		},
+		{
+			"backtrace" : 0,
+			"isGenerated" : true,
+			"path" : "build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/TraSim_autogen/EWIEGA46WW/qrc_map.cpp.rule",
 			"sourceGroupIndex" : 5
 		}
 	],
