@@ -20,6 +20,7 @@ C:/Users/dined/Documents/TraSim/build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/TraSim
   C:/Qt/6.8.2/mingw_64/include/QtCharts/qtchartsexports.h \
   C:/Qt/6.8.2/mingw_64/include/QtCharts/qvalueaxis.h \
   C:/Qt/6.8.2/mingw_64/include/QtCharts/qxyseries.h \
+  C:/Qt/6.8.2/mingw_64/include/QtCore/QElapsedTimer \
   C:/Qt/6.8.2/mingw_64/include/QtCore/QHash \
   C:/Qt/6.8.2/mingw_64/include/QtCore/QList \
   C:/Qt/6.8.2/mingw_64/include/QtCore/QMap \
@@ -173,6 +174,7 @@ C:/Users/dined/Documents/TraSim/build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/TraSim
   C:/Qt/6.8.2/mingw_64/include/QtGui/QBrush \
   C:/Qt/6.8.2/mingw_64/include/QtGui/QFont \
   C:/Qt/6.8.2/mingw_64/include/QtGui/QImage \
+  C:/Qt/6.8.2/mingw_64/include/QtGui/QPainter \
   C:/Qt/6.8.2/mingw_64/include/QtGui/QPen \
   C:/Qt/6.8.2/mingw_64/include/QtGui/QTransform \
   C:/Qt/6.8.2/mingw_64/include/QtGui/qaction.h \
@@ -217,6 +219,7 @@ C:/Users/dined/Documents/TraSim/build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/TraSim
   C:/Qt/6.8.2/mingw_64/include/QtGui/qwindowdefs_win.h \
   C:/Qt/6.8.2/mingw_64/include/QtWidgets/QDialog \
   C:/Qt/6.8.2/mingw_64/include/QtWidgets/QGraphicsItem \
+  C:/Qt/6.8.2/mingw_64/include/QtWidgets/QGraphicsPathItem \
   C:/Qt/6.8.2/mingw_64/include/QtWidgets/QGraphicsScene \
   C:/Qt/6.8.2/mingw_64/include/QtWidgets/QGraphicsView \
   C:/Qt/6.8.2/mingw_64/include/QtWidgets/QGraphicsWidget \
@@ -455,4 +458,6 @@ C:/Users/dined/Documents/TraSim/build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/TraSim
   C:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/wchar.h \
   C:/Users/dined/Documents/TraSim/carspawner.h \
   C:/Users/dined/Documents/TraSim/graph.h \
-  C:/Users/dined/Documents/TraSim/road.h
+  C:/Users/dined/Documents/TraSim/road.h \
+  C:/Users/dined/Documents/TraSim/trafficlight.h \
+  C:/Users/dined/Documents/TraSim/trafficlightgroup.h

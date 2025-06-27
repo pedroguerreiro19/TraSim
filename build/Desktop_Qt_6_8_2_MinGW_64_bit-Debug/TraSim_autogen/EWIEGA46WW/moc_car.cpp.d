@@ -5,6 +5,7 @@ C:/Users/dined/Documents/TraSim/build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/TraSim
   C:/Qt/6.8.2/mingw_64/include/QtCore/QMap \
   C:/Qt/6.8.2/mingw_64/include/QtCore/QObject \
   C:/Qt/6.8.2/mingw_64/include/QtCore/QPointF \
+  C:/Qt/6.8.2/mingw_64/include/QtCore/QSet \
   C:/Qt/6.8.2/mingw_64/include/QtCore/QString \
   C:/Qt/6.8.2/mingw_64/include/QtCore/QTimer \
   C:/Qt/6.8.2/mingw_64/include/QtCore/QVector \

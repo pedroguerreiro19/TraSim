@@ -11,6 +11,7 @@
 
 #include <QtCore/QVariant>
 #include <QtGui/QAction>
+#include <QtGui/QIcon>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QGraphicsView>
 #include <QtWidgets/QHBoxLayout>
@@ -47,19 +48,12 @@ public:
     QPushButton *btnShowCharts;
     QLabel *lblSimulationChanges;
     QHBoxLayout *horizontalLayout_5;
-    QLabel *lblGreen;
-    QLabel *lblYellow;
-    QLabel *lblRed;
-    QHBoxLayout *horizontalLayout_3;
-    QSpinBox *spinGreen;
-    QSpinBox *spinYellow;
-    QSpinBox *spinRed;
     QHBoxLayout *horizontalLayout_4;
     QPushButton *btnSpawnDespawn;
     QLabel *labelSpawnInterval;
     QSpinBox *spinSpawnInterval;
     QPushButton *btnPauseResumeCars;
-    QPushButton *btnDespawnCars;
+    QPushButton *btnRestartSimulation;
     QStatusBar *statusbar;
     QMenuBar *menubar;
 
@@ -73,6 +67,9 @@ public:
         sizePolicy.setVerticalStretch(0);
         sizePolicy.setHeightForWidth(MainWindow->sizePolicy().hasHeightForWidth());
         MainWindow->setSizePolicy(sizePolicy);
+        QIcon icon;
+        icon.addFile(QString::fromUtf8(":/icon/icon/app_icon.ico"), QSize(), QIcon::Mode::Normal, QIcon::State::Off);
+        MainWindow->setWindowIcon(icon);
         MainWindow->setStyleSheet(QString::fromUtf8(""));
         actionIniciar = new QAction(MainWindow);
         actionIniciar->setObjectName("actionIniciar");
@@ -154,47 +151,8 @@ public:
 
         horizontalLayout_5 = new QHBoxLayout();
         horizontalLayout_5->setObjectName("horizontalLayout_5");
-        lblGreen = new QLabel(centralwidget);
-        lblGreen->setObjectName("lblGreen");
-        lblGreen->setAlignment(Qt::AlignmentFlag::AlignCenter);
-
-        horizontalLayout_5->addWidget(lblGreen);
-
-        lblYellow = new QLabel(centralwidget);
-        lblYellow->setObjectName("lblYellow");
-        lblYellow->setTabletTracking(false);
-        lblYellow->setAutoFillBackground(false);
-        lblYellow->setAlignment(Qt::AlignmentFlag::AlignCenter);
-
-        horizontalLayout_5->addWidget(lblYellow);
-
-        lblRed = new QLabel(centralwidget);
-        lblRed->setObjectName("lblRed");
-
-        horizontalLayout_5->addWidget(lblRed);
-
 
         verticalLayout_2->addLayout(horizontalLayout_5);
-
-        horizontalLayout_3 = new QHBoxLayout();
-        horizontalLayout_3->setObjectName("horizontalLayout_3");
-        spinGreen = new QSpinBox(centralwidget);
-        spinGreen->setObjectName("spinGreen");
-
-        horizontalLayout_3->addWidget(spinGreen);
-
-        spinYellow = new QSpinBox(centralwidget);
-        spinYellow->setObjectName("spinYellow");
-
-        horizontalLayout_3->addWidget(spinYellow);
-
-        spinRed = new QSpinBox(centralwidget);
-        spinRed->setObjectName("spinRed");
-
-        horizontalLayout_3->addWidget(spinRed);
-
-
-        verticalLayout_2->addLayout(horizontalLayout_3);
 
         horizontalLayout_4 = new QHBoxLayout();
         horizontalLayout_4->setObjectName("horizontalLayout_4");
@@ -213,9 +171,10 @@ public:
 
         spinSpawnInterval = new QSpinBox(centralwidget);
         spinSpawnInterval->setObjectName("spinSpawnInterval");
-        spinSpawnInterval->setMinimum(1);
-        spinSpawnInterval->setMaximum(10);
-        spinSpawnInterval->setValue(3);
+        spinSpawnInterval->setMinimum(2);
+        spinSpawnInterval->setMaximum(5);
+        spinSpawnInterval->setSingleStep(1);
+        spinSpawnInterval->setValue(4);
 
         horizontalLayout_4->addWidget(spinSpawnInterval);
 
@@ -227,10 +186,10 @@ public:
 
         verticalLayout_2->addWidget(btnPauseResumeCars);
 
-        btnDespawnCars = new QPushButton(centralwidget);
-        btnDespawnCars->setObjectName("btnDespawnCars");
+        btnRestartSimulation = new QPushButton(centralwidget);
+        btnRestartSimulation->setObjectName("btnRestartSimulation");
 
-        verticalLayout_2->addWidget(btnDespawnCars);
+        verticalLayout_2->addWidget(btnRestartSimulation);
 
 
         horizontalLayout->addLayout(verticalLayout_2);
@@ -254,7 +213,7 @@ public:
 
     void retranslateUi(QMainWindow *MainWindow)
     {
-        MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "MainWindow", nullptr));
+        MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "TraSim - Simulador de tr\303\242nsito", nullptr));
         actionIniciar->setText(QCoreApplication::translate("MainWindow", "Iniciar", nullptr));
         actionParar->setText(QCoreApplication::translate("MainWindow", "Parar", nullptr));
         actionReiniciar->setText(QCoreApplication::translate("MainWindow", "Reiniciar ", nullptr));
@@ -264,13 +223,10 @@ public:
         lblSimulationInfo->setText(QCoreApplication::translate("MainWindow", "Simulation Info", nullptr));
         btnShowCharts->setText(QCoreApplication::translate("MainWindow", "Show Charts", nullptr));
         lblSimulationChanges->setText(QCoreApplication::translate("MainWindow", "Simulation settings", nullptr));
-        lblGreen->setText(QCoreApplication::translate("MainWindow", "Green Light duration(s)", nullptr));
-        lblYellow->setText(QCoreApplication::translate("MainWindow", "Yellow Light duration (s)", nullptr));
-        lblRed->setText(QCoreApplication::translate("MainWindow", "Red Ligh duration (s)", nullptr));
         btnSpawnDespawn->setText(QCoreApplication::translate("MainWindow", "Start vehicle spawning", nullptr));
         labelSpawnInterval->setText(QCoreApplication::translate("MainWindow", "Time between spawns (s):", nullptr));
         btnPauseResumeCars->setText(QCoreApplication::translate("MainWindow", "Stop simulation", nullptr));
-        btnDespawnCars->setText(QCoreApplication::translate("MainWindow", "Restart simulation", nullptr));
+        btnRestartSimulation->setText(QCoreApplication::translate("MainWindow", "Restart simulation", nullptr));
     } // retranslateUi
 
 };

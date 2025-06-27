@@ -10,4 +10,7 @@
         <file>car5.png</file>
         <file>car6.png</file>
     </qresource>
+    <qresource prefix="/icon">
+        <file>icon/app_icon.ico</file>
+    </qresource>
 </RCC>

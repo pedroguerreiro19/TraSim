@@ -1,12 +1,12 @@
 #include "graph.h"
 #include "trafficlight.h"
+
 #include <QSet>
+#include <limits>
 
-
-void Graph::addNode(int id, QPointF pos, NodeType type) {
-    Node* node = new Node(id, pos, type);
+void Graph::addNode(int id, QPointF pos, NodeType type, RoadType roadtype) {
+    Node* node = new Node(id, pos, type, roadtype);
     nodes[id] = node;
-
 
     if (type == NodeType::Spawn) {
         spawnNodes.append(node);
@@ -15,6 +15,9 @@ void Graph::addNode(int id, QPointF pos, NodeType type) {
     }
 }
 
+Node* Graph::getNode(int id) {
+    return nodes.contains(id) ? nodes[id] : nullptr;
+}
 
 void Graph::addEdge(int start, int end, double weight) {
     edges.push_back(Edge(start, end, weight));
@@ -25,10 +28,7 @@ void Graph::addTrafficLight(int nodeId, TrafficLight* light) {
 }
 
 TrafficLight* Graph::getTrafficLightAtNode(int nodeId) {
-    if (trafficLights.contains(nodeId)) {
-        return trafficLights[nodeId];
-    }
-    return nullptr;
+    return trafficLights.value(nodeId, nullptr);
 }
 
 QVector<int> Graph::dijkstra(int start, int end) {
@@ -54,7 +54,7 @@ QVector<int> Graph::dijkstra(int start, int end) {
 
         visited.insert(u);
 
-        for (Edge e : edges) {
+        for (const Edge& e : edges) {
             if (e.startNode == u) {
                 int v = e.endNode;
                 double alt = dist[u] + e.weight;
@@ -67,6 +67,9 @@ QVector<int> Graph::dijkstra(int start, int end) {
     }
 
     QVector<int> path;
+    if (!prev.contains(end) && start != end)
+        return path;
+
     for (int at = end; at != start; at = prev[at]) {
         path.prepend(at);
     }
