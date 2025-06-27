@@ -1024,7 +1024,7 @@ void MainWindow::setupScene() {
 
     setupCarDataTableStyle();
     scene->update();
-    visualizarNodes();
+    //visualizarNodes();
 
 
     ui->graphicsView->setRenderHint(QPainter::Antialiasing);
