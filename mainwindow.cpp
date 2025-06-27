@@ -1024,7 +1024,7 @@ void MainWindow::setupScene() {
 
     setupCarDataTableStyle();
     scene->update();
-    visualizarNodes();
+    //visualizarNodes();
 
 
     ui->graphicsView->setRenderHint(QPainter::Antialiasing);
@@ -1371,31 +1371,31 @@ void MainWindow::updateCarDataTable()
     ui->carDataTable->setHorizontalHeaderLabels({"Metrics", "Value"});
 
     int row = 0;
-    ui->carDataTable->setItem(row++, 0, new QTableWidgetItem("Active cars:"));
+    ui->carDataTable->setItem(row++, 0, new QTableWidgetItem("Active vehicles:"));
     ui->carDataTable->setItem(row - 1, 1, new QTableWidgetItem(QString::number(numActive)));
 
-    ui->carDataTable->setItem(row++, 0, new QTableWidgetItem("Total of cars despawned:"));
+    ui->carDataTable->setItem(row++, 0, new QTableWidgetItem("Total of vehicles despawned:"));
     ui->carDataTable->setItem(row - 1, 1, new QTableWidgetItem(QString::number(numFinished)));
 
-    ui->carDataTable->setItem(row++, 0, new QTableWidgetItem("Average distance covered per car (m):"));
+    ui->carDataTable->setItem(row++, 0, new QTableWidgetItem("Average distance covered per vehicle (m):"));
     ui->carDataTable->setItem(row - 1, 1, new QTableWidgetItem(QString::number(avgDistance, 'f', 2)));
 
-    ui->carDataTable->setItem(row++, 0, new QTableWidgetItem("Average travel time per car (s):"));
+    ui->carDataTable->setItem(row++, 0, new QTableWidgetItem("Average travel time per vehicle (s):"));
     ui->carDataTable->setItem(row - 1, 1, new QTableWidgetItem(QString::number(avgTime, 'f', 2)));
 
-    ui->carDataTable->setItem(row++, 0, new QTableWidgetItem("Average velocity per car (km/h):"));
+    ui->carDataTable->setItem(row++, 0, new QTableWidgetItem("Average velocity per vehicle (km/h):"));
     ui->carDataTable->setItem(row - 1, 1, new QTableWidgetItem(QString::number(avgSpeed, 'f', 2)));
 
-    ui->carDataTable->setItem(row++, 0, new QTableWidgetItem("Cars stopped at traffic lights or traffic:"));
+    ui->carDataTable->setItem(row++, 0, new QTableWidgetItem("Vehicles stopped at traffic lights or traffic:"));
     ui->carDataTable->setItem(row - 1, 1, new QTableWidgetItem(QString::number(carsStoppedNow)));
 
-    ui->carDataTable->setItem(row++, 0, new QTableWidgetItem("Percentage of stopped cars (%):"));
+    ui->carDataTable->setItem(row++, 0, new QTableWidgetItem("Percentage of stopped vehicles (%):"));
     ui->carDataTable->setItem(row - 1, 1, new QTableWidgetItem(QString::number(percentStopped, 'f', 1)));
 
     ui->carDataTable->setItem(row++, 0, new QTableWidgetItem("Average traffic flow (%):"));
     ui->carDataTable->setItem(row - 1, 1, new QTableWidgetItem(QString::number(trafficFlow, 'f', 1)));
 
-    ui->carDataTable->setItem(row++, 0, new QTableWidgetItem("Max number of active cars:"));
+    ui->carDataTable->setItem(row++, 0, new QTableWidgetItem("Max number of active vehicles:"));
     ui->carDataTable->setItem(row - 1, 1, new QTableWidgetItem(QString::number(maxCarsActive)));
 
     ui->carDataTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
