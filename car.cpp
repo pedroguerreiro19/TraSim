@@ -217,7 +217,7 @@ bool Car::hasCarInFront(double& distToCar) const {
         double proj = QVector2D::dotProduct(toOther, dir);
         if (proj > 0 && proj < distToCar) {
             double perp = qAbs(dir.x() * toOther.y() - dir.y() * toOther.x());
-            if (perp < 4.0) {
+            if (perp < 2.0) {
                 distToCar = proj;
                 return true;
             }
