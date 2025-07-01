@@ -208,7 +208,7 @@ bool Car::hasCarInFront(double& distToCar) const {
     if (dir.length() == 0) return false;
     dir.normalize();
 
-    distToCar = 120.0;
+    distToCar = 200.0;
     for (QGraphicsItem* item : scene()->items()) {
         Car* other = dynamic_cast<Car*>(item);
         if (!other || other == this) continue;
