@@ -202,6 +202,7 @@ void Car::stop() {
 
 bool Car::hasCarInFront(double& distToCar) const {
     if (!scene() || pathIndex >= path.size() - 1) return false;
+
     QPointF myPos = pos();
     QPointF next = path[pathIndex + 1];
     QVector2D dir(next - myPos);
@@ -213,11 +214,19 @@ bool Car::hasCarInFront(double& distToCar) const {
         Car* other = dynamic_cast<Car*>(item);
         if (!other || other == this) continue;
 
+        if (other->pathNodeIds.size() > 1 && pathNodeIds.size() > 1) {
+            int myNextNode = pathNodeIds.value(pathIndex + 1, -1);
+            int otherNextNode = other->pathNodeIds.value(other->pathIndex + 1, -1);
+            if (myNextNode != otherNextNode) {
+                continue;
+            }
+        }
+
         QVector2D toOther(other->pos() - myPos);
         double proj = QVector2D::dotProduct(toOther, dir);
         if (proj > 0 && proj < distToCar) {
             double perp = qAbs(dir.x() * toOther.y() - dir.y() * toOther.x());
-            if (perp < 2.0) {
+            if (perp < 5.0) {
                 distToCar = proj;
                 return true;
             }
