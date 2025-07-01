@@ -50,10 +50,10 @@ Car::Car(Node* spawnNode, Node* despawnNode, Graph* graph, QGraphicsScene* scene
 
             static std::random_device rd;
             static std::mt19937 gen(rd());
-            std::uniform_real_distribution<> speedFactor(0.9, 1.0);
+            std::uniform_real_distribution<> speedFactor(0.95, 1.0);
             maxSpeed = baseSpeed * speedFactor(gen);
 
-            std::uniform_real_distribution<> startFactor(0.9, 1.0);
+            std::uniform_real_distribution<> startFactor(0.95, 1.0);
             currentSpeed = maxSpeed * startFactor(gen);
         }
     }
@@ -64,8 +64,8 @@ Car::Car(Node* spawnNode, Node* despawnNode, Graph* graph, QGraphicsScene* scene
 
     // Distribuições
     std::uniform_real_distribution<> minSpeedDist(0.15, 0.25);
-    std::uniform_real_distribution<> accDist(0.03, 0.05);
-    std::uniform_real_distribution<> decMultDist(1.2, 1.7);
+    std::uniform_real_distribution<> accDist(0.005, 0.01);
+    std::uniform_real_distribution<> decMultDist(1.2, 1.5);
 
     // Atribuição dos parâmetros com variabilidade
     minSpeed = minSpeedDist(gen);
@@ -226,7 +226,7 @@ bool Car::hasCarInFront(double& distToCar) const {
         double proj = QVector2D::dotProduct(toOther, dir);
         if (proj > 0 && proj < distToCar) {
             double perp = qAbs(dir.x() * toOther.y() - dir.y() * toOther.x());
-            if (perp < 5.0) {
+            if (perp < 8.0) {
                 distToCar = proj;
                 return true;
             }
@@ -251,7 +251,7 @@ bool Car::hasPriorityConflict(const QPointF& pos) const {
 bool Car::hasPriorityInRoundabout(const QPointF& yieldPos) const {
     if (!scene()) return false;
 
-    const qreal checkRadius = 120.0;
+    const qreal checkRadius = 150.0;
     QRectF detectionZone(yieldPos - QPointF(checkRadius, checkRadius), QSizeF(2 * checkRadius, 2 * checkRadius));
 
     for (QGraphicsItem* item : scene()->items(detectionZone)) {
@@ -260,29 +260,12 @@ bool Car::hasPriorityInRoundabout(const QPointF& yieldPos) const {
 
         if (!other->isInRoundabout()) continue;
 
-        if (other->pathIndex >= other->path.size() - 1) continue;
+        // Distância do outro carro ao yield
+        qreal theirDist = QLineF(other->pos(), yieldPos).length();
+        qreal myDist = QLineF(this->pos(), yieldPos).length();
 
-        int otherNodeId = other->pathNodeIds.value(other->pathIndex, -1);
-        if (otherNodeId != -1 && graph->nodes.contains(otherNodeId)) {
-            const Node* otherNode = graph->nodes[otherNodeId];
-            if (otherNode->type == NodeType::Yield) {
-                continue;
-            }
-        }
-
-        QPointF otherPos = other->pos();
-        QVector2D otherDir = other->getCurrentDirection();
-        QVector2D toYield = QVector2D(yieldPos - otherPos);
-
-        if (toYield.length() < checkRadius &&
-            QVector2D::dotProduct(otherDir.normalized(), toYield.normalized()) > 0.4) {
-
-            qreal theirDist = QLineF(otherPos, yieldPos).length();
-            qreal myDist = QLineF(pos(), yieldPos).length();
-
-            if (theirDist < myDist + 5.0) {
-                return true;
-            }
+        if (theirDist < myDist + 5.0) {
+            return true;
         }
     }
     return false;
@@ -368,10 +351,11 @@ void Car::move() {
     } else if (carAhead) {
         if (distToCar < 20.0) {
             targetSpeed = 0.0;
+        } else if (distToCar < 100.0) {
+            targetSpeed = maxSpeed * ((distToCar - 20.0) / 80.0);
         } else {
-            targetSpeed = maxSpeed * ((distToCar - 20.0) / 70.0);
-        }
         targetSpeed = qBound(minSpeed, targetSpeed, maxSpeed);
+        }
     }
 
     bool forcedStop = false;
@@ -404,4 +388,3 @@ void Car::move() {
         deleteLater();
     }
 }
-
